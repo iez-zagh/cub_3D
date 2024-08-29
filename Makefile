@@ -13,7 +13,6 @@ M_OBJECTS = $(M_SOURCES:.c=.o)
 all : $(NAME)
 $(NAME) : $(M_OBJECTS)
 	$(CC) $(CFLAGS) $(INCLUDES) $(M_OBJECTS) $(CUBHEADER) -o $(NAME)
-
 clean:
 	rm -f $(M_OBJECTS)
 fclean: clean
