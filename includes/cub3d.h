@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/08/31 15:42:16 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/08/31 16:50:17 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ typedef struct s_data
 {
 	void		*mlx;
 	mlx_image_t	*img;
-	
-}   t_data;
+}	t_data;
 
-void    just_test(void);
+void	just_test(void);
 
 #endif

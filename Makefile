@@ -18,4 +18,6 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 re: clean fclean all
+norm:
+	@norminette $(M_SOURCES) $(HEADER)
 .PHONY:clean re fclean all
