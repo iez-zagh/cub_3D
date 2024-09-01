@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/08/31 17:06:47 by iez-zagh         ###   ########.fr       */
+/*   Created: 2023/11/02 14:59:37 by iez-zagh          #+#    #+#             */
+/*   Updated: 2023/11/18 08:36:09 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include "MLX42/MLX42.h"
-
-typedef struct s_data
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	void		*mlx;
-	mlx_image_t	*img;
-}	t_data;
+	size_t			i;
+	unsigned char	*s;
+	unsigned char	*d;
 
-void	just_test(void);
-
-#endif
+	s = (unsigned char *)s1;
+	d = (unsigned char *)s2;
+	i = 0;
+	if (!n)
+		return (0);
+	while (i < n)
+	{
+		if (s[i] != d[i])
+			return (s[i] - d[i]);
+		i++;
+	}
+	return (0);
+}

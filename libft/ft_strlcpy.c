@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/08/31 17:06:47 by iez-zagh         ###   ########.fr       */
+/*   Created: 2023/11/01 19:55:29 by iez-zagh          #+#    #+#             */
+/*   Updated: 2023/11/01 20:14:24 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include "MLX42/MLX42.h"
-
-typedef struct s_data
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	void		*mlx;
-	mlx_image_t	*img;
-}	t_data;
+	size_t	src_len;
+	size_t	i;
 
-void	just_test(void);
-
-#endif
+	i = 0;
+	src_len = ft_strlen(src);
+	if (size)
+	{
+		while (src[i] && i < size - 1)
+		{
+			dest[i] = src[i];
+			i++;
+		}
+		dest[i] = '\0';
+	}
+	return (src_len);
+}

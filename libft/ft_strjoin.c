@@ -1,30 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/08/31 17:06:47 by iez-zagh         ###   ########.fr       */
+/*   Created: 2023/11/03 13:52:39 by iez-zagh          #+#    #+#             */
+/*   Updated: 2023/11/03 15:48:21 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include "MLX42/MLX42.h"
-
-typedef struct s_data
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	void		*mlx;
-	mlx_image_t	*img;
-}	t_data;
+	char	*res;
+	int		i;
+	int		len;
 
-void	just_test(void);
-
-#endif
+	i = 0;
+	res = NULL;
+	if (!s1 || !s2)
+		return (NULL);
+	res = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (!res)
+		return (NULL);
+	while (s1[i])
+	{
+		res[i] = s1[i];
+		i++;
+	}
+	len = ft_strlen(s1);
+	i = 0;
+	while (s2[i])
+	{
+		res[len++] = s2[i++];
+	}
+	res[len] = '\0';
+	return (res);
+}

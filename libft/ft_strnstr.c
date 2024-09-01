@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/08/31 17:06:47 by iez-zagh         ###   ########.fr       */
+/*   Created: 2023/11/02 16:01:20 by iez-zagh          #+#    #+#             */
+/*   Updated: 2023/11/10 22:34:14 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include "MLX42/MLX42.h"
-
-typedef struct s_data
+char	*ft_strnstr(const char *str, const char *find, size_t n)
 {
-	void		*mlx;
-	mlx_image_t	*img;
-}	t_data;
+	size_t	i;
+	size_t	len;
 
-void	just_test(void);
-
-#endif
+	i = 0;
+	if (*find == 0)
+		return ((char *)str);
+	len = ft_strlen(find);
+	while (i < n && str[i])
+	{
+		if (str[i] == *find && len <= n - i
+			&& ft_strncmp(&str[i], find, len) == 0)
+			return ((char *)&str[i]);
+		i++;
+	}
+	return (0);
+}

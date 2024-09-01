@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/08/31 17:06:47 by iez-zagh         ###   ########.fr       */
+/*   Created: 2023/11/01 16:34:30 by iez-zagh          #+#    #+#             */
+/*   Updated: 2023/11/17 16:20:11 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include "MLX42/MLX42.h"
-
-typedef struct s_data
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	void		*mlx;
-	mlx_image_t	*img;
-}	t_data;
+	int	i;
 
-void	just_test(void);
-
-#endif
+	if (!src && !dst)
+		return (NULL);
+	if (dst < src)
+	{
+		ft_memcpy(dst, src, len);
+	}
+	else
+	{
+		i = len - 1;
+		while (i >= 0)
+		{
+			*(unsigned char *)(dst + i) = *(unsigned char *)(src + i);
+			i--;
+		}
+	}
+	return (dst);
+}
