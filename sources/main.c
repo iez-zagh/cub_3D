@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/01 16:11:38 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/01 17:26:34 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,26 @@ void	render(t_data *data)
 int	main(int ac, char **av)
 {
 	t_data	data;
+	char	*res;
 
-	char *res = get_next_line(0);
-	printf("%s]]\n", res);return 0;
-	if (ac == 1)
+	char	*map = NULL;
+	if (ac != 2)
 		return (how_2_use(), 1);
-	just_test();
+	int fd = open(av[1], O_RDONLY);
+	if (fd == -1)
+		return (write(2, "error opening map file\n", 23), 1);
+	while (1)
+	{
+		puts("hello");
+		res = get_next_line(fd);
+		if (!res)
+			break ;
+		map = ft_strjoin(map, res);
+		if (!map)
+			return (write(2, "some thing went wrong\n", 22), 1);
+		free(res);
+	}
+	printf("%s]]\n", map);
 	data.mlx = mlx_init(800, 600, "cub3d", 1);
 	render(&data);
 	return (0);
