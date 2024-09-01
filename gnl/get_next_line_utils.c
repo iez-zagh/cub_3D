@@ -6,13 +6,13 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 22:08:44 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/01/07 16:00:00 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/01 15:43:19 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(char *str)
+int	ft_strlen2(char *str)
 {
 	int	i;
 
@@ -26,7 +26,7 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-int	ft_strchr(char *str, char c)
+int	ft_strchr2(char *str, char c)
 {
 	int	i;
 
@@ -44,7 +44,7 @@ int	ft_strchr(char *str, char c)
 	return (-1);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin2(char *s1, char *s2)
 {
 	char	*res;
 	int		i;
@@ -54,12 +54,12 @@ char	*ft_strjoin(char *s1, char *s2)
 	len = 0;
 	if (!s1 && !s2)
 		return (NULL);
-	res = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	res = malloc(ft_strlen2(s1) + ft_strlen2(s2) + 1);
 	if (!res)
 		return (NULL);
 	while (s1 && s1[i])
 		res[i++] = s1[len++];
-	len = ft_strlen(s1);
+	len = ft_strlen2(s1);
 	i = 0;
 	while (s2 && s2[i])
 		res[len++] = s2[i++];
@@ -69,7 +69,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (res);
 }
 
-char	*ft_substr(char *s, int start, int len)
+char	*ft_substr2(char *s, int start, int len)
 {
 	int			i;
 	int			len_s;
@@ -78,7 +78,7 @@ char	*ft_substr(char *s, int start, int len)
 	i = 0;
 	if (!s)
 		return (NULL);
-	len_s = ft_strlen(&s[start]);
+	len_s = ft_strlen2(&s[start]);
 	if (len_s < len)
 		len = len_s;
 	res = malloc(sizeof(char) * (len + 1));
@@ -95,14 +95,14 @@ char	*ft_substr(char *s, int start, int len)
 	return (res);
 }
 
-char	*ft_strdup(char *str)
+char	*ft_strdup2(char *str)
 {
 	char	*str2;
 	size_t	len;
 	int		i;
 
 	i = 0;
-	len = ft_strlen(str);
+	len = ft_strlen2(str);
 	str2 = malloc(sizeof(char) * (len + 1));
 	if (!str2)
 		return (NULL);

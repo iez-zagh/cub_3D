@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/08/31 16:51:45 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/01 16:11:38 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int	main(int ac, char **av)
 {
 	t_data	data;
 
-	(void)av;
+	char *res = get_next_line(0);
+	printf("%s]]\n", res);return 0;
 	if (ac == 1)
 		return (how_2_use(), 1);
 	just_test();

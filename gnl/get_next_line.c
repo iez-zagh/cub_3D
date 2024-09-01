@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 17:30:41 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/01/07 18:38:17 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/01 15:44:51 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*check(char **buffer, int j)
 
 	str2 = ft_one_line(*buffer, j);
 	tmp = *buffer;
-	*buffer = ft_substr(*buffer, j + 1, ft_strlen(*buffer) - j);
+	*buffer = ft_substr2(*buffer, j + 1, ft_strlen2(*buffer) - j);
 	if (!*buffer)
 		return (free(tmp), NULL);
 	return (free(tmp), str2);
@@ -51,12 +51,12 @@ char	*end_or_inv(int u, char **buffer)
 
 	if (u == 0)
 	{
-		if (ft_strlen(*buffer) == 0)
+		if (ft_strlen2(*buffer) == 0)
 		{
 			free(*buffer);
 			*buffer = NULL;
 		}
-		line = ft_one_line(*buffer, (ft_strlen(*buffer) - 1));
+		line = ft_one_line(*buffer, (ft_strlen2(*buffer) - 1));
 		free (*buffer);
 		*buffer = NULL;
 		return (line);
@@ -84,14 +84,14 @@ char	*ft_read(int fd, char **buffer, char *str)
 	}
 	while (1)
 	{
-		j = ft_strchr(*buffer, '\n');
+		j = ft_strchr2(*buffer, '\n');
 		if (j != -1)
 			return (free (str), check(buffer, j));
 		u = read(fd, str, BUFFER_SIZE);
 		if (u == -1 || u == 0)
 			return (free(str), end_or_inv(u, buffer));
 		str[u] = '\0';
-		*buffer = ft_strjoin(*buffer, str);
+		*buffer = ft_strjoin2(*buffer, str);
 	}
 	free (*buffer);
 	*buffer = NULL;
