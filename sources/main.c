@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/01 17:26:34 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/01 18:09:13 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	main(int ac, char **av)
 		return (write(2, "error opening map file\n", 23), 1);
 	while (1)
 	{
-		puts("hello");
 		res = get_next_line(fd);
 		if (!res)
 			break ;
@@ -46,7 +45,7 @@ int	main(int ac, char **av)
 			return (write(2, "some thing went wrong\n", 22), 1);
 		free(res);
 	}
-	printf("%s]]\n", map);
+	printf("%s\n", map); return (0);
 	data.mlx = mlx_init(800, 600, "cub3d", 1);
 	render(&data);
 	return (0);
