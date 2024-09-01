@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/01 18:09:13 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/01 20:17:36 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,30 @@ void	render(t_data *data)
 	data->img = mlx_new_image(data->mlx, 800, 600);
 	mlx_loop(data->mlx);
 	mlx_terminate(data->mlx);
+}
+
+void draw_minimap(char **map, void *mlx_ptr, void *win_ptr)
+{
+	int x, y;
+
+	for (y = 0; y < 10; y++)
+	{
+		for (x = 0; x < 10; x++)
+		{
+			int color = (map[y][x] == 1) ? 0x000000 : 0xFFFFFF; // Black for wall, white for floor
+			
+			int draw_x = x * 10;
+			int draw_y = y * 10;
+			
+			for (int dy = 0; dy < 10; dy++)
+			{
+				for (int dx = 0; dx < 10; dx++)
+				{
+					mlx_pixel_put_to_image(mlx_ptr, win_ptr, draw_x + dx, draw_y + dy, color);
+				}
+			}
+		}
+	}
 }
 
 int	main(int ac, char **av)
