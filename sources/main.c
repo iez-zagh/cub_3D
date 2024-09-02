@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/01 20:17:36 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/02 13:24:15 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,24 @@ void	how_2_use(void)
 void	render(t_data *data)
 {
 	data->img = mlx_new_image(data->mlx, 800, 600);
-	mlx_loop(data->mlx);
-	mlx_terminate(data->mlx);
 }
 
-void draw_minimap(char **map, void *mlx_ptr, void *win_ptr)
+void draw_minimap(char **map, t_data *data)
 {
 	int x, y;
 
-	for (y = 0; y < 10; y++)
+	for (y = 0; y < 14; y++)
 	{
-		for (x = 0; x < 10; x++)
+		for (x = 0; x < 29; x++)
 		{
-			int color = (map[y][x] == 1) ? 0x000000 : 0xFFFFFF; // Black for wall, white for floor
-			
-			int draw_x = x * 10;
-			int draw_y = y * 10;
-			
-			for (int dy = 0; dy < 10; dy++)
+			int color = (map[y][x] == '1') ? 0x000000FF : 0xFFFFFFFF; // Black for wall white for floor
+			int draw_x = x * 20;
+			int draw_y = y * 20;
+			for (int dy = 0; dy < 20; dy++)
 			{
-				for (int dx = 0; dx < 10; dx++)
+				for (int dx = 0; dx < 20; dx++)
 				{
-					mlx_pixel_put_to_image(mlx_ptr, win_ptr, draw_x + dx, draw_y + dy, color);
+					mlx_put_pixel(data->img, draw_x + dx, draw_y + dy, color);
 				}
 			}
 		}
@@ -69,8 +65,11 @@ int	main(int ac, char **av)
 			return (write(2, "some thing went wrong\n", 22), 1);
 		free(res);
 	}
-	printf("%s\n", map); return (0);
 	data.mlx = mlx_init(800, 600, "cub3d", 1);
+	char **map_ = ft_split(map, '\n');
 	render(&data);
+	draw_minimap(map_, &data);
+	mlx_image_to_window(data.mlx, data.img, 0 , 0);
+	mlx_loop(data.mlx);
 	return (0);
 }
