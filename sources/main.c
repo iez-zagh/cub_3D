@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/02 13:24:15 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/02 14:06:43 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void draw_minimap(char **map, t_data *data)
 	{
 		for (x = 0; x < 29; x++)
 		{
-			int color = (map[y][x] == '1') ? 0x000000FF : 0xFFFFFFFF; // Black for wall white for floor
+			int color = (map[y][x] == '1') ? 0x000000FF : 0xFFFFFFFF;
 			int draw_x = x * 20;
 			int draw_y = y * 20;
 			for (int dy = 0; dy < 20; dy++)
