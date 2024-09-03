@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/03 17:23:36 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/03 17:52:38 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	draw_player(t_data *data, int draw_x, int draw_y)
 		x = -r;
 		while (x <= r)
 		{
-			if (x * x + y * y < r * r)
+			if (pow(x, 2) + pow(y, 2) < pow(r, 2))
 				mlx_put_pixel(data->img, draw_x + x + 20, 20 + draw_y + y, RED);
 			x++;
 		}
@@ -45,13 +45,15 @@ void	draw_player(t_data *data, int draw_x, int draw_y)
 
 void draw_minimap(t_data *data)
 {
-	int x, y;
+	int	x;
+	int	y;
+	int	color;
 
 	for (y = 0; y < 15; y++)
 	{
 		for (x = 0; x < 30; x++)
 		{
-			int color = (data->map[y][x] == '1') ? BLACK : WHITE;
+			color = (data->map[y][x] == '1') ? BLACK : WHITE;
 			int draw_x = x * 40;
 			int draw_y = y * 40;
 			for (int dy = 0; dy < 40; dy++)

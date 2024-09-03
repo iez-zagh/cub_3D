@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/03 17:23:20 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/03 17:52:08 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "../gnl/get_next_line.h"
 # include <unistd.h>
 # include <stdlib.h>
+# include <math.h>
 # include <stdio.h>
 # include <fcntl.h>
 
