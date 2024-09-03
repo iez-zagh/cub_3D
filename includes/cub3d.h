@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/03 14:57:41 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/03 17:23:20 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
+
+#define RED 0xE11E00FF
+#define WHITE 0xFFFFFFFF
+#define BLACK 0x00000FF
 
 typedef struct s_data
 {

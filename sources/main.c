@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/03 15:42:12 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/03 17:23:36 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,23 @@ void	render(t_data *data)
 
 void	draw_player(t_data *data, int draw_x, int draw_y)
 {
-	mlx_put_pixel(data->img, draw_x + 20, draw_y + 22, 0XE11E00FF);
-	mlx_put_pixel(data->img, draw_x + 20, draw_y + 23, 0XE11E00FF);
-	mlx_put_pixel(data->img, draw_x + 18, draw_y + 24, 0XE11E00FF);
-	mlx_put_pixel(data->img, draw_x + 19, draw_y + 24, 0XE11E00FF);
-	mlx_put_pixel(data->img, draw_x + 20, draw_y + 24, 0XE11E00FF);
-	mlx_put_pixel(data->img, draw_x + 20, draw_y + 25, 0XE11E00FF);
-	mlx_put_pixel(data->img, draw_x + 20, draw_y + 26, 0XE11E00FF);
-	mlx_put_pixel(data->img, draw_x + 21, draw_y + 24, 0XE11E00FF);
-	mlx_put_pixel(data->img, draw_x + 22, draw_y + 24, 0XE11E00FF);
+	int	r;
+	int	x;
+	int	y;
+
+	r = 4;
+	y = -r;
+	while (y <= r)
+	{
+		x = -r;
+		while (x <= r)
+		{
+			if (x * x + y * y < r * r)
+				mlx_put_pixel(data->img, draw_x + x + 20, 20 + draw_y + y, RED);
+			x++;
+		}
+		y++;
+	}
 }
 
 void draw_minimap(t_data *data)
@@ -43,15 +51,13 @@ void draw_minimap(t_data *data)
 	{
 		for (x = 0; x < 30; x++)
 		{
-			int color = (data->map[y][x] == '1') ? 0x00000FF : 0xFFFFFFFF;
+			int color = (data->map[y][x] == '1') ? BLACK : WHITE;
 			int draw_x = x * 40;
-			int draw_y = y * 48;
-			for (int dy = 0; dy < 48; dy++)
+			int draw_y = y * 40;
+			for (int dy = 0; dy < 40; dy++)
 			{
 				for (int dx = 0; dx < 40; dx++)
-				{
 					mlx_put_pixel(data->img, draw_x + dx, draw_y + dy, color);
-				}
 			}
 			if (data->map[y][x] == 'W' || data->map[y][x] == 'E' || data->map[y][x] == 'S' || data->map[y][x] == 'N')
 				draw_player(data, draw_x, draw_y);
