@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/02 14:06:43 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/03 15:42:12 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,42 @@ void	how_2_use(void)
 
 void	render(t_data *data)
 {
-	data->img = mlx_new_image(data->mlx, 800, 600);
+	data->img = mlx_new_image(data->mlx, 1200, 720);
 }
 
-void draw_minimap(char **map, t_data *data)
+void	draw_player(t_data *data, int draw_x, int draw_y)
+{
+	mlx_put_pixel(data->img, draw_x + 20, draw_y + 22, 0XE11E00FF);
+	mlx_put_pixel(data->img, draw_x + 20, draw_y + 23, 0XE11E00FF);
+	mlx_put_pixel(data->img, draw_x + 18, draw_y + 24, 0XE11E00FF);
+	mlx_put_pixel(data->img, draw_x + 19, draw_y + 24, 0XE11E00FF);
+	mlx_put_pixel(data->img, draw_x + 20, draw_y + 24, 0XE11E00FF);
+	mlx_put_pixel(data->img, draw_x + 20, draw_y + 25, 0XE11E00FF);
+	mlx_put_pixel(data->img, draw_x + 20, draw_y + 26, 0XE11E00FF);
+	mlx_put_pixel(data->img, draw_x + 21, draw_y + 24, 0XE11E00FF);
+	mlx_put_pixel(data->img, draw_x + 22, draw_y + 24, 0XE11E00FF);
+}
+
+void draw_minimap(t_data *data)
 {
 	int x, y;
 
-	for (y = 0; y < 14; y++)
+	for (y = 0; y < 15; y++)
 	{
-		for (x = 0; x < 29; x++)
+		for (x = 0; x < 30; x++)
 		{
-			int color = (map[y][x] == '1') ? 0x000000FF : 0xFFFFFFFF;
-			int draw_x = x * 20;
-			int draw_y = y * 20;
-			for (int dy = 0; dy < 20; dy++)
+			int color = (data->map[y][x] == '1') ? 0x00000FF : 0xFFFFFFFF;
+			int draw_x = x * 40;
+			int draw_y = y * 48;
+			for (int dy = 0; dy < 48; dy++)
 			{
-				for (int dx = 0; dx < 20; dx++)
+				for (int dx = 0; dx < 40; dx++)
 				{
 					mlx_put_pixel(data->img, draw_x + dx, draw_y + dy, color);
 				}
 			}
+			if (data->map[y][x] == 'W' || data->map[y][x] == 'E' || data->map[y][x] == 'S' || data->map[y][x] == 'N')
+				draw_player(data, draw_x, draw_y);
 		}
 	}
 }
@@ -65,10 +80,10 @@ int	main(int ac, char **av)
 			return (write(2, "some thing went wrong\n", 22), 1);
 		free(res);
 	}
-	data.mlx = mlx_init(800, 600, "cub3d", 1);
-	char **map_ = ft_split(map, '\n');
+	data.mlx = mlx_init(1200, 720, "cub3d", 1);
+	data.map = ft_split(map, '\n');
 	render(&data);
-	draw_minimap(map_, &data);
+	draw_minimap(&data);
 	mlx_image_to_window(data.mlx, data.img, 0 , 0);
 	mlx_loop(data.mlx);
 	return (0);
