@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/03 17:52:08 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/04 14:27:23 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,22 @@
 #define WHITE 0xFFFFFFFF
 #define BLACK 0x00000FF
 
+typedef struct s_player
+{
+	int		player_x;
+	int		player_y;
+}	t_player;
+
 typedef struct s_data
 {
 	void		*mlx;
 	mlx_image_t	*img;
 	char		**map;
+	t_player	*player;
 }	t_data;
 
-void	just_test(void);
+void	my_key_hook(mlx_key_data_t key, void *data);
+void	start_render(t_data *data);
+void	draw_player(t_data *data, int draw_x, int draw_y, int color);
 
 #endif

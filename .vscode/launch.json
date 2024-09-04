@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/iez-zagh/Desktop/cub_3d/sources",
-      "program": "/Users/iez-zagh/Desktop/cub_3d/sources/build/Debug/outDebug"
+      "cwd": "/Users/iez-zagh/Desktop/cub_3d",
+      "program": "/Users/iez-zagh/Desktop/cub_3d/build/Debug/outDebug"
     }
   ]
 }
