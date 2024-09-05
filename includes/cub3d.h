@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/05 18:10:29 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/05 18:40:38 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@
 
 typedef struct s_player
 {
-	int		player_x;
-	int		player_y;
-	int		sqaure_x;
-	int		sqaure_y;
+	float		player_x;
+	float		player_y;
+	float		sqaure_x;
+	float		sqaure_y;
 }	t_player;
 
 typedef struct s_data
@@ -46,7 +46,7 @@ typedef struct s_data
 
 void	my_key_hook(mlx_key_data_t key, void *data);
 void	start_render(t_data *data);
-void	draw_player(t_data *data, int draw_x, int draw_y, int color);
-void	draw_player2(t_data *data, int draw_x, int draw_y, int color);
+void	draw_player(t_data *data, float draw_x, float draw_y, int color);
+void	draw_player2(t_data *data, float draw_x, float draw_y, int color);
 
 #endif

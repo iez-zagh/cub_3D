@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:17:54 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/05 18:14:25 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/05 18:40:32 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void	render(t_data *data)
 	data->img = mlx_new_image(data->mlx, 960, 480);
 }
 
-void	draw_player(t_data *data, int draw_x, int draw_y, int color)
+void	draw_player(t_data *data, float draw_x, float draw_y, int color)
 {
-	int	r;
-	int	x;
-	int	y;
+	float	r;
+	float	x;
+	float	y;
 
 	r = 4;
 	y = -r;
@@ -38,11 +38,11 @@ void	draw_player(t_data *data, int draw_x, int draw_y, int color)
 	}
 }
 
-void	draw_player2(t_data *data, int draw_x, int draw_y, int color)
+void	draw_player2(t_data *data, float draw_x, float draw_y, int color)
 {
-	int	r;
-	int	x;
-	int	y;
+	float	r;
+	float	x;
+	float	y;
 
 	r = 4;
 	y = -r;
@@ -52,7 +52,7 @@ void	draw_player2(t_data *data, int draw_x, int draw_y, int color)
 		while (x < r)
 		{
 			if (pow(x, 2) + pow(y, 2) < pow(r, 2))
-				mlx_put_pixel(data->img, draw_x + x + 16, draw_y + y + 16, color);
+				mlx_put_pixel(data->img, draw_x + x, draw_y + y, color);
 			x++;
 		}
 		y++;
@@ -61,8 +61,8 @@ void	draw_player2(t_data *data, int draw_x, int draw_y, int color)
 
 void draw_minimap(t_data *data)
 {
-	int			x;
-	int			y;
+	float			x;
+	float			y;
 	int			color;
 	t_player	*player;
 
@@ -71,18 +71,18 @@ void draw_minimap(t_data *data)
 	{
 		for (x = 0; x < 30; x++)
 		{
-			if (data->map[y][x] == '1')
+			if (data->map[(int)y][(int)x] == '1')
 				color = BLACK;
 			else
 				color = WHITE;
-			int draw_x = x * TILE;
-			int draw_y = y * TILE;
+			float draw_x = x * TILE;
+			float draw_y = y * TILE;
 			for (int dy = 0; dy < TILE; dy++)
 			{
 				for (int dx = 0; dx < TILE; dx++)
 					mlx_put_pixel(data->img, draw_x + dx, draw_y + dy, color);
 			}
-			if (data->map[y][x] == 'W')
+			if (data->map[(int)y][(int)x] == 'W')
 			{
 				player->player_x = x;
 				player->player_y = y;
