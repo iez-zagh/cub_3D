@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/04 13:02:48 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/05 18:02:34 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	how_2_use(void)
 {
 	printf("Usage: ./cub3D ./path_to_map\n");
 }
-
-
 
 int	main(int ac, char **av)
 {
