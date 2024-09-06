@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:17:54 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/06 17:43:00 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/06 18:24:15 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	draw_player(t_data *data, float draw_x, float draw_y, int color)
 
 	data->player->sqaure_x = draw_x + 16;
 	data->player->sqaure_y = draw_y + 16;
-	y = -radius;
-	while (y < radius)
+	y = -RADIUS;
+	while (y < RADIUS)
 	{
-		x = -radius;
-		while (x < radius)
+		x = -RADIUS;
+		while (x < RADIUS)
 		{
-			if (pow(x, 2) + pow(y, 2) < pow(radius, 2))
+			if (pow(x, 2) + pow(y, 2) < pow(RADIUS, 2))
 				mlx_put_pixel(data->img, draw_x + x + 16 , 16 + draw_y + y, color);
 			x++;
 		}

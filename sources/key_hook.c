@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:04:14 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/06 17:45:04 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/06 18:48:50 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,14 @@
 
 int	checking_collision(t_data *data, float x, float y)
 {
-	if (data->map[(int)((y - radius2) / TILE)][(int)((x - radius2) / TILE)] == '1' ||
-		data->map[(int)((y + radius2) / TILE)][(int)((x - radius2) / TILE)] == '1' ||
-		data->map[(int)((y - radius2) / TILE)][(int)((x + radius2) / TILE)] == '1' ||
-		data->map[(int)((y + radius2) / TILE)][(int)((x + radius2) / TILE)] == '1') 
+	if (data->map[(int)((y - RADIUS2) / TILE)]
+		[(int)((x - RADIUS2) / TILE)] == '1' ||
+		data->map[(int)((y + RADIUS2) / TILE)]
+		[(int)((x - RADIUS2) / TILE)] == '1' ||
+		data->map[(int)((y - RADIUS2) / TILE)]
+		[(int)((x + RADIUS2) / TILE)] == '1' ||
+		data->map[(int)((y + RADIUS2) / TILE)]
+		[(int)((x + RADIUS2) / TILE)] == '1')
 		return (1);
 	return (0);
 }
@@ -44,30 +48,22 @@ int	left_right(float x, float y, t_data *data)
 	return (0);
 }
 
-void	key_hook_2(mlx_key_data_t key, t_data *data)
+void	key_hook_3(mlx_key_data_t key, t_data *data)
 {
-
-	if (key.key == MLX_KEY_D || key.key == MLX_KEY_RIGHT)
+	if (key.key == MLX_KEY_LEFT)
 	{
 		int i = 0;
-		while (i < MOVE_SPEED)
-		{	
-			if (left_right(data->player->sqaure_x + 1, data->player->sqaure_y, data))
-				return ;
-			data->player->sqaure_x += 1;
+		while( i < ROTATE)
+		{
+			remove_direction(data, data->player->sqaure_x - data->rotate, data->player->sqaure_y - data->rotate);
+			draw_direction(data, data->player->sqaure_x - data->rotate, data->player->sqaure_y - data->rotate);
+			data->rotate++;
 			i++;
 		}
 	}
-	else if (key.key == MLX_KEY_S || key.key == MLX_KEY_DOWN)
+	else if (key.key == MLX_KEY_RIGHT)
 	{
-		int i = 0;
-		while (i < MOVE_SPEED)
-		{	
-			if (up_down(data->player->sqaure_x, data->player->sqaure_y + 1, data))
-				return ;
-			data->player->sqaure_y += 1;
-			i++;
-		}
+		
 	}
 	else if (key.key == MLX_KEY_ESCAPE)
 	{
@@ -76,32 +72,66 @@ void	key_hook_2(mlx_key_data_t key, t_data *data)
 	}
 }
 
+void	key_hook_2(mlx_key_data_t key, t_data *data)
+{
+	int	i;
+
+	i = 0;
+	if (key.key == MLX_KEY_D)
+	{
+		while (i < MOVE_SPEED)
+		{
+			if (left_right(data->player->sqaure_x + 1,
+					data->player->sqaure_y, data))
+				return ;
+			data->player->sqaure_x += 1;
+			i++;
+		}
+	}
+	else if (key.key == MLX_KEY_S)
+	{
+		while (i < MOVE_SPEED)
+		{
+			if (up_down(data->player->sqaure_x,
+					data->player->sqaure_y + 1, data))
+				return ;
+			data->player->sqaure_y += 1;
+			i++;
+		}
+	}
+	else
+		key_hook_3(key, data);
+}
+
 void	my_key_hook(mlx_key_data_t key, void *st)
 {
 	t_data	*data;
+	int		i;
 
+	i = 0;
 	data = (t_data *)st;
-	if (key.key == MLX_KEY_W || key.key == MLX_KEY_UP)
+	if (key.key == MLX_KEY_W)
 	{
-		int i = 0;
 		while (i < MOVE_SPEED)
 		{
-			if (up_down(data->player->sqaure_x, data->player->sqaure_y - 1, data))
+			if (up_down(data->player->sqaure_x,
+					data->player->sqaure_y - 1, data))
 				return ;
 			data->player->sqaure_y -= 1;
 			i++;
 		}
 	}
-	else if (key.key == MLX_KEY_A || key.key == MLX_KEY_LEFT)
+	else if (key.key == MLX_KEY_A)
 	{
-		int i = 0;
 		while (i < MOVE_SPEED)
 		{
-			if (left_right(data->player->sqaure_x - 1, data->player->sqaure_y, data))
+			if (left_right(data->player->sqaure_x - 1,
+					data->player->sqaure_y, data))
 				return ;
 			data->player->sqaure_x -= 1;
 			i++;
 		}
 	}
-	key_hook_2(key, data);
+	else
+		key_hook_2(key, data);
 }

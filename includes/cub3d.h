@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/06 17:51:34 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/06 18:49:07 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,15 @@
 # include <stdio.h>
 # include <fcntl.h>
 
-#define RED 0xE11E00FF
-#define WHITE 0xFFFFFFFF
-#define BLACK 0x00000FF
-#define TILE 32
-#define MOVE_SPEED 7.0
-#define radius 4.0
-#define radius2 3.0
-#define r_angle 2 * (M_PI / 180)
+# define RED 0xE11E00FF
+# define WHITE 0xFFFFFFFF
+# define BLACK 0x00000FF
+# define TILE 32
+# define MOVE_SPEED 7.0
+# define RADIUS 4.0
+# define RADIUS2 3.0
+# define R_ANGLE (2 * (M_PI / 180))
+# define ROTATE 3
 
 typedef struct s_player
 {
@@ -45,6 +46,7 @@ typedef struct s_data
 	mlx_image_t	*img;
 	char		**map;
 	t_player	*player;
+	float		rotate;
 }	t_data;
 
 void	my_key_hook(mlx_key_data_t key, void *data);
