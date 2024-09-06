@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:04:14 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/06 16:27:17 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/06 17:45:04 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ int	up_down(float x, float y, t_data *data)
 {
 	if (checking_collision(data, x, y))
 		return (1);
+	remove_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 	draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, WHITE);
 	draw_player2(data, x, y, RED);
+	draw_direction(data, x, y);
 	return (0);
 }
 
@@ -35,8 +37,10 @@ int	left_right(float x, float y, t_data *data)
 {
 	if (checking_collision(data, x, y))
 		return (1);
+	remove_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 	draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, WHITE);
 	draw_player2(data, x, y, RED);
+	draw_direction(data, x, y);
 	return (0);
 }
 

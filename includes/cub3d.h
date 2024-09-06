@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/06 16:34:22 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/06 17:51:34 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 #define MOVE_SPEED 7.0
 #define radius 4.0
 #define radius2 3.0
+#define r_angle 2 * (M_PI / 180)
 
 typedef struct s_player
 {
@@ -50,6 +51,8 @@ void	my_key_hook(mlx_key_data_t key, void *data);
 void	start_render(t_data *data);
 void	draw_player(t_data *data, float draw_x, float draw_y, int color);
 void	draw_player2(t_data *data, float draw_x, float draw_y, int color);
-void	draw_direction(t_data *data);
+void	draw_direction(t_data *data, float x, float y);
+void	remove_direction(t_data *data, float x, float y);
+int		checking_collision(t_data *data, float x, float y);
 
 #endif
