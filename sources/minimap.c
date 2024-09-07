@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/07 11:54:41 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/07 12:15:21 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	draw_direction(t_data *data, float x, float y)
 	dir_x = cos(data->player->angle);
 	dir_y = sin(data->player->angle);
 
-	for (int i = 4; i < 24; i++)
+	for (int i = RADIUS; i < 24; i++)
 	{
 		float draw_x = x + dir_x * i;
 		float draw_y = y + dir_y * i;
@@ -47,7 +47,7 @@ void	remove_direction(t_data *data, float x, float y)
 	dir_x = cos(data->player->old_angle);
 	dir_y = sin(data->player->old_angle);
 
-	for (int i = 4; i < 24; i++) // Ensure the entire line is cleared
+	for (int i = RADIUS + 1; i < 24; i++) // Ensure the entire line is cleared
 	{
 		float draw_x = x + dir_x * i;
 		float draw_y = y + dir_y * i;

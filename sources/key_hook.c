@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:04:14 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/07 11:50:26 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/07 12:10:51 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void key_hook_3(mlx_key_data_t key, t_data *data)
 		exit(0);
 	}
 }
+
 void	key_hook_2(mlx_key_data_t key, t_data *data)
 {
 	int	i;
