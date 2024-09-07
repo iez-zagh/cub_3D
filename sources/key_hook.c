@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:04:14 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/06 18:48:50 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/07 10:00:33 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,30 +48,33 @@ int	left_right(float x, float y, t_data *data)
 	return (0);
 }
 
-void	key_hook_3(mlx_key_data_t key, t_data *data)
+void key_hook_3(mlx_key_data_t key, t_data *data)
 {
-	if (key.key == MLX_KEY_LEFT)
-	{
-		int i = 0;
-		while( i < ROTATE)
-		{
-			remove_direction(data, data->player->sqaure_x - data->rotate, data->player->sqaure_y - data->rotate);
-			draw_direction(data, data->player->sqaure_x - data->rotate, data->player->sqaure_y - data->rotate);
-			data->rotate++;
-			i++;
-		}
-	}
-	else if (key.key == MLX_KEY_RIGHT)
-	{
-		
-	}
-	else if (key.key == MLX_KEY_ESCAPE)
-	{
-		write(1, "WINDOW CLOSED\n", 14);
-		exit (0);
-	}
-}
+    if (key.key == MLX_KEY_LEFT)
+    {
+        // Rotate player direction to the left
+        data->player->angle -= ROTATE_ANGLE;
+        if (data->player->angle < 0)
+            data->player->angle += 2 * M_PI; // Keep angle within [0, 2π]
+        remove_direction(data, data->player->sqaure_x, data->player->sqaure_y);
+        draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
+    }
+    else if (key.key == MLX_KEY_RIGHT)
+    {
+        data->player->angle += ROTATE_ANGLE;
+        if (data->player->angle > 2 * M_PI)
+            data->player->angle -= 2 * M_PI; // Keep angle within [0, 2π]
 
+        // Redraw the direction
+        remove_direction(data, data->player->sqaure_x, data->player->sqaure_y);
+        draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
+    }
+    else if (key.key == MLX_KEY_ESCAPE)
+    {
+        write(1, "WINDOW CLOSED\n", 14);
+        exit(0);
+    }
+}
 void	key_hook_2(mlx_key_data_t key, t_data *data)
 {
 	int	i;

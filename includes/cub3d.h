@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/06 18:49:07 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/07 09:54:44 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,14 @@
 # define MOVE_SPEED 7.0
 # define RADIUS 4.0
 # define RADIUS2 3.0
-# define R_ANGLE (2 * (M_PI / 180))
+# define ROTATE_ANGLE 0.1
 # define ROTATE 3
 
 typedef struct s_player
 {
-	float		player_x;
-	float		player_y;
+	float		dir_x;
+	float		dir_y;
+	float		angle;
 	float		sqaure_x;
 	float		sqaure_y;
 }	t_player;
