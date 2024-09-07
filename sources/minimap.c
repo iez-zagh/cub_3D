@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/07 11:16:14 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/07 11:54:41 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,18 @@ void	draw_direction(t_data *data, float x, float y)
 	{
 		float draw_x = x + dir_x * i;
 		float draw_y = y + dir_y * i;
-		
 		if (!checking_collision2(data, draw_x, draw_y))
 			mlx_put_pixel(data->img, draw_x, draw_y, RED);
 	}
 }
 
-void	remove_direction(t_data *data, float x, float y, float old_angle)
+void	remove_direction(t_data *data, float x, float y)
 {
 	float dir_x, dir_y;
 
 	// Calculate the direction vector based on the angle
-	dir_x = cos(old_angle);
-	dir_y = sin(old_angle);
+	dir_x = cos(data->player->old_angle);
+	dir_y = sin(data->player->old_angle);
 
 	for (int i = 4; i < 24; i++) // Ensure the entire line is cleared
 	{
@@ -66,7 +65,7 @@ void	remove_direction2(t_data *data, float x, float y)
 	dir_x = cos(data->player->angle);
 	dir_y = sin(data->player->angle);
 
-	for (int i = 4; i < 24; i++) // Ensure the entire line is cleared
+	for (int i = 3; i < 24; i++) // Ensure the entire line is cleared
 	{
 		float draw_x = x + dir_x * i;
 		float draw_y = y + dir_y * i;

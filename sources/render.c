@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:17:54 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/07 09:47:21 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/07 11:38:34 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	draw_player(t_data *data, float draw_x, float draw_y, int color)
 		y++;
 	}
 	data->player->dir_x = data->player->sqaure_x;
+	data->player->angle = M_PI;
 	data->player->dir_y = data->player->sqaure_x + 3;
 	draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 }

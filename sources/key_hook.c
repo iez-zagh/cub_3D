@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:04:14 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/07 11:13:10 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/07 11:50:26 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,24 +50,25 @@ int	left_right(float x, float y, t_data *data)
 
 void key_hook_3(mlx_key_data_t key, t_data *data)
 {
-	float	old_angle = data->player->angle;
 	if (key.key == MLX_KEY_LEFT)
 	{
+		data->player->old_angle = data->player->angle;
 		// Rotate player direction to the left
 		data->player->angle -= ROTATE_ANGLE;
 		if (data->player->angle < 0)
 		    data->player->angle += 2 * M_PI; // Keep angle within [0, 2π]
-		remove_direction(data, data->player->sqaure_x, data->player->sqaure_y, old_angle);
+		remove_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 		draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 	}
 	else if (key.key == MLX_KEY_RIGHT)
 	{
+		data->player->old_angle = data->player->angle;
 		data->player->angle += ROTATE_ANGLE;
 		if (data->player->angle > 2 * M_PI)
 			data->player->angle -= 2 * M_PI;
 		
 		// Redraw the direction
-		remove_direction(data, data->player->sqaure_x, data->player->sqaure_y, old_angle);
+		remove_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 		draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 	}
 	else if (key.key == MLX_KEY_ESCAPE)
@@ -92,7 +93,7 @@ void	key_hook_2(mlx_key_data_t key, t_data *data)
 			i++;
 		}
 	}
-	else if (key.key == MLX_KEY_S || key.key == MLX_KEY_UP)
+	else if (key.key == MLX_KEY_S || key.key == MLX_KEY_DOWN)
 	{
 		while (i < MOVE_SPEED)
 		{
