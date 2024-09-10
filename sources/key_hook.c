@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:04:14 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/10 19:08:48 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/10 19:14:59 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	key_hook_3(t_data *data)
 		if (data->player->angle < 0)
 			data->player->angle = 2 * M_PI; // Keep angle within 0 and  2π) and need to musch under this
 		remove_direction(data, data->player->sqaure_x, data->player->sqaure_y);
-		draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, RED);
+		draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, RED); //need to reput the map every time i guess
 		draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
