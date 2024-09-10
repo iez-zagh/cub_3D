@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:04:14 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/10 16:00:08 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/10 19:08:48 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,41 +48,41 @@ int	left_right(float x, float y, t_data *data)
 	return (0);
 }
 
-void	key_hook_3(mlx_key_data_t key, t_data *data)
+void	key_hook_3(t_data *data)
 {
-	if (key.key == MLX_KEY_LEFT)
+	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
 	{
 		data->player->old_angle = data->player->angle;
 		data->player->angle -= ROTATE_ANGLE;
 		if (data->player->angle < 0)
-			data->player->angle += 2 * M_PI; // Keep angle within [0, 2π]
+			data->player->angle = 2 * M_PI; // Keep angle within 0 and  2π) and need to musch under this
 		remove_direction(data, data->player->sqaure_x, data->player->sqaure_y);
+		draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 		draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 	}
-	else if (key.key == MLX_KEY_RIGHT)
+	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 	{
 		data->player->old_angle = data->player->angle;
 		data->player->angle += ROTATE_ANGLE;
 		if (data->player->angle > 2 * M_PI)
-			data->player->angle -= 2 * M_PI;
-		
-		// Redraw the direction
+			data->player->angle = 0;
 		remove_direction(data, data->player->sqaure_x, data->player->sqaure_y);
+		draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 		draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 	}
-	else if (key.key == MLX_KEY_ESCAPE)
+	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 	{
 		write(1, "WINDOW CLOSED\n", 14);
 		exit(0);
 	}
 }
 
-void	key_hook_2(mlx_key_data_t key, t_data *data)
+void	key_hook_2(t_data *data)
 {
 	int	i;
 
 	i = 0;
-	if (key.key == MLX_KEY_D)
+	if (mlx_is_key_down(data->mlx, MLX_KEY_D))
 	{
 		while (i < MOVE_SPEED)
 		{
@@ -93,7 +93,7 @@ void	key_hook_2(mlx_key_data_t key, t_data *data)
 			i++;
 		}
 	}
-	else if (key.key == MLX_KEY_S || key.key == MLX_KEY_DOWN)
+	if (mlx_is_key_down(data->mlx, MLX_KEY_S) || mlx_is_key_down(data->mlx, MLX_KEY_DOWN))
 	{
 		while (i < MOVE_SPEED)
 		{
@@ -104,36 +104,40 @@ void	key_hook_2(mlx_key_data_t key, t_data *data)
 			i++;
 		}
 	}
-	else
-		key_hook_3(key, data);
+	key_hook_3(data);
 }
 
-void	my_key_hook(mlx_key_data_t key, void *st)
+void	my_key_hook(void *st)
 {
 	t_data	*data;
 	int		i;
 
 	i = 0;
 	data = (t_data *)st;
-	if (key.key == MLX_KEY_W || key.key == MLX_KEY_UP)
+	if (mlx_is_key_down(data->mlx, MLX_KEY_W) || mlx_is_key_down(data->mlx, MLX_KEY_UP))
 	{
+		i = 0;
 		while (i < MOVE_SPEED)
 		{	
-			if (checking_collision(data, data->player->sqaure_x, data->player->sqaure_y - 1))
-				return ;
-			// if (up_down(data->player->sqaure_x,
-			// 		data->player->sqaure_y - MOVE_SPEED, data))
+			// if (checking_collision(data, data->player->sqaure_x, data->player->sqaure_y - 1))
 			// 	return ;
-			mlx_delete_image(data->mlx, data->img);
-			data->img = mlx_new_image(data->mlx, 960, 480);
+			if (up_down(data->player->sqaure_x,
+					data->player->sqaure_y - 1, data))
+				return ;
 			data->player->sqaure_y -= 1;
-			draw_minimap(data);
-			mlx_image_to_window(data->mlx, data->img, 0 , 0);;
+			// mlx_delete_image(data->mlx, data->img);
+			// data->img = mlx_new_image(data->mlx, 960, 480);
+			// data->player->sqaure_y -= 1;
+			// draw_minimap(data);
+			// draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, RED);
+			// draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
+			// mlx_image_to_window(data->mlx, data->img, 0 , 0);
 			i++;
 		}
 	}
-	else if (key.key == MLX_KEY_A)
+	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
 	{
+		i = 0;
 		while (i < MOVE_SPEED)
 		{
 			if (left_right(data->player->sqaure_x - 1,
@@ -143,6 +147,5 @@ void	my_key_hook(mlx_key_data_t key, void *st)
 			i++;
 		}
 	}
-	else
-		key_hook_2(key, data);
+	key_hook_2(data);
 }

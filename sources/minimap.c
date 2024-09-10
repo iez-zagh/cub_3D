@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/10 13:23:16 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/10 19:08:09 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	draw_direction(t_data *data, float x, float y)
 {
 	float dir_x, dir_y;
 
-	// Calculate the direction vector based on the angle
 	dir_x = cos(data->player->angle);
 	dir_y = sin(data->player->angle);
 	for (float i = 0; i < 24; i++)

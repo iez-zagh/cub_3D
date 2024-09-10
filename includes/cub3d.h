@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/10 15:35:31 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/10 18:07:22 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define WHITE 0xFFFFFFFF
 # define BLACK 0x00000FF
 # define TILE 32
-# define MOVE_SPEED 15.0
+# define MOVE_SPEED 4.0
 # define RADIUS 4.0
 # define RADIUS2 3.0
 # define ROTATE_ANGLE 10 * (M_PI / 180)
@@ -50,7 +50,7 @@ typedef struct s_data
 	float		rotate;
 }	t_data;
 
-void	my_key_hook(mlx_key_data_t key, void *data);
+void	my_key_hook(void *data);
 void	start_render(t_data *data);
 void	draw_player(t_data *data, float draw_x, float draw_y, int color);
 void	draw_player2(t_data *data, float draw_x, float draw_y, int color);

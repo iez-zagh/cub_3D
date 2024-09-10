@@ -6,16 +6,11 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:17:54 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/10 15:55:40 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/10 19:03:30 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	render(t_data *data)
-{
-	data->img = mlx_new_image(data->mlx, 960, 480);
-}
 
 void	draw_player(t_data *data, float draw_x, float draw_y, int color)
 {
@@ -36,10 +31,6 @@ void	draw_player(t_data *data, float draw_x, float draw_y, int color)
 		}
 		y++;
 	}
-	data->player->dir_x = data->player->sqaure_x;
-	data->player->angle = M_PI;
-	data->player->dir_y = data->player->sqaure_x + 3;
-	draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 }
 
 void	draw_player2(t_data *data, float draw_x, float draw_y, int color)
@@ -69,7 +60,6 @@ void draw_minimap(t_data *data)
 	float			y;
 	int			color;
  
-	puts("hello");
 	for (y = 0; y < 15; y++)
 	{
 		for (x = 0; x < 30; x++)
@@ -87,15 +77,16 @@ void draw_minimap(t_data *data)
 			}
 		}
 	}
-	draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 }
 
 void	start_render(t_data *data)
 {
 	data->mlx = mlx_init(960, 480, "cub3d", 1);
-	render(data);
+	data->img = mlx_new_image(data->mlx, 960, 480);
 	draw_minimap(data);
+	draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
+	draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 	mlx_image_to_window(data->mlx, data->img, 0 , 0);
-	mlx_key_hook(data->mlx, &my_key_hook, data);
+	mlx_loop_hook(data->mlx, &my_key_hook, data);
 	mlx_loop(data->mlx);
 }
