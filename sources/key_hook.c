@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:04:14 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/07 12:10:51 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/09 12:16:53 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,14 @@ int	left_right(float x, float y, t_data *data)
 	return (0);
 }
 
-void key_hook_3(mlx_key_data_t key, t_data *data)
+void	key_hook_3(mlx_key_data_t key, t_data *data)
 {
 	if (key.key == MLX_KEY_LEFT)
 	{
 		data->player->old_angle = data->player->angle;
-		// Rotate player direction to the left
 		data->player->angle -= ROTATE_ANGLE;
 		if (data->player->angle < 0)
-		    data->player->angle += 2 * M_PI; // Keep angle within [0, 2π]
+			data->player->angle += 2 * M_PI; // Keep angle within [0, 2π]
 		remove_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 		draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 	}
