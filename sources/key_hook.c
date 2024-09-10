@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:04:14 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/09 12:16:53 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/10 16:00:08 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	up_down(float x, float y, t_data *data)
 	if (checking_collision(data, x, y))
 		return (1);
 	remove_direction2(data, data->player->sqaure_x, data->player->sqaure_y);
-	draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, WHITE);
+	draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, WHITE); //destroy the image and draw it again	
 	draw_player2(data, x, y, RED);
 	draw_direction(data, x, y);
 	return (0);
@@ -118,11 +118,17 @@ void	my_key_hook(mlx_key_data_t key, void *st)
 	if (key.key == MLX_KEY_W || key.key == MLX_KEY_UP)
 	{
 		while (i < MOVE_SPEED)
-		{
-			if (up_down(data->player->sqaure_x,
-					data->player->sqaure_y - 1, data))
+		{	
+			if (checking_collision(data, data->player->sqaure_x, data->player->sqaure_y - 1))
 				return ;
+			// if (up_down(data->player->sqaure_x,
+			// 		data->player->sqaure_y - MOVE_SPEED, data))
+			// 	return ;
+			mlx_delete_image(data->mlx, data->img);
+			data->img = mlx_new_image(data->mlx, 960, 480);
 			data->player->sqaure_y -= 1;
+			draw_minimap(data);
+			mlx_image_to_window(data->mlx, data->img, 0 , 0);;
 			i++;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/09 12:19:16 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/10 13:23:16 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,10 @@ void	draw_direction(t_data *data, float x, float y)
 	// Calculate the direction vector based on the angle
 	dir_x = cos(data->player->angle);
 	dir_y = sin(data->player->angle);
-
-	for (int i = 0; i < 24; i++)
+	for (float i = 0; i < 24; i++)
 	{
-		float draw_x = x + dir_x * i;
-		float draw_y = y + dir_y * i;
-		if (!checking_collision2(data, draw_x, draw_y))
-			mlx_put_pixel(data->img, draw_x, draw_y, RED);
+		if (!checking_collision2(data, x + (dir_x * i), y + (dir_y * i)))
+			mlx_put_pixel(data->img, x + (dir_x * i), y + (dir_y * i), BLACK);
 	}
 }
 
@@ -47,16 +44,13 @@ void	remove_direction(t_data *data, float x, float y)
 	dir_x = cos(data->player->old_angle);
 	dir_y = sin(data->player->old_angle);
 
-	for (int i = 0; i < 24; i++) // Ensure the entire line is cleared
+	for (float i = 4; i < 24; i++) // Ensure the entire line is cleared
 	{
-		float draw_x = x + dir_x * i; // this not the player pos
-		float draw_y = y + dir_y * i;
-		
-		if (!checking_collision2(data, draw_x, draw_y))
-			mlx_put_pixel(data->img, draw_x, draw_y, WHITE);
+		if (!checking_collision2(data, x + (dir_x * i), y + (dir_y * i)))
+			mlx_put_pixel(data->img, x + (dir_x * i), y + (dir_y * i), WHITE);
 	}
 }
-
+ 
 void	remove_direction2(t_data *data, float x, float y)
 {
 	float dir_x, dir_y;
@@ -65,12 +59,9 @@ void	remove_direction2(t_data *data, float x, float y)
 	dir_x = cos(data->player->angle);
 	dir_y = sin(data->player->angle);
 
-	for (int i = 3; i < 24; i++) // Ensure the entire line is cleared
+	for (float i = RADIUS ; i < 24; i++) // Ensure the entire line is cleared
 	{
-		float draw_x = x + dir_x * i;
-		float draw_y = y + dir_y * i;
-		
-		if (!checking_collision2(data, draw_x, draw_y))
-		mlx_put_pixel(data->img, draw_x, draw_y, WHITE);
+		if (!checking_collision2(data, x + dir_x * i, y + dir_y * i))
+			mlx_put_pixel(data->img, x + dir_x * i, y + dir_y * i, WHITE);
 	}
 }

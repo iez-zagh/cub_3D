@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:17:54 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/07 11:38:34 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/10 15:55:40 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,8 @@ void draw_minimap(t_data *data)
 	float			x;
 	float			y;
 	int			color;
-	t_player	*player;
-
-	player = malloc(sizeof(t_player));
+ 
+	puts("hello");
 	for (y = 0; y < 15; y++)
 	{
 		for (x = 0; x < 30; x++)
@@ -86,13 +85,9 @@ void draw_minimap(t_data *data)
 				for (int dx = 0; dx < TILE; dx++)
 					mlx_put_pixel(data->img, draw_x + dx, draw_y + dy, color);
 			}
-			if (data->map[(int)y][(int)x] == 'W')
-			{
-				data->player = player;
-				draw_player(data, draw_x, draw_y, RED);
-			}
 		}
 	}
+	draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 }
 
 void	start_render(t_data *data)

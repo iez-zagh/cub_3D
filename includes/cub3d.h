@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/09 12:12:35 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/10 15:35:31 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define WHITE 0xFFFFFFFF
 # define BLACK 0x00000FF
 # define TILE 32
-# define MOVE_SPEED 7.0
+# define MOVE_SPEED 15.0
 # define RADIUS 4.0
 # define RADIUS2 3.0
 # define ROTATE_ANGLE 10 * (M_PI / 180)
@@ -58,5 +58,6 @@ void	draw_direction(t_data *data, float x, float y);
 void	remove_direction(t_data *data, float x, float y);
 void	remove_direction2(t_data *data, float x, float y);
 int		checking_collision(t_data *data, float x, float y);
+void 	draw_minimap(t_data *data);
 
 #endif
