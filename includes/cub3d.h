@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/10 18:07:22 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/11 16:14:10 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@
 # define RED 0xE11E00FF
 # define WHITE 0xFFFFFFFF
 # define BLACK 0x00000FF
-# define TILE 32
+# define TILE 64
 # define MOVE_SPEED 4.0
 # define RADIUS 4.0
 # define RADIUS2 3.0
-# define ROTATE_ANGLE 10 * (M_PI / 180)
+# define ROTATE_ANGLE 3 * (M_PI / 180)
 
 typedef struct s_player
 {
@@ -47,7 +47,6 @@ typedef struct s_data
 	mlx_image_t	*img;
 	char		**map;
 	t_player	*player;
-	float		rotate;
 }	t_data;
 
 void	my_key_hook(void *data);

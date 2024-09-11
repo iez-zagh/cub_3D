@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:04:14 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/10 19:14:59 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/11 16:21:50 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	key_hook_3(t_data *data)
 	{
 		data->player->old_angle = data->player->angle;
 		data->player->angle += ROTATE_ANGLE;
-		if (data->player->angle > 2 * M_PI)
+		if (data->player->angle > M_PI * 2)
 			data->player->angle = 0;
 		remove_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 		draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, RED);
@@ -72,9 +72,10 @@ void	key_hook_3(t_data *data)
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 	{
+		//needs for release resources
 		write(1, "WINDOW CLOSED\n", 14);
 		exit(0);
-	}
+	} 
 }
 
 void	key_hook_2(t_data *data)
@@ -111,6 +112,7 @@ void	my_key_hook(void *st)
 {
 	t_data	*data;
 	int		i;
+	// mlx_image_t *image;
 
 	i = 0;
 	data = (t_data *)st;
@@ -118,20 +120,21 @@ void	my_key_hook(void *st)
 	{
 		i = 0;
 		while (i < MOVE_SPEED)
-		{	
-			// if (checking_collision(data, data->player->sqaure_x, data->player->sqaure_y - 1))
-			// 	return ;
+		{
+			if (checking_collision(data, data->player->sqaure_x, data->player->sqaure_y - 1))
+				return ;
 			if (up_down(data->player->sqaure_x,
 					data->player->sqaure_y - 1, data))
 				return ;
 			data->player->sqaure_y -= 1;
-			// mlx_delete_image(data->mlx, data->img);
-			// data->img = mlx_new_image(data->mlx, 960, 480);
+			// image = mlx_new_image(data->mlx, 1920, 960);
 			// data->player->sqaure_y -= 1;
 			// draw_minimap(data);
 			// draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 			// draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
-			// mlx_image_to_window(data->mlx, data->img, 0 , 0);
+			// mlx_image_to_window(data->mlx, image, 0 , 0);
+			// mlx_delete_image(data->mlx, data->img);
+			// data->img = image;
 			i++;
 		}
 	}
