@@ -6,7 +6,7 @@ GNL_DIR = gnl
 LIBS =  -L /Users/$(USER)/Desktop/cub_3d/MLX42/build -lmlx42 -L "/Users/$(USER)/homebrew/opt/glfw/lib" -lglfw -L /Users/$(USER)/Desktop/cub_3d/libft -lft -L /Users/$(USER)/Desktop/cub_3d/gnl -lftgnl
 INCLUDES = -I includes -I /usr/local/include -I ./MLX42/include
 HEADER = $(addprefix includes/, cub3d.h)
-M_SOURCES = $(addprefix sources/, main.c key_hook.c render.c minimap.c)
+M_SOURCES = $(addprefix sources/, main.c key_hook.c render.c minimap.c cast_rays.c)
 M_OBJECTS = $(M_SOURCES:.c=.o)
 
 %.o:%.c $(HEADER)

@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/11 16:14:10 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/13 11:44:54 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@
 # define MOVE_SPEED 4.0
 # define RADIUS 4.0
 # define RADIUS2 3.0
-# define ROTATE_ANGLE 3 * (M_PI / 180)
+# define ROTATE_ANGLE 0.05233333333
 
 typedef struct s_player
 {
-	float		dir_x;
-	float		dir_y;
+	// float		dir_x;
+	// float		dir_y;
 	float		angle;
 	float		old_angle;
 	float		sqaure_x;
@@ -57,6 +57,7 @@ void	draw_direction(t_data *data, float x, float y);
 void	remove_direction(t_data *data, float x, float y);
 void	remove_direction2(t_data *data, float x, float y);
 int		checking_collision(t_data *data, float x, float y);
-void 	draw_minimap(t_data *data);
+void	draw_minimap(t_data *data);
+void	cast_rays(t_data *data);
 
 #endif

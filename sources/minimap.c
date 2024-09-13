@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/11 17:42:50 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/13 11:23:11 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	draw_direction(t_data *data, float x, float y)
 
 	dir_x = cos(data->player->angle); //cos(0) = 1 | sin(0) = 0
 	dir_y = sin(data->player->angle);
-	i = RADIUS;
+	// printf("%f]]\n%f]]\n", dir_x, dir_y);
+	i = 0;
 	while (i < 26)
 	{
 		if (!checking_collision2(data, x + (dir_x * i), y + (dir_y * i)))
@@ -46,7 +47,7 @@ void	remove_direction(t_data *data, float x, float y)
 	float	i;
 
 	dir_x = cos(data->player->old_angle); //cos(0) = 1 | sin(0) = 0
-	dir_y = sin(data->player->old_angle);
+	dir_y = sin(data->player->old_angle); // i did not devide it by the radius because i want to start from the player positio
 	i = RADIUS;
 	while (i < 26)
 	{

@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:04:14 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/11 16:21:50 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/13 11:47:44 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	left_right(float x, float y, t_data *data)
 	draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, WHITE);
 	draw_player2(data, x, y, RED);
 	draw_direction(data, x, y);
+	
 	return (0);
 }
 
@@ -59,6 +60,7 @@ void	key_hook_3(t_data *data)
 		remove_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 		draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, RED); //need to reput the map every time i guess
 		draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
+		cast_rays(data);
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 	{
