@@ -103,7 +103,7 @@ char	*get_next_line(int fd)
 	static char	*buffer = NULL;
 	char		*str;
 
-	if (fd >= 0 && BUFFER_SIZE > 0 && fd <= OPEN_MAX
+	if (fd >= 0 && BUFFER_SIZE > 0
 		&& BUFFER_SIZE <= INT_MAX)
 	{
 		str = malloc((size_t)BUFFER_SIZE + 1);

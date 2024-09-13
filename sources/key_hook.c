@@ -60,7 +60,7 @@ void	key_hook_3(t_data *data)
 		remove_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 		draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, RED); //need to reput the map every time i guess
 		draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
-		cast_rays(data);
+		// cast_rays(data);
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 	{
