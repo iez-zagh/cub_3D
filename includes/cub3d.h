@@ -43,6 +43,8 @@ typedef struct s_player
 
 typedef struct s_data
 {
+	float		cast_angle;
+	float		old_cast_angle;
 	void		*mlx;
 	mlx_image_t	*img;
 	char		**map;
@@ -59,5 +61,8 @@ void	remove_direction2(t_data *data, float x, float y);
 int		checking_collision(t_data *data, float x, float y);
 void	draw_minimap(t_data *data);
 void	cast_rays(t_data *data);
+void	draw_direction2(t_data *data, float x, float y);
+void	remove_rays(t_data *data);
+void	remove_direction3(t_data *data, float x, float y);
 
 #endif

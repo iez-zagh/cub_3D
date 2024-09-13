@@ -30,7 +30,6 @@ void	draw_direction(t_data *data, float x, float y)
 
 	dir_x = cos(data->player->angle); //cos(0) = 1 | sin(0) = 0
 	dir_y = sin(data->player->angle);
-	// printf("%f]]\n%f]]\n", dir_x, dir_y);
 	i = 0;
 	while (i < 26)
 	{
@@ -63,6 +62,36 @@ void	remove_direction2(t_data *data, float x, float y)
 
 	dir_x = cos(data->player->angle);
 	dir_y = sin(data->player->angle);
+	for (float i = RADIUS ; i < 26; i++) // Ensure the entire line is cleared
+	{
+		if (!checking_collision2(data, x + dir_x * i, y + dir_y * i))
+			mlx_put_pixel(data->img, x + dir_x * i, y + dir_y * i, WHITE);
+	}
+}
+
+void	draw_direction2(t_data *data, float x, float y)
+{
+	float	dir_x;
+	float	dir_y;
+	float	i;
+
+	dir_x = cos(data->cast_angle); //cos(0) = 1 | sin(0) = 0
+	dir_y = sin(data->cast_angle);
+	i = 0;
+	while (i < 200)
+	{
+		if (!checking_collision2(data, x + (dir_x * i), y + (dir_y * i)))
+			mlx_put_pixel(data->img, x + (dir_x * i), y + (dir_y * i), BLACK);
+		i++;
+	}
+}
+
+void	remove_direction3(t_data *data, float x, float y)
+{
+	float dir_x, dir_y;
+
+	dir_x = cos(data->old_cast_angle);
+	dir_y = sin(data->old_cast_angle);
 	for (float i = RADIUS ; i < 26; i++) // Ensure the entire line is cleared
 	{
 		if (!checking_collision2(data, x + dir_x * i, y + dir_y * i))

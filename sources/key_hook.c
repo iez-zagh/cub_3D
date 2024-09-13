@@ -58,9 +58,10 @@ void	key_hook_3(t_data *data)
 		if (data->player->angle < 0)
 			data->player->angle = 2 * M_PI; // Keep angle within 0 and  2π) and need to musch under this
 		remove_direction(data, data->player->sqaure_x, data->player->sqaure_y);
+		data->cast_angle = data->player->angle;
 		draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, RED); //need to reput the map every time i guess
 		draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
-		// cast_rays(data);
+		cast_rays(data);
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 	{
@@ -74,7 +75,7 @@ void	key_hook_3(t_data *data)
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 	{
-		//needs for release resources
+		//needs to release resources
 		write(1, "WINDOW CLOSED\n", 14);
 		exit(0);
 	} 
@@ -95,6 +96,8 @@ void	key_hook_2(t_data *data)
 			data->player->sqaure_x += 1;
 			i++;
 		}
+		remove_rays(data);
+		cast_rays(data);
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_S) || mlx_is_key_down(data->mlx, MLX_KEY_DOWN))
 	{

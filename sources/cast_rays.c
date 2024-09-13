@@ -17,10 +17,25 @@ void	cast_rays(t_data *data)
 	int	i;
 
 	i = 0;
-	while(i < 20)
+	while(i < 200)
 	{
 		// remove_direction(data, data->player->sqaure_x + i, data->player->sqaure_y + i);
-		draw_direction(data, data->player->sqaure_x + i, data->player->sqaure_y + i);
+		data->cast_angle += M_PI / 1100;
+		draw_direction2(data, data->player->sqaure_x, data->player->sqaure_y);
+		i++;
+	}
+}
+
+void	remove_rays(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while(i < 200)
+	{
+		// remove_direction(data, data->player->sqaure_x + i, data->player->sqaure_y + i);
+		data->old_cast_angle += M_PI / 1100;
+		remove_direction3(data, data->player->sqaure_x, data->player->sqaure_y);
 		i++;
 	}
 }

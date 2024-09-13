@@ -56,9 +56,9 @@ void	draw_player2(t_data *data, float draw_x, float draw_y, int color)
 
 void draw_minimap(t_data *data)
 {
-	float			x;
-	float			y;
-	int			color;
+	float	x;
+	float	y;
+	int		color;
 
 	for (y = 0; y < 15; y++)
 	{
@@ -83,11 +83,12 @@ void	start_render(t_data *data)
 {
 	data->mlx = mlx_init(1920, 960, "cub3d", 1);
 	data->img = mlx_new_image(data->mlx, 1920, 960);
-	// puts("hello");
 	draw_minimap(data);
 	draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 	data->player->angle = 0;
+	data->cast_angle = 0;
 	draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
+	cast_rays(data);
 	mlx_image_to_window(data->mlx, data->img, 0 , 0);
 	mlx_loop_hook(data->mlx, &my_key_hook, data);
 	mlx_loop(data->mlx);
