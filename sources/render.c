@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:17:54 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/11 16:15:20 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/14 10:25:22 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,9 @@ void	start_render(t_data *data)
 	data->cast_angle = 0;
 	draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 	cast_rays(data);
+	// remove_rays(data);
 	mlx_image_to_window(data->mlx, data->img, 0 , 0);
+	// sleep(2);
 	mlx_loop_hook(data->mlx, &my_key_hook, data);
 	mlx_loop(data->mlx);
 }

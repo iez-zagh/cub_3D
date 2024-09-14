@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+	/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   key_hook.c                                         :+:      :+:    :+:   */
@@ -14,14 +14,17 @@
 
 int	checking_collision(t_data *data, float x, float y)
 {
-	if (data->map[(int)((y - RADIUS2) / TILE)]
+	if (
+		data->map[(int)((y - RADIUS2) / TILE)]
+		[(int)((x - RADIUS2) / TILE)] && // check this to avoid segv near to wall
+		(data->map[(int)((y - RADIUS2) / TILE)]
 		[(int)((x - RADIUS2) / TILE)] == '1' ||
 		data->map[(int)((y + RADIUS2) / TILE)]
 		[(int)((x - RADIUS2) / TILE)] == '1' ||
 		data->map[(int)((y - RADIUS2) / TILE)]
 		[(int)((x + RADIUS2) / TILE)] == '1' ||
 		data->map[(int)((y + RADIUS2) / TILE)]
-		[(int)((x + RADIUS2) / TILE)] == '1')
+		[(int)((x + RADIUS2) / TILE)] == '1'))
 		return (1);
 	return (0);
 }
@@ -45,7 +48,6 @@ int	left_right(float x, float y, t_data *data)
 	draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, WHITE);
 	draw_player2(data, x, y, RED);
 	draw_direction(data, x, y);
-	
 	return (0);
 }
 
@@ -57,6 +59,7 @@ void	key_hook_3(t_data *data)
 		data->player->angle -= ROTATE_ANGLE;
 		if (data->player->angle < 0)
 			data->player->angle = 2 * M_PI; // Keep angle within 0 and  2π) and need to musch under this
+		remove_rays(data);
 		remove_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 		data->cast_angle = data->player->angle;
 		draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, RED); //need to reput the map every time i guess
@@ -69,9 +72,12 @@ void	key_hook_3(t_data *data)
 		data->player->angle += ROTATE_ANGLE;
 		if (data->player->angle > M_PI * 2)
 			data->player->angle = 0;
+		remove_rays(data);
 		remove_direction(data, data->player->sqaure_x, data->player->sqaure_y);
+		data->cast_angle = data->player->angle;
 		draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 		draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
+		cast_rays(data);
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 	{
@@ -86,30 +92,32 @@ void	key_hook_2(t_data *data)
 	int	i;
 
 	i = 0;
-	data->cast_angle = data->player->angle;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_D))
 	{
+		remove_rays(data);
 		while (i < MOVE_SPEED)
 		{
 			if (left_right(data->player->sqaure_x + 1,
 					data->player->sqaure_y, data))
-				return ;
+				break ;
 			data->player->sqaure_x += 1;
 			i++;
 		}
-		remove_rays(data);
+		// data->old_cast_angle = data->cast_angle;
 		cast_rays(data);
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_S) || mlx_is_key_down(data->mlx, MLX_KEY_DOWN))
 	{
+		remove_rays(data);
 		while (i < MOVE_SPEED)
 		{
 			if (up_down(data->player->sqaure_x,
 					data->player->sqaure_y + 1, data))
-				return ;
+				break ;
 			data->player->sqaure_y += 1;
 			i++;
 		}
+		cast_rays(data);
 	}
 	key_hook_3(data);
 }
@@ -118,20 +126,20 @@ void	my_key_hook(void *st)
 {
 	t_data	*data;
 	int		i;
-	// mlx_image_t *image;
 
 	i = 0;
 	data = (t_data *)st;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W) || mlx_is_key_down(data->mlx, MLX_KEY_UP))
 	{
 		i = 0;
+		remove_rays(data);
 		while (i < MOVE_SPEED)
 		{
 			if (checking_collision(data, data->player->sqaure_x, data->player->sqaure_y - 1))
-				return ;
+				break ;
 			if (up_down(data->player->sqaure_x,
 					data->player->sqaure_y - 1, data))
-				return ;
+				break ;
 			data->player->sqaure_y -= 1;
 			// image = mlx_new_image(data->mlx, 1920, 960);
 			// data->player->sqaure_y -= 1;
@@ -143,18 +151,23 @@ void	my_key_hook(void *st)
 			// data->img = image;
 			i++;
 		}
+		cast_rays(data);
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
 	{
 		i = 0;
+		remove_rays(data);
 		while (i < MOVE_SPEED)
 		{
+			if (checking_collision(data, data->player->sqaure_x - 1, data->player->sqaure_y))
+				break ;
 			if (left_right(data->player->sqaure_x - 1,
 					data->player->sqaure_y, data))
-				return ;
+				break ;
 			data->player->sqaure_x -= 1;
 			i++;
 		}
+		cast_rays(data);
 	}
 	key_hook_2(data);
 }

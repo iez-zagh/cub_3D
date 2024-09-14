@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/14 09:53:23 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/14 10:50:55 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 int	checking_collision2(t_data *data, float x, float y)
 {
-	if (data->map[(int)(y / TILE)][(int)(x / TILE)] == '1' ||
+	if (data->map[(int)(y / TILE)][(int)(x / TILE)] && (
 		data->map[(int)(y / TILE)][(int)(x / TILE)] == '1' ||
 		data->map[(int)(y / TILE)][(int)(x / TILE)] == '1' ||
-		data->map[(int)(y / TILE)][(int)(x / TILE)] == '1')
+		data->map[(int)(y / TILE)][(int)(x / TILE)] == '1' ||
+		data->map[(int)(y / TILE)][(int)(x / TILE)] == '1'))
 		return (1);
 	return (0);
 }
@@ -81,7 +82,12 @@ void	cast_lines(t_data *data, float x, float y)
 	while (i < 200)
 	{
 		if (!checking_collision2(data, x + (dir_x * i), y + (dir_y * i)))
-			mlx_put_pixel(data->img, x + (dir_x * i), y + (dir_y * i), BLACK);
+			mlx_put_pixel(data->img, x + (dir_x * i), y + (dir_y * i), RED);
+		// else
+		// {
+		// 	i++;
+		// 	continue ;
+		// }
 		i++;
 	}
 }
@@ -89,12 +95,15 @@ void	cast_lines(t_data *data, float x, float y)
 void	remove_direction3(t_data *data, float x, float y)
 {
 	float dir_x, dir_y;
+	int	i;
 
+	i = RADIUS;
 	dir_x = cos(data->old_cast_angle);
 	dir_y = sin(data->old_cast_angle);
-	for (float i = RADIUS ; i < 26; i++) // Ensure the entire line is cleared
+	while (i < 200)
 	{
-		if (!checking_collision2(data, x + dir_x * i, y + dir_y * i))
-			mlx_put_pixel(data->img, x + dir_x * i, y + dir_y * i, WHITE);
+		if (!checking_collision2(data, x + (dir_x * i), y + (dir_y * i)))
+			mlx_put_pixel(data->img, x + (dir_x * i), y + (dir_y * i), WHITE);
+		i++;
 	}
 }

@@ -1,7 +1,7 @@
 NAME = linux
 NAME2 = cub3d
 CC = cc
-# CFLAGS = -Wextra -Wall -Werror
+# CFLAGS = -Wextra -Wall -Werror  --- do not forgot that
 LIBFT_DIR = libft
 GNL_DIR = gnl
 LIBS =  libft/libft.a gnl/libftgnl.a
@@ -11,34 +11,27 @@ HEADER = $(addprefix includes/, cub3d.h)
 M_SOURCES = $(addprefix sources/, main.c key_hook.c render.c minimap.c cast_rays.c)
 M_OBJECTS = $(M_SOURCES:.c=.o)
 
-# %.o:%.c $(HEADER)
-# 	$(CC) $(INCLUDES) $(CFLAGS) -c  $< -o $@
-
 %.o: %.c $(HEADER)
 	$(CC) $(INCLUDES) $(CFLAGS) -c $< -o $@
-
-linux : $(NAME)
-
-$(NAME): $(M_OBJECTS)
-	@make -C $(LIBFT_DIR)
-	@make -C $(GNL_DIR)
-	$(CC) $(M_OBJECTS) $(LIBS) MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm -o $(NAME)
-
-$(NAME2): $(M_OBJECTS)
-	@make -C $(LIBFT_DIR)
-	@make -C $(GNL_DIR)
-	$(CC) $(M_OBJECTS) $(LIBS) -o $(NAME2)
 
 mac : $(NAME2)
 $(NAME2): $(M_OBJECTS)
 	@make -C $(LIBFT_DIR)
 	@make -C $(GNL_DIR)
-	$(CC) $(CFLAGS) $(INCLUDES) $(M_OBJECTS) $(LIBS2) -o $(NAME)
+	$(CC) $(CFLAGS) $(INCLUDES) $(M_OBJECTS) $(LIBS2) -o $(NAME2)
 
-# $(NAME) : $(M_OBJECTS)
+# linux : $(NAME)
+
+# $(NAME): $(M_OBJECTS)
 # 	@make -C $(LIBFT_DIR)
 # 	@make -C $(GNL_DIR)
-# 	$(CC) $(CFLAGS) $(INCLUDES) $(M_OBJECTS) $(LIBS) -o $(NAME)
+# 	$(CC) $(M_OBJECTS) $(LIBS) MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm -o $(NAME)
+
+# $(NAME2): $(M_OBJECTS)
+# 	@make -C $(LIBFT_DIR)
+# 	@make -C $(GNL_DIR)
+# 	$(CC) $(M_OBJECTS) $(LIBS) -o $(NAME2)
+
 clean:
 	@make clean -C $(LIBFT_DIR)
 	@make clean -C $(GNL_DIR)
@@ -47,6 +40,7 @@ fclean: clean
 	@make fclean -C $(LIBFT_DIR)
 	@make fclean -C $(GNL_DIR)
 	rm -f $(NAME)
+	rm -f $(NAME2)
 re: clean fclean all
 norm:
 	@norminette $(M_SOURCES) $(HEADER)
