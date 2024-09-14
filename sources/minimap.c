@@ -81,6 +81,7 @@ void	cast_lines(t_data *data, float x, float y)
 	i = 0;
 	while (i < 200)
 	{
+		// puts("hello");
 		if (checking_collision2(data, x + (dir_x * i), y + (dir_y * i)))
 			return ;	
 		mlx_put_pixel(data->img, x + (dir_x * i), y + (dir_y * i), RED);

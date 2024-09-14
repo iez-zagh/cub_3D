@@ -1,4 +1,4 @@
-NAME = linux
+NAME = cub3d2
 NAME2 = cub3d
 CC = cc
 # CFLAGS = -Wextra -Wall -Werror  --- do not forgot that
@@ -14,18 +14,18 @@ M_OBJECTS = $(M_SOURCES:.c=.o)
 %.o: %.c $(HEADER)
 	$(CC) $(INCLUDES) $(CFLAGS) -c $< -o $@
 
-mac : $(NAME2)
-$(NAME2): $(M_OBJECTS)
-	@make -C $(LIBFT_DIR)
-	@make -C $(GNL_DIR)
-	$(CC) $(CFLAGS) $(INCLUDES) $(M_OBJECTS) $(LIBS2) -o $(NAME2)
-
-# linux : $(NAME)
-
-# $(NAME): $(M_OBJECTS)
+# mac : $(NAME2)
+# $(NAME2): $(M_OBJECTS)
 # 	@make -C $(LIBFT_DIR)
 # 	@make -C $(GNL_DIR)
-# 	$(CC) $(M_OBJECTS) $(LIBS) MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm -o $(NAME)
+# 	$(CC) $(CFLAGS) $(INCLUDES) $(M_OBJECTS) $(LIBS2) -o $(NAME2)
+
+linux : $(NAME)
+
+$(NAME): $(M_OBJECTS)
+	@make -C $(LIBFT_DIR)
+	@make -C $(GNL_DIR)
+	$(CC) $(M_OBJECTS) $(LIBS) MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm -o $(NAME)
 
 # $(NAME2): $(M_OBJECTS)
 # 	@make -C $(LIBFT_DIR)
