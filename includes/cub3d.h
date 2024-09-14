@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/14 09:53:39 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/14 13:21:16 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@
 
 typedef struct s_player
 {
-	// float		dir_x;
-	// float		dir_y;
 	float		angle;
 	float		old_angle;
 	float		sqaure_x;
@@ -44,7 +42,6 @@ typedef struct s_player
 typedef struct s_data
 {
 	float		cast_angle;
-	float		old_cast_angle;
 	void		*mlx;
 	mlx_image_t	*img;
 	char		**map;

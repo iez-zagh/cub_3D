@@ -103,7 +103,6 @@ void	key_hook_2(t_data *data)
 			data->player->sqaure_x += 1;
 			i++;
 		}
-		// data->old_cast_angle = data->cast_angle;
 		cast_rays(data);
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_S) || mlx_is_key_down(data->mlx, MLX_KEY_DOWN))
