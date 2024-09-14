@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:04:14 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/13 11:47:44 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/14 09:49:16 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	key_hook_2(t_data *data)
 	int	i;
 
 	i = 0;
+	data->cast_angle = data->player->angle;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_D))
 	{
 		while (i < MOVE_SPEED)

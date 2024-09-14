@@ -1,5 +1,5 @@
-NAME = cub3d
-mac = cub3d
+NAME = linux
+NAME2 = cub3d
 CC = cc
 # CFLAGS = -Wextra -Wall -Werror
 LIBFT_DIR = libft
