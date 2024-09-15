@@ -6,36 +6,41 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/15 12:12:57 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/15 17:42:42 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// int	checking_collision2(t_data *data, float x, float y)
-// {
-// 	if (data->map[(int)(y / TILE)][(int)(x / TILE)] && (
-// 		data->map[(int)(y / TILE)][(int)(x / TILE)] == '1' ))
-// 		// data->map[(int)(y / TILE)][(int)(x / TILE)] == '1' ||
-// 		// data->map[(int)(y / TILE)][(int)(x / TILE)] == '1' ||
-// 		// data->map[(int)(y / TILE)][(int)(x / TILE)] == '1'))
-// 		return (1);
-// 	return (0);
-// }
-
-
 int	checking_collision2(t_data *data, float x, float y)
 {
-	if (data->map[(int)((y) / TILE)]
-		[(int)((x) / TILE)] && // check this to avoid segv near to wall
-		(data->map[(int)((y - 1) / TILE)]
-		[(int)((x) / TILE)] == '1' ||
-		data->map[(int)((y + 1) / TILE)] //check the near point
-		[(int)((x) / TILE)] == '1' ||
+	 if (data->map[(int)(y / TILE)][(int)(x / TILE)] == '1')                // Current tile
+    //     data->map[tile_y][tile_x + 1] == '1' ||                 // Right neighbor
+    //     data->map[tile_y + 1][tile_x] == '1'  )  // Bottom neighbor
+    //     // data->map[tile_y + 1][tile_x + 1] == '1')               // Bottom-right neighbor
+    // {
+        return (1); // Collision detected
+    // }
+	if (
+		data->map[(int)((y + 1) / TILE)]
+		[(int)((x - 1) / TILE)] == '1' &&
+		data->map[(int)((y - 1) / TILE)]
+		[(int)((x + 1) / TILE)] == '1'
+		
+		
+		|| 
+		
+		(data->map[(int)((y + 1) / TILE)]
+		[(int)((x) / TILE)] == '1' &&
 		data->map[(int)((y) / TILE)]
-		[(int)((x) / TILE)] == '1' ||
-		data->map[(int)((y) / TILE)]
-		[(int)((x) / TILE)] == '1'))
+		[(int)((x - 1) / TILE)] == '1'))
+		// ||
+		// (data->map[(int)((y - 1) / TILE)]
+		// [(int)((x) / TILE)] == '1' &&
+		// data->map[(int)((y) / TILE)]
+		// [(int)((x - 1) / TILE)] == '1'))
+
+		
 			return (1);
 	return (0);
 }	
@@ -99,7 +104,7 @@ void	cast_lines(t_data *data, float x, float y)
 	while (i < 200)
 	{
 		if (checking_collision2(data, x + (dir_x * i), y + (dir_y * i)))
-			return ;	
+			return ;
 		mlx_put_pixel(data->img, x + (dir_x * i), y + (dir_y * i), RED);
 		i++;
 	}

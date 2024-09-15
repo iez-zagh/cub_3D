@@ -139,7 +139,8 @@ void	my_key_hook(void *st)
 					data->player->sqaure_y - 1, data))
 				break ;
 			data->player->sqaure_y -= 1;
-			// image = mlx_new_image(data->mlx, 1920, 960); //think about this later
+			//think about this later
+			// image = mlx_new_image(data->mlx, 1920, 960); 
 			// data->player->sqaure_y -= 1;
 			// draw_minimap(data);
 			// draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, RED);

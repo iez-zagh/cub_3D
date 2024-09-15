@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:29:49 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/15 10:39:31 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/15 16:43:46 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	cast_rays(t_data *data)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	data->cast_angle = data->player->angle;
@@ -30,7 +30,7 @@ void	cast_rays(t_data *data)
 
 void	remove_rays(t_data *data)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	data->cast_angle -= 150 * (M_PI / 1100);

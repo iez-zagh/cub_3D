@@ -26,12 +26,6 @@ $(NAME2): $(M_OBJECTS)
 # 	@make -C $(LIBFT_DIR)
 # 	@make -C $(GNL_DIR)
 # 	$(CC) $(M_OBJECTS) $(LIBS) MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm -o $(NAME)
-
-# $(NAME2): $(M_OBJECTS)
-# 	@make -C $(LIBFT_DIR)
-# 	@make -C $(GNL_DIR)
-# 	$(CC) $(M_OBJECTS) $(LIBS) -o $(NAME2)
-
 clean:
 	@make clean -C $(LIBFT_DIR)
 	@make clean -C $(GNL_DIR)
@@ -41,7 +35,8 @@ fclean: clean
 	@make fclean -C $(GNL_DIR)
 	rm -f $(NAME)
 	rm -f $(NAME2)
-re: clean fclean all
+re: clean fclean mac
+
 norm:
 	@norminette $(M_SOURCES) $(HEADER)
 .PHONY:clean re fclean all

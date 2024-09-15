@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/14 13:21:16 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/15 16:29:28 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,12 @@
 # define RED 0xE11E00FF
 # define WHITE 0xFFFFFFFF
 # define BLACK 0x00000FF
-# define TILE 64
+# define TILE 32
 # define MOVE_SPEED 4.0
 # define RADIUS 4.0
 # define RADIUS2 3.0
 # define ROTATE_ANGLE 0.05233333333
+// # define ROTATE_ANGLE 0.05233333333
 
 typedef struct s_player
 {
