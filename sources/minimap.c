@@ -14,32 +14,18 @@
 
 int	checking_collision2(t_data *data, float x, float y)
 {
-	 if (data->map[(int)(y / TILE)][(int)(x / TILE)] == '1')                // Current tile
-    //     data->map[tile_y][tile_x + 1] == '1' ||		// Right neighbor
-    //     data->map[tile_y + 1][tile_x] == '1'  )  // Bottom neighbor
-    //     // data->map[tile_y + 1][tile_x + 1] == '1')               // Bottom-right neighbor
-    // {
-        return (1); // Collision detected
-    // }
+	 if (data->map[(int)(y / TILE)][(int)(x / TILE)] == '1')
+        return (1);
 	if (		
 		data->map[(int)((y + 1) / TILE)]
-		[(int)((x) / TILE)] == '1' &&
+		[(int)((x - 1) / TILE)] == '1' &&
 		data->map[(int)((y) / TILE)]
 		[(int)((x + 1) / TILE)] == '1'
-		
 		||
-		
 		(data->map[(int)((y + 1) / TILE)]
 		[(int)((x) / TILE)] == '1' &&
 		data->map[(int)((y) / TILE)]
 		[(int)((x - 1) / TILE)] == '1'))
-		// ||
-		// (data->map[(int)((y - 1) / TILE)]
-		// [(int)((x) / TILE)] == '1' &&
-		// data->map[(int)((y) / TILE)]
-		// [(int)((x - 1) / TILE)] == '1'))
-
-		
 			return (1);
 	return (0);
 }	
