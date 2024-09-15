@@ -24,7 +24,7 @@ int	checking_collision(t_data *data, float x, float y)
 		[(int)((x + RADIUS2) / TILE)] == '1' ||
 		data->map[(int)((y + RADIUS2) / TILE)]
 		[(int)((x + RADIUS2) / TILE)] == '1'))
-		return (1);
+			return (1);
 	return (0);
 }
 
@@ -139,7 +139,7 @@ void	my_key_hook(void *st)
 					data->player->sqaure_y - 1, data))
 				break ;
 			data->player->sqaure_y -= 1;
-			// image = mlx_new_image(data->mlx, 1920, 960);
+			// image = mlx_new_image(data->mlx, 1920, 960); //think about this later
 			// data->player->sqaure_y -= 1;
 			// draw_minimap(data);
 			// draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, RED);

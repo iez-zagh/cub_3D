@@ -6,22 +6,39 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/14 14:42:47 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/15 12:12:57 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+// int	checking_collision2(t_data *data, float x, float y)
+// {
+// 	if (data->map[(int)(y / TILE)][(int)(x / TILE)] && (
+// 		data->map[(int)(y / TILE)][(int)(x / TILE)] == '1' ))
+// 		// data->map[(int)(y / TILE)][(int)(x / TILE)] == '1' ||
+// 		// data->map[(int)(y / TILE)][(int)(x / TILE)] == '1' ||
+// 		// data->map[(int)(y / TILE)][(int)(x / TILE)] == '1'))
+// 		return (1);
+// 	return (0);
+// }
+
+
 int	checking_collision2(t_data *data, float x, float y)
 {
-	if (data->map[(int)(y / TILE)][(int)(x / TILE)] && (
-		data->map[(int)(y / TILE)][(int)(x / TILE)] == '1' ||
-		data->map[(int)(y / TILE)][(int)(x / TILE)] == '1' ||
-		data->map[(int)(y / TILE)][(int)(x / TILE)] == '1' ||
-		data->map[(int)(y / TILE)][(int)(x / TILE)] == '1'))
-		return (1);
+	if (data->map[(int)((y) / TILE)]
+		[(int)((x) / TILE)] && // check this to avoid segv near to wall
+		(data->map[(int)((y - 1) / TILE)]
+		[(int)((x) / TILE)] == '1' ||
+		data->map[(int)((y + 1) / TILE)] //check the near point
+		[(int)((x) / TILE)] == '1' ||
+		data->map[(int)((y) / TILE)]
+		[(int)((x) / TILE)] == '1' ||
+		data->map[(int)((y) / TILE)]
+		[(int)((x) / TILE)] == '1'))
+			return (1);
 	return (0);
-}
+}	
 
 void	draw_direction(t_data *data, float x, float y)
 {
@@ -81,7 +98,6 @@ void	cast_lines(t_data *data, float x, float y)
 	i = 0;
 	while (i < 200)
 	{
-		// puts("hello");
 		if (checking_collision2(data, x + (dir_x * i), y + (dir_y * i)))
 			return ;	
 		mlx_put_pixel(data->img, x + (dir_x * i), y + (dir_y * i), RED);
@@ -99,8 +115,9 @@ void	remove_direction3(t_data *data, float x, float y)
 	dir_y = sin(data->cast_angle);
 	while (i < 200)
 	{
-		if (!checking_collision2(data, x + (dir_x * i), y + (dir_y * i)))
-			mlx_put_pixel(data->img, x + (dir_x * i), y + (dir_y * i), WHITE);
+		if (checking_collision2(data, x + (dir_x * i), y + (dir_y * i)))
+			return ;
+		mlx_put_pixel(data->img, x + (dir_x * i), y + (dir_y * i), WHITE);
 		i++;
 	}
 }
