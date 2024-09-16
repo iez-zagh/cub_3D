@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/16 08:48:58 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/16 11:29:14 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,33 @@ int	checking_collision2(t_data *data, float x, float y)
 	 if (data->map[(int)(y / TILE)][(int)(x / TILE)] == '1')
         return (1);
 	if (		
-		data->map[(int)((y + 1) / TILE)]
+		(data->map[(int)((y + 1) / TILE)]
 		[(int)((x - 1) / TILE)] == '1' &&
 		data->map[(int)((y) / TILE)]
 		[(int)((x + 1) / TILE)] == '1'
+
+		&&
+
+		data->map[(int)((y + 1) / TILE)]
+		[(int)((x + 1) / TILE)] == '0'
+		
+		// &&
+		// (data->map[(int)((y - 1) / TILE)] //this to check the up things
+		// [(int)((x) / TILE)] == '0')
+		)
 		||
-		(data->map[(int)((y + 1) / TILE)]
+
+		(
+			data->map[(int)((y + 1) / TILE)] //this here
 		[(int)((x) / TILE)] == '1' &&
 		data->map[(int)((y) / TILE)]
-		[(int)((x - 1) / TILE)] == '1'))
+		[(int)((x - 1) / TILE)] == '1')
+		
+		&&
+
+		data->map[(int)((y + 1) / TILE)]
+		[(int)((x - 1) / TILE)] == '0'
+		)
 			return (1);
 	return (0);
 }	
