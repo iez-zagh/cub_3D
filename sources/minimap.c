@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/16 11:29:14 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/16 14:24:42 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	checking_collision2(t_data *data, float x, float y)
 {
-	 if (data->map[(int)(y / TILE)][(int)(x / TILE)] == '1')
-        return (1);
+	if (data->map[(int)(y / TILE)][(int)(x / TILE)] == '1')
+		return (1);
 	if (		
 		(data->map[(int)((y + 1) / TILE)]
 		[(int)((x - 1) / TILE)] == '1' &&
@@ -26,23 +26,23 @@ int	checking_collision2(t_data *data, float x, float y)
 
 		data->map[(int)((y + 1) / TILE)]
 		[(int)((x + 1) / TILE)] == '0'
-		
-		// &&
-		// (data->map[(int)((y - 1) / TILE)] //this to check the up things
-		// [(int)((x) / TILE)] == '0')
 		)
 		||
-
 		(
-			data->map[(int)((y + 1) / TILE)] //this here
-		[(int)((x) / TILE)] == '1' &&
-		data->map[(int)((y) / TILE)]
-		[(int)((x - 1) / TILE)] == '1')
-		
+		data->map[(int)((y + 1) / TILE)] //this here
+		[(int)((x) / TILE)] == '1' 
 		&&
+		data->map[(int)((y) / TILE)]
+		[(int)((x - 1) / TILE)] == '1'
+		// &&
+		// data->map[(int)((y) / TILE)]
+		// [(int)((x + 1) / TILE)] == '0'
 
-		data->map[(int)((y + 1) / TILE)]
+		//
+		&&
+		data->map[(int)((y + 1) / TILE)] //this for the left corner
 		[(int)((x - 1) / TILE)] == '0'
+		)
 		)
 			return (1);
 	return (0);
@@ -104,7 +104,7 @@ void	cast_lines(t_data *data, float x, float y)
 	dir_x = cos(data->cast_angle); //cos(0) = 1 | sin(0) = 0
 	dir_y = sin(data->cast_angle);
 	i = 0;
-	while (i < 200)
+	while (i < 1000)
 	{
 		if (checking_collision2(data, x + (dir_x * i), y + (dir_y * i)))
 			return ;
@@ -121,7 +121,7 @@ void	remove_direction3(t_data *data, float x, float y)
 	i = RADIUS;
 	dir_x = cos(data->cast_angle);
 	dir_y = sin(data->cast_angle);
-	while (i < 200)
+	while (i < 1000)
 	{
 		if (checking_collision2(data, x + (dir_x * i), y + (dir_y * i)))
 			return ;
