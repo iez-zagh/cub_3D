@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/16 14:40:56 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/16 17:03:19 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,10 @@ int	checking_collision2(t_data *data, float x, float y)
 		&&
 		data->map[(int)((y) / TILE)]
 		[(int)((x - 1) / TILE)] == '1'
-		
-		&&
-		data->map[(int)((y - 2) / TILE)]
-		[(int)((x) / TILE)] == '0'
 
+		// &&
+		// data->map[(int)((y + 1) / TILE)]
+		// [(int)((x - 1) / TILE)] == '0'
 
 		//
 		&&
