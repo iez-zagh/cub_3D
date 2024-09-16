@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:17:54 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/15 16:14:42 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/16 14:53:43 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void draw_minimap(t_data *data)
 
 void	start_render(t_data *data)
 {
-	data->mlx = mlx_init(1920, 960, "cub3d", 1);
+	data->mlx = mlx_init(960, 480, "cub3d", 1);
 	data->img = mlx_new_image(data->mlx, 1920, 960);
 	draw_minimap(data);
 	draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
@@ -90,9 +90,7 @@ void	start_render(t_data *data)
 	remove_rays(data);
 	cast_rays(data);
 	draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
-	// remove_rays(data);
-	mlx_image_to_window(data->mlx, data->img, 400, 0);
-	// sleep(2);
+	mlx_image_to_window(data->mlx, data->img, 0, 0);
 	mlx_loop_hook(data->mlx, &my_key_hook, data);
 	mlx_loop(data->mlx);
 }
