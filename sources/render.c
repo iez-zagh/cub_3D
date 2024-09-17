@@ -6,16 +6,16 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:17:54 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/17 11:46:08 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/17 15:28:43 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	draw_player(t_data *data, double draw_x, double draw_y, int color)
+void	draw_player(t_data *data, float draw_x, float draw_y, int color)
 {
-	double	x;
-	double	y;
+	float	x;
+	float	y;
 
 	data->player->sqaure_x = draw_x + 16;
 	data->player->sqaure_y = draw_y + 16;
@@ -33,13 +33,13 @@ void	draw_player(t_data *data, double draw_x, double draw_y, int color)
 	}
 }
 
-void	draw_player2(t_data *data, double draw_x, double draw_y, int color)
+void	draw_player2(t_data *data, float draw_x, float draw_y, int color)
 {
-	double	r;
-	double	x;
-	double	y;
+	float	r;
+	float	x;
+	float	y;
 
-	r = 4;
+	r = RADIUS;
 	y = -r;
 	while (y < r)
 	{
@@ -56,20 +56,20 @@ void	draw_player2(t_data *data, double draw_x, double draw_y, int color)
 
 void draw_minimap(t_data *data)
 {
-	double	x;
-	double	y;
+	float	x;
+	float	y;
 	int		color;
 
-	for (y = 0; y < 15; y++)
+	for (y = 0; y < 5; y++)
 	{
-		for (x = 0; x < 30; x++)
+		for (x = 0; x < 12; x++)
 		{
 			if (data->map[(int)y][(int)x] == '1')
 				color = BLACK;
 			else
 				color = WHITE;
-			double draw_x = x * TILE;
-			double draw_y = y * TILE;
+			float draw_x = x * TILE;
+			float draw_y = y * TILE;
 			for (int dy = 0; dy < TILE; dy++)
 			{
 				for (int dx = 0; dx < TILE; dx++)
@@ -81,8 +81,9 @@ void draw_minimap(t_data *data)
 
 void	start_render(t_data *data)
 {
-	data->mlx = mlx_init(960, 480, "cub3d", 1);
-	data->img = mlx_new_image(data->mlx, 960, 480);
+	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", 1);
+	data->img = mlx_new_image(data->mlx, 960, 470);
+	// data->player_img = mlx_new_image(data->mlx, 960, 480);
 	draw_minimap(data);
 	draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 	data->player->angle = 0;
