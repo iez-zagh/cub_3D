@@ -6,13 +6,13 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/16 17:03:19 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/17 11:47:42 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	checking_collision2(t_data *data, float x, float y)
+int	checking_collision2(t_data *data, double x, double y)
 {
 	if (data->map[(int)(y / TILE)][(int)(x / TILE)] == '1')
 		return (1);
@@ -49,11 +49,11 @@ int	checking_collision2(t_data *data, float x, float y)
 	return (0);
 }	
 
-void	draw_direction(t_data *data, float x, float y)
+void	draw_direction(t_data *data, double x, double y)
 {
-	float	dir_x;
-	float	dir_y;
-	float	i;
+	double	dir_x;
+	double	dir_y;
+	double	i;
 
 	dir_x = cos(data->player->angle); //cos(0) = 1 | sin(0) = 0
 	dir_y = sin(data->player->angle);
@@ -66,11 +66,11 @@ void	draw_direction(t_data *data, float x, float y)
 	}
 }
 
-void	remove_direction(t_data *data, float x, float y)
+void	remove_direction(t_data *data, double x, double y)
 {
-	float	dir_x;
-	float	dir_y;
-	float	i;
+	double	dir_x;
+	double	dir_y;
+	double	i;
 
 	dir_x = cos(data->player->old_angle); //cos(0) = 1 | sin(0) = 0
 	dir_y = sin(data->player->old_angle); // i did not devide it by the radius because i want to start from the player positio
@@ -83,24 +83,24 @@ void	remove_direction(t_data *data, float x, float y)
 	}
 }
 
-void	remove_direction2(t_data *data, float x, float y)
+void	remove_direction2(t_data *data, double x, double y)
 {
-	float dir_x, dir_y;
+	double dir_x, dir_y;
 
 	dir_x = cos(data->player->angle);
 	dir_y = sin(data->player->angle);
-	for (float i = RADIUS ; i < 26; i++) // Ensure the entire line is cleared
+	for (double i = RADIUS ; i < 26; i++) // Ensure the entire line is cleared
 	{
 		if (!checking_collision2(data, x + dir_x * i, y + dir_y * i))
 			mlx_put_pixel(data->img, x + dir_x * i, y + dir_y * i, WHITE);
 	}
 }
 
-void	cast_lines(t_data *data, float x, float y)
+void	cast_lines(t_data *data, double x, double y)
 {
-	float	dir_x;
-	float	dir_y;
-	float	i;
+	double	dir_x;
+	double	dir_y;
+	double	i;
 
 	dir_x = cos(data->cast_angle); //cos(0) = 1 | sin(0) = 0
 	dir_y = sin(data->cast_angle);
@@ -114,9 +114,9 @@ void	cast_lines(t_data *data, float x, float y)
 	}
 }
 
-void	remove_direction3(t_data *data, float x, float y)
+void	remove_direction3(t_data *data, double x, double y)
 {
-	float dir_x, dir_y;
+	double dir_x, dir_y;
 	int	i;
 
 	i = RADIUS;

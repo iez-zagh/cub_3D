@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-int	checking_collision(t_data *data, float x, float y)
+int	checking_collision(t_data *data, double x, double y)
 {
 	if (data->map[(int)((y - RADIUS2) / TILE)]
 		[(int)((x - RADIUS2) / TILE)] && // check this to avoid segv near to wall
@@ -28,7 +28,7 @@ int	checking_collision(t_data *data, float x, float y)
 	return (0);
 }
 
-int	up_down(float x, float y, t_data *data)
+int	up_down(double x, double y, t_data *data)
 {
 	if (checking_collision(data, x, y))
 		return (1);
@@ -39,7 +39,7 @@ int	up_down(float x, float y, t_data *data)
 	return (0);
 }
 
-int	left_right(float x, float y, t_data *data)
+int	left_right(double x, double y, t_data *data)
 {
 	if (checking_collision(data, x, y))
 		return (1);

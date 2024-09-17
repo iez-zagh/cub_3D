@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:29:49 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/15 16:43:46 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/17 11:46:59 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	cast_rays(t_data *data)
 {
+	// return ;
 	int	i;
 
 	i = 0;
@@ -30,6 +31,7 @@ void	cast_rays(t_data *data)
 
 void	remove_rays(t_data *data)
 {
+	// return ;
 	int	i;
 
 	i = 0;

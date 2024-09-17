@@ -6,16 +6,16 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:17:54 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/16 16:52:16 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/17 11:46:08 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	draw_player(t_data *data, float draw_x, float draw_y, int color)
+void	draw_player(t_data *data, double draw_x, double draw_y, int color)
 {
-	float	x;
-	float	y;
+	double	x;
+	double	y;
 
 	data->player->sqaure_x = draw_x + 16;
 	data->player->sqaure_y = draw_y + 16;
@@ -33,11 +33,11 @@ void	draw_player(t_data *data, float draw_x, float draw_y, int color)
 	}
 }
 
-void	draw_player2(t_data *data, float draw_x, float draw_y, int color)
+void	draw_player2(t_data *data, double draw_x, double draw_y, int color)
 {
-	float	r;
-	float	x;
-	float	y;
+	double	r;
+	double	x;
+	double	y;
 
 	r = 4;
 	y = -r;
@@ -56,8 +56,8 @@ void	draw_player2(t_data *data, float draw_x, float draw_y, int color)
 
 void draw_minimap(t_data *data)
 {
-	float	x;
-	float	y;
+	double	x;
+	double	y;
 	int		color;
 
 	for (y = 0; y < 15; y++)
@@ -68,8 +68,8 @@ void draw_minimap(t_data *data)
 				color = BLACK;
 			else
 				color = WHITE;
-			float draw_x = x * TILE;
-			float draw_y = y * TILE;
+			double draw_x = x * TILE;
+			double draw_y = y * TILE;
 			for (int dy = 0; dy < TILE; dy++)
 			{
 				for (int dx = 0; dx < TILE; dx++)

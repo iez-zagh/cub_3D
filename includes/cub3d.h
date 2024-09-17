@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/15 16:29:28 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/17 11:46:46 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,15 @@
 
 typedef struct s_player
 {
-	float		angle;
-	float		old_angle;
-	float		sqaure_x;
-	float		sqaure_y;
+	double		angle;
+	double		old_angle;
+	double		sqaure_x;
+	double		sqaure_y;
 }	t_player;
 
 typedef struct s_data
 {
-	float		cast_angle;
+	double		cast_angle;
 	void		*mlx;
 	mlx_image_t	*img;
 	char		**map;
@@ -51,16 +51,16 @@ typedef struct s_data
 
 void	my_key_hook(void *data);
 void	start_render(t_data *data);
-void	draw_player(t_data *data, float draw_x, float draw_y, int color);
-void	draw_player2(t_data *data, float draw_x, float draw_y, int color);
-void	draw_direction(t_data *data, float x, float y);
-void	remove_direction(t_data *data, float x, float y);
-void	remove_direction2(t_data *data, float x, float y);
-int		checking_collision(t_data *data, float x, float y);
+void	draw_player(t_data *data, double draw_x, double draw_y, int color);
+void	draw_player2(t_data *data, double draw_x, double draw_y, int color);
+void	draw_direction(t_data *data, double x, double y);
+void	remove_direction(t_data *data, double x, double y);
+void	remove_direction2(t_data *data, double x, double y);
+int		checking_collision(t_data *data, double x, double y);
 void	draw_minimap(t_data *data);
 void	cast_rays(t_data *data);
-void	cast_lines(t_data *data, float x, float y);
+void	cast_lines(t_data *data, double x, double y);
 void	remove_rays(t_data *data);
-void	remove_direction3(t_data *data, float x, float y);
+void	remove_direction3(t_data *data, double x, double y);
 
 #endif
