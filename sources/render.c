@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:17:54 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/17 15:28:43 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/17 17:47:33 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ void draw_minimap(t_data *data)
 	float	y;
 	int		color;
 
-	for (y = 0; y < 5; y++)
+	for (y = 0; y < 6; y++)
 	{
-		for (x = 0; x < 12; x++)
+		for (x = 0; x < 7; x++)
 		{
 			if (data->map[(int)y][(int)x] == '1')
 				color = BLACK;
@@ -82,12 +82,12 @@ void draw_minimap(t_data *data)
 void	start_render(t_data *data)
 {
 	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", 1);
-	data->img = mlx_new_image(data->mlx, 960, 470);
+	data->img = mlx_new_image(data->mlx, 224, 192);
 	// data->player_img = mlx_new_image(data->mlx, 960, 480);
 	draw_minimap(data);
 	draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 	data->player->angle = 0;
-	data->cast_angle = data->player->angle;
+	data->cast_angle = data->player->angle; 
 	remove_rays(data);
 	cast_rays(data);
 	draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
