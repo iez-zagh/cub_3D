@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/18 19:42:41 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/18 20:50:35 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,20 +146,31 @@ void draw_minimap2(t_data *data)
 	float	y;
 	int		color;
 
-	x1 = (data->player->sqaure_x / TILE) - 4;
+	// x1 = (data->player->sqaure_x / TILE) - 4;
 	y1 = (data->player->sqaure_y / TILE) - 3;
 	printf("%f]]\n%f]]\n", x1, y1);
+	// for(float i = y1;i < (y1 + 6);i++)
+	// {
+	// 	for (float j=x1;j< (x1 + 8);j++)
+	// 	{
+	// 		printf("%c", data->map[(int)i][(int)j]);
+	// 	}
+	// 	puts("");
+	// }
+	// exit (0);
 	// printf("%f]]\n%f]]\n", (data->player->sqaure_x / TILE) + 4, (data->player->sqaure_y / TILE)+3);exit (0);
 	for (y = 0; y < 6; y++)
 	{
+			int x1 = (data->player->sqaure_x / TILE) - 4;
 		for (x = 0; x < 8; x++)
 		{
-			if (data->map[(int)y][(int)x] == '1')
+			printf("%c", data->map[(int)y1][(int)x1]);
+			if (data->map[(int)y1][(int)x1] == '1')
 				color = BLACK;
 			else
 				color = WHITE;
-			float draw_x = x1 * TILE;
-			float draw_y = y1 * TILE;
+			float draw_x = x * TILE;
+			float draw_y = y * TILE;
 			// printf("%f]]\n%f]]\n", draw_x, draw_y);
 			for (int dy = 0; dy < TILE; dy++)
 			{
@@ -172,6 +183,7 @@ void draw_minimap2(t_data *data)
 			// i++;
 			// return ;
 		}
-		// y1++;
+			puts("");
+		y1++;
 	}
 }
