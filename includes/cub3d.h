@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/17 15:21:40 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/18 17:34:21 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,6 @@ void	cast_lines(t_data *data, float x, float y);
 void	remove_rays(t_data *data);
 void	remove_direction3(t_data *data, float x, float y);
 
+
+void draw_minimap2(t_data *data);
 #endif
