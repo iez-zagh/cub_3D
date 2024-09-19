@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/18 20:53:37 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/19 01:38:00 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,22 @@ int	main(int ac, char **av)
 		free(res);
 	}
 	data.map = ft_split(map, '\n');
-	player.sqaure_x = 4 * TILE;
-	player.sqaure_y = 5 * TILE;
+	for (float i = 0;i < 15;i++)
+	{
+		for (float j=0;j<30;j++)
+		{
+			if (data.map[(int)i][(int)j] == 'w')
+			{
+				player.x = j;
+				player.y = i;
+				break ;
+			}	
+		}
+	}
+	// player.x--;
+	// player.y--;
+	player.sqaure_x = player.x * TILE;
+	player.sqaure_y = player.y * TILE;
 	data.player = &player;
 	start_render(&data);
 	return (0);

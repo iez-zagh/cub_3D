@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/18 20:50:35 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/19 01:51:05 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,28 +140,18 @@ void	remove_direction3(t_data *data, float x, float y)
 
 void draw_minimap2(t_data *data)
 {
-	float	x1;
-	float	y1;
+	int		x1;
+	int		y1;
 	float	x;
 	float	y;
 	int		color;
 
-	// x1 = (data->player->sqaure_x / TILE) - 4;
-	y1 = (data->player->sqaure_y / TILE) - 3;
-	printf("%f]]\n%f]]\n", x1, y1);
-	// for(float i = y1;i < (y1 + 6);i++)
-	// {
-	// 	for (float j=x1;j< (x1 + 8);j++)
-	// 	{
-	// 		printf("%c", data->map[(int)i][(int)j]);
-	// 	}
-	// 	puts("");
-	// }
-	// exit (0);
-	// printf("%f]]\n%f]]\n", (data->player->sqaure_x / TILE) + 4, (data->player->sqaure_y / TILE)+3);exit (0);
+	y1 = data->player->y - 3;
+	int k = data->player->x - 4;
+	printf("%d]]\n%d]]\n", y1, k);
 	for (y = 0; y < 6; y++)
 	{
-			int x1 = (data->player->sqaure_x / TILE) - 4;
+		int x1 = k;
 		for (x = 0; x < 8; x++)
 		{
 			printf("%c", data->map[(int)y1][(int)x1]);
@@ -171,19 +161,14 @@ void draw_minimap2(t_data *data)
 				color = WHITE;
 			float draw_x = x * TILE;
 			float draw_y = y * TILE;
-			// printf("%f]]\n%f]]\n", draw_x, draw_y);
 			for (int dy = 0; dy < TILE; dy++)
 			{
 				for (int dx = 0; dx < TILE; dx++)
 					mlx_put_pixel(data->img, draw_x + dx, draw_y + dy, color);
 			}
 			x1++;
-			// if (i == 40)
-			// 	return ;
-			// i++;
-			// return ;
 		}
-			puts("");
+		puts("");
 		y1++;
 	}
 }

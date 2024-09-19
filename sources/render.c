@@ -6,32 +6,39 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:17:54 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/18 20:51:57 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/19 02:32:23 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	draw_player(t_data *data, float draw_x, float draw_y, int color)
+void draw_player(t_data *data, float draw_x, float draw_y, int color)
 {
-	float	x;
-	float	y;
+    float x;
+    float y;
 
-	data->player->sqaure_x = draw_x + 16;
-	data->player->sqaure_y = draw_y + 16;
-	y = -RADIUS;
-	while (y < RADIUS)
-	{
-		x = -RADIUS;
-		while (x < RADIUS)
-		{
-			if (pow(x, 2) + pow(y, 2) < pow(RADIUS, 2))
-				mlx_put_pixel(data->img, draw_x + x + 16 , 16 + draw_y + y, color);
-			x++;
-		}
-		y++;
-	}
+    y = -RADIUS;
+    while (y < RADIUS)
+    {
+        x = -RADIUS;
+        while (x < RADIUS)
+        {
+            if (pow(x, 2) + pow(y, 2) < pow(RADIUS, 2))
+            {
+                int pixel_x = draw_x + x + 16;
+                int pixel_y = draw_y + y + 16;
+
+                if (pixel_x >= 0 && pixel_x < 256 && pixel_y >= 0 && pixel_y < 192)
+                {
+                    mlx_put_pixel(data->img, pixel_x, pixel_y, color);
+                }
+            }
+            x++;
+        }
+        y++;
+    }
 }
+
 
 void	draw_player2(t_data *data, float draw_x, float draw_y, int color)
 {
@@ -83,14 +90,16 @@ void	start_render(t_data *data)
 {
 	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", 1);
 	data->img = mlx_new_image(data->mlx, 256, 192);
+	// data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	// data->player_img = mlx_new_image(data->mlx, 960, 480);
 	draw_minimap2(data);
+	// printf("%f]]\b%f]]\n", data->player->sqaure_x / TILE, data->player->sqaure_y /TILE);
 	draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 	data->player->angle = 0;
-	data->cast_angle = data->player->angle; 
-	remove_rays(data);
-	cast_rays(data);
-	draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
+	// draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
+	// data->cast_angle = data->player->angle; 
+	// remove_rays(data);
+	// cast_rays(data);
 	mlx_image_to_window(data->mlx, data->img, 0, 0);
 	mlx_loop_hook(data->mlx, &my_key_hook, data);
 	mlx_loop(data->mlx);
