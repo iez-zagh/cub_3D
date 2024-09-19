@@ -6,39 +6,32 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:17:54 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/19 02:32:23 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/19 02:40:31 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void draw_player(t_data *data, float draw_x, float draw_y, int color)
+void	draw_player(t_data *data, float draw_x, float draw_y, int color)
 {
-    float x;
-    float y;
+	float	x;
+	float	y;
 
-    y = -RADIUS;
-    while (y < RADIUS)
-    {
-        x = -RADIUS;
-        while (x < RADIUS)
-        {
-            if (pow(x, 2) + pow(y, 2) < pow(RADIUS, 2))
-            {
-                int pixel_x = draw_x + x + 16;
-                int pixel_y = draw_y + y + 16;
-
-                if (pixel_x >= 0 && pixel_x < 256 && pixel_y >= 0 && pixel_y < 192)
-                {
-                    mlx_put_pixel(data->img, pixel_x, pixel_y, color);
-                }
-            }
-            x++;
-        }
-        y++;
-    }
+	data->player->sqaure_x += 16;
+	data->player->sqaure_y += 16;
+	y = -RADIUS;
+	while (y < RADIUS)
+	{
+		x = -RADIUS;
+		while (x < RADIUS)
+		{
+			if (pow(x, 2) + pow(y, 2) < pow(RADIUS, 2))
+				mlx_put_pixel(data->img, draw_x + x + 16, 16 + draw_y + y, color);
+			x++;
+		}
+		y++;
+	}
 }
-
 
 void	draw_player2(t_data *data, float draw_x, float draw_y, int color)
 {

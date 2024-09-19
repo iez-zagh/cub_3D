@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/19 01:38:00 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/19 02:44:21 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,8 @@ int	main(int ac, char **av)
 			}	
 		}
 	}
-	// player.x--;
-	// player.y--;
-	player.sqaure_x = player.x * TILE;
-	player.sqaure_y = player.y * TILE;
+	player.sqaure_x = 4 * TILE;
+	player.sqaure_y = 3 * TILE;
 	data.player = &player;
 	start_render(&data);
 	return (0);

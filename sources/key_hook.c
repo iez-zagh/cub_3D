@@ -134,23 +134,23 @@ void	my_key_hook(void *st)
 		remove_rays(data);
 		while (i < MOVE_SPEED)
 		{
-			if (checking_collision(data, data->player->sqaure_x, data->player->sqaure_y - 1))
-				break ;
-			if (up_down(data->player->sqaure_x,
-					data->player->sqaure_y - 1, data))
-				break ;
-			data->player->sqaure_y -= 1;
+			// if (checking_collision(data, data->player->sqaure_x, data->player->sqaure_y - 1))
+			// 	break ;
+			// if (up_down(data->player->sqaure_x,
+			// 		data->player->sqaure_y - 1, data))
+			// 	break ;
+			// data->player->sqaure_y -= 1;
 
 
 			//think about this later
-			// image = mlx_new_image(data->mlx, 256, 192); 
-			// data->player->sqaure_y -= 1;
-			// draw_minimap(data);
-			// draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, RED);
-			// draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
-			// mlx_image_to_window(data->mlx, image, 0 , 0);
-			// mlx_delete_image(data->mlx, data->img);
-			// data->img = image;
+			mlx_delete_image(data->mlx, data->img);
+			data->img = mlx_new_image(data->mlx, 256, 192); 
+			data->player->sqaure_y -= 1;
+			draw_minimap2(data);
+			draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, RED);
+			draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
+			mlx_image_to_window(data->mlx, image, 0 , 0);
+			data->img = image;
 			i++;
 		}
 		cast_rays(data);

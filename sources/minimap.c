@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/19 01:51:05 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/19 02:44:32 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,8 +146,8 @@ void draw_minimap2(t_data *data)
 	float	y;
 	int		color;
 
-	y1 = data->player->y - 3;
-	int k = data->player->x - 4;
+	y1 = data->player->sqaure_y / TILE - 3;
+	int k = data->player->sqaure_x / TILE - 4;
 	printf("%d]]\n%d]]\n", y1, k);
 	for (y = 0; y < 6; y++)
 	{
