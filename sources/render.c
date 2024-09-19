@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:17:54 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/19 02:40:31 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/19 15:59:44 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,20 @@
 
 void	draw_player(t_data *data, float draw_x, float draw_y, int color)
 {
+	// return ;
 	float	x;
 	float	y;
 
+	// data->player->sqaure_x -= data->player->sqaure_x - (4 * TILE);
+	// data->player->sqaure_y -= data->player->sqaure_y - (3 * TILE);
 	data->player->sqaure_x += 16;
 	data->player->sqaure_y += 16;
+	// data->player->sqaure_x -= 32;
+	printf("%f]]\n%f]]\n", data->player->sqaure_x / TILE, data->player->sqaure_y /TILE);
 	y = -RADIUS;
 	while (y < RADIUS)
 	{
-		x = -RADIUS;
+		x = -RADIUS;  
 		while (x < RADIUS)
 		{
 			if (pow(x, 2) + pow(y, 2) < pow(RADIUS, 2))
