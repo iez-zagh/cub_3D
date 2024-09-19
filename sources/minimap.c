@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/19 02:44:32 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/19 18:30:15 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,19 +140,29 @@ void	remove_direction3(t_data *data, float x, float y)
 
 void draw_minimap2(t_data *data)
 {
-	int		x1;
-	int		y1;
-	float	x;
-	float	y;
+	float	x1;
+	float	y1;
 	int		color;
+	float	k;
 
-	y1 = data->player->sqaure_y / TILE - 3;
-	int k = data->player->sqaure_x / TILE - 4;
-	printf("%d]]\n%d]]\n", y1, k);
-	for (y = 0; y < 6; y++)
+	y1 = data->player->y - 3;
+	k = data->player->x - 4;
+	printf("%f]]\n%f]]\n", y1, k);
+	if (data->player->x + 4 > 30)
+	{
+		puts("hello");
+		k = data->player->x - 4 - (30 - data->player->x);
+	}
+	if (data->player->y + 3 > 15)
+	{
+		puts("here");
+		y1 = data->player->y - 3 - (15 - data->player->y) + 1;
+	}
+	printf("%f]]\n%f]]\n", y1, k);
+	for (float y = 0; y < 6; y++)
 	{
 		int x1 = k;
-		for (x = 0; x < 8; x++)
+		for (float x = 0; x < 8; x++)
 		{
 			printf("%c", data->map[(int)y1][(int)x1]);
 			if (data->map[(int)y1][(int)x1] == '1')
@@ -171,4 +181,5 @@ void draw_minimap2(t_data *data)
 		puts("");
 		y1++;
 	}
+	// exit (0);
 }
