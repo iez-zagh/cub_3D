@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/19 18:30:15 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/20 12:04:08 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,18 +147,30 @@ void draw_minimap2(t_data *data)
 
 	y1 = data->player->y - 3;
 	k = data->player->x - 4;
-	printf("%f]]\n%f]]\n", y1, k);
+	data->player->map_x = 4 * TILE;
+	data->player->map_y = 3 * TILE;
+	printf("x==%f]]\ny==%f]]\n", data->player->x, data->player->y);
 	if (data->player->x + 4 > 30)
 	{
 		puts("hello");
-		k = data->player->x - 4 - (30 - data->player->x);
+		data->player->map_x -= (data->player->x - 4) * TILE;
+		k = data->player->x - 4 - (30 - data->player->x) + 2;
 	}
 	if (data->player->y + 3 > 15)
 	{
 		puts("here");
+		data->player->map_y += TILE;
 		y1 = data->player->y - 3 - (15 - data->player->y) + 1;
 	}
+	// if (data->player->y - 3 < 0)
+	// {
+	// 	puts("nothinh");
+	// 	printf ("---->%f\n", data->player->y - 3);
+	// 	data->player->map_y += (data->player->y - 3) * TILE;
+	// 	y1 = 0;
+	// }
 	printf("%f]]\n%f]]\n", y1, k);
+	// printf("%f]\n%f]\n", 15 - data->player->y, 30 - data->player->x);
 	for (float y = 0; y < 6; y++)
 	{
 		int x1 = k;
@@ -181,5 +193,4 @@ void draw_minimap2(t_data *data)
 		puts("");
 		y1++;
 	}
-	// exit (0);
 }

@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:17:54 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/19 16:04:45 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/20 10:34:18 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,11 @@ void	start_render(t_data *data)
 	// data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	// data->player_img = mlx_new_image(data->mlx, 960, 480);
 	draw_minimap2(data);
-	data->player->sqaure_x = 4 * TILE;
-	data->player->sqaure_y = 3 * TILE;
+	// data->player->sqaure_x = 4 * TILE;
+	// data->player->sqaure_y = 3 * TILE;
 	// printf("%f]]\b%f]]\n", data->player->sqaure_x / TILE, data->player->sqaure_y /TILE);
-	draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
+	// draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
+	draw_player(data, data->player->map_x, data->player->map_y, RED);
 	data->player->angle = 0;
 	// draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 	// data->cast_angle = data->player->angle; 
