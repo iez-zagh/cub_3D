@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/20 12:04:08 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/21 12:49:18 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,35 +146,35 @@ void draw_minimap2(t_data *data)
 	float	k;
 
 	y1 = data->player->y - 3;
-	k = data->player->x - 4;
-	data->player->map_x = 4 * TILE;
+	k = data->player->x - 3;
+	data->player->map_x = 3 * TILE;
 	data->player->map_y = 3 * TILE;
-	printf("x==%f]]\ny==%f]]\n", data->player->x, data->player->y);
-	if (data->player->x + 4 > 30)
+	if (data->player->x + 3 > 30)
 	{
-		puts("hello");
-		data->player->map_x -= (data->player->x - 4) * TILE;
-		k = data->player->x - 4 - (30 - data->player->x) + 2;
+		data->player->map_x += TILE;
+		k = data->player->x - 3 - (30 - data->player->x) + 1;
 	}
 	if (data->player->y + 3 > 15)
 	{
-		puts("here");
 		data->player->map_y += TILE;
 		y1 = data->player->y - 3 - (15 - data->player->y) + 1;
 	}
-	// if (data->player->y - 3 < 0)
-	// {
-	// 	puts("nothinh");
-	// 	printf ("---->%f\n", data->player->y - 3);
-	// 	data->player->map_y += (data->player->y - 3) * TILE;
-	// 	y1 = 0;
-	// }
-	printf("%f]]\n%f]]\n", y1, k);
-	// printf("%f]\n%f]\n", 15 - data->player->y, 30 - data->player->x);
+
+	if (data->player->y - 3 < 0)
+	{
+		data->player->map_y += (data->player->y - 3) * TILE;
+		y1 = 0;
+	}
+
+	if (data->player->x - 3 < 0)
+	{
+		data->player->map_x += (data->player->x - 3) * TILE;
+		k = 0;
+	}
 	for (float y = 0; y < 6; y++)
 	{
 		int x1 = k;
-		for (float x = 0; x < 8; x++)
+		for (float x = 0; x < 6; x++)
 		{
 			printf("%c", data->map[(int)y1][(int)x1]);
 			if (data->map[(int)y1][(int)x1] == '1')

@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:17:54 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/20 10:34:18 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/21 11:27:37 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void draw_minimap(t_data *data)
 void	start_render(t_data *data)
 {
 	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", 1);
-	data->img = mlx_new_image(data->mlx, 256, 192);
+	data->img = mlx_new_image(data->mlx, 192, 192);
 	// data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	// data->player_img = mlx_new_image(data->mlx, 960, 480);
 	draw_minimap2(data);
