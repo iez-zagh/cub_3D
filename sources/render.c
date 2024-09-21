@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:17:54 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/21 11:27:37 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/21 15:38:14 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	draw_player(t_data *data, float draw_x, float draw_y, int color)
 
 	data->player->sqaure_x += 16;
 	data->player->sqaure_y += 16;
+	data->player->map_x += 16;
+	data->player->map_y += 16;
 	y = -RADIUS;
 	while (y < RADIUS)
 	{
@@ -34,7 +36,7 @@ void	draw_player(t_data *data, float draw_x, float draw_y, int color)
 	}
 }
 
-void	draw_player2(t_data *data, float draw_x, float draw_y, int color)
+void	draw_player2(t_data *data, float draw_x, float draw_y, int color, mlx_image_t *img)
 {
 	float	r;
 	float	x;
@@ -48,7 +50,7 @@ void	draw_player2(t_data *data, float draw_x, float draw_y, int color)
 		while (x < r)
 		{
 			if (pow(x, 2) + pow(y, 2) < pow(r, 2))
-				mlx_put_pixel(data->img, draw_x + x, draw_y + y, color);
+				mlx_put_pixel(img, draw_x + x, draw_y + y, color);
 			x++;
 		}
 		y++;
@@ -86,11 +88,13 @@ void	start_render(t_data *data)
 	data->img = mlx_new_image(data->mlx, 192, 192);
 	// data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	// data->player_img = mlx_new_image(data->mlx, 960, 480);
-	draw_minimap2(data);
-	// data->player->sqaure_x = 4 * TILE;
-	// data->player->sqaure_y = 3 * TILE;
-	// printf("%f]]\b%f]]\n", data->player->sqaure_x / TILE, data->player->sqaure_y /TILE);
-	// draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
+	data->player->map_x = 3 * TILE;
+	data->player->map_y = 3 * TILE;
+
+
+	// data->player->sqaure_x = data->player->x * TILE;
+	// data->player->sqaure_y = data->player->y * TILE;
+	draw_minimap2(data, data->img);
 	draw_player(data, data->player->map_x, data->player->map_y, RED);
 	data->player->angle = 0;
 	// draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);

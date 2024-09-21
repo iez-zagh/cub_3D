@@ -33,8 +33,8 @@ int	up_down(float x, float y, t_data *data)
 	if (checking_collision(data, x, y))
 		return (1);
 	remove_direction2(data, data->player->sqaure_x, data->player->sqaure_y);
-	draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, WHITE); //destroy the image and draw it again	
-	draw_player2(data, x, y, RED);
+	draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, WHITE, data->img); //destroy the image and draw it again	
+	draw_player2(data, x, y, RED, data->img);
 	draw_direction(data, x, y);
 	return (0);
 }
@@ -44,8 +44,8 @@ int	left_right(float x, float y, t_data *data)
 	if (checking_collision(data, x, y))
 		return (1);
 	remove_direction2(data, data->player->sqaure_x, data->player->sqaure_y);
-	draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, WHITE);
-	draw_player2(data, x, y, RED);
+	draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, WHITE, data->img);
+	draw_player2(data, x, y, RED, data->img);
 	draw_direction(data, x, y);
 	return (0);
 }
@@ -61,7 +61,7 @@ void	key_hook_3(t_data *data)
 		remove_rays(data);
 		remove_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 		data->cast_angle = data->player->angle;
-		draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, RED); //need to reput the map every time i guess
+		draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, RED, data->img); //need to reput the map every time i guess
 		cast_rays(data);
 		draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 	}
@@ -74,7 +74,7 @@ void	key_hook_3(t_data *data)
 		remove_rays(data);
 		remove_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 		data->cast_angle = data->player->angle;
-		draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, RED);
+		draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, RED, data->img);
 		cast_rays(data);
 		draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 	}
@@ -124,51 +124,49 @@ void	my_key_hook(void *st)
 {
 	t_data	*data;
 	int		i;
-	mlx_image_t *image;
 
 	i = 0;
 	data = (t_data *)st;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W) || mlx_is_key_down(data->mlx, MLX_KEY_UP))
 	{
-		i = 0;
-		remove_rays(data);
-		while (i < MOVE_SPEED)
-		{
-			if (checking_collision(data, data->player->sqaure_x, data->player->sqaure_y - 1))
-				break ;
-			if (up_down(data->player->sqaure_x,
-					data->player->sqaure_y - 1, data))
-				break ;
-			data->player->sqaure_y -= 1;
-
-
-			// think about this later
-			// mlx_delete_image(data->mlx, data->img);
-			// data->img = mlx_new_image(data->mlx, 256, 192); 
+		// i = 0;
+		// remove_rays(data);
+		// while (i < MOVE_SPEED)
+		// {
+			// if (up_down(data->player->sqaure_x,
+			// 		data->player->sqaure_y - 1, data))
+			// 	break ;
 			// data->player->sqaure_y -= 1;
-			// draw_minimap2(data);
-			// draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, RED);
-			// draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
-			// mlx_image_to_window(data->mlx, image, 0 , 0);
-			// data->img = image;
-			// i++;
-		}
-		cast_rays(data);
+			// think about this later
+			if (checking_collision(data, data->player->sqaure_x, data->player->sqaure_y - MOVE_SPEED))
+				return ;
+			printf("%f]\n%f]\n", data->player->sqaure_x/TILE, data->player->sqaure_y/TILE);
+			data->player->sqaure_y -= MOVE_SPEED;
+			mlx_delete_image(data->mlx, data->img);
+			data->img = mlx_new_image(data->mlx, 192, 192); 
+			// data->player->map_y -= MOVE_SPEED;
+			draw_minimap2(data, data->img);
+			draw_player2(data, data->player->map_x, data->player->map_y, RED, data->img);
+			// draw_direction(data, data->player->map_x, data->player->map_y);
+			mlx_image_to_window(data->mlx, data->img, 0 , 0);
+		// 	i++;
+		// }
+		// cast_rays(data);
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
 	{
 		i = 0;
 		remove_rays(data);
-		while (i < MOVE_SPEED)
-		{
+		// while (i < MOVE_SPEED)
+		// {
 			if (checking_collision(data, data->player->sqaure_x - 1, data->player->sqaure_y))
-				break ;
+				return ;
 			if (left_right(data->player->sqaure_x - 1,
 					data->player->sqaure_y, data))
-				break ;
-			data->player->sqaure_x -= 1;
-			i++;
-		}
+				return ;
+			data->player->sqaure_x -= MOVE_SPEED;
+		// 	i++;
+		// }
 		cast_rays(data);
 	}
 	key_hook_2(data);

@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/21 12:49:18 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/21 18:08:46 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,31 +138,33 @@ void	remove_direction3(t_data *data, float x, float y)
 	}
 }
 
-void draw_minimap2(t_data *data)
+void draw_minimap2(t_data *data, mlx_image_t *image)
 {
 	float	x1;
 	float	y1;
 	int		color;
 	float	k;
 
-	y1 = data->player->y - 3;
-	k = data->player->x - 3;
-	data->player->map_x = 3 * TILE;
-	data->player->map_y = 3 * TILE;
-	if (data->player->x + 3 > 30)
+	// data->player->
+	y1 = (data->player->sqaure_y / TILE) - 3;
+	k = (data->player->sqaure_x / TILE) - 3;
+	// printf("%f]]\n", data->player->sqaure_x / TILE);
+	// y1 = data->player->y - 3;
+	// k = data->player->x - 3;
+	if (data->player->sqaure_x / TILE + 3 > 30)
 	{
 		data->player->map_x += TILE;
-		k = data->player->x - 3 - (30 - data->player->x) + 1;
+		k = data->player->sqaure_x / TILE - 3 - (30 - data->player->x) + 1;
 	}
-	if (data->player->y + 3 > 15)
+	if (data->player->sqaure_y / TILE + 3 > 15)
 	{
 		data->player->map_y += TILE;
-		y1 = data->player->y - 3 - (15 - data->player->y) + 1;
+		y1 = data->player->sqaure_y / TILE - 3 - (15 - data->player->sqaure_y / TILE) + 1;
 	}
 
-	if (data->player->y - 3 < 0)
+	if (data->player->sqaure_y / TILE - 3 < 0)
 	{
-		data->player->map_y += (data->player->y - 3) * TILE;
+		data->player->map_y += (data->player->sqaure_y / TILE - 3) * TILE;
 		y1 = 0;
 	}
 
@@ -176,7 +178,6 @@ void draw_minimap2(t_data *data)
 		int x1 = k;
 		for (float x = 0; x < 6; x++)
 		{
-			printf("%c", data->map[(int)y1][(int)x1]);
 			if (data->map[(int)y1][(int)x1] == '1')
 				color = BLACK;
 			else
@@ -186,11 +187,10 @@ void draw_minimap2(t_data *data)
 			for (int dy = 0; dy < TILE; dy++)
 			{
 				for (int dx = 0; dx < TILE; dx++)
-					mlx_put_pixel(data->img, draw_x + dx, draw_y + dy, color);
+					mlx_put_pixel(image, draw_x + dx, draw_y + dy, color);
 			}
 			x1++;
 		}
-		puts("");
 		y1++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/20 10:24:37 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/21 18:06:26 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define WHITE 0xFFFFFFFF
 # define BLACK 0x00000FF
 # define TILE 32
-# define MOVE_SPEED 3.0
+# define MOVE_SPEED 1.0
 # define RADIUS 4.0
 # define RADIUS2 3.0
 # define ROTATE_ANGLE 0.05233333333
@@ -59,7 +59,7 @@ typedef struct s_data
 void	my_key_hook(void *data);
 void	start_render(t_data *data);
 void	draw_player(t_data *data, float draw_x, float draw_y, int color);
-void	draw_player2(t_data *data, float draw_x, float draw_y, int color);
+void	draw_player2(t_data *data, float draw_x, float draw_y, int color, mlx_image_t *img);
 void	draw_direction(t_data *data, float x, float y);
 void	remove_direction(t_data *data, float x, float y);
 void	remove_direction2(t_data *data, float x, float y);
@@ -69,7 +69,6 @@ void	cast_rays(t_data *data);
 void	cast_lines(t_data *data, float x, float y);
 void	remove_rays(t_data *data);
 void	remove_direction3(t_data *data, float x, float y);
+void	draw_minimap2(t_data *data, mlx_image_t *image);
 
-
-void draw_minimap2(t_data *data);
 #endif
