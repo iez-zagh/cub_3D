@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:17:54 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/22 11:59:55 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/22 15:43:31 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,8 +164,8 @@ void	start_render(t_data *data)
 	mlx_image_to_window(data->mlx, data->player_img, 0, 0);
 	// data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	// data->player_img = mlx_new_image(data->mlx, 960, 480);
-	data->player->map_x = 3 * TILE;
-	data->player->map_y = 3 * TILE;
+	// data->player->map_x = 3 * TILE;
+	// data->player->map_y = 3 * TILE;
 
 
 	data->player->sqaure_x = data->player->x * TILE;
@@ -227,4 +227,29 @@ void	check_keys(mlx_key_data_t key, void *data)
 		d_key(key, data);
 	if (key.key == MLX_KEY_ESCAPE)
 		exit (0);
+}
+
+
+
+for (float y = 0; y < 6; y++)
+{
+	{
+		int x1 = k;
+		for (float x = 0; x < 6; x++)
+		{
+			if (data->map[(int)y1][(int)x1] == '1')
+				color = BLACK;
+			else
+				color = WHITE;
+			float draw_x = x * TILE;
+			float draw_y = y * TILE;
+			for (int dy = 0; dy < TILE; dy++)
+			{
+				for (int dx = 0; dx < TILE; dx++)
+					mlx_put_pixel(image, draw_x + dx, draw_y + dy, color);
+			}
+			x1++;
+		}
+		y1++;
+	}
 }

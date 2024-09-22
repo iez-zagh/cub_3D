@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/22 12:26:46 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/22 16:13:38 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,51 +145,26 @@ void draw_minimap2(t_data *data, mlx_image_t *image)
 	int		color;
 	float	k;
 
-	y1 = (data->player->sqaure_y / TILE) - 3;
-	k = (data->player->sqaure_x / TILE) - 3;
-	// printf("%f]]\n",data->player->sqaure_y / TILE);
-	// y1 = data->player->y - 3;
-	// k = data->player->x - 3;
-	if (data->player->sqaure_x / TILE + 3 > 30)
-	{			
-		data->player->map_x += TILE;
-		k = data->player->sqaure_x / TILE - 3 - (30 - data->player->x) + 1;
-	}
-	if (data->player->sqaure_y / TILE + 3 > 15)
-	{
-		data->player->map_y += TILE;
-		y1 = data->player->sqaure_y / TILE - 3 - (15 - data->player->sqaure_y / TILE) + 1;
-	}
-
-	if (data->player->sqaure_y / TILE - 3 < 0)
-	{
-		data->player->map_y += (data->player->sqaure_y / TILE - 3) * TILE;
-		y1 = 0;
-	}
-
-	if (data->player->x - 3 < 0)
-	{
-		data->player->map_x += (data->player->x - 3) * TILE;
-		k = 0;
-	}
+	printf("%f]]\n%f]]\n", data->player->sqaure_x - 3 * TILE, data->player->sqaure_y - 3 * TILE);
+	float	x2 = data->player->sqaure_x - 3 * TILE;
+	float	y2 = data->player->sqaure_y - 3 * TILE;
 	for (float y = 0; y < 6; y++)
 	{
-		int x1 = k;
 		for (float x = 0; x < 6; x++)
 		{
-			if (data->map[(int)y1][(int)x1] == '1')
+			int color = WHITE;
+			if (data->map[(int)data->player->sqaure_y / TILE][(int)data->player->sqaure_x / TILE] == '1')
 				color = BLACK;
-			else
-				color = WHITE;
-			float draw_x = x * TILE;
-			float draw_y = y * TILE;
-			for (int dy = 0; dy < TILE; dy++)
+				//check map with the sqaure
+			for (float y1 = 0;y1 < TILE;y1++)
 			{
-				for (int dx = 0; dx < TILE; dx++)
-					mlx_put_pixel(image, draw_x + dx, draw_y + dy, color);
+				for (float x1 = 0;x1 < TILE;x1++)
+				{
+					puts("hello");
+					mlx_put_pixel(image, x1 + );
+				}
 			}
-			x1++;
 		}
-		y1++;
+		
 	}
 }
