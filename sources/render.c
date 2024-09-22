@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:17:54 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/22 15:43:31 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/22 19:31:35 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,25 +231,25 @@ void	check_keys(mlx_key_data_t key, void *data)
 
 
 
-for (float y = 0; y < 6; y++)
-{
-	{
-		int x1 = k;
-		for (float x = 0; x < 6; x++)
-		{
-			if (data->map[(int)y1][(int)x1] == '1')
-				color = BLACK;
-			else
-				color = WHITE;
-			float draw_x = x * TILE;
-			float draw_y = y * TILE;
-			for (int dy = 0; dy < TILE; dy++)
-			{
-				for (int dx = 0; dx < TILE; dx++)
-					mlx_put_pixel(image, draw_x + dx, draw_y + dy, color);
-			}
-			x1++;
-		}
-		y1++;
-	}
-}
+// for (float y = 0; y < 6; y++)
+// {
+// 	{
+// 		int x1 = k;
+// 		for (float x = 0; x < 6; x++)
+// 		{
+// 			if (data->map[(int)y1][(int)x1] == '1')
+// 				color = BLACK;
+// 			else
+// 				color = WHITE;
+// 			float draw_x = x * TILE;
+// 			float draw_y = y * TILE;
+// 			for (int dy = 0; dy < TILE; dy++)
+// 			{
+// 				for (int dx = 0; dx < TILE; dx++)
+// 					mlx_put_pixel(image, draw_x + dx, draw_y + dy, color);
+// 			}
+// 			x1++;
+// 		}
+// 		y1++;
+// 	}
+// }
