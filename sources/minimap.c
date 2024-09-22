@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/21 18:08:46 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/09/22 12:26:46 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	checking_collision2(t_data *data, float x, float y)
 
 void	draw_direction(t_data *data, float x, float y)
 {
-	return ;
+	// return ;
 	float	dir_x;
 	float	dir_y;
 	float	i;
@@ -89,7 +89,7 @@ void	remove_direction(t_data *data, float x, float y)
 
 void	remove_direction2(t_data *data, float x, float y)
 {
-	return ;
+	// return ;
 	float dir_x, dir_y;
 
 	dir_x = cos(data->player->angle);
@@ -103,7 +103,7 @@ void	remove_direction2(t_data *data, float x, float y)
 
 void	cast_lines(t_data *data, float x, float y)
 {
-	return ;
+	// return ;
 	float	dir_x;
 	float	dir_y;
 	float	i;
@@ -122,7 +122,7 @@ void	cast_lines(t_data *data, float x, float y)
 
 void	remove_direction3(t_data *data, float x, float y)
 {
-	return ;
+	// return ;
 	float dir_x, dir_y;
 	int	i;
 
@@ -145,14 +145,13 @@ void draw_minimap2(t_data *data, mlx_image_t *image)
 	int		color;
 	float	k;
 
-	// data->player->
 	y1 = (data->player->sqaure_y / TILE) - 3;
 	k = (data->player->sqaure_x / TILE) - 3;
-	// printf("%f]]\n", data->player->sqaure_x / TILE);
+	// printf("%f]]\n",data->player->sqaure_y / TILE);
 	// y1 = data->player->y - 3;
 	// k = data->player->x - 3;
 	if (data->player->sqaure_x / TILE + 3 > 30)
-	{
+	{			
 		data->player->map_x += TILE;
 		k = data->player->sqaure_x / TILE - 3 - (30 - data->player->x) + 1;
 	}
