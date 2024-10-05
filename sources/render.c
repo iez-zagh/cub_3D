@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:17:54 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/22 19:31:35 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/05 13:01:39 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	draw_player(t_data *data, float draw_x, float draw_y, int color)
 {
-	// return ;
 	float	x;
 	float	y;
 
@@ -29,7 +28,7 @@ void	draw_player(t_data *data, float draw_x, float draw_y, int color)
 		while (x < RADIUS)
 		{
 			if (pow(x, 2) + pow(y, 2) < pow(RADIUS, 2))
-				mlx_put_pixel(data->img, draw_x + x + 16, 16 + draw_y + y, color);
+				mlx_put_pixel(data->img, draw_x + x, draw_y + y, color);
 			x++;
 		}
 		y++;
@@ -82,86 +81,13 @@ void draw_minimap(t_data *data)
 	}
 }
 
-void draw_char(t_data *data, int start_x, int start_y, char letter, int color) 
-{
-    const int I[5][5] = {
-        {1, 1, 1, 1, 1},
-        {0, 0, 1, 0, 0},
-        {0, 0, 1, 0, 0},
-        {0, 0, 1, 0, 0},
-        {1, 1, 1, 1, 1}
-    };
-    
-    const int M[5][5] = {
-        {1, 0, 0, 0, 1},
-        {1, 1, 0, 1, 1},
-        {1, 0, 1, 0, 1},
-        {1, 0, 0, 0, 1},
-        {1, 0, 0, 0, 1}
-    };
-
-    const int A[5][5] = {
-        {0, 1, 1, 1, 0},
-        {1, 0, 0, 0, 1},
-        {1, 1, 1, 1, 1},
-        {1, 0, 0, 0, 1},
-        {1, 0, 0, 0, 1}
-    };
-
-    const int D[5][5] = {
-        {1, 1, 1, 1, 0},
-        {1, 0, 0, 0, 1},
-        {1, 0, 0, 0, 1},
-        {1, 0, 0, 0, 1},
-        {1, 1, 1, 1, 0}
-    };
-
-    const int (*char_grid)[5];
-
-    // Choose the appropriate letter grid
-    if (letter == 'I') char_grid = I;
-    else if (letter == 'M') char_grid = M;
-    else if (letter == 'A') char_grid = A;
-    else if (letter == 'D') char_grid = D;
-    else return;  // No action for unsupported letters
-
-    // Draw the character on the image
-    for (int y = 0; y < 5; y++) {
-        for (int x = 0; x < 5; x++) {
-            if (char_grid[y][x] == 1) {
-                // Scale the grid to the tile size
-                for (int dy = 0; dy < TILE / 5; dy++) {
-                    for (int dx = 0; dx < TILE / 5; dx++) {
-                        mlx_put_pixel(data->player_img, start_x + x * (TILE / 5) + dx, start_y + y * (TILE / 5) + dy, color);
-                    }
-                }
-            }
-        }
-    }
-}
-
-void draw_name_imad(t_data *data) {
-    int color = BLACK;
-    int tile_size = 32;  // Assuming TILE is 32
-
-    // Calculate the starting position to center the text "IMAD"
-    int start_x = (WIDTH - (4 * tile_size)) / 2;  // 4 letters wide, each letter takes 1 TILE
-    int start_y = (HEIGHT - tile_size) / 2;        // Center vertically, assuming letters fit in 1 TILE height
-
-    // Draw each letter in "IMAD"
-    draw_char(data, start_x, start_y, 'I', color);      // Draw 'I'
-    draw_char(data, start_x + tile_size, start_y, 'M', color);  // Draw 'M'
-    draw_char(data, start_x + 2 * tile_size, start_y, 'A', color);  // Draw 'A'
-    draw_char(data, start_x + 3 * tile_size, start_y, 'D', color);  // Draw 'D'
-}
-
 void	start_render(t_data *data)
 {
 	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", 1);
-	data->img = mlx_new_image(data->mlx, 192, 192);
+	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->player_img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	draw_name_imad(data);
 	mlx_image_to_window(data->mlx, data->player_img, 0, 0);
+	
 	// data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	// data->player_img = mlx_new_image(data->mlx, 960, 480);
 	// data->player->map_x = 3 * TILE;
@@ -170,17 +96,17 @@ void	start_render(t_data *data)
 
 	data->player->sqaure_x = data->player->x * TILE;
 	data->player->sqaure_y = data->player->y * TILE;
-	draw_minimap2(data, data->img);
-	// data->player->map_x += 16;
-	// data->player->map_y += 16;
-	draw_player(data, 3 * TILE, 3 * TILE, RED);
+	draw_minimap(data);
 	data->player->angle = 0;
+	data->player->sqaure_x += 16;
+	data->player->sqaure_y += 16;
+	draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 	// draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 	// data->cast_angle = data->player->angle; 
 	// remove_rays(data);
 	// cast_rays(data);
 	mlx_image_to_window(data->mlx, data->img, 0, 0);
-	// mlx_key_hook(data->mlx, check_keys, data);
+	mlx_key_hook(data->mlx, check_keys, data);
 	mlx_loop_hook(data->mlx, my_key_hook, data);
 	mlx_loop(data->mlx);
 }
@@ -192,6 +118,7 @@ void	w_key(mlx_key_data_t key, t_data *data)
 	if (key.action == MLX_RELEASE)
 		data->w_key = 0;
 }
+
 void	a_key(mlx_key_data_t key, t_data *data)
 {
 	if (key.action == MLX_PRESS)
@@ -199,6 +126,7 @@ void	a_key(mlx_key_data_t key, t_data *data)
 	else if (key.action == MLX_RELEASE)
 		data->a_key = 0;
 }
+
 void	d_key(mlx_key_data_t key, t_data *data)
 {
 	if (key.action == MLX_PRESS)

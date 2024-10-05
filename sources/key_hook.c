@@ -127,29 +127,21 @@ void	my_key_hook(void *st)
 
 	i = 0;
 	data = (t_data *)st;
-	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
+	if (data->w_key)
 	{
-		// i = 0;
-		// remove_rays(data);
-		// while (i < MOVE_SPEED)
-		// {
-			// if (checking_collision(data, data->player->sqaure_x, data->player->sqaure_y - MOVE_SPEED))
-			// 	break ;
-			// if (up_down(data->player->sqaure_x,
-			// 		data->player->sqaure_y - 1, data))
-			// 	break ;
-			data->player->sqaure_y -= MOVE_SPEED;
-			// think about this later
-			// printf("%f]]\n%f]]\n", data->player->sqaure_x / TILE, data->player->sqaure_y / TILE);
-			// data->player->sqaure_y -= 1;
-			mlx_delete_image(data->mlx, data->img);
-			data->img = mlx_new_image(data->mlx, 192, 192); 
-			draw_minimap2(data, data->img);
-			draw_player2(data, 3 * TILE + 16, 3 * TILE + 16, RED, data->img);
-			mlx_image_to_window(data->mlx, data->img, 0, 0);
-		// 	i++;
-		// }
-		// cast_rays(data);
+		i = 0;
+		remove_rays(data);
+		while (i < MOVE_SPEED)
+		{
+			if (checking_collision(data, data->player->sqaure_x, data->player->sqaure_y - 1))
+				break ;
+			if (up_down(data->player->sqaure_x,
+					data->player->sqaure_y - 1, data))
+				break ;
+			data->player->sqaure_y -= 1;
+			i++;
+		}
+		cast_rays(data);
 	}
 	if (data->a_key)
 	{
@@ -162,7 +154,7 @@ void	my_key_hook(void *st)
 			if (left_right(data->player->sqaure_x - 1,
 					data->player->sqaure_y, data))
 				break ;
-			data->player->sqaure_x -= MOVE_SPEED;
+			data->player->sqaure_x -= 1;
 			i++;
 		}
 		cast_rays(data);

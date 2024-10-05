@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/09/22 16:13:38 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/05 11:56:31 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ void draw_minimap2(t_data *data, mlx_image_t *image)
 				for (float x1 = 0;x1 < TILE;x1++)
 				{
 					puts("hello");
-					mlx_put_pixel(image, x1 + );
+					// mlx_put_pixel(image, x1 + );
 				}
 			}
 		}
