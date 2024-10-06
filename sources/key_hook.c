@@ -57,7 +57,7 @@ void	key_hook_3(t_data *data)
 		data->player->old_angle = data->player->angle;
 		data->player->angle -= ROTATE_ANGLE;
 		if (data->player->angle < 0)
-			data->player->angle = 2 * M_PI; // Keep angle within 0 and  2π) and need to musch under this
+			data->player->angle = 2 * M_PI; // Keep angle within 0 and  180 and need to musch under this
 		remove_rays(data);
 		remove_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 		data->cast_angle = data->player->angle;
@@ -78,12 +78,6 @@ void	key_hook_3(t_data *data)
 		cast_rays(data);
 		draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 	}
-	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
-	{
-		//needs to release resources
-		write(1, "WINDOW CLOSED\n", 14);
-		exit(0);
-	} 
 }
 
 void	key_hook_2(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/05 14:47:43 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/06 11:45:17 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	checking_collision2(t_data *data, float x, float y)
 {
-	if (data->map[(int)(y / TILE)][(int)(x / TILE)] == '1' 
-	// || (x / TILE >= 12 || y / TILE >= 5)
+	if (!data->map[(int)(y / TILE)][(int)(x / TILE)]
+	|| (data->map[(int)(y / TILE)][(int)(x / TILE)] == '1')
 	)
 		return (1);
 	if (		
@@ -103,7 +103,7 @@ void	remove_direction2(t_data *data, float x, float y)
 
 void	cast_lines(t_data *data, float x, float y)
 {
-	// return ;
+	return ;
 	float	dir_x;
 	float	dir_y;
 	float	i;

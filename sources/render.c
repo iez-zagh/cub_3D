@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:17:54 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/05 16:21:29 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/06 12:05:26 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ void	d_key(mlx_key_data_t key, t_data *data)
 	else if (key.action == MLX_RELEASE)
 		data->d_key = 0;
 }
+
 void	s_key(mlx_key_data_t key, t_data *data)
 {
 	if (key.action == MLX_PRESS)
@@ -156,7 +157,11 @@ void	check_keys(mlx_key_data_t key, void *data)
 	if (key.key == MLX_KEY_D)
 		d_key(key, data);
 	if (key.key == MLX_KEY_ESCAPE)
-		exit (0);
+	{
+		//needs to release resources
+		write(1, "WINDOW CLOSED\n", 14);
+		exit(0);
+	}
 }
 
 
