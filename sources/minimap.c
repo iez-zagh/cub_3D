@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/06 20:59:34 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/06 21:26:48 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	checking_collision2(t_data *data, float x, float y)
 {
-	if ((x / TILE) > 30 || (y / TILE) > 15 || (x / TILE < 0 || (y / TILE) < 0))
-		return (1);
 	if (!data->map[(int)(y / TILE)][(int)(x / TILE)]
 	|| (data->map[(int)(y / TILE)][(int)(x / TILE)] == '1')
 	)
@@ -65,8 +63,9 @@ void	draw_direction(t_data *data, float x, float y)
 	i = 0;
 	while (i < 26)
 	{
-		if (!checking_collision2(data, x + (dir_x * i), y + (dir_y * i)))
-			mlx_put_pixel(data->img, x + (dir_x * i), y + (dir_y * i), BLACK);
+		if (checking_collision2(data, x + (dir_x * i), y + (dir_y * i)))
+			return ;
+		mlx_put_pixel(data->img, x + (dir_x * i), y + (dir_y * i), BLACK);
 		i++;
 	}
 }
@@ -83,7 +82,8 @@ void	remove_direction(t_data *data, float x, float y)
 	i = RADIUS;
 	while (i < 26)
 	{
-		if (!checking_collision2(data, x + (dir_x * i), y + (dir_y * i)))
+		if (checking_collision2(data, x + (dir_x * i), y + (dir_y * i)))
+			return ;
 			mlx_put_pixel(data->img, x + (dir_x * i), y + (dir_y * i), WHITE);
 		i++;
 	}
@@ -98,8 +98,9 @@ void	remove_direction2(t_data *data, float x, float y)
 	dir_y = sin(data->player->angle);
 	for (float i = RADIUS ; i < 26; i++) // Ensure the entire line is cleared
 	{
-		if (!checking_collision2(data, x + dir_x * i, y + dir_y * i))
-			mlx_put_pixel(data->img, x + dir_x * i, y + dir_y * i, WHITE);
+		if (checking_collision2(data, x + dir_x * i, y + dir_y * i))
+			return ;
+		mlx_put_pixel(data->img, x + dir_x * i, y + dir_y * i, WHITE);
 	}
 }
 

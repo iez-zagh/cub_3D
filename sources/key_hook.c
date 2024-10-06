@@ -14,8 +14,6 @@
 
 int	checking_collision(t_data *data, float x, float y)
 {
-	if ((x / TILE) > 30 || (y / TILE) > 15 || (x / TILE < 0 || (y / TILE) < 0))
-		return (1);
 	if (data->map[(int)((y - RADIUS2) / TILE)]
 		[(int)((x - RADIUS2) / TILE)] && // check this to avoid segv near to wall
 		(data->map[(int)((y - RADIUS2) / TILE)]
