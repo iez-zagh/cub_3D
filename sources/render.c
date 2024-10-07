@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:17:54 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/06 12:05:26 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:58:07 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,26 +87,17 @@ void	start_render(t_data *data)
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->player_img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(data->mlx, data->player_img, 0, 0);
-	
-	// data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	// data->player_img = mlx_new_image(data->mlx, 960, 480);
-	// data->player->map_x = 3 * TILE;
-	// data->player->map_y = 3 * TILE;
-
-
 	data->player->sqaure_x = data->player->x * TILE;
 	data->player->sqaure_y = data->player->y * TILE;
 	draw_minimap(data);
 	data->player->angle = 0;
 	data->player->sqaure_x += 16;
 	data->player->sqaure_y += 16;
+
 	draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 	cast_rays(data);
 	draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
-	// draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
-	// data->cast_angle = data->player->angle; 
-	// remove_rays(data);
-	// cast_rays(data);
+
 	mlx_image_to_window(data->mlx, data->img, 0, 0);
 	mlx_key_hook(data->mlx, check_keys, data);
 	mlx_loop_hook(data->mlx, my_key_hook, data);
@@ -137,7 +128,7 @@ void	d_key(mlx_key_data_t key, t_data *data)
 		data->d_key = 0;
 }
 
-void	s_key(mlx_key_data_t key, t_data *data)
+void	s_key(mlx_key_data_t key, t_data *data, bool key_)
 {
 	if (key.action == MLX_PRESS)
 		data->s_key = 1;

@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/06 12:48:44 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:48:10 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ typedef struct s_data
 	bool		s_key;
 	bool		d_key;
 	bool		a_key;
+	bool		r_rotate;
+	bool		l_rotate;
 	float		cast_angle;
 	void		*mlx;
 	mlx_image_t	*img;
@@ -77,3 +79,48 @@ void	draw_minimap2(t_data *data, mlx_image_t *image);
 void	check_keys(mlx_key_data_t key, void *data);
 
 #endif
+
+// if (data->w_key)
+// {
+//     i = 0;
+//     remove_rays(data);
+//     while (i < MOVE_SPEED)
+//     {
+//         float new_x = data->player->sqaure_x + cos(data->player->angle);
+//         float new_y = data->player->sqaure_y - sin(data->player->angle); // y decreases because sin(0) points to the right
+        
+//         if (checking_collision(data, new_x, new_y))
+//             break;
+
+//         if (up_down(new_x, new_y, data))
+//             break;
+
+//         data->player->sqaure_x = new_x;
+//         data->player->sqaure_y = new_y;
+//         i++;
+//     }
+//     cast_rays(data);
+// }
+
+
+// if (data->s_key)
+// {
+//     i = 0;
+//     remove_rays(data);
+//     while (i < MOVE_SPEED)
+//     {
+//         float new_x = data->player->sqaure_x - cos(data->player->angle);
+//         float new_y = data->player->sqaure_y + sin(data->player->angle); // Move backward
+
+//         if (checking_collision(data, new_x, new_y))
+//             break;
+
+//         if (up_down(new_x, new_y, data))
+//             break;
+
+//         data->player->sqaure_x = new_x;
+//         data->player->sqaure_y = new_y;
+//         i++;
+//     }
+//     cast_rays(data);
+// }

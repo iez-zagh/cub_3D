@@ -52,7 +52,7 @@ int	left_right(float x, float y, t_data *data)
 
 void	key_hook_3(t_data *data)
 {
-	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
+	if (data->l_rotate)
 	{
 		data->player->old_angle = data->player->angle;
 		data->player->angle -= ROTATE_ANGLE;
@@ -65,7 +65,7 @@ void	key_hook_3(t_data *data)
 		cast_rays(data);
 		draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 	}
-	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
+	if (data->r_rotate)
 	{
 		data->player->old_angle = data->player->angle;
 		data->player->angle += ROTATE_ANGLE;
@@ -100,16 +100,24 @@ void	key_hook_2(t_data *data)
 	}
 	if (data->s_key)
 	{
-		remove_rays(data);
-		while (i < MOVE_SPEED)
-		{
-			if (up_down(data->player->sqaure_x,
-					data->player->sqaure_y + 1, data))
-				break ;
-			data->player->sqaure_y += 1;
-			i++;
-		}
-		cast_rays(data);
+	    i = 0;
+	    remove_rays(data);
+	    while (i < MOVE_SPEED)
+	    {
+	        float new_x = data->player->sqaure_x - cos(data->player->angle);
+	        float new_y = data->player->sqaure_y + sin(data->player->angle); // Move backward
+
+	        if (checking_collision(data, new_x, new_y))
+	            break;
+
+	        if (up_down(new_x, new_y, data))
+	            break;
+
+	        data->player->sqaure_x = new_x;
+	        data->player->sqaure_y = new_y;
+	        i++;
+	    }
+	    cast_rays(data);
 	}
 	key_hook_3(data);
 }
@@ -123,19 +131,24 @@ void	my_key_hook(void *st)
 	data = (t_data *)st;
 	if (data->w_key)
 	{
-		i = 0;
-		remove_rays(data);
-		while (i < MOVE_SPEED)
-		{
-			if (checking_collision(data, data->player->sqaure_x, data->player->sqaure_y - 1))
-				break ;
-			if (up_down(data->player->sqaure_x,
-					data->player->sqaure_y - 1, data))
-				break ;
-			data->player->sqaure_y -= 1;
-			i++;
-		}
-		cast_rays(data);
+	    i = 0;
+	    remove_rays(data);
+	    while (i < MOVE_SPEED)
+	    {
+	        float new_x = data->player->sqaure_x + cos(data->player->angle);
+	        float new_y = data->player->sqaure_y - sin(data->player->angle); // y decreases because sin(0) points to the right
+	
+	        if (checking_collision(data, new_x, new_y))
+	            break;
+
+	        if (up_down(new_x, new_y, data))
+	            break;
+
+	        data->player->sqaure_x = new_x;
+	        data->player->sqaure_y = new_y;
+	        i++;
+	    }
+	    cast_rays(data);
 	}
 	if (data->a_key)
 	{
