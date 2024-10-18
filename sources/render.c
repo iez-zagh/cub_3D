@@ -86,7 +86,6 @@ void	start_render(t_data *data)
 	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", 1);
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->player_img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	player_view(data);
 	mlx_image_to_window(data->mlx, data->player_img, 0, 0);
 	// data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	// data->player_img = mlx_new_image(data->mlx, 960, 480);

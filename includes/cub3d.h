@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/15 15:05:29 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/18 17:57:50 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,12 @@ void	remove_direction2(t_data *data, float x, float y);
 int		checking_collision(t_data *data, float x, float y);
 void	draw_minimap(t_data *data);
 void	cast_rays(t_data *data);
-void	cast_lines(t_data *data, float x, float y);
+int		cast_lines(t_data *data, float x, float y);
 void	remove_rays(t_data *data);
 void	remove_direction3(t_data *data, float x, float y);
 void	draw_minimap2(t_data *data, mlx_image_t *image);
 void	check_keys(mlx_key_data_t key, void *data);
-void	player_view(t_data *data);
+void	player_view(t_data *data, int dis);
 int		checking_collision2(t_data *data, float x, float y);
 
 #endif
