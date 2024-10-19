@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/19 21:51:05 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/19 21:59:35 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_data
 	bool		s_key;
 	bool		d_key;
 	bool		a_key;
-	float		strip_n;
+	// float		strip_n;
 	float		cast_angle;
 	void		*mlx;
 	mlx_image_t	*img;
