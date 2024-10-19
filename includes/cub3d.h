@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/19 15:30:15 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/19 21:51:05 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@
 # define RED 0xE11E00FF
 # define WHITE 0xFFFFFFFF
 # define BLACK 0x00000FF
-# define TILE 10
+# define TILE 12
 # define MOVE_SPEED 3.0
 # define RADIUS 3.0
 # define RADIUS2 2.0
-# define ROTATE_ANGLE 0.05233333333
+# define ROTATE_ANGLE 3 * (M_PI / 180)
 # define WIDTH	1200
 # define HEIGHT	700
-// # define ROTATE_ANGLE 0.05233333333/
+# define FOV_ANGLE 60 * (M_PI / 180)
 
 typedef struct s_player
 {
@@ -52,6 +52,7 @@ typedef struct s_data
 	bool		s_key;
 	bool		d_key;
 	bool		a_key;
+	float		strip_n;
 	float		cast_angle;
 	void		*mlx;
 	mlx_image_t	*img;
@@ -70,12 +71,12 @@ void	remove_direction2(t_data *data, float x, float y);
 int		checking_collision(t_data *data, float x, float y);
 void	draw_minimap(t_data *data);
 void	cast_rays(t_data *data);
-int		cast_lines(t_data *data, float x, float y);
+float	cast_lines(t_data *data, float x, float y);
 void	remove_rays(t_data *data);
 void	remove_direction3(t_data *data, float x, float y);
 void	draw_minimap2(t_data *data, mlx_image_t *image);
 void	check_keys(mlx_key_data_t key, void *data);
-void	player_view(t_data *data, int dis);
+void	player_view(t_data *data, float dis);
 int		checking_collision2(t_data *data, float x, float y);
 
 #endif

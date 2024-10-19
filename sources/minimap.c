@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/18 17:58:31 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/19 21:45:58 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	remove_direction2(t_data *data, float x, float y)
 	}
 }
 
-int	cast_lines(t_data *data, float x, float y)
+float	cast_lines(t_data *data, float x, float y)
 {
 	// return ;
 	float	dir_x;
@@ -114,7 +114,7 @@ int	cast_lines(t_data *data, float x, float y)
 	dir_x = cos(data->cast_angle); //cos(0) = 1 | sin(0) = 0
 	dir_y = sin(data->cast_angle);
 	i = 0;
-	while (i < 300)
+	while (i < 700)
 	{
 		if (checking_collision2(data, x + (dir_x * i), y + (dir_y * i)))
 			return (i);
@@ -133,7 +133,7 @@ void	remove_direction3(t_data *data, float x, float y)
 	i = RADIUS;
 	dir_x = cos(data->cast_angle);
 	dir_y = sin(data->cast_angle);
-	while (i < 300)
+	while (i < 700)
 	{
 		if (checking_collision2(data, x + (dir_x * i), y + (dir_y * i)))
 			return ;
