@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:56:18 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/20 16:14:11 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/20 17:24:42 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	player_view(t_data *data, float	dis)
     {
         if (i > i0 &&   i < wall_height + i0)
 		    mlx_put_pixel(data->player_img, (int)data->strip_n, i, WHITE);
-        else if (i < i0 || i > wall_height )
-		    mlx_put_pixel(data->player_img, (int)data->strip_n, i, BLACK);
+        // else if (i < i0 || i > wall_height )
+		//     mlx_put_pixel(data->player_img, (int)data->strip_n, i, BLACK);
         i++;
     };
 }
