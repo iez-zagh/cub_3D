@@ -132,6 +132,7 @@ void	my_key_hook(void *st)
 			draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 			cast_rays(data);
 			draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
+			// mlx_image_to_window(data->mlx, data->player_img, 0, 0); // do not put iside
 			mlx_image_to_window(data->mlx, data->img, 0, 0);
 		}
 

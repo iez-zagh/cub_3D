@@ -83,10 +83,9 @@ void draw_minimap(t_data *data)
 
 void	start_render(t_data *data)
 {
-	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", 1);
+	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", 1);
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->player_img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	mlx_image_to_window(data->mlx, data->player_img, 0, 0);
 	// data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	// data->player_img = mlx_new_image(data->mlx, 960, 480);
 	// data->player->map_x = 3 * TILE;
@@ -105,6 +104,11 @@ void	start_render(t_data *data)
 	// remove_rays(data);
 	// cast_rays(data);
 	mlx_image_to_window(data->mlx, data->img, 0, 0);
+	mlx_image_to_window(data->mlx, data->player_img, 0, 0);
+	data->a_key = false;
+	data->w_key = false;
+	data->s_key = false;
+	data->d_key = false;
 	mlx_key_hook(data->mlx, check_keys, data);
 	mlx_loop_hook(data->mlx, my_key_hook, data);
 	mlx_loop(data->mlx);
