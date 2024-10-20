@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/20 17:33:26 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/20 17:56:02 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <fcntl.h>
 
 # define RED 0xE11E00FF
-# define BLUE 0x0000FFFF
+# define BLUE 0x87CEFAFF
 # define WHITE 0xFFFFFFFF
 # define BLACK 0x00000FF
 # define TILE 12
