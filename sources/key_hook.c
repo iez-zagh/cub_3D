@@ -125,31 +125,13 @@ void	my_key_hook(void *st)
 	{
 		if (!checking_collision(data, data->player->sqaure_x, data->player->sqaure_y - MOVE_SPEED))
 		{
-			mlx_delete_image(data->mlx, data->img);
-			data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 			data->player->sqaure_y -= MOVE_SPEED;
 			draw_minimap(data);
 			draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 			cast_rays(data);
 			draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
-			// mlx_image_to_window(data->mlx, data->player_img, 0, 0); // do not put iside
 			mlx_image_to_window(data->mlx, data->img, 0, 0);
 		}
-
-
-		// i = 0;
-		// remove_rays(data);
-		// while (i < MOVE_SPEED)
-		// {
-		// 	if (checking_collision(data, data->player->sqaure_x, data->player->sqaure_y - 1))
-		// 		break ;
-		// 	if (up_down(data->player->sqaure_x,
-		// 			data->player->sqaure_y - 1, data))
-		// 		break ;
-		// 	data->player->sqaure_y -= 1;
-		// 	i++;
-		// }
-		// cast_rays(data);
 	}
 	if (data->a_key)
 	{

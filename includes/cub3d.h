@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/20 11:41:50 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/20 16:16:04 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define MOVE_SPEED 2.0
 # define RADIUS 3.0
 # define RADIUS2 2.0
-# define ROTATE_ANGLE 3 * (M_PI / 180)
+# define ROTATE_ANGLE 1.2 * (M_PI / 180)
 # define WIDTH	1200
 # define HEIGHT	700
 # define FOV_ANGLE 60 * (M_PI / 180)

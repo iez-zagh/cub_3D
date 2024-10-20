@@ -86,10 +86,7 @@ void	start_render(t_data *data)
 	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", 1);
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->player_img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	// data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	// data->player_img = mlx_new_image(data->mlx, 960, 480);
-	// data->player->map_x = 3 * TILE;
-	// data->player->map_y = 3 * TILE;
+
 	data->player->sqaure_x = data->player->x * TILE;
 	data->player->sqaure_y = data->player->y * TILE;
 	draw_minimap(data);
@@ -99,12 +96,9 @@ void	start_render(t_data *data)
 	draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 	cast_rays(data);
 	draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
-	// draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
-	// data->cast_angle = data->player->angle; 
-	// remove_rays(data);
-	// cast_rays(data);
-	mlx_image_to_window(data->mlx, data->img, 0, 0);
+
 	mlx_image_to_window(data->mlx, data->player_img, 0, 0);
+	mlx_image_to_window(data->mlx, data->img, 0, 0);
 	data->a_key = false;
 	data->w_key = false;
 	data->s_key = false;

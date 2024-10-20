@@ -1,6 +1,6 @@
 NAME = cub3d2
 NAME2 = cub3d
-CC = cc
+CC = cc -g
 # CFLAGS = -Wextra -Wall -Werror  --- do not forgot that
 LIBFT_DIR = libft
 GNL_DIR = gnl

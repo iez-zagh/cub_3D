@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/19 21:45:58 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/20 15:59:43 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ float	cast_lines(t_data *data, float x, float y)
 	{
 		if (checking_collision2(data, x + (dir_x * i), y + (dir_y * i)))
 			return (i);
-		mlx_put_pixel(data->img, x + (dir_x * i), y + (dir_y * i), RED);
+		// mlx_put_pixel(data->img, x + (dir_x * i), y + (dir_y * i), RED);
 		i++;
 	}
 	return (0);
