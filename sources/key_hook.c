@@ -57,11 +57,10 @@ void	key_hook_3(t_data *data)
 		data->player->old_angle = data->player->angle;
 		data->player->angle -= ROTATE_ANGLE;
 		if (data->player->angle < 0)
-			data->player->angle = 2 * M_PI; // Keep angle within 0 and  180 and need to musch under this
-		remove_rays(data);
-		remove_direction(data, data->player->sqaure_x, data->player->sqaure_y);
+			data->player->angle = 2 * M_PI;
 		data->cast_angle = data->player->angle;
-		draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, RED, data->img); //need to reput the map every time i guess
+		draw_minimap(data);
+		draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 		cast_rays(data);
 		draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 	}
@@ -71,10 +70,9 @@ void	key_hook_3(t_data *data)
 		data->player->angle += ROTATE_ANGLE;
 		if (data->player->angle > M_PI * 2)
 			data->player->angle = 0;
-		remove_rays(data);
-		remove_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 		data->cast_angle = data->player->angle;
-		draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, RED, data->img);
+		draw_minimap(data);
+		draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 		cast_rays(data);
 		draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 	}
@@ -82,34 +80,27 @@ void	key_hook_3(t_data *data)
 
 void	key_hook_2(t_data *data)
 {
-	int	i;
-
-	i = 0;
 	if (data->d_key)
 	{
-		remove_rays(data);
-		while (i < MOVE_SPEED)
+		if (!checking_collision(data, data->player->sqaure_x + MOVE_SPEED, data->player->sqaure_y))
 		{
-			if (left_right(data->player->sqaure_x + 1,
-					data->player->sqaure_y, data))
-				break ;
-			data->player->sqaure_x += 1;
-			i++;
+			data->player->sqaure_x += MOVE_SPEED;
+			draw_minimap(data);
+			draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
+			cast_rays(data);
+			draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 		}
-		cast_rays(data);
 	}
 	if (data->s_key)
 	{
-		remove_rays(data);
-		while (i < MOVE_SPEED)
+		if (!checking_collision(data, data->player->sqaure_x, data->player->sqaure_y + MOVE_SPEED))
 		{
-			if (up_down(data->player->sqaure_x,
-					data->player->sqaure_y + 1, data))
-				break ;
-			data->player->sqaure_y += 1;
-			i++;
+			data->player->sqaure_y += MOVE_SPEED;
+			draw_minimap(data);
+			draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
+			cast_rays(data);
+			draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 		}
-		cast_rays(data);
 	}
 	key_hook_3(data);
 }
@@ -117,9 +108,7 @@ void	key_hook_2(t_data *data)
 void	my_key_hook(void *st)
 {
 	t_data	*data;
-	int		i;
 
-	i = 0;
 	data = (t_data *)st;
 	if (data->w_key)
 	{
@@ -130,24 +119,18 @@ void	my_key_hook(void *st)
 			draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 			cast_rays(data);
 			draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
-			mlx_image_to_window(data->mlx, data->img, 0, 0);
 		}
 	}
 	if (data->a_key)
 	{
-		i = 0;
-		// remove_rays(data);
-		while (i < MOVE_SPEED)
+		if (!checking_collision(data, data->player->sqaure_x - MOVE_SPEED, data->player->sqaure_y))
 		{
-			if (checking_collision(data, data->player->sqaure_x - 1, data->player->sqaure_y))
-				break ;
-			if (left_right(data->player->sqaure_x - 1,
-					data->player->sqaure_y, data))
-				break ;
-			data->player->sqaure_x -= 1;
-			i++;
+			data->player->sqaure_x -= MOVE_SPEED;
+			draw_minimap(data);
+			draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
+			cast_rays(data);
+			draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 		}
-		cast_rays(data);
 	}
 	key_hook_2(data);
 }

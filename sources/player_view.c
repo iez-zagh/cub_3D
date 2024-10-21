@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:56:18 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/21 09:45:31 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/21 12:13:18 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	player_view(t_data *data, float dis)
 		start = 0;
 	end = start + wall_height;
 	if (end >= HEIGHT) //either this
-		end = HEIGHT - 1;
+		end = HEIGHT;
 	i = start;
-	while (i <= end)
+	while (i < end)
 	{
 		mlx_put_pixel(data->player_img, (int)data->strip_n, i, RED);
 		i++;

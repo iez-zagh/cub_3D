@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:29:49 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/21 11:47:16 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/21 12:17:46 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	cast_rays(t_data *data)
 	data->strip_n = 0;
 	sky_floor(data);
 	while(i < WIDTH)
-	{	
+	{
 		dis = cast_lines(data, data->player->sqaure_x, data->player->sqaure_y);
 		player_view(data, dis);
 		data->cast_angle += 0.05 * (M_PI / 180);
