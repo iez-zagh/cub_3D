@@ -136,7 +136,7 @@ void	my_key_hook(void *st)
 	if (data->a_key)
 	{
 		i = 0;
-		remove_rays(data);
+		// remove_rays(data);
 		while (i < MOVE_SPEED)
 		{
 			if (checking_collision(data, data->player->sqaure_x - 1, data->player->sqaure_y))

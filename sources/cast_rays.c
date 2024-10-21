@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:29:49 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/20 17:57:51 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/21 11:47:16 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,10 @@ void	sky_floor(t_data *data)
 	int	j;
 	
 	i = 0;
-	while (i < 350) // Loop over the top half of the window (height)
+	while (i < 350)
 	{
-		// puts("hello");
 		j = 0;
-		while (j < 1200) // Loop over the full width of the window
+		while (j < 1200)
 		{
 			mlx_put_pixel(data->player_img, j, i, BLUE);
 			j++;
@@ -30,11 +29,10 @@ void	sky_floor(t_data *data)
 		i++;
 	}
 	i = 350;
-	while (i < 700) // Loop over the top half of the window (height)
+	while (i < 700)
 	{
-		// puts("hello");
 		j = 0;
-		while (j < 1200) // Loop over the full width of the window
+		while (j < 1200)
 		{
 			mlx_put_pixel(data->player_img, j, i, BLACK);
 			j++;
@@ -45,19 +43,20 @@ void	sky_floor(t_data *data)
 
 void	cast_rays(t_data *data)
 {
-	int	i;
+	int		i;
 	float	dis;
+	float	an = 0;
 
 	i = 0;
 	data->cast_angle = data->player->angle;
-	data->cast_angle -= 600 * (M_PI / 7000);
+	data->cast_angle -= 30 * (M_PI / 180);
 	data->strip_n = 0;
 	sky_floor(data);
 	while(i < WIDTH)
-	{
+	{	
 		dis = cast_lines(data, data->player->sqaure_x, data->player->sqaure_y);
 		player_view(data, dis);
-		data->cast_angle += M_PI / 7000;
+		data->cast_angle += 0.05 * (M_PI / 180);
 		data->strip_n++;
 		i++;
 	}
@@ -66,6 +65,7 @@ void	cast_rays(t_data *data)
 
 void	remove_rays(t_data *data) //no need for this
 {
+	return ;
 	int	i;
 
 	i = 0;
