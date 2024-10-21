@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/20 17:56:02 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/21 18:11:17 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,18 @@
 # define BLUE 0x87CEFAFF
 # define WHITE 0xFFFFFFFF
 # define BLACK 0x00000FF
-# define TILE 12
-# define MOVE_SPEED 2.0
+# define TILE 32
+# define MOVE_SPEED 5.0
 # define RADIUS 3.0
 # define RADIUS2 2.0
-# define ROTATE_ANGLE 2 * (M_PI / 180)
-# define WIDTH	1200
-# define HEIGHT	700
-# define FOV_ANGLE 60 * (M_PI / 180)
+# define ROTATE_ANGLE 3.0 * (M_PI / 180)
+# define WIDTH	1200.0
+# define HEIGHT	700.0
+# define FOV_ANGLE 60.0 * (M_PI / 180)
 
 typedef struct s_player
 {
 	float		angle;
-	float		old_angle;
 	float		sqaure_x;
 	float		sqaure_y;
 	float		x;
@@ -53,7 +52,7 @@ typedef struct s_data
 	bool		s_key;
 	bool		d_key;
 	bool		a_key;
-	float		strip_n;
+	float			strip_n;
 	float		cast_angle;
 	void		*mlx;
 	mlx_image_t	*img;
@@ -67,14 +66,10 @@ void	start_render(t_data *data);
 void	draw_player(t_data *data, float draw_x, float draw_y, int color);
 void	draw_player2(t_data *data, float draw_x, float draw_y, int color, mlx_image_t *img);
 void	draw_direction(t_data *data, float x, float y);
-void	remove_direction(t_data *data, float x, float y);
-void	remove_direction2(t_data *data, float x, float y);
 int		checking_collision(t_data *data, float x, float y);
 void	draw_minimap(t_data *data);
 void	cast_rays(t_data *data);
 float	cast_lines(t_data *data, float x, float y);
-void	remove_rays(t_data *data);
-void	remove_direction3(t_data *data, float x, float y);
 void	draw_minimap2(t_data *data, mlx_image_t *image);
 void	check_keys(mlx_key_data_t key, void *data);
 void	player_view(t_data *data, float dis);

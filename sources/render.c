@@ -14,6 +14,7 @@
 
 void	draw_player(t_data *data, float draw_x, float draw_y, int color)
 {
+	return ;
 	float	x;
 	float	y;
 
@@ -58,6 +59,7 @@ void	draw_player2(t_data *data, float draw_x, float draw_y, int color, mlx_image
 
 void draw_minimap(t_data *data)
 {
+	return ;
 	float	x;
 	float	y;
 	int		color;
@@ -90,7 +92,7 @@ void	start_render(t_data *data)
 	data->player->sqaure_x = data->player->x * TILE;
 	data->player->sqaure_y = data->player->y * TILE;
 	draw_minimap(data);
-	data->player->angle = 0;
+	data->player->angle = 180*(M_PI / 180);
 	data->player->sqaure_x += 16;
 	data->player->sqaure_y += 16;
 	draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);

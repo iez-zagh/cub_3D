@@ -28,37 +28,13 @@ int	checking_collision(t_data *data, float x, float y)
 	return (0);
 }
 
-int	up_down(float x, float y, t_data *data)
-{
-	if (checking_collision(data, x, y))
-		return (1);
-	remove_direction2(data, data->player->sqaure_x, data->player->sqaure_y);
-	draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, WHITE, data->img); //destroy the image and draw it again	
-	draw_player2(data, x, y, RED, data->img);
-	draw_direction(data, x, y);
-	return (0);
-}
-
-int	left_right(float x, float y, t_data *data)
-{
-	if (checking_collision(data, x, y))
-		return (1);
-	remove_direction2(data, data->player->sqaure_x, data->player->sqaure_y);
-	draw_player2(data, data->player->sqaure_x, data->player->sqaure_y, WHITE, data->img);
-	draw_player2(data, x, y, RED, data->img);
-	draw_direction(data, x, y);
-	return (0);
-}
-
 void	key_hook_3(t_data *data)
 {
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
 	{
-		data->player->old_angle = data->player->angle;
 		data->player->angle -= ROTATE_ANGLE;
 		if (data->player->angle < 0)
 			data->player->angle = 2 * M_PI;
-		data->cast_angle = data->player->angle;
 		draw_minimap(data);
 		draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 		cast_rays(data);
@@ -66,11 +42,9 @@ void	key_hook_3(t_data *data)
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 	{
-		data->player->old_angle = data->player->angle;
 		data->player->angle += ROTATE_ANGLE;
 		if (data->player->angle > M_PI * 2)
 			data->player->angle = 0;
-		data->cast_angle = data->player->angle;
 		draw_minimap(data);
 		draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 		cast_rays(data);

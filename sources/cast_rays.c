@@ -6,13 +6,13 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:29:49 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/21 12:17:46 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/21 17:39:39 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	sky_floor(t_data *data)
+void	sky_floor(t_data *data)//optimi
 {
 	int	i;
 	int	j;
@@ -44,36 +44,23 @@ void	sky_floor(t_data *data)
 void	cast_rays(t_data *data)
 {
 	int		i;
-	float	dis;
+	float		dis = 0.0;
 	float	an = 0;
+	float	incr_angle = FOV_ANGLE / WIDTH;
 
 	i = 0;
-	data->cast_angle = data->player->angle;
-	data->cast_angle -= 30 * (M_PI / 180);
-	data->strip_n = 0;
 	sky_floor(data);
+	data->cast_angle = data->player->angle;
+	data->cast_angle -= FOV_ANGLE / 2;
+	data->strip_n = 0;
 	while(i < WIDTH)
 	{
 		dis = cast_lines(data, data->player->sqaure_x, data->player->sqaure_y);
+		// printf("%d]]\n", dis);
 		player_view(data, dis);
-		data->cast_angle += 0.05 * (M_PI / 180);
+		data->cast_angle += incr_angle;
 		data->strip_n++;
 		i++;
 	}
 	data->cast_angle = data->player->angle;
-}
-
-void	remove_rays(t_data *data) //no need for this
-{
-	return ;
-	int	i;
-
-	i = 0;
-	data->cast_angle -= 600 * (M_PI / 2000);
-	while(i < 1200)
-	{
-		remove_direction3(data, data->player->sqaure_x, data->player->sqaure_y);
-		data->cast_angle += M_PI / 2000;
-		i++;
-	}
 }
