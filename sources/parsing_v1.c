@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:27:55 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/10/22 11:40:02 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/22 13:41:54 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,13 +213,14 @@ int	largest_line(char **map)
 	return (max);
 }
 
-int	fill_map_spaces(char **map)
+int	fill_map_spaces(char **map, t_data *data)
 {
 	int	len;
 	int	strlen;
 	int	i;
 
 	1 && (i = 0, len = largest_line(map));
+	data->clmn_n = len;
 	while (map[i])
 	{
 		strlen = ft_strlen(map[i]);
@@ -256,6 +257,7 @@ int	get_map(t_data *data, int i, int *j)
 	int		stat;
 
 	1 && (tab = data->map.table, *j = map_lines(tab, i));
+	data->rows_n = *j;
 	map = (char **)malloc(sizeof(char *) * ((*j) + 1));
 	if (!map)
 		return (-2);
@@ -272,7 +274,7 @@ int	get_map(t_data *data, int i, int *j)
 	map[(*j)] = NULL;
 	if (tab[i])
 		return (ft_free_par(map), -10);
-	stat = fill_map_spaces(map);
+	stat = fill_map_spaces(map, data);
 	if (stat < 0)
 		return (ft_free_par(map), stat);
 	return (data->map.map = map, 0);

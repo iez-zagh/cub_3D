@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/22 11:37:13 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/22 16:00:16 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define WHITE 0xFFFFFFFF
 # define BLACK 0x00000FF
 # define TILE 64
+# define TILE_SCALED 12
 # define MOVE_SPEED 5.0
 # define RADIUS 3.0
 # define RADIUS2 2.0
@@ -69,6 +70,8 @@ typedef struct s_data
 	bool		s_key;
 	bool		d_key;
 	bool		a_key;
+	int			clmn_n;
+	int			rows_n;
 	float			strip_n;
 	float		cast_angle;
 	void		*mlx;
@@ -90,7 +93,7 @@ float	cast_lines(t_data *data, float x, float y);
 void	draw_minimap2(t_data *data, mlx_image_t *image);
 void	check_keys(mlx_key_data_t key, void *data);
 void	player_view(t_data *data, float dis);
-int		checking_collision2(t_data *data, float x, float y);
+int		checking_collision2(t_data *data, int x, int y);
 
 /*				parsing				*/
 

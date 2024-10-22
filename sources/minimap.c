@@ -6,13 +6,13 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/22 11:43:21 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/22 18:06:56 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	checking_collision2(t_data *data, float x, float y)
+int	checking_collision2(t_data *data, int x, int y)
 {
 	if (!data->map.map[(int)(y / TILE)][(int)(x / TILE)]
 	|| (data->map.map[(int)(y / TILE)][(int)(x / TILE)] == '1')
@@ -53,11 +53,13 @@ int	checking_collision2(t_data *data, float x, float y)
 
 void	draw_direction(t_data *data, float x, float y)
 {
-	return ;
+	// return ;
 	float	dir_x;
 	float	dir_y;
 	float	i;
 
+	x = (x / TILE) * TILE_SCALED;
+	y = (y / TILE) * TILE_SCALED;
 	dir_x = cos(data->player->angle); //cos(0) = 1 | sin(0) = 0
 	dir_y = sin(data->player->angle);
 	i = 0;
@@ -70,45 +72,26 @@ void	draw_direction(t_data *data, float x, float y)
 	}
 }
 
-float	cast_lines(t_data *data, float x, float y)
+float cast_lines(t_data *data, float x, float y)
 {
-	float	dir_x;
-	float	dir_y;
-	float	i;
-	float _x;
-	float _y;
+    float dir_x;
+    float dir_y;
+    float	 i;
 
-	dir_x = cos(data->cast_angle); //cos(0) = 1 | sin(0) = 0
-	dir_y = sin(data->cast_angle);
-	i = 0.0;
-	while (i < 2000)
-	{
+    dir_x = cos(data->cast_angle);
+    dir_y = sin(data->cast_angle);
+
+ 	// Horizontal raycasting
+ 	i = 0.0;
+ 	while (i < 2000)
+ 	{
 		if (checking_collision2(data, x + (dir_x * i), y + (dir_y * i)))
 		{
-			// printf("%f]]\n%f]]\n", x +(dir_x *i),y + (dir_y * y));
-			// _x = fabsf(data->player->sqaure_x - (x + (dir_x *i)));
-			// break ;
-			return (i);
+			return i;
+			// return fabsf(data->player->sqaure_x - x + (dir_x * i));
 		}
-		// mlx_put_pixel(data->img, x + (dir_x * i), y + (dir_y * i), RED);
 		i++;
 	}
-	// i = 0;
-	// while (i < 2000)
-	// {
-	// 	if (checking_collision2(data, x + (dir_x * i), y + (dir_y)))
-	// 	{
-	// 		// printf("%f]]\n%f]]\n", x +(dir_x *i),y + (dir_y * y));
-	// 		_x = fabsf(data->player->sqaure_x - (x + (dir_x *i)));
-	// 		break ;
-	// 		// return (i);
-	// 	}
-	// 	// mlx_put_pixel(data->img, x + (dir_x * i), y + (dir_y * i), RED);
-	// 	i++;
-	// }
-
-
-	
 	return (0);
 }
 

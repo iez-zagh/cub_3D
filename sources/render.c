@@ -14,15 +14,13 @@
 
 void	draw_player(t_data *data, float draw_x, float draw_y, int color)
 {
-	return ;
+	// return ;
 	float	x;
 	float	y;
 
-	// data->player->sqaure_x += 16;
-	// data->player->sqaure_y += 16;
-	// data->player->map_x += 16;
-	// data->player->map_y += 16;
 	y = -RADIUS;
+	draw_x = (draw_x / TILE) * TILE_SCALED;
+	draw_y = (draw_y / TILE) * TILE_SCALED;
 	while (y < RADIUS)
 	{
 		x = -RADIUS;  
@@ -59,24 +57,24 @@ void	draw_player2(t_data *data, float draw_x, float draw_y, int color, mlx_image
 
 void draw_minimap(t_data *data)
 {
-	return ;
+	// return ;
 	float	x;
 	float	y;
 	int		color;
 
-	for (y = 0; y < 15; y++)
+	for (y = 0; y < data->rows_n; y++)
 	{
-		for (x = 0; x < 30; x++)
+		for (x = 0; x < data->clmn_n; x++)
 		{
 			if (data->map.map[(int)y][(int)x] == '1')
 				color = BLACK;
 			else
 				color = WHITE;
-			float draw_x = x * TILE;
-			float draw_y = y * TILE;
-			for (int dy = 0; dy < TILE; dy++)
+			float draw_x = x * TILE_SCALED;
+			float draw_y = y * TILE_SCALED;
+			for (int dy = 0; dy < TILE_SCALED; dy++)
 			{
-				for (int dx = 0; dx < TILE; dx++)
+				for (int dx = 0; dx < TILE_SCALED; dx++)
 					mlx_put_pixel(data->img, draw_x + dx, draw_y + dy, color);
 			}
 		}
@@ -101,10 +99,12 @@ void	start_render(t_data *data)
 
 	mlx_image_to_window(data->mlx, data->player_img, 0, 0);
 	mlx_image_to_window(data->mlx, data->img, 0, 0);
+
 	data->a_key = false;
 	data->w_key = false;
 	data->s_key = false;
 	data->d_key = false;
+
 	mlx_key_hook(data->mlx, check_keys, data);
 	mlx_loop_hook(data->mlx, my_key_hook, data);
 	mlx_loop(data->mlx);

@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:29:49 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/22 11:26:25 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/22 18:02:54 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,10 @@ void	cast_rays(t_data *data)
 	data->cast_angle = data->player->angle;
 	data->cast_angle -= FOV_ANGLE / 2;
 	data->strip_n = 0;
-	// printf("%f]\n%f]\n", data->player->sqaure_x, data->player->sqaure_y);
 	while(i < WIDTH)
 	{
 		dis = cast_lines(data, data->player->sqaure_x, data->player->sqaure_y);
-		// if (i == 599)
-			// printf("%f]\n", dis);
+
 		player_view(data, dis);
 		data->cast_angle += incr_angle;
 		data->strip_n++;

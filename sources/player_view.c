@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:56:18 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/22 11:26:25 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/22 16:31:51 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,9 @@ void	player_view(t_data *data, float dis)
 	float	i;
 	int		color;
 
-	// printf("before==%f]]\n", dis);
 	dis = dis * cos(data->cast_angle - data->player->angle);
-	// printf("after==%f]]\n", dis);
 	dis_projection_plane = (WIDTH / 2) / tan(FOV_ANGLE / 2);
 	wall_height = (TILE / dis) * dis_projection_plane;
-	wall_height -= 20;
 	start = (HEIGHT / 2) - (wall_height / 2);
 	if (start < 0) // need to develop this
 		start = 0;
@@ -64,7 +61,7 @@ void	player_view(t_data *data, float dis)
 	// color = get_color(WHITE, dis, 1200);
 	while (i < end)
 	{
-		mlx_put_pixel(data->player_img, data->strip_n, i, RED);
+		mlx_put_pixel(data->player_img, data->strip_n, i, WHITE);
 		i++;
 	}
 }
