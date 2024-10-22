@@ -20,31 +20,20 @@ void	how_2_use(void)
 int	main(int ac, char **av)
 {
 	t_data	data;
-	char	*res;
+	int		stat;
 	t_player player;
 
 	char	*map = NULL;
 	if (ac != 2)
 		return (how_2_use(), 1);
-	int fd = open(av[1], O_RDONLY);
-	if (fd == -1)
-		return (write(2, "error opening map file\n", 23), 1);
-	while (1)
-	{
-		res = get_next_line(fd);
-		if (!res)
-			break ;
-		map = ft_strjoin(map, res);
-		if (!map)
-			return (write(2, "some thing went wrong\n", 22), 1);
-		free(res);
-	}
-	data.map = ft_split(map, '\n');
+	stat = parsing(&data, av[1]);
+	if (stat < 0)
+		return (stat);
 	for (float i = 0;i < 15;i++)
 	{
 		for (float j=0;j<30;j++)
 		{
-			if (data.map[(int)i][(int)j] == 'w')
+			if (data.map.map[(int)i][(int)j] == 'W')
 			{
 				player.x = j;
 				player.y = i;

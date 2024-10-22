@@ -8,7 +8,8 @@ LIBS =  libft/libft.a gnl/libftgnl.a
 LIBS2 =  -L /Users/$(USER)/Desktop/cub_3d/MLX42/build -lmlx42 -L "/Users/$(USER)/homebrew/opt/glfw/lib" -lglfw -L /Users/$(USER)/Desktop/cub_3d/libft -lft -L /Users/$(USER)/Desktop/cub_3d/gnl -lftgnl   -Ofast
 INCLUDES = -I includes -I MLX42/include/MLX42
 HEADER = $(addprefix includes/, cub3d.h)
-M_SOURCES = $(addprefix sources/, main.c key_hook.c render.c minimap.c cast_rays.c player_view.c)
+M_SOURCES = $(addprefix sources/, main.c key_hook.c render.c minimap.c cast_rays.c player_view.c parsing.c \
+				parsing_v1.c parsing_utils.c news_parse.c f_c_parse.c)
 M_OBJECTS = $(M_SOURCES:.c=.o)
 
 %.o: %.c $(HEADER)

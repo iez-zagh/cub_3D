@@ -68,7 +68,7 @@ void draw_minimap(t_data *data)
 	{
 		for (x = 0; x < 30; x++)
 		{
-			if (data->map[(int)y][(int)x] == '1')
+			if (data->map.map[(int)y][(int)x] == '1')
 				color = BLACK;
 			else
 				color = WHITE;
@@ -92,9 +92,9 @@ void	start_render(t_data *data)
 	data->player->sqaure_x = data->player->x * TILE;
 	data->player->sqaure_y = data->player->y * TILE;
 	draw_minimap(data);
-	data->player->angle = 180*(M_PI / 180);
-	data->player->sqaure_x += 16;
-	data->player->sqaure_y += 16;
+	data->player->angle = 180.0 * (M_PI / 180);
+	data->player->sqaure_x += 16.0;
+	data->player->sqaure_y += 16.0;
 	draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 	cast_rays(data);
 	draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
@@ -169,7 +169,7 @@ void	check_keys(mlx_key_data_t key, void *data)
 // 		int x1 = k;
 // 		for (float x = 0; x < 6; x++)
 // 		{
-// 			if (data->map[(int)y1][(int)x1] == '1')
+// 			if (data->map.map[(int)y1][(int)x1] == '1')
 // 				color = BLACK;
 // 			else
 // 				color = WHITE;

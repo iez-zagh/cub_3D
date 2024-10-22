@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/21 17:40:00 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/22 11:43:21 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,36 @@
 
 int	checking_collision2(t_data *data, float x, float y)
 {
-	if (!data->map[(int)(y / TILE)][(int)(x / TILE)]
-	|| (data->map[(int)(y / TILE)][(int)(x / TILE)] == '1')
+	if (!data->map.map[(int)(y / TILE)][(int)(x / TILE)]
+	|| (data->map.map[(int)(y / TILE)][(int)(x / TILE)] == '1')
 	)
 		return (1);
 	if (		
-		(data->map[(int)((y + 1) / TILE)]
+		(data->map.map[(int)((y + 1) / TILE)]
 		[(int)((x - 1) / TILE)] == '1' &&
-		data->map[(int)((y) / TILE)]
+		data->map.map[(int)((y) / TILE)]
 		[(int)((x + 1) / TILE)] == '1'
 
 		&&
 
-		data->map[(int)((y + 1) / TILE)]
+		data->map.map[(int)((y + 1) / TILE)]
 		[(int)((x + 1) / TILE)] == '0'
 		)
 		||
 		(
-		data->map[(int)((y + 1) / TILE)] //this here
+		data->map.map[(int)((y + 1) / TILE)] //this here
 		[(int)((x) / TILE)] == '1' 
 		&&
-		data->map[(int)((y) / TILE)]
+		data->map.map[(int)((y) / TILE)]
 		[(int)((x - 1) / TILE)] == '1'
 
 		// &&
-		// data->map[(int)((y + 1) / TILE)]
+		// data->map.map[(int)((y + 1) / TILE)]
 		// [(int)((x - 1) / TILE)] == '0'
 
 		//
 		&&
-		data->map[(int)((y + 1) / TILE)] //this for the left corner
+		data->map.map[(int)((y + 1) / TILE)] //this for the left corner
 		[(int)((x - 1) / TILE)] == '0'
 		)
 		)
@@ -75,6 +75,8 @@ float	cast_lines(t_data *data, float x, float y)
 	float	dir_x;
 	float	dir_y;
 	float	i;
+	float _x;
+	float _y;
 
 	dir_x = cos(data->cast_angle); //cos(0) = 1 | sin(0) = 0
 	dir_y = sin(data->cast_angle);
@@ -82,10 +84,31 @@ float	cast_lines(t_data *data, float x, float y)
 	while (i < 2000)
 	{
 		if (checking_collision2(data, x + (dir_x * i), y + (dir_y * i)))
+		{
+			// printf("%f]]\n%f]]\n", x +(dir_x *i),y + (dir_y * y));
+			// _x = fabsf(data->player->sqaure_x - (x + (dir_x *i)));
+			// break ;
 			return (i);
+		}
 		// mlx_put_pixel(data->img, x + (dir_x * i), y + (dir_y * i), RED);
 		i++;
 	}
+	// i = 0;
+	// while (i < 2000)
+	// {
+	// 	if (checking_collision2(data, x + (dir_x * i), y + (dir_y)))
+	// 	{
+	// 		// printf("%f]]\n%f]]\n", x +(dir_x *i),y + (dir_y * y));
+	// 		_x = fabsf(data->player->sqaure_x - (x + (dir_x *i)));
+	// 		break ;
+	// 		// return (i);
+	// 	}
+	// 	// mlx_put_pixel(data->img, x + (dir_x * i), y + (dir_y * i), RED);
+	// 	i++;
+	// }
+
+
+	
 	return (0);
 }
 
@@ -96,7 +119,6 @@ void draw_minimap2(t_data *data, mlx_image_t *image)
 	int		color;
 	float	k;
 
-	printf("%f]]\n%f]]\n", data->player->sqaure_x - 3 * TILE, data->player->sqaure_y - 3 * TILE);
 	float	x2 = data->player->sqaure_x - 3 * TILE;
 	float	y2 = data->player->sqaure_y - 3 * TILE;
 	for (float y = 0; y < 6; y++)
@@ -104,7 +126,7 @@ void draw_minimap2(t_data *data, mlx_image_t *image)
 		for (float x = 0; x < 6; x++)
 		{
 			int color = WHITE;
-			if (data->map[(int)data->player->sqaure_y / TILE][(int)data->player->sqaure_x / TILE] == '1')
+			if (data->map.map[(int)data->player->sqaure_y / TILE][(int)data->player->sqaure_x / TILE] == '1')
 				color = BLACK;
 				//check map with the sqaure
 			for (float y1 = 0;y1 < TILE;y1++)

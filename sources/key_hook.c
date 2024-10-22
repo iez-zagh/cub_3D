@@ -14,15 +14,15 @@
 
 int	checking_collision(t_data *data, float x, float y)
 {
-	if (data->map[(int)((y - RADIUS2) / TILE)]
+	if (data->map.map[(int)((y - RADIUS2) / TILE)]
 		[(int)((x - RADIUS2) / TILE)] && // check this to avoid segv near to wall
-		(data->map[(int)((y - RADIUS2) / TILE)]
+		(data->map.map[(int)((y - RADIUS2) / TILE)]
 		[(int)((x - RADIUS2) / TILE)] == '1' ||
-		data->map[(int)((y + RADIUS2) / TILE)]
+		data->map.map[(int)((y + RADIUS2) / TILE)]
 		[(int)((x - RADIUS2) / TILE)] == '1' ||
-		data->map[(int)((y - RADIUS2) / TILE)]
+		data->map.map[(int)((y - RADIUS2) / TILE)]
 		[(int)((x + RADIUS2) / TILE)] == '1' ||
-		data->map[(int)((y + RADIUS2) / TILE)]
+		data->map.map[(int)((y + RADIUS2) / TILE)]
 		[(int)((x + RADIUS2) / TILE)] == '1'))
 			return (1);
 	return (0);
