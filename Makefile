@@ -1,15 +1,15 @@
 NAME = cub3d2
 NAME2 = cub3d
-CC = cc -g
-# CFLAGS = -Wextra -Wall -Werror  --- do not forgot that
+CC = cc
+# CFLAGS = -Wextra -Wall -Werror  ---do not forgot that
 LIBFT_DIR = libft
 GNL_DIR = gnl
 LIBS =  libft/libft.a gnl/libftgnl.a
 LIBS2 =  -L /Users/$(USER)/Desktop/cub_3d/MLX42/build -lmlx42 -L "/Users/$(USER)/homebrew/opt/glfw/lib" -lglfw -L /Users/$(USER)/Desktop/cub_3d/libft -lft -L /Users/$(USER)/Desktop/cub_3d/gnl -lftgnl   -Ofast
 INCLUDES = -I includes -I MLX42/include/MLX42
 HEADER = $(addprefix includes/, cub3d.h)
-M_SOURCES = $(addprefix sources/, main.c key_hook.c render.c minimap.c cast_rays.c player_view.c parsing/parsing.c \
-				parsing/parsing_v1.c parsing/parsing_utils.c parsing/news_parse.c parsing/f_c_parse.c)
+M_SOURCES = sources/raycasting/main.c sources/raycasting/key_hook.c sources/raycasting/render.c sources/raycasting/minimap.c sources/raycasting/cast_rays.c sources/raycasting/player_view.c sources/parsing/parsing.c \
+				sources/parsing/parsing_v1.c sources/parsing/parsing_utils.c sources/parsing/news_parse.c sources/parsing/f_c_parse.c
 M_OBJECTS = $(M_SOURCES:.c=.o)
 
 %.o: %.c $(HEADER)
