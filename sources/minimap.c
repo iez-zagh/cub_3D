@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/23 09:21:19 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/23 10:24:02 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,8 @@ void	draw_direction(t_data *data, float x, float y)
 	float	dir_y;
 	float	i;
 
-	x /= TILE;
-	y /= TILE;
-	x *= TILE_SCALED;
-	y *= TILE_SCALED;
+	x = (x / TILE) * TILE_SCALED;
+	y = (y / TILE) * TILE_SCALED;
 	dir_x = cos(data->player->angle); //cos(0) = 1 | sin(0) = 0
 	dir_y = sin(data->player->angle);
 	i = 0;
