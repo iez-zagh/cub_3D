@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_v1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:27:55 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/10/22 13:41:54 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/23 12:31:02 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,19 @@ int	elements_checker(t_data *data, int i, char **tab, int lines)
 	return (stat);
 }
 
+int sec_char(char *tab, int i)
+{
+	if ((tab[i] == 'N' || tab[i] == 'S') && tab[i + 1] != 'O')
+		return (-1);
+	if ((tab[i] == 'F' || tab[i] == 'C') && !ft_isspace(tab[i + 1]))
+		return (-1);
+	if (tab[i] == 'E' && tab[i + 1] != 'A')
+		return (-1);
+	if (tab[i] == 'W' && tab[i + 1] != 'E')
+		return (-1);
+	return (0);
+}
+
 int map_begins(char *tab, t_map map)
 {
 	int	i;
@@ -170,6 +183,9 @@ int map_begins(char *tab, t_map map)
 	if (is_map_char(tab[i]) != 0 && tab[i] != '\0'
 		&& tab[i] != 'F' && tab[i] != 'C')
 		return (-10);
+	if ((is_map_char(tab[i]) == 0 || tab[i] == 'F' || tab[i] == 'C')
+			&& sec_char(tab, i) < 0)
+			return (-10);
 	if ((tab[i] == '1' || tab[i] == '0') && 
 		(map.color_f != 1 || map.color_c != 1
 			|| map.news[0] != 1 || map.news[1] != 1 || map.news[2] != 1
