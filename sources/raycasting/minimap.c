@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/23 10:40:17 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/23 16:49:11 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,14 +112,35 @@ void	draw_direction(t_data *data, float x, float y)
 
 float cast_lines(t_data *data, float x, float y)
 {
-    float dir_x;
-    float dir_y;
-    float	 i;
+	float	dir_x;
+	float	dir_y;
+	float	i;
+	
+	dir_x = cos(data->cast_angle);
+	dir_y = sin(data->cast_angle);
 
-    dir_x = cos(data->cast_angle);
-    dir_y = sin(data->cast_angle);
+ 	i = 0.0;
+ 	while (i < 2000)
+ 	{
+		if (checking_collision3(data, x + (dir_x * i), y + (dir_y * i)))
+		{
+			return i;
+			// return fabsf(data->player->sqaure_x - x + (dir_x * i));
+		}
+		i++;
+	}
+	return (0);
+}
 
- 	// Horizontal raycasting
+float cast_ray(t_data *data, float x, float y)
+{
+	float	dir_x;
+	float	dir_y;
+	float	i;
+	
+	dir_x = cos(data->cast_angle);
+	dir_y = sin(data->cast_angle);
+
  	i = 0.0;
  	while (i < 2000)
  	{
