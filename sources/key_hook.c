@@ -14,16 +14,20 @@
 
 int	checking_collision(t_data *data, float x, float y)
 {
-	if (data->map.map[(int)((y - RADIUS2) / TILE)]
-		[(int)((x - RADIUS2) / TILE)] && // check this to avoid segv near to wall
-		(data->map.map[(int)((y - RADIUS2) / TILE)]
-		[(int)((x - RADIUS2) / TILE)] == '1' ||
-		data->map.map[(int)((y + RADIUS2) / TILE)]
-		[(int)((x - RADIUS2) / TILE)] == '1' ||
-		data->map.map[(int)((y - RADIUS2) / TILE)]
-		[(int)((x + RADIUS2) / TILE)] == '1' ||
-		data->map.map[(int)((y + RADIUS2) / TILE)]
-		[(int)((x + RADIUS2) / TILE)] == '1'))
+	x = x / TILE;
+	y = y / TILE;
+	x = x * TILE_SCALED;
+	y = y * TILE_SCALED;
+	if (data->map.map[(int)((y - RADIUS2) / TILE_SCALED)]
+		[(int)((x - RADIUS2) / TILE_SCALED)] && // check this to avoid segv near to wall
+		(data->map.map[(int)((y - RADIUS2) / TILE_SCALED)]
+		[(int)((x - RADIUS2) / TILE_SCALED)] == '1' ||
+		data->map.map[(int)((y + RADIUS2) / TILE_SCALED)]
+		[(int)((x - RADIUS2) / TILE_SCALED)] == '1' ||
+		data->map.map[(int)((y - RADIUS2) / TILE_SCALED)]
+		[(int)((x + RADIUS2) / TILE_SCALED)] == '1' ||
+		data->map.map[(int)((y + RADIUS2) / TILE_SCALED)]
+		[(int)((x + RADIUS2) / TILE_SCALED)] == '1'))
 			return (1);
 	return (0);
 }

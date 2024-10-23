@@ -6,13 +6,51 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/23 10:24:02 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/23 10:40:17 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 int	checking_collision2(t_data *data, int x, int y)
+{
+	if (!data->map.map[(int)(y / TILE_SCALED)][(int)(x / TILE_SCALED)]
+	|| (data->map.map[(int)(y / TILE_SCALED)][(int)(x / TILE_SCALED)] == '1')
+	)
+		return (1);
+	if (		
+		(data->map.map[(int)((y + 1) / TILE_SCALED)]
+		[(int)((x - 1) / TILE_SCALED)] == '1' &&
+		data->map.map[(int)((y) / TILE_SCALED)]
+		[(int)((x + 1) / TILE_SCALED)] == '1'
+
+		&&
+
+		data->map.map[(int)((y + 1) / TILE_SCALED)]
+		[(int)((x + 1) / TILE_SCALED)] == '0'
+		)
+		||
+		(
+		data->map.map[(int)((y + 1) / TILE_SCALED)] //this here
+		[(int)((x) / TILE_SCALED)] == '1' 
+		&&
+		data->map.map[(int)((y) / TILE_SCALED)]
+		[(int)((x - 1) / TILE_SCALED)] == '1'
+
+		// &&
+		// data->map.map[(int)((y + 1) / TILE_SCALED)]
+		// [(int)((x - 1) / TILE_SCALED)] == '0'
+
+		//
+		&&
+		data->map.map[(int)((y + 1) / TILE_SCALED)] //this for the left corner
+		[(int)((x - 1) / TILE_SCALED)] == '0'
+		)
+		)
+			return (1);
+	return (0);
+}	
+int	checking_collision3(t_data *data, int x, int y)
 {
 	if (!data->map.map[(int)(y / TILE)][(int)(x / TILE)]
 	|| (data->map.map[(int)(y / TILE)][(int)(x / TILE)] == '1')
@@ -85,7 +123,7 @@ float cast_lines(t_data *data, float x, float y)
  	i = 0.0;
  	while (i < 2000)
  	{
-		if (checking_collision2(data, x + (dir_x * i), y + (dir_y * i)))
+		if (checking_collision3(data, x + (dir_x * i), y + (dir_y * i)))
 		{
 			return i;
 			// return fabsf(data->player->sqaure_x - x + (dir_x * i));

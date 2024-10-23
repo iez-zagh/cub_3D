@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/22 16:00:16 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/23 10:52:38 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define BLACK 0x00000FF
 # define TILE 64
 # define TILE_SCALED 12
-# define MOVE_SPEED 5.0
+# define MOVE_SPEED 7.0
 # define RADIUS 3.0
 # define RADIUS2 2.0
 # define ROTATE_ANGLE 3.0 * (M_PI / 180)
