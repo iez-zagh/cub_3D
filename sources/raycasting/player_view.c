@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:56:18 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/23 15:27:55 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/24 16:15:49 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ int get_color(int base_color, float distance, float max_distance)
 
 void	player_view(t_data *data, float dis)
 {
-	float	wall_height;
-	float	dis_projection_plane;
-	float	start;
-	float	end;
-	float	i;
+	int	wall_height;
+	int	dis_projection_plane;
+	int	start;
+	int	end;
+	int	i;
 	int		color;
 
 	dis = dis * cos(data->cast_angle - data->player->angle);

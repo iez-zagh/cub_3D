@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/24 13:27:25 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/24 17:47:32 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,24 +110,29 @@ void	draw_direction(t_data *data, float x, float y)
 	}
 }
 
+float	distance_calcul(float x, float y, float x1, float y1)
+{
+	return sqrt((x1 - x) * (x1 - x) + (y1 - y) * (y1 - y));
+}
+
 float cast_lines(t_data *data, float x, float y)
 {
 	float	dir_x;
 	float	dir_y;
-	int		xintercept = 0;
-	int		yintercept = 0;
-	int		xstep = 0;
-	int		ystep = 0;
+	float		xintercept = 0;
+	float		yintercept = 0;
+	float		xstep = 0;
+	float		ystep = 0;
 	float	i;
 	
 	bool	found_horz_hit = false;
-	float	hit_x = 0;
-	float	hit_y = 0;
+	float	hor_hit_x = 0;
+	float	hor_hit_y = 0;
 
 	// find the line for the first horizontal in grid intersection
 	yintercept = floor(y / TILE) * TILE;
 
-	if (!(data->cast_angle > 0 && data->cast_angle < M_PI)) //this is to check where the player facing
+	if (data->cast_angle > 0 && data->cast_angle <= M_PI) //this is to check where the player facing down
 		yintercept += TILE;
 
 	xintercept = x + ((yintercept - y)  / tan(data->cast_angle));
@@ -136,21 +141,21 @@ float cast_lines(t_data *data, float x, float y)
 
 	ystep = TILE;
 
-	if (data->cast_angle > 0 && data->cast_angle < M_PI)
+	if (!(data->cast_angle > 0 && data->cast_angle < M_PI))
 		ystep *= -1;
 	
 	xstep = TILE / tan(data->cast_angle);
 	// printf("%f]]\n%f]]\n", x / TILE, y / TILE);
 	// printf("%d]]\n%d]]\n", xintercept, yintercept);
 
-	if (!((data->cast_angle < M_PI / 2 || data->cast_angle > 1.5 * M_PI)) && xstep > 0)
+	if (!(data->cast_angle < 0.5 * M_PI || data->cast_angle > 1.5 * M_PI) && xstep > 0)
 		xstep *= -1;
 
-	if ((data->cast_angle < M_PI / 2 || data->cast_angle > 1.5 * M_PI) && xstep < 0)
+	if ((data->cast_angle < 0.5 * M_PI || data->cast_angle > 1.5 * M_PI) && xstep < 0)
 		xstep *= -1;
 
-	int	nexthorztouchX = xintercept;
-	int	nexthorztouchY = yintercept;
+	float	nexthorztouchX = xintercept;
+	float	nexthorztouchY = yintercept;
 
 	// printf("%f]]\n%f]]\n", x, y);
 	// exit(0);
@@ -160,13 +165,13 @@ float cast_lines(t_data *data, float x, float y)
 
 	
 	//increment xstep and y step
-	while (nexthorztouchX >= 0 && nexthorztouchX <= WIDTH && nexthorztouchY >= 0 && nexthorztouchY <= HEIGHT) //more good to check the limits of the map
+	while (nexthorztouchX >= 0 && nexthorztouchX < data->clmn_n * TILE && nexthorztouchY >= 0 && nexthorztouchY < data->rows_n * TILE) //more good to check the limits of the map
 	{
 		if (checking_collision3(data, nexthorztouchX, nexthorztouchY)) //found a wall hit
 		{
 			found_horz_hit = true;
-			hit_x = nexthorztouchX;
-			hit_y = nexthorztouchY;
+			hor_hit_x = nexthorztouchX;
+			hor_hit_y = nexthorztouchY;
 			break ;
 		}
 		else
@@ -178,76 +183,93 @@ float cast_lines(t_data *data, float x, float y)
 
 	
 	// vertical intersection
+	
 	/////////////////////////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////////////
-	yintercept = floor(y / TILE) * TILE;
+	
+	float	ver_hit_x = 0.0;
+	float	ver_hit_y = 0.0;
+	bool	foundverticalhit = false;
 
-	if (!(data->cast_angle > 0 && data->cast_angle < M_PI)) //this is to check where the player facing
-		yintercept += TILE;
+	xintercept = floor(x / TILE) * TILE;
+	// looking for x the closest vertical intersection
+	if ((data->cast_angle < 0.5 * M_PI || data->cast_angle > 1.5 * M_PI)) //  the player facing up
+		xintercept += TILE;
 
-	xintercept = x + ((yintercept - y)  / tan(data->cast_angle));
+	// looking for y the closest vertical intersection
+	yintercept = y + ((xintercept - x)  * tan(data->cast_angle));
 
 	// calculate the step for x and y
 
-	ystep = TILE;
+	xstep = TILE;
 
-	if (data->cast_angle > 0 && data->cast_angle < M_PI)
+	if (!(data->cast_angle < 0.5 * M_PI || data->cast_angle > 1.5 * M_PI))
+		xstep *= -1;
+	
+	ystep = TILE * tan(data->cast_angle);
+
+	if (!(data->cast_angle > 0 && data->cast_angle < M_PI) && ystep > 0)
 		ystep *= -1;
-	
-	xstep = TILE / tan(data->cast_angle);
-	// printf("%f]]\n%f]]\n", x / TILE, y / TILE);
-	// printf("%d]]\n%d]]\n", xintercept, yintercept);
+	if ((data->cast_angle > 0 && data->cast_angle < M_PI) && xstep < 0)
+		ystep *= -1;
 
-	if (!((data->cast_angle < M_PI / 2 || data->cast_angle > 1.5 * M_PI)) && xstep > 0)
-		xstep *= -1;
-
-	if ((data->cast_angle < M_PI / 2 || data->cast_angle > 1.5 * M_PI) && xstep < 0)
-		xstep *= -1;
-
-	int	nexthorztouchX = xintercept;
-	int	nexthorztouchY = yintercept;
-
-	// printf("%f]]\n%f]]\n", x, y);
-	// exit(0);
-	if (!(data->cast_angle > 0 && data->cast_angle < M_PI))
-		nexthorztouchY--;
-
-	bool	found_horz_hit = false;
-	float	hit_x = 0.0;
-	float	hit_y = 0.0;
-
-	
+	float	nextvertouchX = xintercept;
+	float	nextvertouchY = yintercept;
+	if (!(data->cast_angle < 0.5 * M_PI || data->cast_angle > 1.5 * M_PI))
+		nextvertouchX--;
 	//increment xstep and y step
-	while (nexthorztouchX >= 0 && nexthorztouchX <= WIDTH && nexthorztouchY >= 0 && nexthorztouchY <= HEIGHT) //more good to check the limits of the map
+	while (nextvertouchX >= 0 && nextvertouchX < data->clmn_n * TILE && nextvertouchY >= 0 && nextvertouchY < data->rows_n * TILE) //more good to check the limits of the map
 	{
-		if (checking_collision3(data, nexthorztouchX, nexthorztouchY)) //found a wall hit
+		if (checking_collision3(data, nextvertouchX, nextvertouchY)) //found a wall hit
 		{
-			found_horz_hit = true;
-			hit_x = nexthorztouchX;
-			hit_y = nexthorztouchY;
+			foundverticalhit = true;
+			ver_hit_x = nextvertouchX;
+			ver_hit_y = nextvertouchY;
 			break ;
 		}
 		else
 		{
-			nexthorztouchX += xstep;
-			nexthorztouchY += ystep;
+			nextvertouchX += xstep;
+			nextvertouchY += ystep;
 		}
 	}
-		
-	dir_x = cos(data->cast_angle);
-	dir_y = sin(data->cast_angle);
+	//////////////////////////////////////////////////////////////
+	////////////////////calculate the closeset distance///////////
+	//////////////////////////////////////////////////////////////
+	float horzdis = 0;
+	if (found_horz_hit)
+	{
+		horzdis = distance_calcul(x, y, hor_hit_x, hor_hit_y);
+	}
+	float verdis = 0;
+	if (foundverticalhit)
+	{
+		verdis = distance_calcul(x, y, ver_hit_x, ver_hit_y);
+	}
+	if (horzdis > verdis)
+	 {
+		// puts("here");
+		// printf ("%f]]]\n", distance_calcul(x, y, ver_hit_x, ver_hit_y));
+		return (distance_calcul(x, y, ver_hit_x, ver_hit_y));
+	}
+	else
+		// printf ("%f]]\n", distance_calcul(x, y, hor_hit_x, hor_hit_y));
+		return (distance_calcul(x, y, hor_hit_x, hor_hit_y));
+	// dir_x = cos(data->cast_angle);
+	// dir_y = sin(data->cast_angle);
 
- 	i = 0.0;
- 	while (i < 2000)
- 	{
-		if (checking_collision3(data, x + (dir_x * i), y + (dir_y * i)))
-		{
-			return i;
-			// return fabsf(data->player->sqaure_x - x + (dir_x * i));
-		}
-		i++;
-	}
+ 	// i = 0.0;
+ 	// while (i < 2000)
+ 	// {
+	// 	if (checking_collision3(data, x + (dir_x * i), y + (dir_y * i)))
+	// 	{
+	// 		printf("%f]\n", i);exit (0);
+	// 		return i;
+	// 		// return fabsf(data->player->sqaure_x - x + (dir_x * i));
+	// 	}
+	// 	i++;
+	// }
 	return (0);
 }
 
