@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/23 16:49:11 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/24 11:21:05 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,65 @@ float cast_lines(t_data *data, float x, float y)
 {
 	float	dir_x;
 	float	dir_y;
+	float	xintercept = 0;
+	float	yintercept = 0;
+	float	xstep = 0;
+	float	ystep = 0;
 	float	i;
 	
+	// find the line for the first horizontal in grid intersection
+	yintercept = floor(y / TILE) * TILE;
+
+	if (!(data->cast_angle > 0 && data->cast_angle < M_PI)) //this is to check where the player facing
+		yintercept += TILE;
+
+	xintercept = x + ((yintercept - y)  / tan(data->cast_angle));
+
+	// calculate the step for x and y
+
+	ystep = TILE;
+
+	if (data->cast_angle > 0 && data->cast_angle < M_PI)
+		ystep *= -1;
+	
+	xstep = TILE / tan(data->cast_angle);
+	if (!((data->cast_angle < M_PI / 2 || data->cast_angle > 1.5 * M_PI)) && xstep > 0)
+		xstep *= -1;
+
+	if ((data->cast_angle < M_PI / 2 || data->cast_angle > 1.5 * M_PI) && xstep < 0)
+		xstep *= -1;
+
+	float	nexthorztouchX = xintercept;
+	float	nexthorztouchY = yintercept;
+
+	if (!(data->cast_angle > 0 && data->cast_angle < M_PI))
+		nexthorztouchY--;
+
+	bool	found_horz_hit = false;
+	float	hit_x = 0.0;
+	float	hit_y = 0.0;
+
+	
+	//increment xstep and y step
+	while (!found_horz_hit) //more good to check the limits of the map
+	{
+		if (checking_collision3(data, nexthorztouchX, nexthorztouchY)) //found a wall hit
+		{
+			found_horz_hit = true;
+			hit_x = nexthorztouchX;
+			hit_y = nexthorztouchY;
+			break ;
+		}
+		else
+		{
+			nexthorztouchX += xstep;
+			nexthorztouchY += ystep;
+		}
+	}
+	printf("%f]]\n%f]]\n", hit_x, hit_y);
+
+
+		
 	dir_x = cos(data->cast_angle);
 	dir_y = sin(data->cast_angle);
 

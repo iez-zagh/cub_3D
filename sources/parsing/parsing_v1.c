@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_v1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:27:55 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/10/23 12:31:02 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/10/24 09:32:39 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -333,7 +333,5 @@ int	check_table(t_data *data)
 	}
 	stat = elements_checker(data, i, tab, j);
 	char **map = data->map.map;
-	for (int i = 0; map[i]; i++)
-		printf("%s\n", map[i]);
 	return (stat);
 }
