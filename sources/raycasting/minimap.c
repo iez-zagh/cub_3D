@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/24 17:47:32 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/24 18:13:25 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ float cast_lines(t_data *data, float x, float y)
 	// find the line for the first horizontal in grid intersection
 	yintercept = floor(y / TILE) * TILE;
 
-	if (data->cast_angle > 0 && data->cast_angle <= M_PI) //this is to check where the player facing down
+	if (data->cast_angle > 0 && data->cast_angle < M_PI) //this is to check where the player facing down
 		yintercept += TILE;
 
 	xintercept = x + ((yintercept - y)  / tan(data->cast_angle));
@@ -188,8 +188,8 @@ float cast_lines(t_data *data, float x, float y)
 	/////////////////////////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////////////
 	
-	float	ver_hit_x = 0.0;
-	float	ver_hit_y = 0.0;
+	float	ver_hit_x = 0;
+	float	ver_hit_y = 0;
 	bool	foundverticalhit = false;
 
 	xintercept = floor(x / TILE) * TILE;
