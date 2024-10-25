@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:56:18 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/24 16:15:49 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:20:53 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,16 @@ int get_color(int base_color, float distance, float max_distance)
 
 void	player_view(t_data *data, float dis)
 {
-	int	wall_height;
-	int	dis_projection_plane;
-	int	start;
-	int	end;
-	int	i;
-	int		color;
+	float	wall_height;
+	float	dis_projection_plane;
+	float	start;
+	float	end;
+	float	i;
+	float		color;
 
-	dis = dis * cos(data->cast_angle - data->player->angle);
+	float corr_dis = dis * cos(data->cast_angle - data->player->angle);
 	dis_projection_plane = (WIDTH / 2) / tan(FOV_ANGLE / 2);
-	wall_height = (TILE / dis) * dis_projection_plane;
+	wall_height = (TILE / corr_dis) * dis_projection_plane;
 	start = (HEIGHT / 2) - (wall_height / 2);
 	if (start < 0) // need to develop this
 		start = 0;	
@@ -61,7 +61,7 @@ void	player_view(t_data *data, float dis)
 	// color = get_color(WHITE, dis, 1200);
 	while (i < end)
 	{
-		mlx_put_pixel(data->player_img, data->strip_n, i, WHITE);
+		mlx_put_pixel(data->player_img, data->strip_n, i, RED);
 		i++;
 	}
 }

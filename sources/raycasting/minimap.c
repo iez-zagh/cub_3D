@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/24 18:13:25 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:48:30 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,14 +115,14 @@ float	distance_calcul(float x, float y, float x1, float y1)
 	return sqrt((x1 - x) * (x1 - x) + (y1 - y) * (y1 - y));
 }
 
-float cast_lines(t_data *data, float x, float y)
+float cast_ray(t_data *data, float x, float y)
 {
 	float	dir_x;
 	float	dir_y;
-	float		xintercept = 0;
-	float		yintercept = 0;
-	float		xstep = 0;
-	float		ystep = 0;
+	float	xintercept = 0.0;
+	float	yintercept = 0.0;
+	float	xstep = 0;
+	float	ystep = 0;
 	float	i;
 	
 	bool	found_horz_hit = false;
@@ -149,8 +149,8 @@ float cast_lines(t_data *data, float x, float y)
 	// printf("%d]]\n%d]]\n", xintercept, yintercept);
 
 	if (!(data->cast_angle < 0.5 * M_PI || data->cast_angle > 1.5 * M_PI) && xstep > 0)
-		xstep *= -1;
 
+		xstep *= -1;
 	if ((data->cast_angle < 0.5 * M_PI || data->cast_angle > 1.5 * M_PI) && xstep < 0)
 		xstep *= -1;
 
@@ -162,8 +162,6 @@ float cast_lines(t_data *data, float x, float y)
 	if (!(data->cast_angle > 0 && data->cast_angle < M_PI))
 		nexthorztouchY--;
 
-
-	
 	//increment xstep and y step
 	while (nexthorztouchX >= 0 && nexthorztouchX < data->clmn_n * TILE && nexthorztouchY >= 0 && nexthorztouchY < data->rows_n * TILE) //more good to check the limits of the map
 	{
@@ -188,8 +186,8 @@ float cast_lines(t_data *data, float x, float y)
 	/////////////////////////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////////////
 	
-	float	ver_hit_x = 0;
-	float	ver_hit_y = 0;
+	float	ver_hit_x;
+	float	ver_hit_y;
 	bool	foundverticalhit = false;
 
 	xintercept = floor(x / TILE) * TILE;
@@ -237,63 +235,22 @@ float cast_lines(t_data *data, float x, float y)
 	//////////////////////////////////////////////////////////////
 	////////////////////calculate the closeset distance///////////
 	//////////////////////////////////////////////////////////////
-	float horzdis = 0;
-	if (found_horz_hit)
-	{
-		horzdis = distance_calcul(x, y, hor_hit_x, hor_hit_y);
-	}
-	float verdis = 0;
-	if (foundverticalhit)
-	{
-		verdis = distance_calcul(x, y, ver_hit_x, ver_hit_y);
-	}
-	if (horzdis > verdis)
-	 {
-		// puts("here");
-		// printf ("%f]]]\n", distance_calcul(x, y, ver_hit_x, ver_hit_y));
-		return (distance_calcul(x, y, ver_hit_x, ver_hit_y));
-	}
-	else
-		// printf ("%f]]\n", distance_calcul(x, y, hor_hit_x, hor_hit_y));
-		return (distance_calcul(x, y, hor_hit_x, hor_hit_y));
-	// dir_x = cos(data->cast_angle);
-	// dir_y = sin(data->cast_angle);
-
- 	// i = 0.0;
- 	// while (i < 2000)
- 	// {
-	// 	if (checking_collision3(data, x + (dir_x * i), y + (dir_y * i)))
-	// 	{
-	// 		printf("%f]\n", i);exit (0);
-	// 		return i;
-	// 		// return fabsf(data->player->sqaure_x - x + (dir_x * i));
-	// 	}
-	// 	i++;
-	// }
-	return (0);
-}
-
-float cast_ray(t_data *data, float x, float y)
-{
-	float	dir_x;
-	float	dir_y;
-	float	i;
 	
-	dir_x = cos(data->cast_angle);
-	dir_y = sin(data->cast_angle);
-
- 	i = 0.0;
- 	while (i < 2000)
- 	{
-		if (checking_collision3(data, x + (dir_x * i), y + (dir_y * i)))
-		{
-			return i;
-			// return fabsf(data->player->sqaure_x - x + (dir_x * i));
-		}
-		i++;
-	}
-	return (0);
+	float horzdis;
+	if (found_horz_hit)
+		horzdis = distance_calcul(x, y, hor_hit_x, hor_hit_y);
+	else
+		horzdis = 54644354;
+	float verdis;
+	if (foundverticalhit)
+		verdis = distance_calcul(x, y, ver_hit_x, ver_hit_y);
+	else
+		verdis = 54644354;
+	if (horzdis > verdis)
+		return (verdis);
+	return (horzdis);
 }
+
 
 void draw_minimap2(t_data *data, mlx_image_t *image)
 {

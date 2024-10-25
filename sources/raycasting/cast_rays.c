@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:29:49 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/24 18:17:18 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:55:50 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ void	sky_floor(t_data *data)//optimi
 void	cast_rays(t_data *data)
 {
 	int		i;
-	float		dis = 0;
-	float	an = 0;
+	float	dis = 0.0;
 	float	incr_angle = FOV_ANGLE / WIDTH;
 
 	i = 0;
@@ -56,10 +55,11 @@ void	cast_rays(t_data *data)
 	data->strip_n = 0;
 	while(i < WIDTH)
 	{
-		dis = cast_lines(data, data->player->sqaure_x, data->player->sqaure_y);
+		dis = cast_ray(data, data->player->sqaure_x, data->player->sqaure_y);
 		player_view(data, dis);
-		printf("%f]]\n", dis);
 		data->cast_angle += incr_angle;
+		if (data->cast_angle > M_PI * 2)
+			data->cast_angle = 0;
 		data->strip_n++;
 		i++;
 	}
