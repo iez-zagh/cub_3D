@@ -12,6 +12,52 @@
 
 #include "cub3d.h"
 
+void draw_minimap2(t_data *data)
+{
+	float	x1;
+	float	y1;
+	int		color;
+	float	k;
+
+	y1 = data->player->y - 3;
+	k = data->player->x - 4;
+	printf("%f]]\n%f]]\n", y1, k);
+	if (data->player->x + 4 > 30)
+	{
+		puts("hello");
+		k = data->player->x - 4 - (30 - data->player->x);
+	}
+	if (data->player->y + 3 > 15)
+	{
+		puts("here");
+		y1 = data->player->y - 3 - (15 - data->player->y) + 1;
+	}
+	printf("%f]]\n%f]]\n", y1, k);
+	for (float y = 0; y < 6; y++)
+	{
+		int x1 = k;
+		for (float x = 0; x < 8; x++)
+		{
+			// printf("%c", data->map[(int)y1][(int)x1]);
+			if (data->map.map[(int)y1][(int)x1] == '1')
+				color = BLACK;
+			else
+				color = WHITE;
+			float draw_x = x * TILE;
+			float draw_y = y * TILE;
+			for (int dy = 0; dy < TILE; dy++)
+			{
+				for (int dx = 0; dx < TILE; dx++)
+					mlx_put_pixel(data->img, draw_x + dx, draw_y + dy, color);
+			}
+			x1++;
+		}
+		puts("");
+		y1++;
+	}
+	// exit (0);
+}
+
 void	how_2_use(void)
 {
 	printf("Usage: ./cub3D ./path_to_map\n");

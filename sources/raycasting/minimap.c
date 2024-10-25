@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/25 11:48:30 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/25 17:22:12 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ int	checking_collision3(t_data *data, int x, int y)
 
 void	draw_direction(t_data *data, float x, float y)
 {
-	// return ;
 	float	dir_x;
 	float	dir_y;
 	float	i;
@@ -101,7 +100,7 @@ void	draw_direction(t_data *data, float x, float y)
 	dir_x = cos(data->player->angle); //cos(0) = 1 | sin(0) = 0
 	dir_y = sin(data->player->angle);
 	i = 0;
-	while (i < 26)
+	while (i < 20)
 	{
 		if (checking_collision2(data, x + (dir_x * i), y + (dir_y * i)))
 			return ;
@@ -251,33 +250,3 @@ float cast_ray(t_data *data, float x, float y)
 	return (horzdis);
 }
 
-
-void draw_minimap2(t_data *data, mlx_image_t *image)
-{
-	float	x1;
-	float	y1;
-	int		color;
-	float	k;
-
-	float	x2 = data->player->sqaure_x - 3 * TILE;
-	float	y2 = data->player->sqaure_y - 3 * TILE;
-	for (float y = 0; y < 6; y++)
-	{
-		for (float x = 0; x < 6; x++)
-		{
-			int color = WHITE;
-			if (data->map.map[(int)data->player->sqaure_y / TILE][(int)data->player->sqaure_x / TILE] == '1')
-				color = BLACK;
-				//check map with the sqaure
-			for (float y1 = 0;y1 < TILE;y1++)
-			{
-				for (float x1 = 0;x1 < TILE;x1++)
-				{
-					puts("hello");
-					// mlx_put_pixel(image, x1 + );
-				}
-			}
-		}
-		
-	}
-}

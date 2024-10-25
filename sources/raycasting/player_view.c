@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:56:18 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/25 11:20:53 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/25 15:48:12 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	player_view(t_data *data, float dis)
 	float	start;
 	float	end;
 	float	i;
-	float		color;
+	int	color;
 
 	float corr_dis = dis * cos(data->cast_angle - data->player->angle);
 	dis_projection_plane = (WIDTH / 2) / tan(FOV_ANGLE / 2);

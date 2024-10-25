@@ -83,6 +83,8 @@ void	key_hook_2(t_data *data)
 	key_hook_3(data);
 }
 
+	// new_x = data->p_x + cos(data->angle) * data->move_step;
+	// new_y = data->p_y + sin(data->angle) * data->move_step;
 void	my_key_hook(void *st)
 {
 	t_data	*data;

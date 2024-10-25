@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/25 11:22:38 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/25 17:21:40 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,10 @@ int		checking_collision(t_data *data, float x, float y);
 void	draw_minimap(t_data *data);
 void	cast_rays(t_data *data);
 float	cast_ray(t_data *data, float x, float y);
-void	draw_minimap2(t_data *data, mlx_image_t *image);
 void	check_keys(mlx_key_data_t key, void *data);
 void	player_view(t_data *data, float dis);
 int		checking_collision2(t_data *data, int x, int y);
-
+void 	draw_minimap2(t_data *data);
 /*				parsing				*/
 
 int		parsing(t_data *data, char mapname[]);
