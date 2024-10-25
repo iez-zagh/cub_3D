@@ -92,7 +92,7 @@ void	start_render(t_data *data)
 	data->player->sqaure_x = data->player->x * TILE;
 	data->player->sqaure_y = data->player->y * TILE;
 	draw_minimap(data);
-	data->player->angle = 180 * (M_PI / 180);
+	data->player->angle = 0 * (M_PI / 180);
 	data->player->sqaure_x += 16.0;
 	data->player->sqaure_y += 16.0;
 	draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
