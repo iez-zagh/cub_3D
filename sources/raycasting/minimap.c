@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/25 18:31:58 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/25 19:49:54 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	checking_collision3(t_data *data, int x, int y)
 
 void	draw_direction(t_data *data, float x, float y)
 {
-	return ;
+	// return ;
 	float	dir_x;
 	float	dir_y;
 	float	i;

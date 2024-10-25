@@ -14,7 +14,7 @@
 
 void	draw_player(t_data *data, float draw_x, float draw_y, int color)
 {
-	return ;
+	// return ;
 	float	x;
 	float	y;
 
@@ -59,7 +59,7 @@ void	draw_player2(t_data *data, float draw_x, float draw_y, int color, mlx_image
 
 void draw_minimap(t_data *data)
 {
-	return ;
+	// return ;
 	float	x;
 	float	y;
 	int		color;
