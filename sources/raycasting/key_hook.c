@@ -58,11 +58,17 @@ void	key_hook_3(t_data *data)
 
 void	key_hook_2(t_data *data)
 {
+	float	new_x;
+	float	new_y;
+
 	if (data->d_key)
 	{
-		if (!checking_collision(data, data->player->sqaure_x + MOVE_SPEED, data->player->sqaure_y))
+		new_x = data->player->sqaure_x + cos(data->cast_angle + (M_PI / 2)) * MOVE_SPEED;
+		new_y = data->player->sqaure_y + sin(data->cast_angle + (M_PI / 2)) * MOVE_SPEED;
+		if (!checking_collision(data, new_x, new_y))
 		{
-			data->player->sqaure_x += MOVE_SPEED;
+			data->player->sqaure_x = new_x;
+			data->player->sqaure_y = new_y;
 			draw_minimap(data);
 			draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 			cast_rays(data);
@@ -71,9 +77,12 @@ void	key_hook_2(t_data *data)
 	}
 	if (data->s_key)
 	{
-		if (!checking_collision(data, data->player->sqaure_x, data->player->sqaure_y + MOVE_SPEED))
+		new_x = data->player->sqaure_x + cos(data->cast_angle + M_PI) * MOVE_SPEED;
+		new_y = data->player->sqaure_y + sin(data->cast_angle + M_PI) * MOVE_SPEED;
+		if (!checking_collision(data, new_x, new_y))
 		{
-			data->player->sqaure_y += MOVE_SPEED;
+			data->player->sqaure_x = new_x;
+			data->player->sqaure_y = new_y;
 			draw_minimap(data);
 			draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 			cast_rays(data);
@@ -83,18 +92,21 @@ void	key_hook_2(t_data *data)
 	key_hook_3(data);
 }
 
-	// new_x = data->p_x + cos(data->angle) * data->move_step;
-	// new_y = data->p_y + sin(data->angle) * data->move_step;
 void	my_key_hook(void *st)
 {
 	t_data	*data;
+	float	new_x;
+	float	new_y;
 
 	data = (t_data *)st;
 	if (data->w_key)
 	{
-		if (!checking_collision(data, data->player->sqaure_x, data->player->sqaure_y - MOVE_SPEED))
+		new_x = data->player->sqaure_x + cos(data->cast_angle ) * MOVE_SPEED;
+		new_y = data->player->sqaure_y + sin(data->cast_angle ) * MOVE_SPEED;
+		if (!checking_collision(data, new_x, new_y))
 		{
-			data->player->sqaure_y -= MOVE_SPEED;
+			data->player->sqaure_x = new_x;
+			data->player->sqaure_y = new_y;
 			draw_minimap(data);
 			draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 			cast_rays(data);
@@ -103,9 +115,12 @@ void	my_key_hook(void *st)
 	}
 	if (data->a_key)
 	{
-		if (!checking_collision(data, data->player->sqaure_x - MOVE_SPEED, data->player->sqaure_y))
+		new_x = data->player->sqaure_x + cos(data->cast_angle - (M_PI / 2)) * MOVE_SPEED;
+		new_y = data->player->sqaure_y + sin(data->cast_angle - (M_PI / 2)) * MOVE_SPEED;
+		if (!checking_collision(data, new_x - MOVE_SPEED, new_y))
 		{
-			data->player->sqaure_x -= MOVE_SPEED;
+			data->player->sqaure_x = new_x;
+			data->player->sqaure_y = new_y;
 			draw_minimap(data);
 			draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 			cast_rays(data);

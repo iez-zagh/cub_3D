@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:29:49 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/25 16:38:18 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/25 19:38:56 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	sky_floor(t_data *data)//optimi
 		i++;
 	}
 }
-
 
 void	cast_rays(t_data *data)
 {
