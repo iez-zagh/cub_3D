@@ -125,7 +125,7 @@ void	my_key_hook(void *st)
 			draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 			cast_rays(data);
 			draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
-		}	
+		}
 	}
 	key_hook_2(data);
 }

@@ -14,15 +14,14 @@
 
 void	draw_player(t_data *data, float draw_x, float draw_y, int color)
 {
-	// return ;
 	float	x;
 	float	y;
-
-	y = -RADIUS;
+	// printf("%f]]\n%f]]\n", draw_x / TILE, draw_y  / TILE);
 	draw_x /= TILE;
 	draw_y /= TILE;
 	draw_x *= TILE_SCALED;
 	draw_y *= TILE_SCALED;
+	y = -RADIUS;
 	while (y < RADIUS)
 	{
 		x = -RADIUS;  
@@ -36,21 +35,21 @@ void	draw_player(t_data *data, float draw_x, float draw_y, int color)
 	}
 }
 
-void	draw_player2(t_data *data, float draw_x, float draw_y, int color, mlx_image_t *img)
+void	draw_player2(t_data *data, float draw_x, float draw_y, int color)
 {
-	float	r;
 	float	x;
 	float	y;
+	draw_x = 6 * TILE_SCALED + (TILE_SCALED / 2);
+	draw_y = 4 * TILE_SCALED + (TILE_SCALED / 2);
 
-	r = RADIUS;
-	y = -r;
-	while (y < r)
+	y = -RADIUS;
+	while (y < RADIUS)
 	{
-		x = -r;
-		while (x < r)
+		x = -RADIUS;  
+		while (x < RADIUS)
 		{
-			if (pow(x, 2) + pow(y, 2) < pow(r, 2))
-				mlx_put_pixel(img, draw_x + x, draw_y + y, color);
+			if (pow(x, 2) + pow(y, 2) < pow(RADIUS, 2))
+				mlx_put_pixel(data->img, draw_x + x, draw_y + y, color);
 			x++;
 		}
 		y++;
@@ -59,7 +58,8 @@ void	draw_player2(t_data *data, float draw_x, float draw_y, int color, mlx_image
 
 void draw_minimap(t_data *data)
 {
-	// return ;
+	draw_minimap2(data);
+	return ;
 	float	x;
 	float	y;
 	int		color;
@@ -85,17 +85,17 @@ void draw_minimap(t_data *data)
 
 void	start_render(t_data *data)
 {
-	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", 1);
+	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", 0);
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->player_img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 
 	data->player->sqaure_x = data->player->x * TILE;
 	data->player->sqaure_y = data->player->y * TILE;
-	draw_minimap2(data);
+	draw_minimap(data);
 	data->player->angle = 0 * (M_PI / 180);
-	data->player->sqaure_x += 16.0;
-	data->player->sqaure_y += 16.0;
-	draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
+	data->player->sqaure_x += TILE / 2;
+	data->player->sqaure_y += TILE / 2;
+	draw_player2(data, 3 * TILE + (TILE / 2), 3 * TILE + (TILE / 2), RED);
 	cast_rays(data);
 	draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 

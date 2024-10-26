@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/25 19:43:03 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/26 15:42:19 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define WHITE 0xFFFFFFFF
 # define BLACK 0x00000FF
 # define TILE 64
-# define TILE_SCALED 12
+# define TILE_SCALED 25
 # define MOVE_SPEED 7.0
 # define RADIUS 3.0
 # define RADIUS2 2.0
@@ -84,7 +84,7 @@ typedef struct s_data
 void	my_key_hook(void *data);
 void	start_render(t_data *data);
 void	draw_player(t_data *data, float draw_x, float draw_y, int color);
-void	draw_player2(t_data *data, float draw_x, float draw_y, int color, mlx_image_t *img);
+void	draw_player2(t_data *data, float draw_x, float draw_y, int color);
 void	draw_direction(t_data *data, float x, float y);
 int		checking_collision(t_data *data, float x, float y);
 void	draw_minimap(t_data *data);

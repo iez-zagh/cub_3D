@@ -19,43 +19,30 @@ void draw_minimap2(t_data *data)
 	int		color;
 	float	k;
 
-	y1 = data->player->y - 3;
-	k = data->player->x - 4;
-	printf("%f]]\n%f]]\n", y1, k);
-	if (data->player->x + 4 > 30)
+	x1 = (data->player->sqaure_x / TILE);
+	y1 = (data->player->sqaure_y / TILE);
+
+	int y2=0;
+	for (float y = y1 - 4; y < y1 + 4; y++)
 	{
-		puts("hello");
-		k = data->player->x - 4 - (30 - data->player->x);
-	}
-	if (data->player->y + 3 > 15)
-	{
-		puts("here");
-		y1 = data->player->y - 3 - (15 - data->player->y) + 1;
-	}
-	printf("%f]]\n%f]]\n", y1, k);
-	for (float y = 0; y < 6; y++)
-	{
-		int x1 = k;
-		for (float x = 0; x < 8; x++)
+		int x2= 0;
+		for (float x = x1 - 6; x < x1 + 6; x++)
 		{
-			// printf("%c", data->map[(int)y1][(int)x1]);
-			if (data->map.map[(int)y1][(int)x1] == '1')
+			if (data->map.map[(int)y][(int)x] == '1')
 				color = BLACK;
 			else
 				color = WHITE;
-			float draw_x = x * TILE;
-			float draw_y = y * TILE;
-			for (int dy = 0; dy < TILE; dy++)
+			float draw_x = x2 * TILE_SCALED;
+			float draw_y = y2 * TILE_SCALED;
+			for (int dy = 0; dy < TILE_SCALED; dy++)
 			{
-				for (int dx = 0; dx < TILE; dx++)
+				for (int dx = 0; dx < TILE_SCALED; dx++)
 					mlx_put_pixel(data->img, draw_x + dx, draw_y + dy, color);
 			}
-			x1++;
+			x2++;
 		}
-		puts("");
-		y1++;
+		y2++;
 	}
-	// exit (0);
 }
 
 void	how_2_use(void)
