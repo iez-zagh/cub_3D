@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:56:18 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/28 10:28:12 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/28 20:11:55 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,12 @@ void	player_view(t_data *data, float dis)
 	dis_projection_plane = (WIDTH / 2) / tan(FOV_ANGLE / 2);
 	wall_height = (TILE / corr_dis) * dis_projection_plane;
 	start = (HEIGHT / 2) - (wall_height / 2);
-	if (start < 0) // need to develop this
+	if (start < 0)
 		start = 0;	
 	end = start + wall_height;
-	if (end >= HEIGHT) //either this
+	if (end >= HEIGHT)
 		end = HEIGHT;
 	i = start;
-	// color = get_color(WHITE, dis, 1200);
 	while (i < end)
 	{
 		mlx_put_pixel(data->player_img, data->strip_n, i, RED);

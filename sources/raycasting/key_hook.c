@@ -40,9 +40,7 @@ void	key_hook_3(t_data *data)
 		if (data->player->angle < 0)
 			data->player->angle = 2 * M_PI;
 		draw_minimap(data);
-		draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 		cast_rays(data);
-		draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 	{
@@ -50,9 +48,7 @@ void	key_hook_3(t_data *data)
 		if (data->player->angle > M_PI * 2)
 			data->player->angle = 0;
 		draw_minimap(data);
-		draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 		cast_rays(data);
-		draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 	}
 }
 
@@ -70,9 +66,7 @@ void	key_hook_2(t_data *data)
 			data->player->sqaure_x = new_x;
 			data->player->sqaure_y = new_y;
 			draw_minimap(data);
-			draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 			cast_rays(data);
-			draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 		}
 	}
 	if (data->s_key)
@@ -84,9 +78,7 @@ void	key_hook_2(t_data *data)
 			data->player->sqaure_x = new_x;
 			data->player->sqaure_y = new_y;
 			draw_minimap(data);
-			draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 			cast_rays(data);
-			draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 		}
 	}
 	key_hook_3(data);
@@ -108,9 +100,7 @@ void	my_key_hook(void *st)
 			data->player->sqaure_x = new_x;
 			data->player->sqaure_y = new_y;
 			draw_minimap(data);
-			draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 			cast_rays(data);
-			draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 		}
 	}
 	if (data->a_key)
@@ -122,9 +112,7 @@ void	my_key_hook(void *st)
 			data->player->sqaure_x = new_x;
 			data->player->sqaure_y = new_y;
 			draw_minimap(data);
-			draw_player(data, data->player->sqaure_x, data->player->sqaure_y, RED);
 			cast_rays(data);
-			draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 		}
 	}
 	key_hook_2(data);

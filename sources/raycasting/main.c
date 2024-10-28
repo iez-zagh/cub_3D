@@ -12,36 +12,54 @@
 
 #include "cub3d.h"
 
-void draw_minimap2(t_data *data)
+void draw_minimap(t_data *data)
 {
 	float	x1;
 	float	y1;
 	int		color;
-	float	k;
+	int		x;
+	int		y;
+	int	h_x;
+	int	h_y;
 
-	x1 = (data->player->sqaure_x / TILE);
-	y1 = (data->player->sqaure_y / TILE);
-
-	int y2=0;
-	for (float y = y1 - 4; y < y1 + 4; y++)
+	h_x = 6 * TILE_SCALED;
+	h_y = 4 * TILE_SCALED;
+	x1 = (data->player->sqaure_x / TILE) * TILE_SCALED;
+	y1 = (data->player->sqaure_y / TILE) * TILE_SCALED;
+	int i = y1 - (4 * TILE_SCALED);
+	y = 0;
+	if (i < 0)
 	{
-		int x2= 0;
-		for (float x = x1 - 6; x < x1 + 6; x++)
+		h_y += (i * -1);
+		i = 0;
+
+	}
+	while (i <= y1 + h_y)
+	{
+		int j = x1 - h_x;
+		x = 0;
+		while (j <= x1 + h_x)
 		{
-			if (data->map.map[(int)y][(int)x] == '1')
+			if (data->map.map[i / TILE_SCALED][j / TILE_SCALED] == '1')
 				color = BLACK;
 			else
 				color = WHITE;
-			float draw_x = x2 * TILE_SCALED;
-			float draw_y = y2 * TILE_SCALED;
-			for (int dy = 0; dy < TILE_SCALED; dy++)
-			{
-				for (int dx = 0; dx < TILE_SCALED; dx++)
-					mlx_put_pixel(data->img, draw_x + dx, draw_y + dy, color);
-			}
-			x2++;
+			mlx_put_pixel(data->img, x, y, color);
+			j++;
+			x++;
 		}
-		y2++;
+		y++;
+		i++;
+	}
+	if (y1 - (4 * TILE_SCALED) < 0)
+	{
+		draw_player(data, 6 * TILE_SCALED, 4 * TILE_SCALED  + (y1 - (4 * TILE_SCALED)), RED);
+		draw_direction(data, 6 * TILE_SCALED, 4 * TILE_SCALED  + (y1 - (4 * TILE_SCALED)));
+	}
+	else
+	{
+		draw_player(data, 6 * TILE_SCALED, 4 * TILE_SCALED, RED);
+		draw_direction(data, 6 * TILE_SCALED, 4 * TILE_SCALED);
 	}
 }
 

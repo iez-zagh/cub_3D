@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/26 13:00:49 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/28 21:06:52 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int	checking_collision2(t_data *data, int x, int y)
 		)
 			return (1);
 	return (0);
-}	
+}
+
 int	checking_collision3(t_data *data, int x, int y)
 {
 	if (!data->map.map[(int)(y / TILE)][(int)(x / TILE)]
@@ -91,20 +92,19 @@ int	checking_collision3(t_data *data, int x, int y)
 
 void	draw_direction(t_data *data, float x, float y)
 {
-	return ;
+	// return ;
 	float	dir_x;
 	float	dir_y;
 	float	i;
 
-	x = (x / TILE) * TILE_SCALED;
-	y = (y / TILE) * TILE_SCALED;
+
 	dir_x = cos(data->player->angle); //cos(0) = 1 | sin(0) = 0
 	dir_y = sin(data->player->angle);
 	i = 0;
 	while (i < 20)
 	{
-		if (checking_collision2(data, x + (dir_x * i), y + (dir_y * i)))
-			return ;
+		// if (checking_collision2(data, x + (dir_x * i), y + (dir_y * i)))
+		// 	return ;
 		mlx_put_pixel(data->img, x + (dir_x * i), y + (dir_y * i), BLACK);
 		i++;
 	}

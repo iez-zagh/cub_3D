@@ -16,8 +16,7 @@ void	draw_player(t_data *data, float draw_x, float draw_y, int color)
 {
 	float	x;
 	float	y;
-	draw_x = 6 * TILE_SCALED;
-	draw_y = 4 * TILE_SCALED;
+
 	y = -RADIUS;
 	while (y < RADIUS)
 	{
@@ -36,13 +35,13 @@ void	draw_player2(t_data *data, float draw_x, float draw_y, int color)
 {
 	float	x;
 	float	y;
-	draw_x = 6 * TILE_SCALED + (TILE_SCALED / 2);
-	draw_y = 4 * TILE_SCALED + (TILE_SCALED / 2);
+	draw_x = (data->player->sqaure_x / TILE) * TILE_SCALED;
+	draw_y = (data->player->sqaure_y / TILE) * TILE_SCALED;
 
 	y = -RADIUS;
 	while (y < RADIUS)
 	{
-		x = -RADIUS;  
+		x = -RADIUS;
 		while (x < RADIUS)
 		{
 			if (pow(x, 2) + pow(y, 2) < pow(RADIUS, 2))
@@ -53,48 +52,19 @@ void	draw_player2(t_data *data, float draw_x, float draw_y, int color)
 	}
 }
 
-void draw_minimap(t_data *data)
-{
-	draw_minimap2(data);
-	return ;
-	float	x;
-	float	y;
-	int		color;
-
-	for (y = 0; y < data->rows_n; y++)
-	{
-		for (x = 0; x < data->clmn_n; x++)
-		{
-			if (data->map.map[(int)y][(int)x] == '1')
-				color = BLACK;
-			else
-				color = WHITE;
-			float draw_x = x * TILE_SCALED;
-			float draw_y = y * TILE_SCALED;
-			for (int dy = 0; dy < TILE_SCALED; dy++)
-			{
-				for (int dx = 0; dx < TILE_SCALED; dx++)
-					mlx_put_pixel(data->img, draw_x + dx, draw_y + dy, color);
-			}
-		}
-	}
-}
-
 void	start_render(t_data *data)
 {
 	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", 0);
-	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	data->img = mlx_new_image(data->mlx, 336, 224);
 	data->player_img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 
 	data->player->sqaure_x = data->player->x * TILE;
 	data->player->sqaure_y = data->player->y * TILE;
-	draw_minimap(data);
-	data->player->angle = 0 * (M_PI / 180);
 	data->player->sqaure_x += TILE / 2;
 	data->player->sqaure_y += TILE / 2;
-	draw_player2(data, 3 * TILE + (TILE / 2), 3 * TILE + (TILE / 2), RED);
+	data->player->angle = 0 * (M_PI / 180);
+	draw_minimap(data);
 	cast_rays(data);
-	draw_direction(data, data->player->sqaure_x, data->player->sqaure_y);
 
 	mlx_image_to_window(data->mlx, data->player_img, 0, 0);
 	mlx_image_to_window(data->mlx, data->img, 0, 0);
@@ -159,28 +129,3 @@ void	check_keys(mlx_key_data_t key, void *data)
 		exit(0);
 	}
 }
-
-
-
-// for (float y = 0; y < 6; y++)
-// {
-// 	{
-// 		int x1 = k;
-// 		for (float x = 0; x < 6; x++)
-// 		{
-// 			if (data->map.map[(int)y1][(int)x1] == '1')
-// 				color = BLACK;
-// 			else
-// 				color = WHITE;
-// 			float draw_x = x * TILE;
-// 			float draw_y = y * TILE;
-// 			for (int dy = 0; dy < TILE; dy++)
-// 			{
-// 				for (int dx = 0; dx < TILE; dx++)
-// 					mlx_put_pixel(image, draw_x + dx, draw_y + dy, color);
-// 			}
-// 			x1++;
-// 		}
-// 		y1++;
-// 	}
-// }
