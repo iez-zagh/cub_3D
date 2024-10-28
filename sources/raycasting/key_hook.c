@@ -115,7 +115,7 @@ void	my_key_hook(void *st)
 	}
 	if (data->a_key)
 	{
-		new_x = data->player->sqaure_x + cos(data->cast_angle - (M_PI / 2)) * MOVE_SPEED;
+		new_x = data->player->sqaure_x + cos(data->cast_angle - (M_PI / 2)) * MOVE_SPEED; // need to check this
 		new_y = data->player->sqaure_y + sin(data->cast_angle - (M_PI / 2)) * MOVE_SPEED;
 		if (!checking_collision(data, new_x - MOVE_SPEED, new_y))
 		{

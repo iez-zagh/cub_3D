@@ -64,7 +64,7 @@ int	main(int ac, char **av)
 		return (stat);
 	for (float i = 0;i < 15;i++)
 	{
-		for (float j=0;j<30;j++)
+		for (float j = 0;j < 30;j++)
 		{
 			if (data.map.map[(int)i][(int)j] == 'W')
 			{

@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/26 15:42:19 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/28 09:59:07 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define WHITE 0xFFFFFFFF
 # define BLACK 0x00000FF
 # define TILE 64
-# define TILE_SCALED 25
+# define TILE_SCALED 28
 # define MOVE_SPEED 7.0
 # define RADIUS 3.0
 # define RADIUS2 2.0

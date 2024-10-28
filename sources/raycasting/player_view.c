@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:56:18 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/25 19:47:00 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/28 10:28:12 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	player_view(t_data *data, float dis)
 	// color = get_color(WHITE, dis, 1200);
 	while (i < end)
 	{
-		mlx_put_pixel(data->player_img, data->strip_n, i, WHITE);
+		mlx_put_pixel(data->player_img, data->strip_n, i, RED);
 		i++;
 	}
 }

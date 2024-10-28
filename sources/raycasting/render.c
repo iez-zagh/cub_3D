@@ -16,11 +16,8 @@ void	draw_player(t_data *data, float draw_x, float draw_y, int color)
 {
 	float	x;
 	float	y;
-	// printf("%f]]\n%f]]\n", draw_x / TILE, draw_y  / TILE);
-	draw_x /= TILE;
-	draw_y /= TILE;
-	draw_x *= TILE_SCALED;
-	draw_y *= TILE_SCALED;
+	draw_x = 6 * TILE_SCALED;
+	draw_y = 4 * TILE_SCALED;
 	y = -RADIUS;
 	while (y < RADIUS)
 	{
