@@ -1,6 +1,6 @@
 #include <libc.h>
+#include <string.h>
 int main()
 {
-    char s[5]  ="hello";
-    
+    memset("hello", 0, 3); 
 }

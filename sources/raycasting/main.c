@@ -85,18 +85,18 @@ int	main(int ac, char **av)
 	stat = parsing(&data, av[1]);
 	if (stat < 0)
 		return (stat);
-	for (float i = 0;i < 15;i++)
-	{
-		for (float j = 0;j < 30;j++)
-		{
-			if (data.map.map[(int)i][(int)j] == 'W')
-			{
-				player.x = j;
-				player.y = i;
-				break ;
-			}	
-		}
-	}
+	// for (float i = 0;i < 15;i++)
+	// {
+	// 	for (float j = 0;j < 30;j++)
+	// 	{
+	// 		if (data.map.map[(int)i][(int)j] == 'W')
+	// 		{
+	// 			player.x = j;
+	// 			player.y = i;
+	// 			break ;
+	// 		}	
+	// 	}
+	// }
 	player.sqaure_x = player.x * TILE;
 	player.sqaure_y = player.y * TILE;
 	data.player = &player;

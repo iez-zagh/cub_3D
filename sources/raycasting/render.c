@@ -63,7 +63,8 @@ void	start_render(t_data *data)
 	data->player->sqaure_x += TILE / 2;
 	data->player->sqaure_y += TILE / 2;
 	data->player->angle = 0 * (M_PI / 180);
-	draw_minimap(data);
+	// draw_minimap(data);
+	puts("hello");
 	cast_rays(data);
 
 	mlx_image_to_window(data->mlx, data->player_img, 0, 0);
