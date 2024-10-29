@@ -114,11 +114,11 @@ void	s_key(mlx_key_data_t key, t_data *data)
 void	check_keys(mlx_key_data_t key, void *data)
 {
 	data = (t_data *)data;
-	if (key.key == MLX_KEY_W)
+	if (key.key == MLX_KEY_W || key.key == MLX_KEY_UP)
 		w_key(key, data);
 	if (key.key == MLX_KEY_A)
 		a_key(key, data);
-	if (key.key == MLX_KEY_S)
+	if (key.key == MLX_KEY_S || key.key == MLX_KEY_DOWN)
 		s_key(key, data);
 	if (key.key == MLX_KEY_D)
 		d_key(key, data);

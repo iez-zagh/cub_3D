@@ -21,29 +21,42 @@ void draw_minimap(t_data *data)
 	int		y;
 	int	h_x;
 	int	h_y;
+	int new_x;
+	int new_y;
 
+	new_x = 6 * TILE_SCALED;
+	new_y = 4 * TILE_SCALED;
 	h_x = 6 * TILE_SCALED;
 	h_y = 4 * TILE_SCALED;
 	x1 = (data->player->sqaure_x / TILE) * TILE_SCALED;
 	y1 = (data->player->sqaure_y / TILE) * TILE_SCALED;
-	int i = y1 - (4 * TILE_SCALED);
+	int i = y1 - h_y;
+	int u = x1 - h_x;
 	y = 0;
 	if (i < 0)
 	{
 		h_y += (i * -1);
 		i = 0;
-
+		new_y += (y1 - (new_y));
+	}
+	if (u < 0)
+	{
+		h_x += u * -1;
+		u = 0;
+		new_x += (x1 - new_x);
 	}
 	while (i <= y1 + h_y)
 	{
-		int j = x1 - h_x;
+		int j = u;
 		x = 0;
 		while (j <= x1 + h_x)
 		{
 			if (data->map.map[i / TILE_SCALED][j / TILE_SCALED] == '1')
 				color = BLACK;
-			else
+			else if (data->map.map[i / TILE_SCALED][j / TILE_SCALED] == '0')
 				color = WHITE;
+			// else
+			// 	color = GRAY;
 			mlx_put_pixel(data->img, x, y, color);
 			j++;
 			x++;
@@ -51,16 +64,8 @@ void draw_minimap(t_data *data)
 		y++;
 		i++;
 	}
-	if (y1 - (4 * TILE_SCALED) < 0)
-	{
-		draw_player(data, 6 * TILE_SCALED, 4 * TILE_SCALED  + (y1 - (4 * TILE_SCALED)), RED);
-		draw_direction(data, 6 * TILE_SCALED, 4 * TILE_SCALED  + (y1 - (4 * TILE_SCALED)));
-	}
-	else
-	{
-		draw_player(data, 6 * TILE_SCALED, 4 * TILE_SCALED, RED);
-		draw_direction(data, 6 * TILE_SCALED, 4 * TILE_SCALED);
-	}
+	draw_player(data, new_x, new_y, RED);
+	draw_direction(data, new_x, new_y);
 }
 
 void	how_2_use(void)

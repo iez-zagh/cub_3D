@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/28 21:06:35 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/29 11:26:57 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@
 # include <stdio.h>
 # include <fcntl.h>
 
-# define RED 0xE11E00FF
+# define RED 0xE11E00FF // need to know this later
 # define BLUE 0x87CEFAFF
 # define WHITE 0xFFFFFFFF
 # define BLACK 0x00000FF
 # define GRAY 0x808080FF
 # define TILE 64
 # define TILE_SCALED 28
-# define MOVE_SPEED 7.0
+# define MOVE_SPEED 5.0
 # define RADIUS 3.0
 # define RADIUS2 2.0
-# define ROTATE_ANGLE 3.0 * (M_PI / 180)
+# define ROTATE_ANGLE 2.0 * (M_PI / 180)
 # define WIDTH	1200
 # define HEIGHT	700
 # define FOV_ANGLE 60.0 * (M_PI / 180)
