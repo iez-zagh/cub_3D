@@ -53,10 +53,8 @@ void draw_minimap(t_data *data)
 		{
 			if (data->map.map[i / TILE_SCALED][j / TILE_SCALED] == '1')
 				color = BLACK;
-			else if (data->map.map[i / TILE_SCALED][j / TILE_SCALED] == '0')
+			else
 				color = WHITE;
-			// else
-			// 	color = GRAY;
 			mlx_put_pixel(data->img, x, y, color);
 			j++;
 			x++;
