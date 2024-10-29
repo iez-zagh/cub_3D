@@ -52,33 +52,6 @@ void	draw_player2(t_data *data, float draw_x, float draw_y, int color)
 	}
 }
 
-void draw_minimap(t_data *data)
-{
-	// return ;
-	float	x;
-	float	y;
-	int		color;
-
-	for (y = 0; y < data->rows_n; y++)
-	{
-		for (x = 0; x < data->clmn_n; x++)
-		{
-			if (data->map.map[(int)y][(int)x] == '1')
-				color = BLACK;
-			else if (data->map.map[(int)y][(int)x] == '0')
-				color = WHITE;
-			else //grey
-				color = 0x696969; 
-			float draw_x = x * TILE_SCALED;
-			float draw_y = y * TILE_SCALED;
-			for (int dy = 0; dy < TILE_SCALED; dy++)
-			{
-				for (int dx = 0; dx < TILE_SCALED; dx++)
-					mlx_put_pixel(data->img, draw_x + dx, draw_y + dy, color);
-			}
-		}
-	}
-}
 
 void	start_render(t_data *data)
 {
