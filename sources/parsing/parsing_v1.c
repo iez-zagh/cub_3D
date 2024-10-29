@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_v1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:27:55 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/10/24 09:32:39 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/28 13:21:47 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	first_last_line(char *line, int x)
 	{
 		while (line[i])
 		{
-			if (line[i] != '1' && line[i] != ' ')
+			if (line[i] != '1' && line[i] != ' ' && line[i] != '2')
 				return (0);
 			i++;
 		}
@@ -50,7 +50,7 @@ int	first_last_line(char *line, int x)
 		if (line[i] != '1')
 			return (0);
 		i = ft_strlen(line) - 1;
-		while(ft_isspace(line[i]))
+		while(ft_isspace(line[i]) || line[i] == '2')
 			i--;
 		if (line[i] != '1')
 			return (0);
@@ -70,14 +70,26 @@ void	spacetoone(char **map)
 		while (map[i][j])
 		{
 			if (map[i][j] == ' ')
-				map[i][j] = '1';
+				map[i][j] = '2';
 			j++;
 		}
 		i++;
 	}
 }
 
-int	last_check(char **map)
+void	angle_init(char c, t_data *data)
+{
+	if (c == 'N')
+		data->player->angle = 90 * (M_PI / 180);
+	else if (c == 'S')
+		data->player->angle = 270 * (M_PI / 180);
+	else if (c == 'W')
+		data->player->angle = 180 * (M_PI / 180);
+	else if (c == 'E')
+		data->player->angle = 0 * (M_PI / 180);
+}
+
+int	last_check(char **map, t_data *data)
 {
 	int	idx[2];
 	int	count;
@@ -95,6 +107,7 @@ int	last_check(char **map)
 				count++;
 				if (count > 1 || count == 0)
 					return (-15);
+				angle_init(map[idx[0]][idx[1]], data);
 			}
 			idx[1]++;
 		}
@@ -118,7 +131,7 @@ int parse_map(t_data *data, int lines)
 		else if (i > 0 && i < lines - 1)
 		{	while (map[i][j])
 			{
-				if (is_map_char(map[i][j]) == 1 && map[i][j] != ' ')
+				if (is_map_char(map[i][j]) == 1 && map[i][j] != ' ' && map[i][j] != '2')
 					return (-11);
 				else if (map[i][j] == '0' && check_directions(map, i, j) != 0)
 					return (-12);
@@ -129,7 +142,7 @@ int parse_map(t_data *data, int lines)
 		}
 		i++;
 	}
-	return (spacetoone(map), last_check(map));
+	return (spacetoone(map), last_check(map, data));
 }
 
 int	elements_checker(t_data *data, int i, char **tab, int lines)
@@ -242,7 +255,7 @@ int	fill_map_spaces(char **map, t_data *data)
 		strlen = ft_strlen(map[i]);
 		while (strlen < len)
 		{
-			map[i] = ft_strjoin(map[i], " ");
+			map[i] = ft_strjoin(map[i], "2");
 			if (!map[i])
 				return (-2);
 			strlen = ft_strlen(map[i]);

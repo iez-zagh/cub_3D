@@ -82,6 +82,7 @@ int	main(int ac, char **av)
 	char	*map = NULL;
 	if (ac != 2)
 		return (how_2_use(), 1);
+	data.player = &player;
 	stat = parsing(&data, av[1]);
 	if (stat < 0)
 		return (stat);
@@ -99,7 +100,6 @@ int	main(int ac, char **av)
 	}
 	player.sqaure_x = player.x * TILE;
 	player.sqaure_y = player.y * TILE;
-	data.player = &player;
 	start_render(&data);
 	return (0);
 }
