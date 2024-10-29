@@ -70,8 +70,10 @@ void draw_minimap(t_data *data)
 		{
 			if (data->map.map[(int)y][(int)x] == '1')
 				color = BLACK;
-			else
+			else if (data->map.map[(int)y][(int)x] == '0')
 				color = WHITE;
+			else //grey
+				color = 0x696969; 
 			float draw_x = x * TILE_SCALED;
 			float draw_y = y * TILE_SCALED;
 			for (int dy = 0; dy < TILE_SCALED; dy++)
