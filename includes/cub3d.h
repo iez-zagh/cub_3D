@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/29 18:10:19 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/30 11:34:44 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,27 +107,3 @@ int		f_c_checker(t_map *map);
 int		check_news_ptrs(char *coor, char *str, t_map *map);
 
 #endif
-
-
-
-// for (float y = 0; y < 6; y++)
-// 	{
-// 		int x1 = k;
-// 		for (float x = 0; x < 8; x++)
-// 		{
-// 			// printf("%c", data->map[(int)y1][(int)x1]);
-// 			if (data->map.map[(int)y1][(int)x1] == '1')
-// 				color = BLACK;
-// 			else
-// 				color = WHITE;
-// 			float draw_x = x * TILE;
-// 			float draw_y = y * TILE;
-// 			for (int dy = 0; dy < TILE; dy++)
-// 			{
-// 				for (int dx = 0; dx < TILE; dx++)
-// 					mlx_put_pixel(data->img, draw_x + dx, draw_y + dy, color);
-// 			}
-// 			x1++;
-// 		}
-// 		y1++;
-// 	}

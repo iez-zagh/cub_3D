@@ -45,6 +45,10 @@ void draw_minimap(t_data *data)
 		u = 0;
 		new_x += (x1 - new_x);
 	}
+	if ((y1 + h_y) > (data->rows_n * TILE_SCALED))
+		return ;
+	if ((x1 +  h_x) > (data->clmn_n * TILE_SCALED))
+		return ;
 	while (i <= y1 + h_y)
 	{
 		int j = u;
