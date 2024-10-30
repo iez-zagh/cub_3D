@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/30 22:52:23 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/30 22:56:31 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,9 @@ float cast_ray(t_data *data, float x, float y)
 
 	yintercept = floor(y / TILE) * TILE;
 	if (data->cast_angle > 0 && data->cast_angle <= M_PI)
+	if (data->cast_angle > 0 && data->cast_angle <= M_PI)
 		yintercept += TILE;
+	xintercept = x + ((yintercept - y) / tan(data->cast_angle));
 	xintercept = x + ((yintercept - y) / tan(data->cast_angle));
 	ystep = TILE;
 	xstep = TILE / tan(data->cast_angle);
@@ -137,11 +139,16 @@ float cast_ray(t_data *data, float x, float y)
 	if (!(data->cast_angle > 0 && data->cast_angle < M_PI))
 	{
 		ystep *= -1;
+	{
+		ystep *= -1;
 		nexthorztouchY--;
+		xstep *= -1;
+	}
 		xstep *= -1;
 	}
 	while (nexthorztouchX >= 0 && nexthorztouchX < data->clmn_n * TILE && nexthorztouchY >= 0 && nexthorztouchY < data->rows_n * TILE) //more good to check the limits of the map
 	{
+		if (checking_collision3(data, nexthorztouchX, nexthorztouchY))
 		if (checking_collision3(data, nexthorztouchX, nexthorztouchY))
 		{
 			found_horz_hit = true;
@@ -152,8 +159,12 @@ float cast_ray(t_data *data, float x, float y)
 		nexthorztouchX += xstep;
 		nexthorztouchY += ystep;
 	}
+		nexthorztouchX += xstep;
+		nexthorztouchY += ystep;
+	}
 	
 	// vertical intersection
+
 
 	float	ver_hit_x;
 	float	ver_hit_y;
@@ -162,8 +173,21 @@ float cast_ray(t_data *data, float x, float y)
 	xintercept = floor(x / TILE) * TILE;
 	if ((data->cast_angle < 0.5 * M_PI || data->cast_angle > 1.5 * M_PI))
 		xintercept += TILE;     
+	if ((data->cast_angle < 0.5 * M_PI || data->cast_angle > 1.5 * M_PI))
+		xintercept += TILE;     
 	yintercept = y + ((xintercept - x)  * tan(data->cast_angle));
 	xstep = TILE;
+	
+	float	nextvertouchX = xintercept;
+	float	nextvertouchY = yintercept;
+	ystep = TILE * tan(data->cast_angle);
+	// if (data->cast_angle > 0 && data->cast_angle < M_PI)
+	// {
+	// 	ystep *= -1;
+	// 	// nextvertouchX--;
+	// 	// xstep *= -1;
+	// }
+
 	
 	float	nextvertouchX = xintercept;
 	float	nextvertouchY = yintercept;
@@ -195,6 +219,8 @@ float cast_ray(t_data *data, float x, float y)
 			ver_hit_y = nextvertouchY;
 			break ;
 		}
+		nextvertouchX += xstep;
+		nextvertouchY += ystep;
 		nextvertouchX += xstep;
 		nextvertouchY += ystep;
 	}
