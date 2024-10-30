@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_v1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:27:55 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/10/28 13:21:47 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/10/30 10:28:15 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ int	last_check(char **map, t_data *data)
 				if (count > 1 || count == 0)
 					return (-15);
 				angle_init(map[idx[0]][idx[1]], data);
+				data->player->x = idx[1];
+				data->player->y = idx[0];
 			}
 			idx[1]++;
 		}

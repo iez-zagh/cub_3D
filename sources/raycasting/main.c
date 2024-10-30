@@ -19,10 +19,10 @@ void draw_minimap(t_data *data)
 	int		color;
 	int		x;
 	int		y;
-	int	h_x;
-	int	h_y;
-	int new_x;
-	int new_y;
+	int		h_x;
+	int		h_y;
+	int 	new_x;
+	int 	new_y;
 
 	new_x = 6 * TILE_SCALED;
 	new_y = 4 * TILE_SCALED;
@@ -53,6 +53,8 @@ void draw_minimap(t_data *data)
 		{
 			if (data->map.map[i / TILE_SCALED][j / TILE_SCALED] == '1')
 				color = BLACK;
+			else if (data->map.map[i / TILE_SCALED][j / TILE_SCALED] == '2')
+				color = GRAY;
 			else
 				color = WHITE;
 			mlx_put_pixel(data->img, x, y, color);
@@ -84,18 +86,6 @@ int	main(int ac, char **av)
 	stat = parsing(&data, av[1]);
 	if (stat < 0)
 		return (stat);
-	for (float i = 0;i < 15;i++)
-	{
-		for (float j = 0;j < 30;j++)
-		{
-			if (data.map.map[(int)i][(int)j] == 'W')
-			{
-				player.x = j;
-				player.y = i;
-				break ;
-			}	
-		}
-	}
 	player.sqaure_x = player.x * TILE;
 	player.sqaure_y = player.y * TILE;
 	start_render(&data);
