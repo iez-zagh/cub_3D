@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/30 17:06:13 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/30 22:52:49 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ void draw_minimap(t_data *data)
 		u = 0;
 		new_x += (x1 - new_x);
 	}
-	if ((y1 + h_y) > (data->rows_n * TILE_SCALED))
-		return ;
-	if ((x1 +  h_x) > (data->clmn_n * TILE_SCALED))
-		return ;
+	// if ((y1 + h_y) > (data->rows_n * TILE_SCALED))
+	// 	return ;
+	// if ((x1 +  h_x) > (data->clmn_n * TILE_SCALED))
+	// 	return ;
 	while (i <= y1 + h_y)
 	{
 		int j = u;
