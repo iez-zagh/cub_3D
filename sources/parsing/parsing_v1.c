@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_v1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:27:55 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/10/30 10:28:15 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/30 22:38:07 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ void	spacetoone(char **map)
 
 void	angle_init(char c, t_data *data)
 {
-	if (c == 'N')
+	if (c == 'S')
 		data->player->angle = 90 * (M_PI / 180);
-	else if (c == 'S')
+	else if (c == 'N')
 		data->player->angle = 270 * (M_PI / 180);
 	else if (c == 'W')
 		data->player->angle = 180 * (M_PI / 180);
@@ -105,8 +105,6 @@ int	last_check(char **map, t_data *data)
 				|| map[idx[0]][idx[1]] == 'W' || map[idx[0]][idx[1]] == 'E')
 			{
 				count++;
-				if (count > 1 || count == 0)
-					return (-15);
 				angle_init(map[idx[0]][idx[1]], data);
 				data->player->x = idx[1];
 				data->player->y = idx[0];
@@ -115,6 +113,8 @@ int	last_check(char **map, t_data *data)
 		}
 		idx[0]++;
 	}
+	if (count != 1)
+		return (-15);
 	return (0);
 }
 
@@ -241,29 +241,62 @@ int	largest_line(char **map)
 			max = len;
 		i++;
 	}
+	if (max < 12)
+		return (12);
 	return (max);
 }
 
-int	fill_map_spaces(char **map, t_data *data)
+int	_xtra_map(char ***map, int lenght)
+{
+	int	i;
+	int len;
+	char	**new_map;
+	
+	1 && (i = -1, new_map = (char **)malloc(sizeof(char *) * 9));
+	if (!new_map)
+		return (-2);
+	while ((*map)[++i])
+	{
+		new_map[i] = ft_strdup((*map)[i]);
+		if (!new_map[i])
+			return (ft_free_par(*map), ft_free_par(new_map), -2);
+	}
+	while (i < 8)
+	{
+		1 && (len = -1, new_map[i] = NULL);
+		while (++len < lenght)
+		{
+			new_map[i] = ft_strjoin(new_map[i], "2");
+			if (!new_map[i])
+				return (ft_free_par(*map), ft_free_par(new_map), -2);
+		}
+		i++;
+	}
+	return (new_map[i] = NULL,ft_free_par(*map), *map = new_map, 0);
+}
+
+int	fill_map_spaces(char ***map, t_data *data)
 {
 	int	len;
 	int	strlen;
 	int	i;
 
-	1 && (i = 0, len = largest_line(map));
+	1 && (i = 0, len = largest_line(*map));
 	data->clmn_n = len;
-	while (map[i])
+	while ((*map)[i])
 	{
-		strlen = ft_strlen(map[i]);
+		strlen = ft_strlen((*map)[i]);
 		while (strlen < len)
 		{
-			map[i] = ft_strjoin(map[i], "2");
-			if (!map[i])
-				return (-2);
-			strlen = ft_strlen(map[i]);
+			(*map)[i] = ft_strjoin((*map)[i], "2");
+			if (!(*map)[i])
+				return ( -2);
+			strlen = ft_strlen((*map)[i]);
 		}
 		i++;
 	}
+	if (i < 8)
+		_xtra_map(map, len);
 	return (0);
 }
 
@@ -305,7 +338,7 @@ int	get_map(t_data *data, int i, int *j)
 	map[(*j)] = NULL;
 	if (tab[i])
 		return (ft_free_par(map), -10);
-	stat = fill_map_spaces(map, data);
+	stat = fill_map_spaces(&map, data);
 	if (stat < 0)
 		return (ft_free_par(map), stat);
 	return (data->map.map = map, 0);
@@ -348,5 +381,7 @@ int	check_table(t_data *data)
 	}
 	stat = elements_checker(data, i, tab, j);
 	char **map = data->map.map;
+	for (int i = 0; map[i]; i++)
+		printf("%s\n", map[i]);
 	return (stat);
 }
