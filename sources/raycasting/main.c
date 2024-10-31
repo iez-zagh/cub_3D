@@ -6,11 +6,26 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/30 22:52:49 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/31 15:20:36 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	get_color(t_data *data, int x, int y)
+{
+	if (data->map.map[y / TILE_SCALED][x / TILE_SCALED] == '1')
+		return (BLACK);
+	if ((data->map.map[y / TILE_SCALED][x / TILE_SCALED] == '0')
+		|| (data->map.map[y / TILE_SCALED][x / TILE_SCALED] == 'W')
+		|| (data->map.map[y / TILE_SCALED][x / TILE_SCALED] == 'S')
+		|| (data->map.map[y / TILE_SCALED][x / TILE_SCALED] == 'N')
+		|| (data->map.map[y / TILE_SCALED][x / TILE_SCALED] == 'E'))
+		return (WHITE);
+	if (data->map.map[y / TILE_SCALED][x / TILE_SCALED] == '2')
+		return (GRAY);
+	return (WHITE);
+}
 
 void draw_minimap(t_data *data)
 {
@@ -33,35 +48,29 @@ void draw_minimap(t_data *data)
 	int i = y1 - h_y;
 	int u = x1 - h_x;
 	y = 0;
-	if (i < 0)
-	{
-		h_y += (i * -1);
-		i = 0;
-		new_y += (y1 - (new_y));
-	}
-	if (u < 0)
-	{
-		h_x += u * -1;
-		u = 0;
-		new_x += (x1 - new_x);
-	}
-	// if ((y1 + h_y) > (data->rows_n * TILE_SCALED))
-	// 	return ;
-	// if ((x1 +  h_x) > (data->clmn_n * TILE_SCALED))
-	// 	return ;
+	// if (i < 0)
+	// {
+	// 	h_y += (i * -1);
+	// 	i = 0;
+	// 	new_y += (y1 - (new_y));
+	// }
+	// if (u < 0)
+	// {
+	// 	h_x += u * -1;
+	// 	u = 0;
+	// 	new_x += (x1 - new_x);
+	// }
 	while (i <= y1 + h_y)
 	{
 		int j = u;
 		x = 0;
 		while (j <= x1 + h_x)
 		{
-			if (data->map.map[i / TILE_SCALED][j / TILE_SCALED] == '1')
-				color = BLACK;
-			else if (data->map.map[i / TILE_SCALED][j / TILE_SCALED] == '2')
-				color = GRAY;
-			else
-				color = WHITE;
-			mlx_put_pixel(data->img, x, y, color);
+			if (!(x / TILE_SCALED > data->clmn_n || x /TILE_SCALED < 0 || y / TILE_SCALED > data->rows_n || y / TILE_SCALED < 0))
+			{
+				color = get_color(data, j, i);
+				mlx_put_pixel(data->img, x, y, color);
+			}
 			j++;
 			x++;
 		}

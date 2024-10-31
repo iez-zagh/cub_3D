@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/31 01:53:22 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/31 14:57:52 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ float cast_ray(t_data *data, float x, float y)
 	float	hor_hit_x = 0;
 	float	hor_hit_y = 0;
 
+	// horz
 	yintercept = floor(y / TILE) * TILE;
 	if (data->cast_angle > 0 && data->cast_angle <= M_PI)
 		yintercept += TILE;
@@ -161,8 +162,8 @@ float cast_ray(t_data *data, float x, float y)
 
 	xintercept = floor(x / TILE) * TILE;
 	if ((data->cast_angle < 0.5 * M_PI || data->cast_angle > 1.5 * M_PI))
-		xintercept += TILE;     
-	yintercept = y + ((xintercept - x)  * tan(data->cast_angle));
+		xintercept += TILE;
+	yintercept = y + -1 * ((x - xintercept)  * tan(data->cast_angle));
 	xstep = TILE;
 	
 	float	nextvertouchX = xintercept;
