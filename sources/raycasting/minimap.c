@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/30 22:58:42 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/31 01:53:22 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,13 +100,13 @@ void	draw_direction(t_data *data, float x, float y)
 
 	dir_x = cos(data->player->angle); //cos(0) = 1 | sin(0) = 0
 	dir_y = sin(data->player->angle);
-	i = 0;
+	i = 0.0 ;
 	while (i < 20)
 	{
 		// if (checking_collision2(data, x + (dir_x * i), y + (dir_y * i)))
 		// 	return ;
 		mlx_put_pixel(data->img, x + (dir_x * i), y + (dir_y * i), BLACK);
-		i++;
+		i += 0.02;
 	}
 }
 
