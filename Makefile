@@ -10,7 +10,9 @@ LIBS2 =  -L /Users/$(USER)/Desktop/cub_3d/MLX42/build -lmlx42 -L "/Users/$(USER)
 INCLUDES = -I includes -I MLX42/include/MLX42
 HEADER = $(addprefix includes/, cub3d.h)
 M_SOURCES = sources/raycasting/main.c sources/raycasting/key_hook.c sources/raycasting/render.c sources/raycasting/minimap.c sources/raycasting/cast_rays.c sources/raycasting/player_view.c sources/parsing/parsing.c \
-				sources/parsing/parsing_v1.c sources/parsing/parsing_utils.c sources/parsing/news_parse.c sources/parsing/f_c_parse.c
+				sources/parsing/parsing_v1.c sources/parsing/parsing_utils.c sources/parsing/news_parse.c sources/parsing/f_c_parse.c sources/parsing/parsing_utils2.c \
+				sources/parsing/parsing_utils3.c 
+
 M_OBJECTS = $(M_SOURCES:.c=.o)
 
 %.o: %.c $(HEADER)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/30 11:34:44 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/10/31 01:31:30 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,10 @@ void	check_keys(mlx_key_data_t key, void *data);
 void	player_view(t_data *data, float dis);
 int		checking_collision2(t_data *data, int x, int y);
 void 	draw_minimap2(t_data *data);
-/*				parsing				*/
 
+
+/*				parsing					*/
+// === === === === === === === === === //
 int		parsing(t_data *data, char mapname[]);
 int		check_table(t_data *data);
 void	inisialize_vars(t_data *data);
@@ -105,5 +107,17 @@ void	perreur(int x);
 int		ft_isspace(char c);
 int		f_c_checker(t_map *map);
 int		check_news_ptrs(char *coor, char *str, t_map *map);
+
+int		map_lines(char **tab, int i);
+int		largest_line(char **map);
+void	spacetotwo(char **map);
+int		is_map_char(char c);
+int		check_directions(char **map, int i, int j);
+
+void	angle_init(char c, t_data *data);
+int		empty_line(char *line);
+int		sec_char(char *tab, int i);
+
+// === === === === === === === === === //
 
 #endif
