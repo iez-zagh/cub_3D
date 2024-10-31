@@ -6,28 +6,11 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:27:55 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/10/30 22:38:07 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/10/31 16:46:24 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int is_map_char(char c)
-{
-	if (c == '1' || c == '0' || c == 'W' || c == 'E' || c == 'S' || c == 'N')
-		return (0);
-	return (1);
-}
-
-int check_directions(char **map, int i, int j)
-{
-	if (is_map_char(map[i - 1][j]) == 1
-		&& is_map_char(map[i + 1][j] == 1
-		&& is_map_char(map[i][j - 1]) == 1
-		&& is_map_char(map[i][j + 1] == 1)))
-		return (1);
-	return (0);
-}
 
 int	first_last_line(char *line, int x)
 {
@@ -45,7 +28,7 @@ int	first_last_line(char *line, int x)
 	}
 	else if (!x)
 	{
-		while (ft_isspace(line[i]))
+		while (ft_isspace(line[i]) || line[i] == '2')
 			i++;
 		if (line[i] != '1')
 			return (0);
@@ -58,35 +41,51 @@ int	first_last_line(char *line, int x)
 	return (1);
 }
 
-void	spacetoone(char **map)
+int	_xtra_map(char ***map, int lenght, int lines)
 {
-	int		i;
-	int		j;
-
-	i = 0;
-	while (map[i])
+	int	i;
+	int len;
+	int	strlen;
+	char	**new_map;
+	
+	1 && (i = -1, new_map = (char **)malloc(sizeof(char *) * (lines + 9)));
+	if (!new_map)
+		return (-2);
+	while (++i < 4)
 	{
-		j = 0;
-		while (map[i][j])
+		strlen = -1, new_map[i] = NULL;
+		while (++strlen < lenght)
 		{
-			if (map[i][j] == ' ')
-				map[i][j] = '2';
-			j++;
+			new_map[i] = ft_strjoin(new_map[i], "2");
+			if (!new_map[i])
+				return (ft_free_par(*map), ft_free_par(new_map), -2);
+		}
+	}
+	int k= 0;
+	while ((*map)[k])
+	{
+		new_map[i] = ft_strdup((*map)[k]);
+		if (!new_map[i])
+			return (ft_free_par(*map), ft_free_par(new_map), -2);
+		i++, k++;
+	}
+	while (i < lines + 8)
+	{
+		strlen = -1, new_map[i] = NULL;
+		while (++strlen < lenght)
+		{
+			new_map[i] = ft_strjoin(new_map[i], "2");
+			if (!new_map[i])
+				return (ft_free_par(*map), ft_free_par(new_map), -2);
 		}
 		i++;
 	}
-}
-
-void	angle_init(char c, t_data *data)
-{
-	if (c == 'S')
-		data->player->angle = 90 * (M_PI / 180);
-	else if (c == 'N')
-		data->player->angle = 270 * (M_PI / 180);
-	else if (c == 'W')
-		data->player->angle = 180 * (M_PI / 180);
-	else if (c == 'E')
-		data->player->angle = 0 * (M_PI / 180);
+	new_map[i] = NULL;
+	puts("new map");
+	for (int j = 0; new_map[j]; j++)
+		printf("%s\n", new_map[j]);
+	puts("ends");
+	return (ft_free_par(*map), *map = new_map, 0);
 }
 
 int	last_check(char **map, t_data *data)
@@ -115,6 +114,8 @@ int	last_check(char **map, t_data *data)
 	}
 	if (count != 1)
 		return (-15);
+	_xtra_map(&map, data->clmn_n, data->rows_n);
+	data->map.map = map;
 	return (0);
 }
 
@@ -144,7 +145,7 @@ int parse_map(t_data *data, int lines)
 		}
 		i++;
 	}
-	return (spacetoone(map), last_check(map, data));
+	return (spacetotwo(map), last_check(map, data));
 }
 
 int	elements_checker(t_data *data, int i, char **tab, int lines)
@@ -175,19 +176,6 @@ int	elements_checker(t_data *data, int i, char **tab, int lines)
 	return (stat);
 }
 
-int sec_char(char *tab, int i)
-{
-	if ((tab[i] == 'N' || tab[i] == 'S') && tab[i + 1] != 'O')
-		return (-1);
-	if ((tab[i] == 'F' || tab[i] == 'C') && !ft_isspace(tab[i + 1]))
-		return (-1);
-	if (tab[i] == 'E' && tab[i + 1] != 'A')
-		return (-1);
-	if (tab[i] == 'W' && tab[i + 1] != 'E')
-		return (-1);
-	return (0);
-}
-
 int map_begins(char *tab, t_map map)
 {
 	int	i;
@@ -211,106 +199,49 @@ int map_begins(char *tab, t_map map)
 	return (1);
 }
 
-int	map_lines(char **tab, int i)
-{
-	int	j;
+// int	fill_four_lines(char **map, int i, int j)
+// {
+// 	int	len;
+// 	int	strlen;
 
-	j = 0;
-	while (tab[i])
-	{
-		if (ft_strlen(tab[i]) == 0)
-			break ;
-		j++;
-		i++;
-	}
-	return (j);
-}
+// 	while (map[i])
+// 	{
+// 		strlen = ft_strlen(map[i]);
+// 		while (strlen < j)
+// 		{
+// 			map[i] = ft_strjoin(map[i], "2");
+// 			if (!map[i])
+// 				return (-2);
+// 			strlen = ft_strlen(map[i]);
+// 		}
+// 		i++;
+// 	}
+// 	return (0);
+// }
 
-int	largest_line(char **map)
-{
-	int	i;
-	int	len;
-	int	max;
-
-	i = 0;
-	max = 0;
-	while (map[i])
-	{
-		len = ft_strlen(map[i]);
-		if (len > max)
-			max = len;
-		i++;
-	}
-	if (max < 12)
-		return (12);
-	return (max);
-}
-
-int	_xtra_map(char ***map, int lenght)
-{
-	int	i;
-	int len;
-	char	**new_map;
-	
-	1 && (i = -1, new_map = (char **)malloc(sizeof(char *) * 9));
-	if (!new_map)
-		return (-2);
-	while ((*map)[++i])
-	{
-		new_map[i] = ft_strdup((*map)[i]);
-		if (!new_map[i])
-			return (ft_free_par(*map), ft_free_par(new_map), -2);
-	}
-	while (i < 8)
-	{
-		1 && (len = -1, new_map[i] = NULL);
-		while (++len < lenght)
-		{
-			new_map[i] = ft_strjoin(new_map[i], "2");
-			if (!new_map[i])
-				return (ft_free_par(*map), ft_free_par(new_map), -2);
-		}
-		i++;
-	}
-	return (new_map[i] = NULL,ft_free_par(*map), *map = new_map, 0);
-}
-
-int	fill_map_spaces(char ***map, t_data *data)
+int	fill_map_spaces(char ***map, t_data *data, int j)
 {
 	int	len;
 	int	strlen;
 	int	i;
 
 	1 && (i = 0, len = largest_line(*map));
-	data->clmn_n = len;
 	while ((*map)[i])
 	{
 		strlen = ft_strlen((*map)[i]);
 		while (strlen < len)
 		{
-			(*map)[i] = ft_strjoin((*map)[i], "2");
+			if (i == 0 || i == j - 1)
+				(*map)[i] = ft_strjoin((*map)[i], "1");
+			else
+				(*map)[i] = ft_strjoin((*map)[i], "2");
 			if (!(*map)[i])
-				return ( -2);
+				return (-2);
 			strlen = ft_strlen((*map)[i]);
 		}
 		i++;
 	}
-	if (i < 8)
-		_xtra_map(map, len);
-	return (0);
-}
-
-int	empty_line(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (!ft_isspace(line[i]))
-			return (1);
-		i++;
-	}
+	data->clmn_n = strlen;
 	return (0);
 }
 
@@ -330,7 +261,7 @@ int	get_map(t_data *data, int i, int *j)
 	{
 		if (ft_strlen(tab[i]) == 0 || empty_line(tab[i]) == 0)
 			break ;
-		map[(*j)] = ft_strdup(tab[i]);
+		map[(*j)] = ft_strjoin(ft_strdup("22222222"), tab[i]);
 		if (!map[(*j)])
 			return (-2);
 		1 && ((*j)++, i++);
@@ -338,7 +269,7 @@ int	get_map(t_data *data, int i, int *j)
 	map[(*j)] = NULL;
 	if (tab[i])
 		return (ft_free_par(map), -10);
-	stat = fill_map_spaces(&map, data);
+	stat = fill_map_spaces(&map, data, *j);
 	if (stat < 0)
 		return (ft_free_par(map), stat);
 	return (data->map.map = map, 0);
@@ -380,8 +311,8 @@ int	check_table(t_data *data)
 			return (stat);
 	}
 	stat = elements_checker(data, i, tab, j);
-	char **map = data->map.map;
-	for (int i = 0; map[i]; i++)
-		printf("%s\n", map[i]);
+	// char **map = data->map.map;
+	// for (int i = 0; map[i]; i++)
+	// 	printf("%s\n", map[i]);
 	return (stat);
 }
