@@ -2,7 +2,7 @@ NAME = cub3d2
 NAME2 = cub3d
 CC = cc
 # CFLAGS = -Wextra -Wall -Werror  ---do not forgot that
-# CFLAGS = -fsanitize=address -g
+CFLAGS = -fsanitize=address -g
 LIBFT_DIR = libft
 GNL_DIR = gnl
 LIBS =  libft/libft.a gnl/libftgnl.a
