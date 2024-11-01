@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/01 10:20:54 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/01 10:59:23 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d_bonus.h"
 
 int	get_color(t_data *data, int x, int y)
 {
@@ -48,6 +48,18 @@ void draw_minimap(t_data *data)
 	int i = y1 - h_y;
 	int u = x1 - h_x;
 	y = 0;
+	// if (i < 0)
+	// {
+	// 	h_y += (i * -1);
+	// 	i = 0;
+	// 	new_y += (y1 - (new_y));
+	// }
+	// if (u < 0)
+	// {
+	// 	h_x += u * -1;
+	// 	u = 0;
+	// 	new_x += (x1 - new_x);
+	// }
 	while (i <= y1 + h_y)
 	{
 		int j = u;

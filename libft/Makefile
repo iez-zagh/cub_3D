@@ -6,7 +6,7 @@
 #    By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/01 14:34:12 by iez-zagh          #+#    #+#              #
-#    Updated: 2024/09/01 15:14:29 by iez-zagh         ###   ########.fr        #
+#    Updated: 2024/11/01 11:53:50 by iez-zagh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,22 +31,22 @@ BOBJECTS	=	$(BFILES:c=o)
 OBJECTS		=	$(FILE:c=o)
 
 %.o: %.c libft.h
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 	
 
 all: $(NAME)
 	
 $(NAME): $(OBJECTS)
-	$(AR) $(NAME) $(OBJECTS)
+	@$(AR) $(NAME) $(OBJECTS)
 
 bonus: $(BOBJECTS)
 	$(AR) $(NAME) $(BOBJECTS)
 
 clean:
-	$(RM) $(OBJECTS) $(BOBJECTS)
+	@$(RM) $(OBJECTS) $(BOBJECTS)
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re: fclean all
 
