@@ -1,2 +1,5 @@
 .vscode/
-.DS_store
+bonus/.vscode/
+/libft/.vscode/
+/gnl/.vscode/
+.DS_Store/
