@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/31 01:31:30 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/01 17:17:19 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,12 @@ typedef struct s_data
 	t_player	*player;
 }	t_data;
 
+
+/*				raycasting					*/
+// === === === === === === === === === //
+
 void	my_key_hook(void *data);
 void	start_render(t_data *data);
-void	draw_player(t_data *data, float draw_x, float draw_y, int color);
-void	draw_player2(t_data *data, float draw_x, float draw_y, int color);
-void	draw_direction(t_data *data, float x, float y);
 int		checking_collision(t_data *data, float x, float y);
 void	draw_minimap(t_data *data);
 void	cast_rays(t_data *data);
@@ -94,11 +95,10 @@ float	cast_ray(t_data *data, float x, float y);
 void	check_keys(mlx_key_data_t key, void *data);
 void	player_view(t_data *data, float dis);
 int		checking_collision2(t_data *data, int x, int y);
-void 	draw_minimap2(t_data *data);
-
 
 /*				parsing					*/
 // === === === === === === === === === //
+
 int		parsing(t_data *data, char mapname[]);
 int		check_table(t_data *data);
 void	inisialize_vars(t_data *data);

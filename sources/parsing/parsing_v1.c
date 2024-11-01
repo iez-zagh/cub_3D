@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_v1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:27:55 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/10/31 16:46:24 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/01 17:17:58 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,7 @@ int	_xtra_map(char ***map, int lenght, int lines)
 		}
 		i++;
 	}
-	new_map[i] = NULL;
-	puts("new map");
-	for (int j = 0; new_map[j]; j++)
-		printf("%s\n", new_map[j]);
-	puts("ends");
+	new_map[i] = NULL;;
 	return (ft_free_par(*map), *map = new_map, 0);
 }
 
@@ -311,8 +307,5 @@ int	check_table(t_data *data)
 			return (stat);
 	}
 	stat = elements_checker(data, i, tab, j);
-	// char **map = data->map.map;
-	// for (int i = 0; map[i]; i++)
-	// 	printf("%s\n", map[i]);
 	return (stat);
 }

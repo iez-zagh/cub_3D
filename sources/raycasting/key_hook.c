@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:04:14 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/30 17:06:11 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/01 17:14:03 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	key_hook_3(t_data *data)
 		data->player->angle -= ROTATE_ANGLE;
 		if (data->player->angle < 0)
 			data->player->angle = 2 * M_PI;
-		draw_minimap(data);
 		cast_rays(data);
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
@@ -47,7 +46,6 @@ void	key_hook_3(t_data *data)
 		data->player->angle += ROTATE_ANGLE;
 		if (data->player->angle > M_PI * 2)
 			data->player->angle = 0;
-		draw_minimap(data);
 		cast_rays(data);
 	}
 }
@@ -65,7 +63,6 @@ void	key_hook_2(t_data *data)
 		{
 			data->player->sqaure_x = new_x;
 			data->player->sqaure_y = new_y;
-			draw_minimap(data);
 			cast_rays(data);
 		}
 	}
@@ -77,7 +74,6 @@ void	key_hook_2(t_data *data)
 		{
 			data->player->sqaure_x = new_x;
 			data->player->sqaure_y = new_y;
-			draw_minimap(data);
 			cast_rays(data);
 		}
 	}
@@ -99,7 +95,6 @@ void	my_key_hook(void *st)
 		{
 			data->player->sqaure_x = new_x;
 			data->player->sqaure_y = new_y;
-			draw_minimap(data);
 			cast_rays(data);
 		}
 	}
@@ -111,7 +106,6 @@ void	my_key_hook(void *st)
 		{
 			data->player->sqaure_x = new_x;
 			data->player->sqaure_y = new_y;
-			draw_minimap(data);
 			cast_rays(data);
 		}
 	}

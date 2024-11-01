@@ -12,47 +12,6 @@
 
 #include "cub3d.h"
 
-void	draw_player(t_data *data, float draw_x, float draw_y, int color)
-{
-	float	x;
-	float	y;
-
-	y = -RADIUS;
-	while (y < RADIUS)
-	{
-		x = -RADIUS;  
-		while (x < RADIUS)
-		{
-			if (pow(x, 2) + pow(y, 2) < pow(RADIUS, 2))
-				mlx_put_pixel(data->img, draw_x + x, draw_y + y, color);
-			x++;
-		}
-		y++;
-	}
-}
-
-void	draw_player2(t_data *data, float draw_x, float draw_y, int color)
-{
-	float	x;
-	float	y;
-	draw_x = (data->player->sqaure_x / TILE) * TILE_SCALED;
-	draw_y = (data->player->sqaure_y / TILE) * TILE_SCALED;
-
-	y = -RADIUS;
-	while (y < RADIUS)
-	{
-		x = -RADIUS;
-		while (x < RADIUS)
-		{
-			if (pow(x, 2) + pow(y, 2) < pow(RADIUS, 2))
-				mlx_put_pixel(data->img, draw_x + x, draw_y + y, color);
-			x++;
-		}
-		y++;
-	}
-}
-
-
 void	start_render(t_data *data)
 {
 	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", 0);
@@ -62,7 +21,6 @@ void	start_render(t_data *data)
 	data->player->sqaure_y = data->player->y * TILE;
 	data->player->sqaure_x += TILE / 2;
 	data->player->sqaure_y += TILE / 2;
-	draw_minimap(data);
 	cast_rays(data);
 	mlx_image_to_window(data->mlx, data->player_img, 0, 0);
 	mlx_image_to_window(data->mlx, data->img, 0, 0);
