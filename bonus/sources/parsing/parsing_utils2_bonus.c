@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils2_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 01:21:07 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/11/01 11:21:45 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/01 19:32:50 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	largest_line(char **map)
 			max = len;
 		i++;
 	}
-	max += 8;
+	// max += 8;
 	return (max);
 }
 

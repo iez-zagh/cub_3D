@@ -44,7 +44,7 @@ int	check_mapname(char mapname[], int *line)
 	*line = lines_counter(mapname);
 	if (*line == -1)
 		return (-1);
-	if (*line >= 0 && *line < 12)
+	if (*line >= 0 && *line < 11)
 		return (-5);
 	return (0);
 }

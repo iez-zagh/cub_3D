@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:27:55 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/11/01 17:52:17 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/01 18:52:26 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,70 +21,24 @@ int	first_last_line(char *line, int x)
 	{
 		while (line[i])
 		{
-			if (line[i] != '1' && line[i] != ' ' && line[i] != '2')
+			if (line[i] != '1' && line[i] != ' ')
 				return (0);
 			i++;
 		}
 	}
 	else if (!x)
 	{
-		while (line[i] == ' ' || line[i] == '2')
+		while (line[i] == ' ')
 			i++;
 		if (line[i] != '1')
 			return (0);
 		i = ft_strlen(line) - 1;
-		while(line[i] == ' ' || line[i] == '2')
+		while(line[i] == ' ')
 			i--;
 		if (line[i] != '1')
 			return (0);
 	}
 	return (1);
-}
-
-int	_xtra_map(char ***map, int lenght, int lines)
-{
-	int	i;
-	int len;
-	int	strlen;
-	char	**new_map;
-	
-	1 && (i = 0, new_map = (char **)malloc(sizeof(char *) * (lines + 11)));
-	if (!new_map)
-		return (-2);
-	while (i < 5)
-	{
-		strlen = 0, new_map[i] = NULL;
-		while (strlen < lenght)
-		{
-			new_map[i] = ft_strjoin(new_map[i], "2");
-			if (!new_map[i])
-				return (ft_free_par(*map), ft_free_par(new_map), -2);
-			strlen++;
-		}
-		i++;
-	}
-	int k = 0;
-	while ((*map)[k])
-	{
-		new_map[i] = ft_strdup((*map)[k]);
-		if (!new_map[i])
-			return (ft_free_par(*map), ft_free_par(new_map), -2);
-		i++, k++;
-	}
-	while (i < lines + 10)
-	{
-		strlen = 0, new_map[i] = NULL;
-		while (strlen < lenght)
-		{
-			new_map[i] = ft_strjoin(new_map[i], "2");
-			if (!new_map[i])
-				return (ft_free_par(*map), ft_free_par(new_map), -2);
-			strlen++;
-		}
-		i++;
-	}
-	new_map[i] = NULL;;
-	return (ft_free_par(*map), *map = new_map, 0);
 }
 
 int	last_check(char **map, t_data *data)
@@ -105,7 +59,7 @@ int	last_check(char **map, t_data *data)
 				count++;
 				angle_init(map[idx[0]][idx[1]], data);
 				data->player->x = idx[1];
-				data->player->y = idx[0] + 5;
+				data->player->y = idx[0];
 			}
 			idx[1]++;
 		}
@@ -113,9 +67,9 @@ int	last_check(char **map, t_data *data)
 	}
 	if (count != 1)
 		return (-15);
-	_xtra_map(&map, data->clmn_n + 8, data->rows_n);
-	data->clmn_n += 8;
-	data->rows_n += 5;
+	// _xtra_map(&map, data->clmn_n + 8, data->rows_n);
+	// data->clmn_n += 8;
+	// data->rows_n += 5;
 	data->map.map = map;
 	return (0);
 }
@@ -216,7 +170,7 @@ int	fill_map_spaces(char ***map, t_data *data, int j)
 			// if (i == 0 || i == j - 1)
 			// 	(*map)[i] = ft_strjoin((*map)[i], "1");
 			// else
-				(*map)[i] = ft_strjoin((*map)[i], "2");
+			(*map)[i] = ft_strjoin((*map)[i], " ");
 			if (!(*map)[i])
 				return (-2);
 			strlen = ft_strlen((*map)[i]);
@@ -245,7 +199,7 @@ int	get_map(t_data *data, int i, int *j)
 		// if (*j == 0 || *j == data->rows_n - 1)
 		// 	map[(*j)] = ft_strjoin(ft_strdup("11111111"), tab[i]);
 		// else
-			map[(*j)] = ft_strjoin(ft_strdup("22222222"), tab[i]);
+		map[(*j)] = ft_strdup(tab[i]);
 		if (!map[(*j)])
 			return (-2);
 		1 && ((*j)++, i++);
