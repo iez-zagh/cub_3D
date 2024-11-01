@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/01 17:14:12 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/01 17:47:01 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	main(int ac, char **av)
 		return (stat);
 	player.sqaure_x = player.x * TILE;
 	player.sqaure_y = player.y * TILE;
+	printf("player x = %f\n", player.x);
+	printf("player y = %f\n", player.y);
 	start_render(&data);
 	return (0);
 }

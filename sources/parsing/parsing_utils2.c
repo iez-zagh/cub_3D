@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 01:21:07 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/10/31 16:09:14 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/10/31 17:56:20 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	largest_line(char **map)
 			max = len;
 		i++;
 	}
-	max += 8;
 	return (max);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_v1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:27:55 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/11/01 17:17:58 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/01 17:52:17 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ int	first_last_line(char *line, int x)
 	}
 	else if (!x)
 	{
-		while (ft_isspace(line[i]) || line[i] == '2')
+		while (line[i] == ' ' || line[i] == '2')
 			i++;
 		if (line[i] != '1')
 			return (0);
 		i = ft_strlen(line) - 1;
-		while(ft_isspace(line[i]) || line[i] == '2')
+		while(line[i] == ' ' || line[i] == '2')
 			i--;
 		if (line[i] != '1')
 			return (0);
@@ -48,20 +48,22 @@ int	_xtra_map(char ***map, int lenght, int lines)
 	int	strlen;
 	char	**new_map;
 	
-	1 && (i = -1, new_map = (char **)malloc(sizeof(char *) * (lines + 9)));
+	1 && (i = 0, new_map = (char **)malloc(sizeof(char *) * (lines + 11)));
 	if (!new_map)
 		return (-2);
-	while (++i < 4)
+	while (i < 5)
 	{
-		strlen = -1, new_map[i] = NULL;
-		while (++strlen < lenght)
+		strlen = 0, new_map[i] = NULL;
+		while (strlen < lenght)
 		{
 			new_map[i] = ft_strjoin(new_map[i], "2");
 			if (!new_map[i])
 				return (ft_free_par(*map), ft_free_par(new_map), -2);
+			strlen++;
 		}
+		i++;
 	}
-	int k= 0;
+	int k = 0;
 	while ((*map)[k])
 	{
 		new_map[i] = ft_strdup((*map)[k]);
@@ -69,14 +71,15 @@ int	_xtra_map(char ***map, int lenght, int lines)
 			return (ft_free_par(*map), ft_free_par(new_map), -2);
 		i++, k++;
 	}
-	while (i < lines + 8)
+	while (i < lines + 10)
 	{
-		strlen = -1, new_map[i] = NULL;
-		while (++strlen < lenght)
+		strlen = 0, new_map[i] = NULL;
+		while (strlen < lenght)
 		{
 			new_map[i] = ft_strjoin(new_map[i], "2");
 			if (!new_map[i])
 				return (ft_free_par(*map), ft_free_par(new_map), -2);
+			strlen++;
 		}
 		i++;
 	}
@@ -102,7 +105,7 @@ int	last_check(char **map, t_data *data)
 				count++;
 				angle_init(map[idx[0]][idx[1]], data);
 				data->player->x = idx[1];
-				data->player->y = idx[0];
+				data->player->y = idx[0] + 5;
 			}
 			idx[1]++;
 		}
@@ -110,7 +113,9 @@ int	last_check(char **map, t_data *data)
 	}
 	if (count != 1)
 		return (-15);
-	_xtra_map(&map, data->clmn_n, data->rows_n);
+	_xtra_map(&map, data->clmn_n + 8, data->rows_n);
+	data->clmn_n += 8;
+	data->rows_n += 5;
 	data->map.map = map;
 	return (0);
 }
@@ -195,26 +200,6 @@ int map_begins(char *tab, t_map map)
 	return (1);
 }
 
-// int	fill_four_lines(char **map, int i, int j)
-// {
-// 	int	len;
-// 	int	strlen;
-
-// 	while (map[i])
-// 	{
-// 		strlen = ft_strlen(map[i]);
-// 		while (strlen < j)
-// 		{
-// 			map[i] = ft_strjoin(map[i], "2");
-// 			if (!map[i])
-// 				return (-2);
-// 			strlen = ft_strlen(map[i]);
-// 		}
-// 		i++;
-// 	}
-// 	return (0);
-// }
-
 int	fill_map_spaces(char ***map, t_data *data, int j)
 {
 	int	len;
@@ -222,14 +207,15 @@ int	fill_map_spaces(char ***map, t_data *data, int j)
 	int	i;
 
 	1 && (i = 0, len = largest_line(*map));
+	data->clmn_n = len;
 	while ((*map)[i])
 	{
 		strlen = ft_strlen((*map)[i]);
-		while (strlen < len)
+		while (strlen < len + 8)
 		{
-			if (i == 0 || i == j - 1)
-				(*map)[i] = ft_strjoin((*map)[i], "1");
-			else
+			// if (i == 0 || i == j - 1)
+			// 	(*map)[i] = ft_strjoin((*map)[i], "1");
+			// else
 				(*map)[i] = ft_strjoin((*map)[i], "2");
 			if (!(*map)[i])
 				return (-2);
@@ -237,7 +223,6 @@ int	fill_map_spaces(char ***map, t_data *data, int j)
 		}
 		i++;
 	}
-	data->clmn_n = strlen;
 	return (0);
 }
 
@@ -257,7 +242,10 @@ int	get_map(t_data *data, int i, int *j)
 	{
 		if (ft_strlen(tab[i]) == 0 || empty_line(tab[i]) == 0)
 			break ;
-		map[(*j)] = ft_strjoin(ft_strdup("22222222"), tab[i]);
+		// if (*j == 0 || *j == data->rows_n - 1)
+		// 	map[(*j)] = ft_strjoin(ft_strdup("11111111"), tab[i]);
+		// else
+			map[(*j)] = ft_strjoin(ft_strdup("22222222"), tab[i]);
 		if (!map[(*j)])
 			return (-2);
 		1 && ((*j)++, i++);
