@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:04:14 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/01 10:59:23 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/02 14:54:57 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	my_key_hook(void *st)
 	}
 	if (data->a_key)
 	{
-		new_x = data->player->sqaure_x + cos(data->cast_angle - (M_PI / 2)) * MOVE_SPEED; // need to check this
+		new_x = data->player->sqaure_x + cos(data->cast_angle - (M_PI / 2)) * MOVE_SPEED;
 		new_y = data->player->sqaure_y + sin(data->cast_angle - (M_PI / 2)) * MOVE_SPEED;
 		if (!checking_collision(data, new_x - MOVE_SPEED, new_y))
 		{

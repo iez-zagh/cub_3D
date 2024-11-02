@@ -44,7 +44,7 @@ void	draw_player2(t_data *data, float draw_x, float draw_y, int color)
 		x = -RADIUS;
 		while (x < RADIUS)
 		{
-			if (pow(x, 2) + pow(y, 2) < pow(RADIUS, 2))
+			if (x * x + y * y < RADIUS * RADIUS)
 				mlx_put_pixel(data->img, draw_x + x, draw_y + y, color);
 			x++;
 		}

@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/01 10:59:23 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/02 14:28:38 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,11 +126,13 @@ float cast_ray(t_data *data, float x, float y)
 	float	hor_hit_x = 0;
 	float	hor_hit_y = 0;
 
-	// horz
+	// horizontal
 	yintercept = floor(y / TILE) * TILE;
 	if (data->cast_angle > 0 && data->cast_angle <= M_PI)
 		yintercept += TILE;
 	xintercept = x + ((yintercept - y) / tan(data->cast_angle));
+	// if (xintercept < 0)
+	// 	printf("%f]\n", xintercept);
 	ystep = TILE;
 	xstep = TILE / tan(data->cast_angle);
 	float	nexthorztouchX = xintercept;
@@ -153,9 +155,7 @@ float cast_ray(t_data *data, float x, float y)
 		nexthorztouchX += xstep;
 		nexthorztouchY += ystep;
 	}
-	
 	// vertical intersection
-
 	float	ver_hit_x;
 	float	ver_hit_y;
 	bool	foundverticalhit = false;
@@ -163,19 +163,14 @@ float cast_ray(t_data *data, float x, float y)
 	xintercept = floor(x / TILE) * TILE;
 	if ((data->cast_angle < 0.5 * M_PI || data->cast_angle > 1.5 * M_PI))
 		xintercept += TILE;
-	yintercept = y + -1 * ((x - xintercept)  * tan(data->cast_angle));
+	yintercept = y + ((xintercept - x)  * tan(data->cast_angle));
+	// if (yintercept < 0)
+	// 	printf("%f]\n", yintercept);
 	xstep = TILE;
 	
 	float	nextvertouchX = xintercept;
 	float	nextvertouchY = yintercept;
 	ystep = TILE * tan(data->cast_angle);
-	// if (data->cast_angle > 0 && data->cast_angle < M_PI)
-	// {
-	// 	ystep *= -1;
-	// 	// nextvertouchX--;
-	// 	// xstep *= -1;
-	// }
-
 
 	if (!(data->cast_angle < 0.5 * M_PI || data->cast_angle > 1.5 * M_PI))
 		xstep *= -1;
@@ -187,6 +182,7 @@ float cast_ray(t_data *data, float x, float y)
 	if (!(data->cast_angle < 0.5 * M_PI || data->cast_angle > 1.5 * M_PI))
 		nextvertouchX--;
 	//increment xstep and y step
+
 	while (nextvertouchX >= 0 && nextvertouchX < data->clmn_n * TILE && nextvertouchY >= 0 && nextvertouchY < data->rows_n * TILE) //more good to check the limits of the map
 	{
 		if (checking_collision3(data, nextvertouchX, nextvertouchY)) //found a wall hit
@@ -217,4 +213,3 @@ float cast_ray(t_data *data, float x, float y)
 		return (verdis);
 	return (horzdis);
 }
-
