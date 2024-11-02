@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/01 10:59:23 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/02 16:45:36 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,58 +27,36 @@ int	get_color(t_data *data, int x, int y)
 	return (WHITE);
 }
 
-void draw_minimap(t_data *data)
+void	draw_minimap2(t_data *data, int i, int u)
 {
-	float	x1;
-	float	y1;
-	int		color;
-	int		x;
-	int		y;
-	int		h_x;
-	int		h_y;
-	int 	new_x;
-	int 	new_y;
-
-	new_x = 6 * TILE_SCALED;
-	new_y = 4 * TILE_SCALED;
-	h_x = 6 * TILE_SCALED;
-	h_y = 4 * TILE_SCALED;
-	x1 = (data->player->sqaure_x / TILE) * TILE_SCALED;
-	y1 = (data->player->sqaure_y / TILE) * TILE_SCALED;
-	int i = y1 - h_y;
-	int u = x1 - h_x;
+	int y;
+	int	x;
+	int	j;
+	
 	y = 0;
-	// if (i < 0)
-	// {
-	// 	h_y += (i * -1);
-	// 	i = 0;
-	// 	new_y += (y1 - (new_y));
-	// }
-	// if (u < 0)
-	// {
-	// 	h_x += u * -1;
-	// 	u = 0;
-	// 	new_x += (x1 - new_x);
-	// }
-	while (i <= y1 + h_y)
+	while (i <= (data->player->sqaure_y / TILE) * TILE_SCALED + 4 * TILE_SCALED)
 	{
-		int j = u;
+		j = u;
 		x = 0;
-		while (j <= x1 + h_x)
+		while (j <= (data->player->sqaure_x / TILE) * TILE_SCALED + 6 * TILE_SCALED)
 		{
-			if (!(x / TILE_SCALED > data->clmn_n || x /TILE_SCALED < 0 || y / TILE_SCALED > data->rows_n || y / TILE_SCALED < 0))
-			{
-				color = get_color(data, j, i);
-				mlx_put_pixel(data->img, x, y, color);
-			}
+			if (!(x / TILE_SCALED > data->clmn_n || x /TILE_SCALED < 0
+				|| y / TILE_SCALED > data->rows_n || y / TILE_SCALED < 0))
+				mlx_put_pixel(data->img, x, y, get_color(data, j, i));
 			j++;
 			x++;
 		}
 		y++;
 		i++;
 	}
-	draw_player(data, new_x, new_y, RED);
-	draw_direction(data, new_x, new_y);
+}
+
+void	draw_minimap(t_data *data)
+{
+
+	draw_minimap2(data, (data->player->sqaure_y / TILE) * TILE_SCALED - 4 * TILE_SCALED, (data->player->sqaure_x / TILE) * TILE_SCALED - 6 * TILE_SCALED);
+	draw_player(data, 6 * TILE_SCALED, 4 * TILE_SCALED, RED);
+	draw_direction(data, 6 * TILE_SCALED, 4 * TILE_SCALED);
 }
 
 void	how_2_use(void)

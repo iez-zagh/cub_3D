@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:04:14 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/02 14:54:57 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/02 17:39:11 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,23 @@ int	checking_collision(t_data *data, float x, float y)
 
 void	key_hook_3(t_data *data)
 {
+	if (data->player->angle > M_PI * 2)
+			data->player->angle = 0;
+	if (data->player->angle < 0)
+			data->player->angle = 2 * M_PI;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
 	{
 		data->player->angle -= ROTATE_ANGLE;
-		if (data->player->angle < 0)
-			data->player->angle = 2 * M_PI;
+		// if (data->player->angle < 0)
+		// 	data->player->angle = 2 * M_PI;
 		draw_minimap(data);
 		cast_rays(data);
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 	{
 		data->player->angle += ROTATE_ANGLE;
-		if (data->player->angle > M_PI * 2)
-			data->player->angle = 0;
+		// if (data->player->angle > M_PI * 2)
+		// 	data->player->angle = 0;
 		draw_minimap(data);
 		cast_rays(data);
 	}
@@ -82,6 +86,32 @@ void	key_hook_2(t_data *data)
 		}
 	}
 	key_hook_3(data);
+}
+
+void	handle_mouse(void *d)
+{
+	static int	mx;
+	static int	my;
+	static int	last_position;
+	int			direction;
+	t_data		*data;
+
+	data = (t_data *)d;	
+	last_position = mx;
+	mlx_set_cursor_mode(data->mlx, MLX_MOUSE_HIDDEN);
+	if (mx >= 2015 || mx <= -544)
+		mlx_set_mouse_pos(data->mlx, 500, my);
+	mlx_get_mouse_pos(data->mlx, &mx, &my);
+	if (last_position != mx)
+	{
+		if (mx > last_position)
+			direction = 2;
+		else 
+			direction = -2;
+		data->player->angle += direction * 2 * (M_PI / 180);
+	}
+	draw_minimap(data);
+	cast_rays(data);
 }
 
 void	my_key_hook(void *st)

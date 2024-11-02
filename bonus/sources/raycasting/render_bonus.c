@@ -52,7 +52,6 @@ void	draw_player2(t_data *data, float draw_x, float draw_y, int color)
 	}
 }
 
-
 void	start_render(t_data *data)
 {
 	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", 0);
@@ -72,6 +71,7 @@ void	start_render(t_data *data)
 	data->d_key = false;
 	mlx_key_hook(data->mlx, check_keys, data);
 	mlx_loop_hook(data->mlx, my_key_hook, data);
+	mlx_loop_hook(data->mlx, handle_mouse, data);
 	mlx_loop(data->mlx);
 }
 	

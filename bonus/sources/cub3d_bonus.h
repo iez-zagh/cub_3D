@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/01 11:20:19 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/02 17:29:46 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define TILE 64
 # define TILE_SCALED 28
 # define MOVE_SPEED 5.0
+# define ROTATE_SPEED 0.05
 # define RADIUS 4.0
 # define RADIUS2 4.0
 # define ROTATE_ANGLE 2.0 * (M_PI / 180)
@@ -63,6 +64,8 @@ typedef struct s_player
 	float		y;
 	float		map_x;
 	float		map_y;
+	float		prev_mouse_x;
+	float		prev_mouse_y;
 }	t_player;
 
 typedef struct s_data
@@ -94,8 +97,8 @@ float	cast_ray(t_data *data, float x, float y);
 void	check_keys(mlx_key_data_t key, void *data);
 void	player_view(t_data *data, float dis);
 int		checking_collision2(t_data *data, int x, int y);
-void 	draw_minimap2(t_data *data);
-
+void	draw_minimap2(t_data *data, int i, int u);
+void	handle_mouse(void *d);
 
 /*				parsing					*/
 // === === === === === === === === === //
