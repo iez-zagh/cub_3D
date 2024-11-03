@@ -8,8 +8,8 @@ GNL_DIR = gnl
 LIBS2 =  -L /Users/$(USER)/Desktop/cub_3d/MLX42/build -lmlx42 -L "/Users/$(USER)/homebrew/opt/glfw/lib" -lglfw -L /Users/$(USER)/Desktop/cub_3d/libft -lft -L /Users/$(USER)/Desktop/cub_3d/gnl -lftgnl   -Ofast
 INCLUDES = -I includes -I MLX42/include/MLX42
 B_INCLUDES = -I bonus/cub3d_bonus.h -I MLX42/include/MLX42
-HEADER = $(addprefix includes/, cub3d.h)
-B_HEADER = $(addprefix bonus/, cub3d_bonus.h)
+HEADER = includes/cub3d.h
+B_HEADER = bonus/sources/cub3d_bonus.h
 
 M_SOURCES = sources/raycasting/main.c sources/raycasting/key_hook.c sources/raycasting/render.c\
  			sources/raycasting/minimap.c sources/raycasting/cast_rays.c sources/raycasting/player_view.c\
@@ -31,7 +31,7 @@ B_OBJECTS = $(B_SOURCES:.c=.o)
 sources/%.o:sources/%.c $(HEADER)
 	@$(CC) $(INCLUDES) $(CFLAGS) -c $< -o $@
 
-bonus/%.o:bonus/%.c  #$(B_HEADER)
+bonus/%.o:bonus/%.c $(B_HEADER)
 	@$(CC) $(B_INCLUDES) $(CFLAGS) -c $< -o $@
 
 all : $(NAME2)

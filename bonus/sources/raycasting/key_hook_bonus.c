@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:04:14 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/02 17:39:11 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/03 11:45:02 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,28 +90,26 @@ void	key_hook_2(t_data *data)
 
 void	handle_mouse(void *d)
 {
-	static int	mx;
-	static int	my;
 	static int	last_position;
-	int			direction;
+	float			direction;
 	t_data		*data;
 
 	data = (t_data *)d;	
-	last_position = mx;
+	last_position = data->player->mouse_x;
 	mlx_set_cursor_mode(data->mlx, MLX_MOUSE_HIDDEN);
-	if (mx >= 2015 || mx <= -544)
-		mlx_set_mouse_pos(data->mlx, 500, my);
-	mlx_get_mouse_pos(data->mlx, &mx, &my);
-	if (last_position != mx)
+	if (data->player->mouse_x > 1200 || data->player->mouse_x < 0)
+		mlx_set_mouse_pos(data->mlx, WIDTH / 2, data->player->mouse_y);
+	mlx_get_mouse_pos(data->mlx, &data->player->mouse_x, &data->player->mouse_y);
+	if (last_position != data->player->mouse_x)
 	{
-		if (mx > last_position)
-			direction = 2;
-		else 
-			direction = -2;
-		data->player->angle += direction * 2 * (M_PI / 180);
+		if (data->player->mouse_x > last_position)
+			direction = 2.5;
+		else
+			direction = -2.5;
+		data->player->angle += direction * ROTATE_ANGLE;
+		draw_minimap(data);
+		cast_rays(data);
 	}
-	draw_minimap(data);
-	cast_rays(data);
 }
 
 void	my_key_hook(void *st)

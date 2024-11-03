@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/02 17:29:46 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/03 10:41:01 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ typedef struct s_player
 	float		y;
 	float		map_x;
 	float		map_y;
-	float		prev_mouse_x;
-	float		prev_mouse_y;
+	int			mouse_x;
+	int			mouse_y;
 }	t_player;
 
 typedef struct s_data
