@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:17:54 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/03 16:38:19 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/03 17:26:06 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ void	check_keys(mlx_key_data_t key, void *data)
 		a_key(key, data);
 	if (key.key == MLX_KEY_S || key.key == MLX_KEY_DOWN)
 		s_key(key, data);
+	if (key.key == MLX_KEY_KP_SUBTRACT)
+		sub_key(key, data);
+	if (key.key == MLX_KEY_KP_ADD)
+		add_key(key, data);
 	if (key.key == MLX_KEY_D)
 		d_key(key, data);
 	if (key.key == MLX_KEY_ESCAPE)

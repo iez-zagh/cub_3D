@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/03 16:37:07 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/03 17:26:25 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ typedef struct s_data
 	bool		s_key;
 	bool		d_key;
 	bool		a_key;
+	bool		sub_key;
+	bool		add_key;
 	int			clmn_n;
 	int			rows_n;
 	int			strip_n;
@@ -91,6 +93,7 @@ typedef struct s_data
 	float		nexttouchY;
 	float		wall_dis;
 	float		wall_height;
+	float		mouse_sensive;
 	mlx_image_t	*img;
 	mlx_image_t	*player_img;
 	t_map		map;
@@ -113,6 +116,9 @@ void	draw_minimap2(t_data *data, int i, int u);
 void	handle_mouse(void *d);
 int		checking_collision3(t_data *data, int x, int y);
 float	distance_calcul(float x, float y, float x1, float y1);
+void	my_key_hook5(t_data *data);
+void	sub_key(mlx_key_data_t key, t_data *data);
+void	add_key(mlx_key_data_t key, t_data *data);
 
 /*				parsing					*/
 // === === === === === === === === === //

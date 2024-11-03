@@ -6,11 +6,27 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:56:18 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/03 16:37:35 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/03 17:25:42 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
+
+void	my_key_hook5(t_data *data)
+{
+	if (data->add_key)
+	{
+		if (data->mouse_sensive > 10)
+			return ;
+		data->mouse_sensive += 0.5;
+	}
+	if (data->sub_key)
+	{
+		if (data->mouse_sensive < 1)
+			return ;
+		data->mouse_sensive -= 0.5;
+	}
+}
 
 void	draw_direction(t_data *data, float x, float y)
 {

@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:04:14 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/03 16:35:09 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/03 17:25:36 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	my_key_hook4(t_data *data)
 		draw_minimap(data);
 		cast_rays(data);
 	}
+	my_key_hook5(data);
 }
 
 void	key_hook_2(t_data *data)
@@ -109,9 +110,9 @@ void	handle_mouse(void *d)
 	if (last_position != data->player->mouse_x)
 	{
 		if (data->player->mouse_x > last_position)
-			direction = 2.5;
+			direction = data->mouse_sensive;
 		else
-			direction = -2.5;
+			direction = -data->mouse_sensive;
 		data->player->angle += direction * ROTATE_ANGLE;
 		draw_minimap(data);
 		cast_rays(data);

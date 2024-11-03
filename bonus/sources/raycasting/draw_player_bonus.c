@@ -6,11 +6,27 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 16:38:05 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/03 16:38:50 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/03 17:26:15 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
+
+void	sub_key(mlx_key_data_t key, t_data *data)
+{
+	if (key.action == MLX_PRESS)
+		data->sub_key = 1;
+	else if (key.action == MLX_RELEASE)
+		data->sub_key = 0;
+}
+
+void	add_key(mlx_key_data_t key, t_data *data)
+{
+	if (key.action == MLX_PRESS)
+		data->add_key = 1;
+	else if (key.action == MLX_RELEASE)
+		data->add_key = 0;
+}
 
 void	draw_player(t_data *data, float draw_x, float draw_y, int color)
 {
@@ -69,6 +85,9 @@ void	start_render(t_data *data)
 	data->w_key = false;
 	data->s_key = false;
 	data->d_key = false;
+	data->sub_key = false;
+	data->add_key = false;
+	data->mouse_sensive = 2.5;
 	mlx_key_hook(data->mlx, check_keys, data);
 	mlx_loop_hook(data->mlx, my_key_hook, data);
 	mlx_loop_hook(data->mlx, handle_mouse, data);
