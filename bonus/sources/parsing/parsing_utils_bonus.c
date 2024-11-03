@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:28:59 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/11/01 10:59:23 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/03 17:53:26 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ void	perreur2(int x)
 	else if (x == -15)
 		write (2, "Error : the map : N/S/W/E one of those chars must be"
 			" inside map !\n", 67);
+	else if (x -16)
+		write(2, "Error : the map : D char must not be on empty area "\
+			"or near an other door !\n", 76);
 }
 
 void	perreur(int x)
