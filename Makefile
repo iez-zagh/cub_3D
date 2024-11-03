@@ -2,6 +2,7 @@ NAME = cub3d2
 NAME2 = cub3d
 BONUS = cub3D_bonus
 CC = cc
+CFLAGS = -fsanitize=address
 # CFLAGS = -fsanitize=address -Wextra -Wall -Werror 
 LIBFT_DIR = libft
 GNL_DIR = gnl
