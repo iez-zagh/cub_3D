@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/03 16:21:14 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/03 18:21:08 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	get_color(t_data *data, int x, int y)
 		return (WHITE);
 	if (data->map.map[y / TILE_SCALED][x / TILE_SCALED] == '2')
 		return (GRAY);
+	if (data->map.map[y / TILE_SCALED][x / TILE_SCALED] == 'D')
+		return (BLUE);
 	return (WHITE);
 }
 
