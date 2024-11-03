@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:27:55 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/11/01 19:31:12 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/03 17:41:40 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,8 +141,10 @@ int parse_map(t_data *data, int lines)
 			{
 				if (is_map_char(map[i][j]) == 1 && map[i][j] != ' ')
 					return (-11);
-				else if (map[i][j] == '0' && check_directions(map, i, j) != 0)
+				else if (map[i][j] == '0' && check_directions(map, i, j, 1) != 0)
 					return (-12);
+				else if (map[i][j] == 'D' && check_directions(map, i, j, 0) != 0)
+					return (-16);
 				if (first_last_line(map[i], 0) == 0)
 					return (-14);
 				j++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/03 10:41:01 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/03 17:40:34 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int		map_lines(char **tab, int i);
 int		largest_line(char **map);
 void	spacetotwo(char **map);
 int		is_map_char(char c);
-int		check_directions(char **map, int i, int j);
+int 	check_directions(char **map, int i, int j, int x);
 
 void	angle_init(char c, t_data *data);
 int		empty_line(char *line);
