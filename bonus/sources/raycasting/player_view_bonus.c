@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:56:18 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/03 17:25:42 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/04 00:34:40 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,10 @@ void	draw_direction(t_data *data, float x, float y)
 	i = 0.0 ;
 	while (i < 20)
 	{
+		if (checking_collision2(data, x + (dir_x * i), y + (dir_y * i)))
+			return ;
 		mlx_put_pixel(data->img, x + (dir_x * i), y + (dir_y * i), BLACK);
-		i += 0.02;
+		i += 0.5;
 	}
 }
 

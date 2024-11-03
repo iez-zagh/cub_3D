@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/03 18:12:05 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/04 00:17:50 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include <MLX42.h>
 # include "../../libft/libft.h"
@@ -33,10 +33,10 @@
 # define ROTATE_SPEED 0.05
 # define RADIUS 4.0
 # define RADIUS2 4.0
-# define ROTATE_ANGLE 2.0 * (M_PI / 180)
+# define ROTATE_ANGLE 0.03488888889
 # define WIDTH	1200
 # define HEIGHT	700
-# define FOV_ANGLE 60.0 * (M_PI / 180)
+# define FOV_ANGLE 1.0466666667
 
 typedef struct s_map
 {
@@ -89,8 +89,8 @@ typedef struct s_data
 	float		ver_hit_y;
 	float		xintercept;
 	float		yintercept;
-	float		nexttouchX;
-	float		nexttouchY;
+	float		nexttouchx;
+	float		nexttouchy;
 	float		wall_dis;
 	float		wall_height;
 	float		mouse_sensive;
@@ -106,15 +106,18 @@ void	draw_player(t_data *data, float draw_x, float draw_y, int color);
 void	draw_player2(t_data *data, float draw_x, float draw_y, int color);
 void	draw_direction(t_data *data, float x, float y);
 int		checking_collision(t_data *data, float x, float y);
+int		checking_collision_door(t_data *data, float x, float y);
 void	draw_minimap(t_data *data);
 void	cast_rays(t_data *data);
 void	cast_ray(t_data *data);
 void	check_keys(mlx_key_data_t key, void *data);
 void	player_view(t_data *data);
-int		checking_collision2(t_data *data, int x, int y);
+int		checking_collision2(t_data *data, float x, float y);
+int		checking_collision_door2(t_data *data, int x, int y);
 void	draw_minimap2(t_data *data, int i, int u);
 void	handle_mouse(void *d);
 int		checking_collision3(t_data *data, int x, int y);
+int		checking_collision_door3(t_data *data, int x, int y);
 float	distance_calcul(float x, float y, float x1, float y1);
 void	my_key_hook5(t_data *data);
 void	sub_key(mlx_key_data_t key, t_data *data);
@@ -135,7 +138,7 @@ int		map_lines(char **tab, int i);
 int		largest_line(char **map);
 void	spacetotwo(char **map);
 int		is_map_char(char c);
-int 	check_directions(char **map, int i, int j, int x);
+int		check_directions(char **map, int i, int j, int x);
 
 void	angle_init(char c, t_data *data);
 int		empty_line(char *line);

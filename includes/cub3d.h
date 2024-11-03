@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/03 15:54:08 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/03 23:16:01 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@
 # define MOVE_SPEED 5.0
 # define RADIUS 4.0
 # define RADIUS2 4.0
-# define ROTATE_ANGLE 2.0 * (M_PI / 180)
+# define ROTATE_ANGLE 0.03488888889
 # define WIDTH	1200
 # define HEIGHT	700
-# define FOV_ANGLE 60.0 * (M_PI / 180)
+# define FOV_ANGLE 1.0466666667
 
 typedef struct s_map
 {
@@ -84,8 +84,8 @@ typedef struct s_data
 	float		ver_hit_y;
 	float		xintercept;
 	float		yintercept;
-	float		nexttouchX;
-	float		nexttouchY;
+	float		nexttouchx;
+	float		nexttouchy;
 	float		wall_dis;
 	float		wall_height;
 	mlx_image_t	*img;
@@ -93,7 +93,6 @@ typedef struct s_data
 	t_map		map;
 	t_player	*player;
 }	t_data;
-
 
 /*				raycasting					*/
 // === === === === === === === === === //
@@ -108,7 +107,7 @@ void	check_keys(mlx_key_data_t key, void *data);
 void	player_view(t_data *data);
 int		checking_collision2(t_data *data, int x, int y);
 float	distance_calcul(float x, float y, float x1, float y1);
-int	checking_collision3(t_data *data, int x, int y);
+int		checking_collision3(t_data *data, int x, int y);
 
 /*				parsing					*/
 // === === === === === === === === === //
