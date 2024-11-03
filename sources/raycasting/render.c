@@ -1,4 +1,4 @@
-	/* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
@@ -6,33 +6,12 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:17:54 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/10/06 12:05:26 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/03 16:41:08 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	start_render(t_data *data)
-{
-	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", 0);
-	data->img = mlx_new_image(data->mlx, 336, 224);
-	data->player_img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	data->player->sqaure_x = data->player->x * TILE;
-	data->player->sqaure_y = data->player->y * TILE;
-	data->player->sqaure_x += TILE / 2;
-	data->player->sqaure_y += TILE / 2;
-	cast_rays(data);
-	mlx_image_to_window(data->mlx, data->player_img, 0, 0);
-	mlx_image_to_window(data->mlx, data->img, 0, 0);
-	data->a_key = false;
-	data->w_key = false;
-	data->s_key = false;
-	data->d_key = false;
-	mlx_key_hook(data->mlx, check_keys, data);
-	mlx_loop_hook(data->mlx, my_key_hook, data);
-	mlx_loop(data->mlx);
-}
-	
 void	w_key(mlx_key_data_t key, t_data *data)
 {
 	if (key.action == MLX_PRESS)
@@ -78,7 +57,6 @@ void	check_keys(mlx_key_data_t key, void *data)
 		d_key(key, data);
 	if (key.key == MLX_KEY_ESCAPE)
 	{
-		//needs to release resources
 		write(1, "WINDOW CLOSED\n", 14);
 		exit(0);
 	}

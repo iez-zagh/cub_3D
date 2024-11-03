@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/01 17:47:01 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/03 14:00:15 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,12 @@ void	how_2_use(void)
 
 int	main(int ac, char **av)
 {
-	t_data	data;
-	int		stat;
-	t_player player;
+	t_data		data;
+	int			stat;
+	t_player	player;
+	char		*map;
 
-	char	*map = NULL;
+	map = NULL;
 	if (ac != 2)
 		return (how_2_use(), 1);
 	data.player = &player;
@@ -47,8 +48,6 @@ int	main(int ac, char **av)
 		return (stat);
 	player.sqaure_x = player.x * TILE;
 	player.sqaure_y = player.y * TILE;
-	printf("player x = %f\n", player.x);
-	printf("player y = %f\n", player.y);
 	start_render(&data);
 	return (0);
 }

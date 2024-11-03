@@ -1,16 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_view.c                                      :+:      :+:    :+:   */
+/*   draw_player_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/15 14:56:18 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/03 16:41:03 by iez-zagh         ###   ########.fr       */
+/*   Created: 2024/11/03 16:38:05 by iez-zagh          #+#    #+#             */
+/*   Updated: 2024/11/03 16:38:50 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d_bonus.h"
+
+void	draw_player(t_data *data, float draw_x, float draw_y, int color)
+{
+	float	x;
+	float	y;
+
+	y = -RADIUS;
+	while (y < RADIUS)
+	{
+		x = -RADIUS;
+		while (x < RADIUS)
+		{
+			if (pow(x, 2) + pow(y, 2) < pow(RADIUS, 2))
+				mlx_put_pixel(data->img, draw_x + x, draw_y + y, color);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	draw_player2(t_data *data, float draw_x, float draw_y, int color)
+{
+	float	x;
+	float	y;
+
+	draw_x = (data->player->sqaure_x / TILE) * TILE_SCALED;
+	draw_y = (data->player->sqaure_y / TILE) * TILE_SCALED;
+	y = -RADIUS;
+	while (y < RADIUS)
+	{
+		x = -RADIUS;
+		while (x < RADIUS)
+		{
+			if (x * x + y * y < RADIUS * RADIUS)
+				mlx_put_pixel(data->img, draw_x + x, draw_y + y, color);
+			x++;
+		}
+		y++;
+	}
+}
 
 void	start_render(t_data *data)
 {
@@ -21,6 +61,7 @@ void	start_render(t_data *data)
 	data->player->sqaure_y = data->player->y * TILE;
 	data->player->sqaure_x += TILE / 2;
 	data->player->sqaure_y += TILE / 2;
+	draw_minimap(data);
 	cast_rays(data);
 	mlx_image_to_window(data->mlx, data->player_img, 0, 0);
 	mlx_image_to_window(data->mlx, data->img, 0, 0);
@@ -30,30 +71,6 @@ void	start_render(t_data *data)
 	data->d_key = false;
 	mlx_key_hook(data->mlx, check_keys, data);
 	mlx_loop_hook(data->mlx, my_key_hook, data);
+	mlx_loop_hook(data->mlx, handle_mouse, data);
 	mlx_loop(data->mlx);
-}
-
-void	player_view(t_data *data)
-{
-	float	dis_projection_plane;
-	float	start;
-	float	end;
-	float	i;
-
-	data->wall_dis = data->wall_dis
-		* cos(data->cast_angle - data->player->angle);
-	dis_projection_plane = (WIDTH / 2) / tan(FOV_ANGLE / 2);
-	data->wall_height = (TILE / data->wall_dis) * dis_projection_plane;
-	start = (HEIGHT / 2) - (data->wall_height / 2);
-	if (start < 0)
-		start = 0;
-	end = start + data->wall_height;
-	if (end >= HEIGHT)
-		end = HEIGHT;
-	i = start;
-	while (i < end)
-	{
-		mlx_put_pixel(data->player_img, data->strip_n, i, RED);
-		i++;
-	}
 }

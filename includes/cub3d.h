@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/03 10:38:36 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/03 15:54:08 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,18 @@ typedef struct s_data
 	int			strip_n;
 	float		cast_angle;
 	void		*mlx;
+	bool		found_horz_hit;
+	bool		foundverticalhit;
+	float		hor_hit_x;
+	float		hor_hit_y;
+	float		ver_hit_x;
+	float		ver_hit_y;
+	float		xintercept;
+	float		yintercept;
+	float		nexttouchX;
+	float		nexttouchY;
+	float		wall_dis;
+	float		wall_height;
 	mlx_image_t	*img;
 	mlx_image_t	*player_img;
 	t_map		map;
@@ -91,10 +103,12 @@ void	start_render(t_data *data);
 int		checking_collision(t_data *data, float x, float y);
 void	draw_minimap(t_data *data);
 void	cast_rays(t_data *data);
-float	cast_ray(t_data *data, float x, float y);
+void	cast_ray(t_data *data);
 void	check_keys(mlx_key_data_t key, void *data);
-void	player_view(t_data *data, float dis);
+void	player_view(t_data *data);
 int		checking_collision2(t_data *data, int x, int y);
+float	distance_calcul(float x, float y, float x1, float y1);
+int	checking_collision3(t_data *data, int x, int y);
 
 /*				parsing					*/
 // === === === === === === === === === //
