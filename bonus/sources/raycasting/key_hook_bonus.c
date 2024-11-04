@@ -6,38 +6,11 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:04:14 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/04 14:10:10 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/04 14:19:19 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
-
-void	key_hook_3(t_data *data)
-{
-	float	new_x;	
-	float	new_y;	
-
-	if (data->player->angle > M_PI * 2)
-		data->player->angle = 0;
-	if (data->player->angle < 0)
-		data->player->angle = 2 * M_PI;
-	if (data->s_key)
-	{
-		new_x = data->player->sqaure_x
-			+ cos(data->cast_angle + M_PI) * MOVE_SPEED;
-		new_y = data->player->sqaure_y
-			+ sin(data->cast_angle + M_PI) * MOVE_SPEED;
-		if (!checking_collision(data, new_x, new_y)
-			&& !checking_collision_door(data, new_x, new_y))
-		{
-			data->player->sqaure_x = new_x;
-			data->player->sqaure_y = new_y;
-			draw_minimap(data);
-			cast_rays(data);
-		}
-	}
-	my_key_hook4(data);
-}
 
 void	my_key_hook4(t_data *data)
 {
@@ -66,6 +39,33 @@ void	my_key_hook4(t_data *data)
 		cast_rays(data);
 	}
 	my_key_hook5(data);
+}
+
+void	key_hook_3(t_data *data)
+{
+	float	new_x;	
+	float	new_y;	
+
+	if (data->player->angle > M_PI * 2)
+		data->player->angle = 0;
+	if (data->player->angle < 0)
+		data->player->angle = 2 * M_PI;
+	if (data->s_key)
+	{
+		new_x = data->player->sqaure_x
+			+ cos(data->cast_angle + M_PI) * MOVE_SPEED;
+		new_y = data->player->sqaure_y
+			+ sin(data->cast_angle + M_PI) * MOVE_SPEED;
+		if (!checking_collision(data, new_x, new_y)
+			&& !checking_collision_door(data, new_x, new_y))
+		{
+			data->player->sqaure_x = new_x;
+			data->player->sqaure_y = new_y;
+			draw_minimap(data);
+			cast_rays(data);
+		}
+	}
+	my_key_hook4(data);
 }
 
 void	key_hook_2(t_data *data)

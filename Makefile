@@ -3,9 +3,12 @@ NAME2 = cub3d
 BONUS = cub3D_bonus
 CC = cc
 # CFLAGS = -fsanitize=address -Wextra -Wall -Werror 
-LIBFT_DIR = libft
-GNL_DIR = gnl
-LIBS2 =  -L /Users/$(USER)/Desktop/cub_3d/MLX42/build -lmlx42 -L "/Users/$(USER)/homebrew/opt/glfw/lib" -lglfw -L /Users/$(USER)/Desktop/cub_3d/libft -lft -L /Users/$(USER)/Desktop/cub_3d/gnl -lftgnl   -Ofast
+LIBFT_DIR = /Users/$(USER)/Desktop/cub_3d/libft
+GNL_DIR = /Users/$(USER)/Desktop/cub_3d/gnl
+LIBS2 = -L /Users/$(USER)/Desktop/cub_3d/MLX42/build -lmlx42 \
+        -L /Users/$(USER)/homebrew/opt/glfw/lib -lglfw \
+        -L /Users/$(USER)/Desktop/cub_3d/libft -lft \
+        -L /Users/$(USER)/Desktop/cub_3d/gnl -lftgnl -Ofast
 INCLUDES = -I includes -I MLX42/include/MLX42
 B_INCLUDES = -I bonus/cub3d_bonus.h -I MLX42/include/MLX42
 HEADER = includes/cub3d.h
@@ -38,12 +41,12 @@ bonus/%.o:bonus/%.c $(B_HEADER)
 all : $(NAME2)
 $(NAME2): $(M_OBJECTS)
 	@make -C $(LIBFT_DIR)
-	@make -C $(GNL_DIR)
 	@$(CC) $(CFLAGS) $(INCLUDES) $(M_OBJECTS) $(LIBS2) -o $(NAME2)
 	@echo the mandatory executable created successfully
 
 bonus : $(BONUS)
 $(BONUS): $(B_OBJECTS)
+	@make bonus -C $(LIBFT_DIR)
 	@make -C $(LIBFT_DIR)
 	@make -C $(GNL_DIR)
 	@$(CC) $(CFLAGS) -I bonus/cub3d_bonus.h -I MLX42/include/MLX42 $(B_OBJECTS) $(LIBS2) -o $(BONUS)

@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/04 14:00:00 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/04 14:24:01 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define CUB3D_BONUS_H
 
 # include <MLX42.h>
-# include "../../libft/libft.h"
-# include "../../gnl/get_next_line.h"
+# include "../../../libft/libft.h"
+# include "../../../gnl/get_next_line.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <math.h>
