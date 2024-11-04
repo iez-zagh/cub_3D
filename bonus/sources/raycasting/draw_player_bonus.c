@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 16:38:05 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/03 17:26:15 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/04 13:54:54 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	draw_player2(t_data *data, float draw_x, float draw_y, int color)
 void	start_render(t_data *data)
 {
 	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", 0);
-	data->img = mlx_new_image(data->mlx, 336, 224);
+	data->img = mlx_new_image(data->mlx, WIDTH / 2, HEIGHT / 2);
 	data->player_img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->player->sqaure_x = data->player->x * TILE;
 	data->player->sqaure_y = data->player->y * TILE;

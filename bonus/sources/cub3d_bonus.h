@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/04 00:44:13 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/04 14:00:00 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,16 @@
 # include <fcntl.h>
 
 # define RED 0xE11E00FF // need to know this later
-# define BLUE 0x87CEFAFF
+# define BLUE 0x4682B4FF
+
 # define WHITE 0xFFFFFFFF
 # define BLACK 0x00000FF
+# define YELLOW 0xFFFF00FF
 # define GRAY 0x808080FF
+# define SHAPE 0xA0C1DFFF
 # define TILE 64
 # define TILE_SCALED 28
+# define ZOOM_TIE  
 # define MOVE_SPEED 5.0
 # define ROTATE_SPEED 0.05
 # define RADIUS 4.0
@@ -37,6 +41,12 @@
 # define WIDTH	1200
 # define HEIGHT	700
 # define FOV_ANGLE 1.0466666667
+
+typedef struct s_node
+{
+	void			*ptr;
+	struct	s_node	*next;
+}	t_node;
 
 typedef struct s_map
 {
@@ -76,6 +86,7 @@ typedef struct s_data
 	bool		a_key;
 	bool		sub_key;
 	bool		add_key;
+	bool		open_door;
 	int			clmn_n;
 	int			rows_n;
 	int			strip_n;

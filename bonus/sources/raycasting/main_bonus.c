@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/03 18:21:08 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/04 13:59:00 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int	get_color(t_data *data, int x, int y)
 		|| (data->map.map[y / TILE_SCALED][x / TILE_SCALED] == 'S')
 		|| (data->map.map[y / TILE_SCALED][x / TILE_SCALED] == 'N')
 		|| (data->map.map[y / TILE_SCALED][x / TILE_SCALED] == 'E'))
-		return (WHITE);
-	if (data->map.map[y / TILE_SCALED][x / TILE_SCALED] == '2')
 		return (GRAY);
+	if (data->map.map[y / TILE_SCALED][x / TILE_SCALED] == '2')
+		return (SHAPE);
 	if (data->map.map[y / TILE_SCALED][x / TILE_SCALED] == 'D')
-		return (BLUE);
+		return (RED);
 	return (WHITE);
 }
 
@@ -59,7 +59,7 @@ void	draw_minimap(t_data *data)
 	draw_minimap2(data, (data->player->sqaure_y / TILE) * TILE_SCALED - 4
 		* TILE_SCALED, (data->player->sqaure_x / TILE)
 		* TILE_SCALED - 6 * TILE_SCALED);
-	draw_player(data, 6 * TILE_SCALED, 4 * TILE_SCALED, RED);
+	draw_player(data, 6 * TILE_SCALED, 4 * TILE_SCALED, YELLOW);
 	draw_direction(data, 6 * TILE_SCALED, 4 * TILE_SCALED);
 }
 

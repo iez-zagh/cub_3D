@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/03 23:16:01 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/04 14:12:48 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ void	cast_rays(t_data *data);
 void	cast_ray(t_data *data);
 void	check_keys(mlx_key_data_t key, void *data);
 void	player_view(t_data *data);
-int		checking_collision2(t_data *data, int x, int y);
 float	distance_calcul(float x, float y, float x1, float y1);
 int		checking_collision3(t_data *data, int x, int y);
 

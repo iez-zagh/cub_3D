@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/04 00:13:41 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/04 14:04:47 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	vert_traverse(t_data *data, float ystep, float xstep)
 		&& data->nexttouchy >= 0 && data->nexttouchy < data->rows_n * TILE)
 	{
 		if (checking_collision3(data, data->nexttouchx, data->nexttouchy)
-			|| checking_collision_door3(data, data->nexttouchx, data->nexttouchy))
+			|| checking_collision_door3(data, data->nexttouchx,
+				data->nexttouchy))
 		{
 			data->foundverticalhit = true;
 			data->ver_hit_x = data->nexttouchx;
@@ -47,8 +48,8 @@ void	vert_interception(t_data *data)
 	data->xintercept = floor(data->player->sqaure_x / TILE) * TILE;
 	if ((data->cast_angle < 0.5 * M_PI || data->cast_angle > 1.5 * M_PI))
 		data->xintercept += TILE;
-	data->yintercept = data->player->sqaure_y +
-		((data->xintercept - data->player->sqaure_x) * tan(data->cast_angle));
+	data->yintercept = data->player->sqaure_y
+		+ ((data->xintercept - data->player->sqaure_x) * tan(data->cast_angle));
 	xstep = TILE;
 	data->nexttouchx = data->xintercept;
 	data->nexttouchy = data->yintercept;
@@ -67,7 +68,9 @@ void	horz_traverse(t_data *data, float ystep, float xstep)
 	while (data->nexttouchx >= 0 && data->nexttouchx < data->clmn_n * TILE
 		&& data->nexttouchy >= 0 && data->nexttouchy < data->rows_n * TILE)
 	{
-		if (checking_collision3(data, data->nexttouchx, data->nexttouchy) || checking_collision_door3(data, data->nexttouchx, data->nexttouchy))
+		if (checking_collision3(data, data->nexttouchx, data->nexttouchy)
+			|| checking_collision_door3(data, data->nexttouchx,
+				data->nexttouchy))
 		{
 			data->found_horz_hit = true;
 			data->hor_hit_x = data->nexttouchx;

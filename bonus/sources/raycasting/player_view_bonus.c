@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:56:18 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/04 01:03:06 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/04 14:11:56 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,17 @@ void	my_key_hook5(t_data *data)
 	{
 		if (data->mouse_sensive > 10)
 			return ;
-		data->mouse_sensive += 0.5;
+		data->mouse_sensive += 0.2;
 	}
 	if (data->sub_key)
 	{
 		if (data->mouse_sensive < 1)
 			return ;
-		data->mouse_sensive -= 0.5;
+		data->mouse_sensive -= 0.2;
+	}
+	if (data->open_door)
+	{
+		puts("here open");
 	}
 }
 
@@ -39,7 +43,14 @@ void	draw_direction(t_data *data, float x, float y)
 	i = 0.0 ;
 	while (i < 20)
 	{
-		if (checking_collision2(data, (dir_x * i) + (data->player->sqaure_x / TILE) * TILE_SCALED, (dir_y * i) + (data->player->sqaure_y)/ TILE) * TILE_SCALED)
+		if (checking_collision2(data, (data->player->sqaure_x / TILE)
+				* TILE_SCALED
+				+ (dir_x * i), (data->player->sqaure_y / TILE) * TILE_SCALED
+				+ (dir_y * i))
+			|| checking_collision_door2(data, (data->player->sqaure_x / TILE)
+				* TILE_SCALED
+				+ (dir_x * i), (data->player->sqaure_y / TILE) * TILE_SCALED
+				+ (dir_y * i)))
 			return ;
 		mlx_put_pixel(data->img, x + (dir_x * i), y + (dir_y * i), BLACK);
 		i++;

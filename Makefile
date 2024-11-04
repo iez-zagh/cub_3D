@@ -23,7 +23,8 @@ B_SOURCES = bonus/sources/raycasting/main_bonus.c bonus/sources/raycasting/key_h
 			bonus/sources/parsing/parsing_bonus.c bonus/sources/parsing/parsing_v1_bonus.c\
 			bonus/sources/parsing/parsing_utils_bonus.c bonus/sources/parsing/news_parse_bonus.c\
 			bonus/sources/parsing/f_c_parse_bonus.c bonus/sources/parsing/parsing_utils2_bonus.c \
-			bonus/sources/parsing/parsing_utils3_bonus.c bonus/sources/raycasting/draw_player_bonus.c
+			bonus/sources/parsing/parsing_utils3_bonus.c bonus/sources/raycasting/draw_player_bonus.c\
+			bonus/sources/raycasting/garbage_bonus.c bonus/sources/raycasting/collision_bonus.c
 
 M_OBJECTS = $(M_SOURCES:.c=.o)
 B_OBJECTS = $(B_SOURCES:.c=.o)

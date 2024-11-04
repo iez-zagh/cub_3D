@@ -6,50 +6,11 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:29:49 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/04 01:04:31 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/04 14:12:34 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int	checking_collision2(t_data *data, int x, int y)
-{
-	if (!data->map.map[(int)(y / TILE_SCALED)][(int)(x / TILE_SCALED)]
-	|| (data->map.map[(int)(y / TILE_SCALED)][(int)(x / TILE_SCALED)] == '1')
-	)
-		return (1);
-	if (		
-		(data->map.map[(int)((y + 1) / TILE_SCALED)]
-		[(int)((x - 1) / TILE_SCALED)] == '1' &&
-		data->map.map[(int)((y) / TILE_SCALED)]
-		[(int)((x + 1) / TILE_SCALED)] == '1'
-
-		&&
-
-		data->map.map[(int)((y + 1) / TILE_SCALED)]
-		[(int)((x + 1) / TILE_SCALED)] == '0'
-		)
-		||
-		(
-		data->map.map[(int)((y + 1) / TILE_SCALED)] //this here
-		[(int)((x) / TILE_SCALED)] == '1' 
-		&&
-		data->map.map[(int)((y) / TILE_SCALED)]
-		[(int)((x - 1) / TILE_SCALED)] == '1'
-
-		// &&
-		// data->map.map[(int)((y + 1) / TILE_SCALED)]
-		// [(int)((x - 1) / TILE_SCALED)] == '0'
-
-		//
-		&&
-		data->map.map[(int)((y + 1) / TILE_SCALED)] //this for the left corner
-		[(int)((x - 1) / TILE_SCALED)] == '0'
-		)
-		)
-			return (1);
-	return (0);
-}
 
 int	checking_collision3(t_data *data, int x, int y)
 {
@@ -94,7 +55,7 @@ void	sky_floor(t_data *data)//optimi
 	while (i < 350)
 	{
 		j = 0;
-		while (j < 1200)
+		while (j < WIDTH)
 		{
 			mlx_put_pixel(data->player_img, j, i, BLUE);
 			j++;
@@ -105,7 +66,7 @@ void	sky_floor(t_data *data)//optimi
 	while (i < 700)
 	{
 		j = 0;
-		while (j < 1200)
+		while (j < WIDTH)
 		{
 			mlx_put_pixel(data->player_img, j, i, BLACK);
 			j++;
