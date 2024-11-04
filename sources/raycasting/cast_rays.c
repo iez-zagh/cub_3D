@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:29:49 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/03 16:40:53 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/04 01:04:31 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,36 @@ int	checking_collision2(t_data *data, int x, int y)
 	|| (data->map.map[(int)(y / TILE_SCALED)][(int)(x / TILE_SCALED)] == '1')
 	)
 		return (1);
-	if (
+	if (		
 		(data->map.map[(int)((y + 1) / TILE_SCALED)]
 		[(int)((x - 1) / TILE_SCALED)] == '1' &&
 		data->map.map[(int)((y) / TILE_SCALED)]
 		[(int)((x + 1) / TILE_SCALED)] == '1'
+
 		&&
+
 		data->map.map[(int)((y + 1) / TILE_SCALED)]
 		[(int)((x + 1) / TILE_SCALED)] == '0'
-		) || (
-		data->map.map[(int)((y + 1) / TILE_SCALED)]
-		[(int)((x) / TILE_SCALED)] == '1'
+		)
+		||
+		(
+		data->map.map[(int)((y + 1) / TILE_SCALED)] //this here
+		[(int)((x) / TILE_SCALED)] == '1' 
 		&&
 		data->map.map[(int)((y) / TILE_SCALED)]
 		[(int)((x - 1) / TILE_SCALED)] == '1'
+
+		// &&
+		// data->map.map[(int)((y + 1) / TILE_SCALED)]
+		// [(int)((x - 1) / TILE_SCALED)] == '0'
+
+		//
 		&&
-		data->map.map[(int)((y + 1) / TILE_SCALED)]
+		data->map.map[(int)((y + 1) / TILE_SCALED)] //this for the left corner
 		[(int)((x - 1) / TILE_SCALED)] == '0'
 		)
 		)
-		return (1);
+			return (1);
 	return (0);
 }
 
