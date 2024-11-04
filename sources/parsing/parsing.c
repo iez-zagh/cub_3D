@@ -22,10 +22,10 @@ int	lines_counter(char mapname[])
 	fd = open(mapname, O_RDONLY);
 	if (fd == -1)
 		return (-1);
-	while(1)
+	while (1)
 	{
 		line = get_next_line(fd);
-		if(!line)
+		if (!line)
 			return (close(fd), counter);
 		counter++;
 		free(line);
@@ -72,14 +72,14 @@ int	file_to_table(char mapname[], char **table)
 	return (0);
 }
 
-int parsing(t_data *data, char mapname[])
+int	parsing(t_data *data, char mapname[])
 {
 	int		stat;
 	char	*line;
 	char	**table;
 	int		lines;
 
-	stat = check_mapname(mapname, &lines);//.cub
+	stat = check_mapname(mapname, &lines);
 	if (stat < 0)
 		return (perreur(stat), stat);
 	table = (char **)malloc (sizeof(char *) * (lines + 1));

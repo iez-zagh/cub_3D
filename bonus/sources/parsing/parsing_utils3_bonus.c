@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 01:22:46 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/11/04 21:41:51 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/04 23:01:56 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ void	angle_init(char c, t_data *data)
 		data->player->angle = 0 * (M_PI / 180);
 }
 
-int is_player(char c)
+int	is_player(char c)
 {
 	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
 		return (1);
 	return (0);
 }
 
-int sec_char(char *tab, int i)
+int	sec_char(char *tab, int i)
 {
 	if ((tab[i] == 'N' || tab[i] == 'S') && tab[i + 1] != 'O')
 		return (-1);
@@ -42,4 +42,18 @@ int sec_char(char *tab, int i)
 	if (tab[i] == 'W' && tab[i + 1] != 'E')
 		return (-1);
 	return (0);
+}
+
+int	first_last_line(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] != '1' && line[i] != ' ')
+			return (0);
+		i++;
+	}
+	return (1);
 }

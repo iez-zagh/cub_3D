@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 01:21:07 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/11/04 21:46:04 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/04 22:51:27 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,14 @@ void	spacetotwo(char **map)
 	}
 }
 
-int is_map_char(char c)
+int	is_map_char(char c)
 {
 	if (c == '1' || c == '0' || c == 'W' || c == 'E' || c == 'S' || c == 'N')
 		return (0);
 	return (1);
 }
 
-int check_directions(char **map, int i, int j)
+int	check_directions(char **map, int i, int j)
 {
 	if (is_map_char(map[i - 1][j])
 		|| is_map_char(map[i + 1][j])

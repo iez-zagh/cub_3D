@@ -6,13 +6,13 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 16:51:41 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/11/04 19:09:51 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/04 22:54:46 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int _counter(char *tab)
+int	_counter(char *tab)
 {
 	int	i;
 	int	comas;
@@ -33,17 +33,17 @@ int	checker_tab(char *tab)
 	int	i;
 
 	i = 0;
-	while(ft_isspace(tab[i]))
+	while (ft_isspace(tab[i]))
 		i++;
 	if (tab[i] == '\0')
 		return (-1);
-	while(tab[i] && !ft_isspace(tab[i]))
+	while (tab[i] && !ft_isspace(tab[i]))
 	{
 		if (!ft_isdigit(tab[i]))
 			return (-1);
 		i++;
 	}
-	while(ft_isspace(tab[i]))
+	while (ft_isspace(tab[i]))
 		i++;
 	if (tab[i] != '\0')
 		return (-1);

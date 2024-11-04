@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   news_parse_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 17:15:06 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/11/01 10:59:23 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/04 23:07:17 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	png_or_xpm(char *coor)
 	1 && (png = NULL, xpm = NULL);
 	png = ft_strnstr(coor, ".png", ft_strlen(coor));
 	xpm = ft_strnstr(coor, ".xpm", ft_strlen(coor));
-	if (!xpm && !png)  
+	if (!xpm && !png)
 		return (-1);
 	else if (xpm && !png)
 		return (1);
@@ -93,15 +93,15 @@ int	xp_checker(char **c_s, int x, int *i, t_map *map)
 
 int	check_news_ptrs(char *coor, char *str, t_map *map)
 {
-	int		i;
-	int		x;
-	int 	stat;
+	int	i;
+	int	x;
+	int	stat;
 
 	i = 0;
 	if (ft_isspace(coor[i]))
 		return (-6);
-	if ((coor[i] != str[0] || coor[i + 1] != str[1]) ||\
-		(coor[i] == str[0] && coor[i + 1] == str[1] &&\
+	if ((coor[i] != str[0] || coor[i + 1] != str[1])
+		|| (coor[i] == str[0] && coor[i + 1] == str[1] && \
 		(!ft_isspace(coor[i + 2]) || ((i > 0 && !ft_isspace(coor[i - 1]))))))
 		return (-6);
 	i += 2;
