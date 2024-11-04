@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/04 14:24:01 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/04 22:13:51 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,9 +152,8 @@ int		is_map_char(char c);
 int		check_directions(char **map, int i, int j, int x);
 
 void	angle_init(char c, t_data *data);
-int		empty_line(char *line);
 int		sec_char(char *tab, int i);
-
+int 	is_player(char c);
 // === === === === === === === === === //
 
 #endif

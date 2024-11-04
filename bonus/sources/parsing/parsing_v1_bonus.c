@@ -6,64 +6,62 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:27:55 by zmaghdao          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/11/04 00:41:27 by iez-zagh         ###   ########.fr       */
+=======
+/*   Updated: 2024/11/04 21:47:26 by zmaghdao         ###   ########.fr       */
+>>>>>>> zaka
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
 
-int	first_last_line(char *line, int x)
+int	first_last_line(char *line)
 {
 	int	i;
 
 	i = 0;
-	if (x)
+	while (line[i])
 	{
-		while (line[i])
-		{
-			if (line[i] != '1' && line[i] != ' ')
-				return (0);
-			i++;
-		}
-	}
-	else if (!x)
-	{
-		while (line[i] == ' ')
-			i++;
-		if (line[i] != '1')
+		if (line[i] != '1' && line[i] != ' ')
 			return (0);
-		i = ft_strlen(line) - 1;
-		while(line[i] == ' ')
-			i--;
-		if (line[i] != '1')
-			return (0);
+		i++;
 	}
 	return (1);
 }
 
-int	_xtra_map(char ***map, int lenght, int lines)
+int fill_lines(int *i, char ***new_map, int lenght, int max)
 {
-	int	i;
-	int len;
 	int	strlen;
-	char	**new_map;
 	
-	1 && (i = 0, new_map = (char **)malloc(sizeof(char *) * (lines + 11)));
-	if (!new_map)
-		return (-2);
-	while (i < 5)
+	while ((*i) < max)
 	{
-		strlen = 0, new_map[i] = ft_strdup("22222222");
+		strlen = 0, (*new_map)[(*i)] = ft_strdup("22222222");
 		while (strlen < lenght)
 		{
-			new_map[i] = ft_strjoin(new_map[i], "2");
-			if (!new_map[i])
-				return (ft_free_par(*map), ft_free_par(new_map), -2);
+			(*new_map)[(*i)] = ft_strjoin((*new_map)[(*i)], "2");
+			if (!(*new_map)[(*i)])
+				return (-2);
 			strlen++;
 		}
-		i++;
+		(*i)++;
 	}
-	int k = 0;
+	return (0);
+}
+
+int	_xtra_map(char ***map, int lenght, int lines, t_data *data)
+{
+	int	i;
+	int	len;
+	int	k;
+	char	**new_map;
+	
+	1 && (i = 0, new_map = (char **)malloc(sizeof(char *) * (lines + 9)));
+	if (!new_map)
+		return (-2);
+	if (fill_lines(&i, &new_map, lenght, 4) < 0)
+		return (ft_free_par(*map), ft_free_par(new_map), -2);
+	k = 0;
 	while ((*map)[k])
 	{
 		new_map[i] = ft_strjoin(ft_strdup("22222222"), (*map)[k]);
@@ -71,20 +69,15 @@ int	_xtra_map(char ***map, int lenght, int lines)
 			return (ft_free_par(*map), ft_free_par(new_map), -2);
 		i++, k++;
 	}
-	while (i < lines + 10)
-	{
-		strlen = 0, new_map[i] = ft_strdup("22222222");
-		while (strlen < lenght)
-		{
-			new_map[i] = ft_strjoin(new_map[i], "2");
-			if (!new_map[i])
-				return (ft_free_par(*map), ft_free_par(new_map), -2);
-			strlen++;
-		}
-		i++;
-	}
+	if (fill_lines(&i, &new_map, lenght, lines + 8) < 0)
+		return (ft_free_par(*map), ft_free_par(new_map), -2);
 	new_map[i] = NULL;
+<<<<<<< HEAD
 	return (ft_free_par(*map), *map = new_map, 0);
+=======
+	1 && (data->clmn_n += 8, data->rows_n += 5);
+	return (ft_free_par(*map), data->map.map = new_map, 0);
+>>>>>>> zaka
 }
 
 int	last_check(char **map, t_data *data)
@@ -105,7 +98,7 @@ int	last_check(char **map, t_data *data)
 				count++;
 				angle_init(map[idx[0]][idx[1]], data);
 				data->player->x = idx[1] + 8;
-				data->player->y = idx[0] + 5;
+				data->player->y = idx[0] + 4;
 			}
 			idx[1]++;
 		}
@@ -113,10 +106,18 @@ int	last_check(char **map, t_data *data)
 	}
 	if (count != 1)
 		return (-15);
-	_xtra_map(&map, data->clmn_n + 8, data->rows_n);
-	data->clmn_n += 8;
-	data->rows_n += 5;
-	data->map.map = map;
+	return (_xtra_map(&map, data->clmn_n + 8, data->rows_n, data));
+}
+
+int char_checker(char **map, int i, int j)
+{
+	if (is_map_char(map[i][j]) == 1 && map[i][j] != ' ')
+		return (-11);
+	else if ((map[i][j] == '0' || is_player(map[i][j]))
+		&& check_directions(map, i, j, 1) != 0)
+		return (-12);
+	else if (map[i][j] == 'D' && check_directions(map, i, j, 0) != 0)
+		return (-16);
 	return (0);
 }
 
@@ -125,24 +126,20 @@ int parse_map(t_data *data, int lines)
 	int		i;
 	int		j;
 	char	**map;
+	int		stat;
 
 	1 && (map = data->map.map, i = 0);
 	while (i < lines)
 	{
 		j = 0;
-		if ((i == 0 || i == lines - 1) && (first_last_line(map[i], 1) == 0))
+		if ((i == 0 || i == lines - 1) && (first_last_line(map[i]) == 0))
 			return (-13);
 		else if (i > 0 && i < lines - 1)
 		{	while (map[i][j])
 			{
-				if (is_map_char(map[i][j]) == 1 && map[i][j] != ' ')
-					return (-11);
-				else if (map[i][j] == '0' && check_directions(map, i, j, 1) != 0)
-					return (-12);
-				else if (map[i][j] == 'D' && check_directions(map, i, j, 0) != 0)
-					return (-16);
-				if (first_last_line(map[i], 0) == 0)
-					return (-14);
+				stat = char_checker(map, i, j);
+				if (stat < 0)
+					return (stat);
 				j++;
 			}
 		}
@@ -202,7 +199,7 @@ int map_begins(char *tab, t_map map)
 	return (1);
 }
 
-int	fill_map_spaces(char ***map, t_data *data, int j)
+int	fill_map_spaces(char ***map, t_data *data)
 {
 	int	len;
 	int	strlen;
@@ -232,14 +229,13 @@ int	get_map(t_data *data, int i, int *j)
 	int		stat;
 
 	1 && (tab = data->map.table, *j = map_lines(tab, i));
-	data->rows_n = *j;
 	map = (char **)malloc(sizeof(char *) * ((*j) + 1));
 	if (!map)
 		return (-2);
 	(*j) = 0;
 	while (tab[i])
 	{
-		if (ft_strlen(tab[i]) == 0 || empty_line(tab[i]) == 0)
+		if (ft_strlen(tab[i]) == 0)
 			break ;
 		map[(*j)] = ft_strdup(tab[i]);
 		if (!map[(*j)])
@@ -249,10 +245,26 @@ int	get_map(t_data *data, int i, int *j)
 	map[(*j)] = NULL;
 	if (tab[i])
 		return (ft_free_par(map), -10);
-	stat = fill_map_spaces(&map, data, *j);
+	stat = fill_map_spaces(&map, data);
 	if (stat < 0)
 		return (ft_free_par(map), stat);
 	return (data->map.map = map, 0);
+}
+
+void	check_table_v2(t_data *data, char *tab)
+{
+	if (ft_strnstr(tab, "NO", ft_strlen(tab)))
+		1 && (data->map.north = tab, data->map.news[0]++);
+	else if (ft_strnstr(tab, "WE", ft_strlen(tab)))
+		1 && (data->map.west = tab, data->map.news[2]++);
+	else if (ft_strnstr(tab, "EA", ft_strlen(tab)))
+		1 && (data->map.east = tab, data->map.news[1]++);
+	else if (ft_strnstr(tab, "SO", ft_strlen(tab)))
+		1 && (data->map.south = tab, data->map.news[3]++);
+	else if (ft_strnstr(tab, "F", ft_strlen(tab)))
+		1 && (data->map.fcolor = tab, data->map.color_f++);
+	else if (ft_strnstr(tab, "C", ft_strlen(tab)))
+		1 && (data->map.ccolor = tab, data->map.color_c++);
 }
 
 int	check_table(t_data *data)
@@ -267,32 +279,19 @@ int	check_table(t_data *data)
 	inisialize_vars(data);
 	while (tab[++i])
 	{
-		if (ft_strnstr(tab[i], "NO", ft_strlen(tab[i])))
-			1 && (data->map.north = tab[i], data->map.news[0]++);
-		else if (ft_strnstr(tab[i], "WE", ft_strlen(tab[i])))
-			1 && (data->map.west = tab[i], data->map.news[2]++);
-		else if (ft_strnstr(tab[i], "EA", ft_strlen(tab[i])))
-			1 && (data->map.east = tab[i], data->map.news[1]++);
-		else if (ft_strnstr(tab[i], "SO", ft_strlen(tab[i])))
-			1 && (data->map.south = tab[i], data->map.news[3]++);
-		else if (ft_strnstr(tab[i], "F", ft_strlen(tab[i])))
-			1 && (data->map.fcolor = tab[i], data->map.color_f++);
-		else if (ft_strnstr(tab[i], "C", ft_strlen(tab[i])))
-			1 && (data->map.ccolor = tab[i], data->map.color_c++);
+		check_table_v2(data, tab[i]);
 		stat = map_begins(tab[i], data->map);
 		if (stat == 0)
 		{
 			stat2 = get_map(data, i, &j);
 			if (stat2 < 0)
 				return (stat2);
+			data->rows_n = j;
 			break ;
 		}
 		else if (stat < 0)
 			return (stat);
 	}
 	stat = elements_checker(data, i, tab, j);
-	// char **map = data->map.map;
-	// for (int i = 0; map[i]; i++)
-	// 	printf("%s\n", map[i]);
 	return (stat);
 }
