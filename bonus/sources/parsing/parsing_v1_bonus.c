@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_v1_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:27:55 by zmaghdao          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/11/04 00:41:27 by iez-zagh         ###   ########.fr       */
-=======
-/*   Updated: 2024/11/04 21:47:26 by zmaghdao         ###   ########.fr       */
->>>>>>> zaka
+/*   Updated: 2024/11/04 22:21:21 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +68,8 @@ int	_xtra_map(char ***map, int lenght, int lines, t_data *data)
 	if (fill_lines(&i, &new_map, lenght, lines + 8) < 0)
 		return (ft_free_par(*map), ft_free_par(new_map), -2);
 	new_map[i] = NULL;
-<<<<<<< HEAD
-	return (ft_free_par(*map), *map = new_map, 0);
-=======
 	1 && (data->clmn_n += 8, data->rows_n += 5);
 	return (ft_free_par(*map), data->map.map = new_map, 0);
->>>>>>> zaka
 }
 
 int	last_check(char **map, t_data *data)
