@@ -6,37 +6,22 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:27:55 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/11/03 23:05:45 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/04 21:45:28 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	first_last_line(char *line, int x)
+int	first_last_line(char *line)
 {
 	int	i;
 
 	i = 0;
-	if (x)
+	while (line[i])
 	{
-		while (line[i])
-		{
-			if (line[i] != '1' && line[i] != ' ')
-				return (0);
-			i++;
-		}
-	}
-	else if (!x)
-	{
-		while (line[i] == ' ')
-			i++;
-		if (line[i] != '1')
+		if (line[i] != '1' && line[i] != ' ')
 			return (0);
-		i = ft_strlen(line) - 1;
-		while(line[i] == ' ')
-			i--;
-		if (line[i] != '1')
-			return (0);
+		i++;
 	}
 	return (1);
 }
@@ -126,21 +111,20 @@ int parse_map(t_data *data, int lines)
 	while (i < lines)
 	{
 		j = 0;
-		if ((i == 0 || i == lines - 1) && (first_last_line(map[i], 1) == 0))
+		if ((i == 0 || i == lines - 1) && (first_last_line(map[i]) == 0))
 			return (-13);
 		else if (i > 0 && i < lines - 1)
 		{	while (map[i][j])
 			{
 				if (is_map_char(map[i][j]) == 1 && map[i][j] != ' ')
 					return (-11);
-				else if (map[i][j] == '0' && check_directions(map, i, j) != 0)
+				else if ((map[i][j] == '0' || is_player(map[i][j])) 
+					&& check_directions(map, i, j) == 1)
 					return (-12);
-				if (first_last_line(map[i], 0) == 0)
-					return (-14);
 				j++;
 			}
 		}
-		i++;
+		i++; 
 	}
 	return (spacetotwo(map), last_check(map, data));
 }
@@ -232,7 +216,7 @@ int	get_map(t_data *data, int i, int *j)
 	(*j) = 0;
 	while (tab[i])
 	{
-		if (ft_strlen(tab[i]) == 0 || empty_line(tab[i]) == 0)
+		if (ft_strlen(tab[i]) == 0)
 			break ;
 		map[(*j)] = ft_strdup(tab[i]);
 		if (!map[(*j)])

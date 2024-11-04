@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/03 15:54:08 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/04 21:43:10 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,12 @@ typedef struct s_player
 	float		map_x;
 	float		map_y;
 }	t_player;
+
+// typedef struct s_tex_img
+// {
+// 	mlx_img_t	*img;
+	
+// }	tex_img;
 
 typedef struct s_data
 {
@@ -129,8 +135,8 @@ int		is_map_char(char c);
 int		check_directions(char **map, int i, int j);
 
 void	angle_init(char c, t_data *data);
-int		empty_line(char *line);
 int		sec_char(char *tab, int i);
+int 	is_player(char c);
 
 // === === === === === === === === === //
 

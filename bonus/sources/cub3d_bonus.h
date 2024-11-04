@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/03 18:12:05 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/04 21:43:22 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,9 +138,8 @@ int		is_map_char(char c);
 int 	check_directions(char **map, int i, int j, int x);
 
 void	angle_init(char c, t_data *data);
-int		empty_line(char *line);
 int		sec_char(char *tab, int i);
-
+int 	is_player(char c);
 // === === === === === === === === === //
 
 #endif
