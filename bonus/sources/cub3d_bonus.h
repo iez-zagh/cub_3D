@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/04 23:12:18 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/05 19:48:02 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ typedef struct s_data
 	bool		a_key;
 	bool		sub_key;
 	bool		add_key;
-	bool		open_door;
 	int			clmn_n;
 	int			rows_n;
 	int			strip_n;
@@ -133,6 +132,8 @@ float	distance_calcul(float x, float y, float x1, float y1);
 void	my_key_hook5(t_data *data);
 void	sub_key(mlx_key_data_t key, t_data *data);
 void	add_key(mlx_key_data_t key, t_data *data);
+void	open_door(t_data *data);
+void	close_door(t_data *data);
 
 /*				parsing					*/
 // === === === === === === === === === //
