@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 17:15:06 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/11/04 22:52:55 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/06 23:03:20 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int	fill_texture(t_map *map, char **c_s, int start, int end)
 	if (!tmp)
 		return (-2);
 	new_coor = ft_strjoin(new_coor, tmp);
+	if (!new_coor)
+		return (-2);
 	free(tmp);
 	if (!new_coor)
 		return (-2);

@@ -72,6 +72,29 @@ int	file_to_table(char mapname[], char **table)
 	return (0);
 }
 
+int	load_textures(t_data *data)
+{
+	mlx_texture_t	**news;
+
+	news = (mlx_texture_t **)malloc(sizeof(mlx_texture_t *) * 4);
+	if (!news)
+		return (-2);
+	news[0] = mlx_load_png(data->map.north);
+	if (!news[0])
+		return (ft_free_par(news), -2);
+	news[1] = mlx_load_png(data->map.east);
+	if (!news[1])
+		return (ft_free_par(news), -2);
+	news[2] = mlx_load_png(data->map.west);
+	if (!news[2])
+		return (ft_free_par(news), -2);
+	news[3] = mlx_load_png(data->map.south);
+	if (!news[3])
+		return (ft_free_par(news), -2);
+	data->tex.news = news;
+	return (0);
+}
+
 int	parsing(t_data *data, char mapname[])
 {
 	int		stat;
@@ -90,6 +113,9 @@ int	parsing(t_data *data, char mapname[])
 		return (ft_free_par(table), perreur(stat), stat);
 	data->map.table = table;
 	stat = check_table(data);
+	if (stat < 0)
+		return (ft_free_par(table), perreur(stat), stat);
+	stat = load_textures(data);
 	if (stat < 0)
 		return (ft_free_par(table), perreur(stat), stat);
 	return (0);

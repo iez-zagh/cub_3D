@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/04 23:10:07 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/06 23:52:38 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ typedef struct s_player
 	float		map_y;
 }	t_player;
 
-// typedef struct s_tex_img
-// {
-// 	mlx_img_t	*img;
+typedef struct s_tex_img
+{
+	mlx_texture_t	**news;
 	
-// }	tex_img;
+}	tex_t;
 
 typedef struct s_data
 {
@@ -96,6 +96,7 @@ typedef struct s_data
 	float		wall_height;
 	mlx_image_t	*img;
 	mlx_image_t	*player_img;
+	tex_t		tex;
 	t_map		map;
 	t_player	*player;
 }	t_data;
