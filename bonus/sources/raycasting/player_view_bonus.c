@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:56:18 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/04 14:11:56 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/05 19:20:43 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,6 @@ void	my_key_hook5(t_data *data)
 		if (data->mouse_sensive < 1)
 			return ;
 		data->mouse_sensive -= 0.2;
-	}
-	if (data->open_door)
-	{
-		puts("here open");
 	}
 }
 

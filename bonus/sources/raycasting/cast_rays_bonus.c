@@ -6,11 +6,53 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:29:49 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/04 14:08:16 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/05 20:48:46 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
+
+void	open_door(t_data *data)
+{
+	int	i;
+	int	j;
+
+	data->player->x = data->player->sqaure_x / TILE;
+	data->player->y = data->player->sqaure_y / TILE;
+	i = data->player->x -3;
+	while (i < data->player->x +3)
+	{
+		j = data->player->y -3;
+		while (j < data->player->y +3)
+		{
+			if (data->map.map[j][i] == 'D')
+				data->map.map[j][i] = 'C';
+			j++;
+		}
+		i++;
+	}
+}
+
+void	close_door(t_data *data)
+{
+	int	i;
+	int	j;
+
+	data->player->x = data->player->sqaure_x / TILE;
+	data->player->y = data->player->sqaure_y / TILE;
+	i = data->player->x -3;
+	while (i < data->player->x +3)
+	{
+		j = data->player->y -3;
+		while (j < data->player->y +3)
+		{
+			if (data->map.map[j][i] == 'C' && data->map.map[(int)data->player->sqaure_y / TILE][(int)data->player->sqaure_x / TILE] != data->map.map[j][i])
+				data->map.map[j][i] = 'D';
+			j++;
+		}
+		i++;
+	}
+}
 
 int	checking_collision_door(t_data *data, float x, float y)
 {

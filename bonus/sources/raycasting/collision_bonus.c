@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 14:05:18 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/04 14:08:00 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/05 18:51:16 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,9 @@ int	checking_collision2(t_data *data, float x, float y)
 int	checking_collision_door2(t_data *data, int x, int y)
 {
 	if (!data->map.map[(int)(y / TILE_SCALED)][(int)(x / TILE_SCALED)]
-	|| (data->map.map[(int)(y / TILE_SCALED)][(int)(x / TILE_SCALED)] == 'D')
-	)
+	|| (data->map.map[(int)(y / TILE_SCALED)][(int)(x / TILE_SCALED)] == 'D'))
 		return (1);
-	if (
-		(data->map.map[(int)((y + 1) / TILE_SCALED)]
+	if ((data->map.map[(int)((y + 1) / TILE_SCALED)]
 		[(int)((x - 1) / TILE_SCALED)] == 'D' &&
 		data->map.map[(int)((y) / TILE_SCALED)]
 		[(int)((x + 1) / TILE_SCALED)] == 'D'
@@ -58,9 +56,7 @@ int	checking_collision_door2(t_data *data, int x, int y)
 		[(int)((x - 1) / TILE_SCALED)] == 'D'
 		&&
 		data->map.map[(int)((y + 1) / TILE_SCALED)]
-		[(int)((x - 1) / TILE_SCALED)] == '0'
-		)
-		)
+		[(int)((x - 1) / TILE_SCALED)] == '0'))
 		return (1);
 	return (0);
 }

@@ -2,7 +2,7 @@ NAME = cub3d2
 NAME2 = cub3d
 BONUS = cub3D_bonus
 CC = cc
-CFLAGS = -fsanitize=address
+# CFLAGS = -fsanitize=address
 # CFLAGS = -fsanitize=address -Wextra -Wall -Werror 
 LIBFT_DIR = /Users/$(USER)/Desktop/cub_3d/libft
 GNL_DIR = /Users/$(USER)/Desktop/cub_3d/gnl
@@ -28,7 +28,7 @@ B_SOURCES = bonus/sources/raycasting/main_bonus.c bonus/sources/raycasting/key_h
 			bonus/sources/parsing/parsing_utils_bonus.c bonus/sources/parsing/news_parse_bonus.c\
 			bonus/sources/parsing/f_c_parse_bonus.c bonus/sources/parsing/parsing_utils2_bonus.c \
 			bonus/sources/parsing/parsing_utils3_bonus.c bonus/sources/raycasting/draw_player_bonus.c\
-			bonus/sources/raycasting/garbage_bonus.c bonus/sources/raycasting/collision_bonus.c\
+			 bonus/sources/raycasting/collision_bonus.c \
 			bonus/sources/parsing/map_starts_bonus.c bonus/sources/parsing/map_parse_bonus.c\
 
 M_OBJECTS = $(M_SOURCES:.c=.o)
@@ -43,6 +43,7 @@ bonus/%.o:bonus/%.c $(B_HEADER)
 all : $(NAME2)
 $(NAME2): $(M_OBJECTS)
 	@make -C $(LIBFT_DIR)
+	@make -C $(GNL_DIR)
 	@$(CC) $(CFLAGS) $(INCLUDES) $(M_OBJECTS) $(LIBS2) -o $(NAME2)
 	@echo the mandatory executable created successfully
 
@@ -53,12 +54,6 @@ $(BONUS): $(B_OBJECTS)
 	@make -C $(GNL_DIR)
 	@$(CC) $(CFLAGS) -I bonus/cub3d_bonus.h -I MLX42/include/MLX42 $(B_OBJECTS) $(LIBS2) -o $(BONUS)
 	@echo the bonus executable created successfully
-
-# linux : $(NAME)
-# $(NAME): $(M_OBJECTS)
-# 	@make -C $(LIBFT_DIR)
-# 	@make -C $(GNL_DIR)
-# 	$(CC) $(M_OBJECTS) $(LIBS) MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm -o $(NAME)
 
 clean:
 	@make clean -C $(LIBFT_DIR)
