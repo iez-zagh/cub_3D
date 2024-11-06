@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/05 20:47:11 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/05 23:15:00 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	f(void)
 
 int	main(int ac, char **av)
 {
-	// atexit(f);
+	atexit(f);
 	t_data		data;
 	int			stat;
 	t_player	player;

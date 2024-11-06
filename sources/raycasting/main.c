@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/03 14:00:15 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/06 00:54:00 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,13 @@ void	how_2_use(void)
 	printf("Usage: ./cub3D ./path_to_map\n");
 }
 
+void	f(void)
+{
+	system("leaks cub3d");
+}
 int	main(int ac, char **av)
 {
+	atexit(f);
 	t_data		data;
 	int			stat;
 	t_player	player;
