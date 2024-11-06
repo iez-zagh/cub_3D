@@ -43,6 +43,7 @@ bonus/%.o:bonus/%.c $(B_HEADER)
 all : $(NAME2)
 $(NAME2): $(M_OBJECTS)
 	@make -C $(LIBFT_DIR)
+	@make -C $(GNL_DIR)
 	@$(CC) $(CFLAGS) $(INCLUDES) $(M_OBJECTS) $(LIBS2) -o $(NAME2)
 	@echo the mandatory executable created successfully
 
