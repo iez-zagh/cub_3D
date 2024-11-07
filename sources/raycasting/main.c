@@ -32,6 +32,11 @@ void	how_2_use(void)
 	printf("Usage: ./cub3D ./path_to_map\n");
 }
 
+void	f(void)
+{
+	system("leaks cub3d");
+}
+
 int	main(int ac, char **av)
 {
 	t_data		data;
@@ -39,6 +44,7 @@ int	main(int ac, char **av)
 	t_player	player;
 	char		*map;
 
+	atexit(f);
 	map = NULL;
 	if (ac != 2)
 		return (how_2_use(), 1);

@@ -77,7 +77,7 @@ void	f(void)
 
 int	main(int ac, char **av)
 {
-	// atexit(f);
+	atexit(f);
 	t_data		data;
 	int			stat;
 	t_player	player;
