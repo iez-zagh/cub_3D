@@ -36,14 +36,15 @@ void	f(void)
 {
 	system("leaks cub3d");
 }
+
 int	main(int ac, char **av)
 {
-	atexit(f);
 	t_data		data;
 	int			stat;
 	t_player	player;
 	char		*map;
 
+	atexit(f);
 	map = NULL;
 	if (ac != 2)
 		return (how_2_use(), 1);

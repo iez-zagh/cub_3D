@@ -26,7 +26,10 @@ void	open_door(t_data *data)
 		while (j < data->player->y +3)
 		{
 			if (data->map.map[j][i] == 'D')
+			{
 				data->map.map[j][i] = 'C';
+				return ;
+			}
 			j++;
 		}
 		i++;
@@ -47,7 +50,10 @@ void	close_door(t_data *data)
 		while (j < data->player->y +3)
 		{
 			if (data->map.map[j][i] == 'C' && data->map.map[(int)data->player->sqaure_y / TILE][(int)data->player->sqaure_x / TILE] != data->map.map[j][i])
+			{
 				data->map.map[j][i] = 'D';
+				return ;
+			}
 			j++;
 		}
 		i++;
