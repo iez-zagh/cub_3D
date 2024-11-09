@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cal_hit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/04 14:26:13 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/09 14:19:29 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	vert_interception(t_data *data)
 	data->xintercept = floor(data->player->sqaure_x / TILE) * TILE;
 	if ((data->cast_angle < 0.5 * M_PI || data->cast_angle > 1.5 * M_PI))
 		data->xintercept += TILE;
-	data->yintercept = data->player->sqaure_y + -1
-		* ((data->player->sqaure_x - data->xintercept) * tan(data->cast_angle));
+	data->yintercept = data->player->sqaure_y +
+		((data->xintercept - data->player->sqaure_x) * tan(data->cast_angle));
 	xstep = TILE;
 	data->nexttouchx = data->xintercept;
 	data->nexttouchy = data->yintercept;

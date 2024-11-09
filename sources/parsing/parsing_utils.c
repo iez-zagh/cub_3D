@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:28:59 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/10/31 01:43:37 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/07 22:28:35 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ void	perreur2(int x)
 	else if (x == -15)
 		write (2, "Error : the map : N/S/W/E one of those chars must be"
 			" inside map !\n", 67);
+	else if (x == -17)
+		write (2, "Error : mlx_load_png() failed !\n", 31);
+	else if (x == -18)
+		write (2, "Error : mlx_texture_to_image() failed !\n", 39);
 }
 
 void	perreur(int x)

@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/06 23:52:38 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/08 22:12:07 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,14 @@ typedef struct s_player
 
 typedef struct s_tex_img
 {
-	mlx_texture_t	**news;
-	
+	mlx_texture_t	*north;
+	mlx_texture_t	*south;
+	mlx_texture_t	*west;
+	mlx_texture_t	*east;
+	mlx_image_t		*i_north;
+	mlx_image_t		*i_south;
+	mlx_image_t		*i_west;
+	mlx_image_t		*i_east;
 }	tex_t;
 
 typedef struct s_data
@@ -81,7 +87,7 @@ typedef struct s_data
 	int			rows_n;
 	int			strip_n;
 	float		cast_angle;
-	void		*mlx;
+	mlx_t		*mlx;
 	bool		found_horz_hit;
 	bool		foundverticalhit;
 	float		hor_hit_x;
