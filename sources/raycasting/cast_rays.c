@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:29:49 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/08 01:06:31 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/12 15:53:38 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	sky_floor(t_data *data)//optimi
 		j = 0;
 		while (j < WIDTH)
 		{
-			mlx_put_pixel(data->player_img, j, i, BLUE);
+			mlx_put_pixel(data->player_img, j, i, 0x0000000FF);
 			j++;
 		}
 		i++;
@@ -86,10 +86,15 @@ void	cast_rays(t_data *data)
 	data->cast_angle -= FOV_ANGLE / 2;
 	data->strip_n = 0;
 	i = 0;
+	int textureofssetX;
+	if (data->found_horz_hit)
+		textureofssetX = (int)data->hor_hit_x % TILE;
+	else
+		textureofssetX = (int)data->ver_hit_y % TILE;
 	while (i < WIDTH)
 	{
 		cast_ray(data);
-		player_view(data);
+		player_view(data, textureofssetX);
 		data->cast_angle += incr_angle;
 		if (data->cast_angle > M_PI * 2)
 			data->cast_angle = 0;

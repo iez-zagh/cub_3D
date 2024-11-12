@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:56:18 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/09 13:48:46 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/12 20:22:37 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,56 @@ void	start_render(t_data *data)
 	mlx_loop(data->mlx);
 }
 
-void	get_the_pixel(t_data *data, float i);
+mlx_image_t	*get_texture(t_data *data)
+{
+	if (data->found_horz_hit)
+	{
+		if (data->cast_angle > 0 && data->cast_angle < M_PI)
+			return (data->tex.i_north);
+		else
+			return (data->tex.i_south);
+	}
+	else
+	{
+		if (data->cast_angle > M_PI_2 && data->cast_angle < 3 * M_PI_2)
+			return (data->tex.i_west);
+		else
+			return (data->tex.i_east);
+	}
+	return (NULL);
+}
 
-void	player_view(t_data *data)
+// void	get_the_pixel(t_data *data, float i, mlx_image_t *img, int textureofssetX);
+
+uint32_t    get_texture_pixel(mlx_image_t *texture, int x, int y)
+{
+    uint8_t    r;
+    uint8_t    g;
+    uint8_t    b;
+    uint8_t    a;
+    int        index;
+
+    if (!texture)
+        return (0x000000);
+    if (x >= 0 && (uint32_t)x < texture->width
+        && y >= 0 && (uint32_t)y < texture->height)
+    {
+        index = (y * texture->width + x) * 4;
+        r = texture->pixels[index];
+        g = texture->pixels[index + 1];
+        b = texture->pixels[index + 2];
+        a = texture->pixels[index + 3];
+        return (r << 24 | g << 16 | b << 8 | a);
+    }
+    return (0x000000);
+}
+
+void	player_view(t_data *data, int x)
 {
 	float	dis_projection_plane;
 	float	start;
 	float	end;
-	float	i;
+	mlx_image_t	*img;
 
 	data->wall_dis = data->wall_dis
 		* cos(data->cast_angle - data->player->angle);
@@ -80,22 +122,21 @@ void	player_view(t_data *data)
 	end = start + data->wall_height;
 	if (end >= HEIGHT)
 		end = HEIGHT;
-	i = start;
-	while (i < end)
+
+	img = get_texture(data);
+	int textureofssetX;
+	if (data->found_horz_hit)
+		textureofssetX = (((int)data->hor_hit_x * TILE) / img->width) % TILE;
+	else if (data->foundverticalhit)
+		textureofssetX = (((int)data->ver_hit_y * TILE) / img->width) % TILE;
+	while (start < end)
 	{
-		// get_the_pixel(data, i);÷
-		// if ((int )i % 2 == 0)
-		// 	mlx_put_pixel(data->player_img, data->strip_n, i, BLUE);
-		// else
-			mlx_put_pixel(data->player_img, data->strip_n, i, RED);
-		i++;
+		int			distance_from_top;
+		int			textureofssetY;
+		distance_from_top = start + (data->wall_height / 2) - (HEIGHT / 2);
+		textureofssetY = distance_from_top * ((float)TILE / data->wall_height); // (j - start) * texture_hight / data->wall_height;
+		double color = get_texture_pixel(img, textureofssetX, textureofssetY);
+		mlx_put_pixel(data->player_img, data->strip_n, start, color);
+		start++;
 	}
 }
-
-// void	get_the_pixel(t_data *data, float i)
-// {
-// 	//to do : get the pixel from the texture and put it on the wall
-// 	float		step;
-
-// 	step =  / data->wall_height;
-// }

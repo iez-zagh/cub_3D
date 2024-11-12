@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/06 23:54:58 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/12 19:56:18 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	main(int ac, char **av)
 	t_player	player;
 	char		*map;
 
-	atexit(f);
+	// atexit(f);
 	map = NULL;
 	if (ac != 2)
 		return (how_2_use(), 1);
@@ -54,6 +54,6 @@ int	main(int ac, char **av)
 		return (stat);
 	player.sqaure_x = player.x * TILE;
 	player.sqaure_y = player.y * TILE;
-	start_render(&data);
+	start_render(&data); 
 	return (0);
 }

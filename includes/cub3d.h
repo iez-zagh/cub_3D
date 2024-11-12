@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/08 22:12:07 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/12 20:31:00 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define GRAY 0x808080FF
 # define TILE 64
 # define TILE_SCALED 28
-# define MOVE_SPEED 5.0
+# define MOVE_SPEED 11.0
 # define RADIUS 4.0
 # define RADIUS2 4.0
 # define ROTATE_ANGLE 0.03488888889
@@ -105,6 +105,7 @@ typedef struct s_data
 	tex_t		tex;
 	t_map		map;
 	t_player	*player;
+	
 }	t_data;
 
 /*				raycasting					*/
@@ -117,7 +118,7 @@ void	draw_minimap(t_data *data);
 void	cast_rays(t_data *data);
 void	cast_ray(t_data *data);
 void	check_keys(mlx_key_data_t key, void *data);
-void	player_view(t_data *data);
+void	player_view(t_data *data, int i);
 float	distance_calcul(float x, float y, float x1, float y1);
 int		checking_collision3(t_data *data, int x, int y);
 
