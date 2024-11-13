@@ -80,8 +80,6 @@ mlx_image_t	*get_texture(t_data *data)
 	return (NULL);
 }
 
-// void	get_the_pixel(t_data *data, float i, mlx_image_t *img, int textureofssetX);
-
 uint32_t    get_texture_pixel(mlx_image_t *texture, int x, int y)
 {
     uint8_t    r;
@@ -122,7 +120,6 @@ void	player_view(t_data *data, int x)
 	end = start + data->wall_height;
 	if (end >= HEIGHT)
 		end = HEIGHT;
-
 	img = get_texture(data);
 	int textureofssetX;
 	if (data->found_horz_hit)

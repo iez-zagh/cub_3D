@@ -57,17 +57,17 @@ void	sky_floor(t_data *data)//optimi
 		j = 0;
 		while (j < WIDTH)
 		{
-			mlx_put_pixel(data->player_img, j, i, 0x0000000FF);
+			mlx_put_pixel(data->player_img, j, i, 0x0B0033FF);
 			j++;
 		}
 		i++;
 	}
 	while (i < 700)
 	{
-		j = 0;
+		j = 0;	
 		while (j < WIDTH)
 		{
-			mlx_put_pixel(data->player_img, j, i, BLACK);
+			mlx_put_pixel(data->player_img, j, i, 0x1A1A1AFF);
 			j++;
 		}
 		i++;
