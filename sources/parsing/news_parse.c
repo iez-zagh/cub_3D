@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 17:15:06 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/11/07 00:24:48 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/13 18:19:51 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,6 @@ int	check_news_ptrs(char *coor, char *str, t_map *map)
 	i += 2;
 	while (ft_isspace(coor[i]))
 		i++;
-	if (coor[i] != '.' && coor[i] != '/')
-		return (-6);
 	x = png_or_xpm(coor);
 	if (x == -1)
 		return (-7);

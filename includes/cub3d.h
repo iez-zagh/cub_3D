@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/12 20:31:00 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/13 18:07:42 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	draw_minimap(t_data *data);
 void	cast_rays(t_data *data);
 void	cast_ray(t_data *data);
 void	check_keys(mlx_key_data_t key, void *data);
-void	player_view(t_data *data, int i);
+void	player_view(t_data *data);
 float	distance_calcul(float x, float y, float x1, float y1);
 int		checking_collision3(t_data *data, int x, int y);
 
