@@ -3,7 +3,5 @@
 
 int main()
 {
-    // printf("%f]/n", remainder(11, 3));
-    printf("%f]/n", tan(0.5 * M_PI));
-    printf("%d]]\n", INT_MAX);
+    printf("%f]\n", remainder(0 - 30, 360));
 }

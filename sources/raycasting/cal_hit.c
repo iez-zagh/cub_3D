@@ -58,7 +58,7 @@ void	vert_interception(t_data *data)
 
 void	horz_traverse(t_data *data, float ystep, float xstep)
 {
-	if (!(data->cast_angle > 0 && data->cast_angle < M_PI))
+	if (data->cast_angle > M_PI && data->cast_angle < 2 * M_PI)
 	{
 		ystep *= -1;
 		xstep *= -1;
@@ -67,10 +67,8 @@ void	horz_traverse(t_data *data, float ystep, float xstep)
 		&& data->nexttouchy >= 0 && data->nexttouchy < data->rows_n * TILE)
 	{
 		float y = data->nexttouchy;
-		if (!(data->cast_angle > 0 && data->cast_angle < M_PI))
-		{
+		if (data->cast_angle > M_PI && data->cast_angle <= 2 * M_PI)
 			y--;
-		}
 		if (checking_collision3(data, data->nexttouchx, y))
 		{
 			data->found_horz_hit = true;

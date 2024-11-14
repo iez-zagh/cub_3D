@@ -109,13 +109,18 @@ void	sky_floor(t_data *data)//optimi
 	}
 }
 
+void	handle_angle(t_data *data)
+{
+	data->cast_angle = remainder(data->cast_angle, 2 * M_PI);
+	if (data->cast_angle < 0)
+		data->cast_angle = 2 * M_PI + data->cast_angle;
+}
+
 void	cast_rays(t_data *data)
 {
 	int		i;
 	float	dis;
-	float	incr_angle;
 
-	incr_angle = FOV_ANGLE / WIDTH;
 	sky_floor(data);
 	data->cast_angle = data->player->angle;
 	data->cast_angle -= FOV_ANGLE / 2;
@@ -123,11 +128,10 @@ void	cast_rays(t_data *data)
 	i = 0;
 	while (i < WIDTH)
 	{
+		handle_angle(data);
 		cast_ray(data);
 		player_view(data);
-		data->cast_angle += incr_angle;
-		if (data->cast_angle > M_PI * 2)
-			data->cast_angle = 0;
+		data->cast_angle += FOV_ANGLE / WIDTH;
 		data->strip_n++;
 		i++;
 	}
