@@ -70,14 +70,8 @@ void	how_2_use(void)
 	printf("Usage: ./cub3D ./path_to_map\n");
 }
 
-void	f(void)
-{
-	system("leaks cub3D_bonus");
-}
-
 int	main(int ac, char **av)
 {
-	atexit(f);
 	t_data		data;
 	int			stat;
 	t_player	player;

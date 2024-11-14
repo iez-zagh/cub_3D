@@ -108,6 +108,7 @@ void	cast_ray(t_data *data)
 	float	xstep;
 	float	ystep;
 
+	data->door_hit = false;
 	data->found_horz_hit = false;
 	data->yintercept = floor(data->player->sqaure_y / TILE) * TILE;
 	if (data->cast_angle > 0 && data->cast_angle <= M_PI)
