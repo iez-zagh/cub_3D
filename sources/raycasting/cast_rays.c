@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:29:49 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/12 15:53:38 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/13 18:07:32 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,10 @@ void	cast_rays(t_data *data)
 	data->cast_angle -= FOV_ANGLE / 2;
 	data->strip_n = 0;
 	i = 0;
-	int textureofssetX;
-	if (data->found_horz_hit)
-		textureofssetX = (int)data->hor_hit_x % TILE;
-	else
-		textureofssetX = (int)data->ver_hit_y % TILE;
 	while (i < WIDTH)
 	{
 		cast_ray(data);
-		player_view(data, textureofssetX);
+		player_view(data);
 		data->cast_angle += incr_angle;
 		if (data->cast_angle > M_PI * 2)
 			data->cast_angle = 0;

@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/12 17:44:13 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/13 18:15:23 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@ void	vert_traverse(t_data *data, float ystep, float xstep)
 		ystep *= -1;
 	if ((data->cast_angle > 0 && data->cast_angle < M_PI) && xstep < 0)
 		ystep *= -1;
-	if (!(data->cast_angle < 0.5 * M_PI || data->cast_angle > 1.5 * M_PI))
-		data->nexttouchx--;
 	while (data->nexttouchx >= 0 && data->nexttouchx < data->clmn_n * TILE
 		&& data->nexttouchy >= 0 && data->nexttouchy < data->rows_n * TILE)
 	{
-		if (checking_collision3(data, data->nexttouchx, data->nexttouchy))
+		float x = data->nexttouchx;
+		if (!(data->cast_angle < 0.5 * M_PI || data->cast_angle > 1.5 * M_PI))
+			x--;
+		if (checking_collision3(data, x, data->nexttouchy))
 		{
 			data->foundverticalhit = true;
 			data->ver_hit_x = data->nexttouchx;
@@ -60,13 +61,17 @@ void	horz_traverse(t_data *data, float ystep, float xstep)
 	if (!(data->cast_angle > 0 && data->cast_angle < M_PI))
 	{
 		ystep *= -1;
-		data->nexttouchy--;
 		xstep *= -1;
 	}
 	while (data->nexttouchx >= 0 && data->nexttouchx < data->clmn_n * TILE
 		&& data->nexttouchy >= 0 && data->nexttouchy < data->rows_n * TILE)
 	{
-		if (checking_collision3(data, data->nexttouchx, data->nexttouchy))
+		float y = data->nexttouchy;
+		if (!(data->cast_angle > 0 && data->cast_angle < M_PI))
+		{
+			y--;
+		}
+		if (checking_collision3(data, data->nexttouchx, y))
 		{
 			data->found_horz_hit = true;
 			data->hor_hit_x = data->nexttouchx;

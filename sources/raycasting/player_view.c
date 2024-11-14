@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:56:18 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/12 20:22:37 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/14 13:15:16 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ mlx_image_t	*get_texture(t_data *data)
 	{
 		if (data->cast_angle > M_PI_2 && data->cast_angle < 3 * M_PI_2)
 			return (data->tex.i_west);
-		else
+		else 
 			return (data->tex.i_east);
 	}
 	return (NULL);
@@ -105,15 +105,14 @@ uint32_t    get_texture_pixel(mlx_image_t *texture, int x, int y)
     return (0x000000);
 }
 
-void	player_view(t_data *data, int x)
+void	player_view(t_data *data)
 {
 	float	dis_projection_plane;
 	float	start;
 	float	end;
 	mlx_image_t	*img;
 
-	data->wall_dis = data->wall_dis
-		* cos(data->cast_angle - data->player->angle);
+	data->wall_dis = data->wall_dis * cos(data->cast_angle - data->player->angle);
 	dis_projection_plane = (WIDTH / 2) / tan(FOV_ANGLE / 2);
 	data->wall_height = (TILE / data->wall_dis) * dis_projection_plane;
 	start = (HEIGHT / 2) - (data->wall_height / 2);
@@ -124,19 +123,22 @@ void	player_view(t_data *data, int x)
 		end = HEIGHT;
 
 	img = get_texture(data);
-	int textureofssetX;
+	double step = (double)img->height / data->wall_height;
+	double textureofssetX;
 	if (data->found_horz_hit)
-		textureofssetX = (((int)data->hor_hit_x * TILE) / img->width) % TILE;
+		textureofssetX = ((int)(data->hor_hit_x * img->width) / TILE) % img->width;
 	else if (data->foundverticalhit)
-		textureofssetX = (((int)data->ver_hit_y * TILE) / img->width) % TILE;
+		textureofssetX = ((int)(data->ver_hit_y * img->width) / TILE) % img->width;
+
+	int distance_from_top = start + (data->wall_height / 2) - (HEIGHT / 2);
+	double texturePosY = distance_from_top * step;
+
 	while (start < end)
 	{
-		int			distance_from_top;
-		int			textureofssetY;
-		distance_from_top = start + (data->wall_height / 2) - (HEIGHT / 2);
-		textureofssetY = distance_from_top * ((float)TILE / data->wall_height); // (j - start) * texture_hight / data->wall_height;
-		double color = get_texture_pixel(img, textureofssetX, textureofssetY);
+		int textureofssetY = (int)texturePosY;
+		uint32_t color = get_texture_pixel(img, textureofssetX, textureofssetY);
 		mlx_put_pixel(data->player_img, data->strip_n, start, color);
+		texturePosY += step;
 		start++;
 	}
 }
