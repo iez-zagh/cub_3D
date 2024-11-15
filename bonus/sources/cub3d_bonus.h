@@ -103,6 +103,10 @@ typedef struct s_data
 	float		nexttouchy;
 	float		wall_dis;
 	bool		door_hit;
+	bool		facing_up;
+	bool		facing_down;
+	bool		facing_left;
+	bool		facing_right;
 	float		wall_height;
 	float		mouse_sensive;
 	mlx_image_t	*img;

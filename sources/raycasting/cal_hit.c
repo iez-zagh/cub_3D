@@ -58,6 +58,9 @@ void	vert_interception(t_data *data)
 
 void	horz_traverse(t_data *data, float ystep, float xstep)
 {
+	// if (data->cast_angle > M_PI && data->cast_angle < 2 * M_PI)
+	// 	ystep *= -1; 
+	// if (data->cast_angle > M_PI && data->cast_angle < 2 * M_PI)
 	if (data->cast_angle > M_PI && data->cast_angle < 2 * M_PI)
 	{
 		ystep *= -1;
@@ -108,11 +111,20 @@ void	get_closest_hit(t_data *data)
 	}
 }
 
+void	init_direction(t_data *data)
+{
+	data->facing_down = false;
+	data->facing_up = false;
+	data->facing_left = false;
+	data->facing_right = false;
+	if (data->cast_angle < )
+}
 void	cast_ray(t_data *data)
 {
 	float	xstep;
 	float	ystep;
 
+	// init_dirction(data);
 	data->found_horz_hit = false;
 	data->yintercept = floor(data->player->sqaure_y / TILE) * TILE;
 	if (data->cast_angle > 0 && data->cast_angle <= M_PI)

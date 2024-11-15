@@ -98,6 +98,10 @@ typedef struct s_data
 	float		yintercept;
 	float		nexttouchx;
 	float		nexttouchy;
+	bool		facing_up;
+	bool		facing_down;
+	bool		facing_left;
+	bool		facing_right;
 	float		wall_dis;
 	float		wall_height;
 	mlx_image_t	*img;
