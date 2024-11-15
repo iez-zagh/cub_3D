@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:56:18 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/15 17:17:02 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/15 17:33:55 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ void	player_view(t_data *data)
 	{
 		int textureofssetY = (int)texturePosY;
 		uint32_t color = get_texture_pixel(img, textureofssetX, textureofssetY);
-		mlx_put_pixel(data->player_img, data->strip_n, start, color);
+		mlx_put_pixel(data->player_img, data->strip_n, start, RED);
 		texturePosY += step;
 		start++;
 	}

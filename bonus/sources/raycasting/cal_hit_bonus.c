@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cal_hit_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/04 14:04:47 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/15 17:37:08 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	vert_traverse(t_data *data, float ystep, float xstep)
 {
+	float	x;
+
 	if (data->facing_left)
 		xstep *= -1;
 	if (data->facing_up)
@@ -23,6 +25,9 @@ void	vert_traverse(t_data *data, float ystep, float xstep)
 	while (data->nexttouchx >= 0 && data->nexttouchx < data->clmn_n * TILE
 		&& data->nexttouchy >= 0 && data->nexttouchy < data->rows_n * TILE)
 	{
+		// x = data->nexttouchx;
+		// if (data->facing_left) //need to know this bro
+		// 	x--;
 		if (checking_collision3(data, data->nexttouchx, data->nexttouchy)
 			|| checking_collision_door3(data, data->nexttouchx,
 				data->nexttouchy))
@@ -57,6 +62,8 @@ void	vert_interception(t_data *data)
 
 void	horz_traverse(t_data *data, float ystep, float xstep)
 {
+	float	y;
+
 	if (!(data->cast_angle > 0 && data->cast_angle < M_PI))
 	{
 		ystep *= -1;
@@ -66,6 +73,9 @@ void	horz_traverse(t_data *data, float ystep, float xstep)
 	while (data->nexttouchx >= 0 && data->nexttouchx < data->clmn_n * TILE
 		&& data->nexttouchy >= 0 && data->nexttouchy < data->rows_n * TILE)
 	{
+		y = data->nexttouchy;
+		if (data->facing_up)
+			y--;
 		if (checking_collision3(data, data->nexttouchx, data->nexttouchy)
 			|| checking_collision_door3(data, data->nexttouchx,
 				data->nexttouchy))
