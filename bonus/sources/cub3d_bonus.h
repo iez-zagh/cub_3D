@@ -33,11 +33,11 @@
 # define TILE 64
 # define TILE_SCALED 28
 # define ZOOM_TIE  
-# define MOVE_SPEED 5.0
+# define MOVE_SPEED 10.0
 # define ROTATE_SPEED 0.05
 # define RADIUS 4.0
 # define RADIUS2 4.0
-# define ROTATE_ANGLE 0.03488888889
+# define ROTATE_ANGLE 0.07488888889
 # define WIDTH	1200
 # define HEIGHT	700
 # define FOV_ANGLE 1.0466666667
