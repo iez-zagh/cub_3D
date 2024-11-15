@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 16:38:05 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/15 17:17:42 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/15 18:18:06 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,16 @@ int	convert_textures(t_data *data)
 		return (mlx_delete_image(data->mlx, data->tex.i_north),
 				mlx_delete_image(data->mlx, data->tex.i_south),
 				mlx_delete_image(data->mlx, data->tex.i_west), -18);
+	data->tex.i_door = mlx_texture_to_image(data->mlx, data->tex.door);
+	if (!data->tex.i_door)
+		return (mlx_delete_image(data->mlx, data->tex.i_north),
+				mlx_delete_image(data->mlx, data->tex.i_south),
+				mlx_delete_image(data->mlx, data->tex.i_west),
+				mlx_delete_image(data->mlx, data->tex.i_east), -18);
 	mlx_delete_texture(data->tex.north);
 	mlx_delete_texture(data->tex.south);
 	mlx_delete_texture(data->tex.west);
-	mlx_delete_texture(data->tex.east);
-	return (0);
+	return (mlx_delete_texture(data->tex.east), 0);
 }
 
 void	sub_key(mlx_key_data_t key, t_data *data)

@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/15 17:37:08 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/15 18:27:28 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,15 @@ void	get_closest_hit(t_data *data)
 	else
 		verdis = INT_MAX;
 	if (horzdis > verdis)
+	{
 		data->wall_dis = verdis;
+		data->found_horz_hit = false;
+	}
 	else
+	{
 		data->wall_dis = horzdis;
+		data->foundverticalhit = false;
+	}
 }
 
 void	init_direction(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/15 17:12:50 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/15 18:02:20 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,12 @@ typedef struct s_tex_img
 	mlx_texture_t	*south;
 	mlx_texture_t	*west;
 	mlx_texture_t	*east;
+	mlx_texture_t	*door;
 	mlx_image_t		*i_north;
 	mlx_image_t		*i_south;
 	mlx_image_t		*i_west;
 	mlx_image_t		*i_east;
+	mlx_image_t		*i_door;
 }	tex_t;
 
 

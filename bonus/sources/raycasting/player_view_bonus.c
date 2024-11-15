@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:56:18 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/15 17:33:55 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/15 18:02:02 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ float	distance_calcul(float x, float y, float x1, float y1)
 
 mlx_image_t	*get_texture(t_data *data)
 {
+	if (data->door_hit)
+		return (data->door_hit = false, data->tex.i_door);
 	if (data->found_horz_hit)
 	{
 		if (data->cast_angle > 0 && data->cast_angle < M_PI)
@@ -119,6 +121,8 @@ void	player_view(t_data *data)
 	end = start + data->wall_height;
 	if (end >= HEIGHT)
 		end = HEIGHT;
+
+	// 	=> start;
 	img = get_texture(data);
 	double step = (double)img->height / data->wall_height;
 	double textureofssetX;
@@ -134,7 +138,7 @@ void	player_view(t_data *data)
 	{
 		int textureofssetY = (int)texturePosY;
 		uint32_t color = get_texture_pixel(img, textureofssetX, textureofssetY);
-		mlx_put_pixel(data->player_img, data->strip_n, start, RED);
+		mlx_put_pixel(data->player_img, data->strip_n, start, color);
 		texturePosY += step;
 		start++;
 	}
