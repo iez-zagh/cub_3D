@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:56:18 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/14 13:15:16 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/14 23:28:10 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,27 +80,27 @@ mlx_image_t	*get_texture(t_data *data)
 	return (NULL);
 }
 
-uint32_t    get_texture_pixel(mlx_image_t *texture, int x, int y)
+uint32_t	get_texture_pixel(mlx_image_t *texture, int x, int y)
 {
-    uint8_t    r;
-    uint8_t    g;
-    uint8_t    b;
-    uint8_t    a;
-    int        index;
+	uint8_t	r;
+	uint8_t	g;
+	uint8_t	b;
+	uint8_t	a;
+	int		index;
 
-    if (!texture)
-        return (0x000000);
-    if (x >= 0 && (uint32_t)x < texture->width
-        && y >= 0 && (uint32_t)y < texture->height)
-    {
-        index = (y * texture->width + x) * 4;
-        r = texture->pixels[index];
-        g = texture->pixels[index + 1];
-        b = texture->pixels[index + 2];
-        a = texture->pixels[index + 3];
-        return (r << 24 | g << 16 | b << 8 | a);
-    }
-    return (0x000000);
+	if (!texture)
+		return (0x000000);
+	if (x >= 0 && (uint32_t)x < texture->width
+		&& y >= 0 && (uint32_t)y < texture->height)
+	{
+		index = (y * texture->width + x) * 4;
+		r = texture->pixels[index];
+		g = texture->pixels[index + 1];
+		b = texture->pixels[index + 2];
+		a = texture->pixels[index + 3];
+		return (r << 24 | g << 16 | b << 8 | a);
+	}
+	return (0x000000);
 }
 
 void	player_view(t_data *data)

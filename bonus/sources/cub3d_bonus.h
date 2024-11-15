@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/12 20:29:42 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/15 17:12:50 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,19 @@ typedef struct s_player
 	int			mouse_y;
 }	t_player;
 
+typedef struct s_tex_img
+{
+	mlx_texture_t	*north;
+	mlx_texture_t	*south;
+	mlx_texture_t	*west;
+	mlx_texture_t	*east;
+	mlx_image_t		*i_north;
+	mlx_image_t		*i_south;
+	mlx_image_t		*i_west;
+	mlx_image_t		*i_east;
+}	tex_t;
+
+
 typedef struct s_data
 {
 	bool		w_key;
@@ -111,6 +124,7 @@ typedef struct s_data
 	float		mouse_sensive;
 	mlx_image_t	*img;
 	mlx_image_t	*player_img;
+	tex_t		tex;
 	t_map		map;
 	t_player	*player;
 }	t_data;

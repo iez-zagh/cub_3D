@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/13 18:15:23 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/15 17:05:04 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	init_direction(t_data *data)
 	data->facing_up = false;
 	data->facing_left = false;
 	data->facing_right = false;
-	if (data->cast_angle < )
+	// if (data->cast_angle < )
 }
 void	cast_ray(t_data *data)
 {

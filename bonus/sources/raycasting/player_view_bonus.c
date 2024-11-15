@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_view_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:56:18 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/05 19:20:43 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/15 17:17:02 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,56 @@ float	distance_calcul(float x, float y, float x1, float y1)
 	return (sqrt((x1 - x) * (x1 - x) + (y1 - y) * (y1 - y)));
 }
 
+mlx_image_t	*get_texture(t_data *data)
+{
+	if (data->found_horz_hit)
+	{
+		if (data->cast_angle > 0 && data->cast_angle < M_PI)
+			return (data->tex.i_north);
+		else
+			return (data->tex.i_south);
+	}
+	else
+	{
+		if (data->cast_angle > M_PI_2 && data->cast_angle < 3 * M_PI_2)
+			return (data->tex.i_west);
+		else 
+			return (data->tex.i_east);
+	}
+	return (NULL);
+}
+
+uint32_t	get_texture_pixel(mlx_image_t *texture, int x, int y)
+{
+	uint8_t	r;
+	uint8_t	g;
+	uint8_t	b;
+	uint8_t	a;
+	int		index;
+
+	if (!texture)
+		return (0x000000);
+	if (x >= 0 && (uint32_t)x < texture->width
+		&& y >= 0 && (uint32_t)y < texture->height)
+	{
+		index = (y * texture->width + x) * 4;
+		r = texture->pixels[index];
+		g = texture->pixels[index + 1];
+		b = texture->pixels[index + 2];
+		a = texture->pixels[index + 3];
+		return (r << 24 | g << 16 | b << 8 | a);
+	}
+	return (0x000000);
+}
+
+
 void	player_view(t_data *data)
 {
 	float	dis_projection_plane;
 	float	start;
 	float	end;
-	float	i;
+	// float	i;
+	mlx_image_t	*img;
 
 	data->wall_dis = data->wall_dis
 		* cos(data->cast_angle - data->player->angle);
@@ -75,10 +119,29 @@ void	player_view(t_data *data)
 	end = start + data->wall_height;
 	if (end >= HEIGHT)
 		end = HEIGHT;
-	i = start;
-	while (i < end)
+	img = get_texture(data);
+	double step = (double)img->height / data->wall_height;
+	double textureofssetX;
+	if (data->found_horz_hit)
+		textureofssetX = ((int)(data->hor_hit_x * img->width) / TILE) % img->width;
+	else if (data->foundverticalhit)
+		textureofssetX = ((int)(data->ver_hit_y * img->width) / TILE) % img->width;
+
+	int distance_from_top = start + (data->wall_height / 2) - (HEIGHT / 2);
+	double texturePosY = distance_from_top * step;
+
+	while (start < end)
 	{
-		mlx_put_pixel(data->player_img, data->strip_n, i, RED);
-		i++;
+		int textureofssetY = (int)texturePosY;
+		uint32_t color = get_texture_pixel(img, textureofssetX, textureofssetY);
+		mlx_put_pixel(data->player_img, data->strip_n, start, color);
+		texturePosY += step;
+		start++;
 	}
+	// i = start;
+	// while (i < end)
+	// {
+	// 	mlx_put_pixel(data->player_img, data->strip_n, i, RED);
+	// 	i++;
+	// }
 }
