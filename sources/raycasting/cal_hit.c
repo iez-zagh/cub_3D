@@ -14,17 +14,16 @@
 
 void	vert_traverse(t_data *data, float ystep, float xstep)
 {
-	if (!(data->cast_angle < 0.5 * M_PI || data->cast_angle > 1.5 * M_PI))
+	float	x;
+	if (data->facing_left)
 		xstep *= -1;
-	if (!(data->cast_angle > 0 && data->cast_angle < M_PI) && ystep > 0)
-		ystep *= -1;
-	if ((data->cast_angle > 0 && data->cast_angle < M_PI) && xstep < 0)
+	if (data->facing_up)
 		ystep *= -1;
 	while (data->nexttouchx >= 0 && data->nexttouchx < data->clmn_n * TILE
 		&& data->nexttouchy >= 0 && data->nexttouchy < data->rows_n * TILE)
 	{
-		float x = data->nexttouchx;
-		if (!(data->cast_angle < 0.5 * M_PI || data->cast_angle > 1.5 * M_PI))
+		x = data->nexttouchx;
+		if (data->facing_left) //need to know this bro
 			x--;
 		if (checking_collision3(data, x, data->nexttouchy))
 		{
@@ -45,29 +44,30 @@ void	vert_interception(t_data *data)
 
 	data->foundverticalhit = false;
 	data->xintercept = floor(data->player->sqaure_x / TILE) * TILE;
-	if ((data->cast_angle < 0.5 * M_PI || data->cast_angle > 1.5 * M_PI))
+	if (data->facing_right)
 		data->xintercept += TILE;
 	data->yintercept = data->player->sqaure_y +
 		((data->xintercept - data->player->sqaure_x) * tan(data->cast_angle));
 	xstep = TILE;
 	data->nexttouchx = data->xintercept;
 	data->nexttouchy = data->yintercept;
-	ystep = TILE * tan(data->cast_angle);
+	ystep = fabs(TILE * tan(data->cast_angle));
 	vert_traverse(data, ystep, xstep);
 }
 
 void	horz_traverse(t_data *data, float ystep, float xstep)
 {
-	if (data->cast_angle > M_PI && data->cast_angle < 2 * M_PI)
-	{
+	float	y;
+
+	if (data->facing_up)
 		ystep *= -1;
+	if (data->facing_left)
 		xstep *= -1;
-	}
 	while (data->nexttouchx >= 0 && data->nexttouchx < data->clmn_n * TILE
 		&& data->nexttouchy >= 0 && data->nexttouchy < data->rows_n * TILE)
 	{
-		float y = data->nexttouchy;
-		if (data->cast_angle > M_PI && data->cast_angle <= 2 * M_PI)
+		y = data->nexttouchy;
+		if (data->facing_up)
 			y--;
 		if (checking_collision3(data, data->nexttouchx, y))
 		{
@@ -122,21 +122,23 @@ void	init_direction(t_data *data)
 		data->facing_right = true;
 	if (!(data->cast_angle < 0.5 * M_PI || data->cast_angle > 1.5 * M_PI))
 		data->facing_left = true;
-}
+}	
+
 void	cast_ray(t_data *data)
 {
 	float	xstep;
 	float	ystep;
 
-	// init_dirction(data);
+	init_direction(data);
 	data->found_horz_hit = false;
 	data->yintercept = floor(data->player->sqaure_y / TILE) * TILE;
-	if (data->cast_angle > 0 && data->cast_angle <= M_PI)
+	if (data->facing_down)
 		data->yintercept += TILE;
 	data->xintercept = data->player->sqaure_x
 		+ ((data->yintercept - data->player->sqaure_y) / tan(data->cast_angle));
 	ystep = TILE;
 	xstep = TILE / tan(data->cast_angle);
+	xstep = fabs(xstep);
 	data->nexttouchx = data->xintercept;
 	data->nexttouchy = data->yintercept;
 	horz_traverse(data, ystep, xstep);

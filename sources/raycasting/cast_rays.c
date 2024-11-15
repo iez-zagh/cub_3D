@@ -24,11 +24,8 @@ int	checking_collision3(t_data *data, int x, int y)
 		[(int)((x + 1) / TILE)] == '1'
 		&&
 		data->map.map[(int)((y + 1) / TILE)]
-		[(int)((x + 1) / TILE)] == '0'
-		)
-		||
-		(
-		data->map.map[(int)((y + 1) / TILE)]
+		[(int)((x + 1) / TILE)] == '0')
+		|| (data->map.map[(int)((y + 1) / TILE)]
 		[(int)((x) / TILE)] == '1'
 		&&
 		data->map.map[(int)((y) / TILE)]

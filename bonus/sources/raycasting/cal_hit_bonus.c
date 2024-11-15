@@ -14,11 +14,9 @@
 
 void	vert_traverse(t_data *data, float ystep, float xstep)
 {
-	if (!(data->cast_angle < 0.5 * M_PI || data->cast_angle > 1.5 * M_PI))
+	if (data->facing_left)
 		xstep *= -1;
-	if (!(data->cast_angle > 0 && data->cast_angle < M_PI) && ystep > 0)
-		ystep *= -1;
-	if ((data->cast_angle > 0 && data->cast_angle < M_PI) && xstep < 0)
+	if (data->facing_up)
 		ystep *= -1;
 	if (!(data->cast_angle < 0.5 * M_PI || data->cast_angle > 1.5 * M_PI))
 		data->nexttouchx--;
