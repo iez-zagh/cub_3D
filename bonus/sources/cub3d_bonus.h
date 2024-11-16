@@ -19,7 +19,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <math.h>
-# include <stdio.h>
+# include <stdio.h> //remember to remove this
 # include <fcntl.h>
 
 # define RED 0xE11E00FF // need to know this later
@@ -32,7 +32,6 @@
 # define SHAPE 0xA0C1DFFF
 # define TILE 64
 # define TILE_SCALED 28
-# define ZOOM_TIE  
 # define MOVE_SPEED 10.0
 # define ROTATE_SPEED 0.05
 # define RADIUS 4.0
