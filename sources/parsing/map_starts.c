@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 22:47:54 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/11/04 22:54:01 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/16 20:44:14 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	map_begins(char *tab, t_map map)
 	return (1);
 }
 
-int	fill_map_spaces(char ***map, t_data *data, int j)
+int	fill_map_spaces(char ***map, t_data *data)
 {
 	int	len;
 	int	strlen;
@@ -81,7 +81,7 @@ int	get_map(t_data *data, int i, int *j)
 	map[(*j)] = NULL;
 	if (tab[i])
 		return (ft_free_par(map), -10);
-	stat = fill_map_spaces(&map, data, *j);
+	stat = fill_map_spaces(&map, data);
 	if (stat < 0)
 		return (ft_free_par(map), stat);
 	return (data->map.map = map, 0);

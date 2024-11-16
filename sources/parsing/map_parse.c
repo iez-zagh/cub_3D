@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 22:48:59 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/11/16 17:43:28 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/16 20:44:37 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	fill_lines(int *i, char ***new_map, int lenght, int max)
 int	_xtra_map(char ***map, int lenght, int lines, t_data *data)
 {
 	int		i;
-	int		len;
 	int		k;
 	char	**new_map;
 

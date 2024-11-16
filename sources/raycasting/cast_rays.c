@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:29:49 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/13 18:07:32 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/16 20:42:33 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	handle_angle(t_data *data)
 void	cast_rays(t_data *data)
 {
 	int		i;
-	float	dis;
+	// float	dis;
 
 	sky_floor(data);
 	data->cast_angle = data->player->angle - FOV_ANGLE / 2;

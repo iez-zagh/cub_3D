@@ -95,7 +95,6 @@ int	load_textures(t_data *data)
 int	parsing(t_data *data, char mapname[])
 {
 	int		stat;
-	char	*line;
 	char	**table;
 	int		lines;
 

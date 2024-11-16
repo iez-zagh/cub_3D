@@ -6,13 +6,13 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:27:55 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/11/16 18:37:34 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/16 20:43:07 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	elements_checker(t_data *data, char **tab, int lines, t_map	*map)
+int	elements_checker(t_data *data, int lines, t_map	*map)
 {
 	int		stat;
 
@@ -81,6 +81,6 @@ int	check_table(t_data *data)
 		else if (stat < 0)
 			return (stat);
 	}
-	stat = elements_checker(data, tab, j, &data->map);
+	stat = elements_checker(data, j, &data->map);
 	return (stat);
 }
