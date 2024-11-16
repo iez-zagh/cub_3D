@@ -86,7 +86,7 @@ int	load_textures(t_data *data)
 	data->tex.east = mlx_load_png(data->map.east);
 	if (!data->tex.east)
 		return (delete_texture(data, 2), -17);
-	data->tex.door = mlx_load_png("textures/door1.png");
+	data->tex.door = mlx_load_png("textures/door_2.png");
 	if (!data->tex.door)
 		return (delete_texture(data, 3), -17);
 	return (0);

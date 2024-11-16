@@ -89,7 +89,6 @@ void	get_closest_hit(t_data *data)
 {
 	float	horzdis;
 	float	verdis;
-	// float	doordis;
 
 	if (data->found_horz_hit)
 		horzdis = distance_calcul(data->player->sqaure_x,
