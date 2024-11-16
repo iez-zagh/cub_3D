@@ -60,18 +60,20 @@ float	distance_calcul(float x, float y, float x1, float y1)
 
 mlx_image_t	*get_texture(t_data *data)
 {
-	if (data->door_hit)
-		return (data->door_hit = false, data->tex.i_door);
 	if (data->found_horz_hit)
 	{
-		if (data->cast_angle > 0 && data->cast_angle < M_PI)
+		if (checking_collision_door3(data, data->hor_hit_x, data->hor_hit_y)) // i add this to check the door 9tae3 lah ydir l7mar
+			return (data->tex.i_door);
+		if (data->facing_down)
 			return (data->tex.i_north);
 		else
 			return (data->tex.i_south);
 	}
 	else
 	{
-		if (data->cast_angle > M_PI_2 && data->cast_angle < 3 * M_PI_2)
+		if (checking_collision_door3(data, data->hor_hit_x, data->hor_hit_y))
+			return (data->tex.i_door);
+		if (data->facing_left)
 			return (data->tex.i_west);
 		else 
 			return (data->tex.i_east);
@@ -108,7 +110,6 @@ void	player_view(t_data *data)
 	float	dis_projection_plane;
 	float	start;
 	float	end;
-	// float	i;
 	mlx_image_t	*img;
 
 	data->wall_dis = data->wall_dis
@@ -122,7 +123,6 @@ void	player_view(t_data *data)
 	if (end >= HEIGHT)
 		end = HEIGHT;
 
-	// 	=> start;
 	img = get_texture(data);
 	double step = (double)img->height / data->wall_height;
 	double textureofssetX;
@@ -142,10 +142,4 @@ void	player_view(t_data *data)
 		texturePosY += step;
 		start++;
 	}
-	// i = start;
-	// while (i < end)
-	// {
-	// 	mlx_put_pixel(data->player_img, data->strip_n, i, RED);
-	// 	i++;
-	// }
 }

@@ -1,5 +1,4 @@
-NAME = cub3d2
-NAME2 = cub3d
+NAME = cub3D
 BONUS = cub3D_bonus
 CC = cc
 # CFLAGS = -fsanitize=address
@@ -40,14 +39,17 @@ sources/%.o:sources/%.c $(HEADER)
 bonus/%.o:bonus/%.c $(B_HEADER)
 	@$(CC) $(B_INCLUDES) $(CFLAGS) -c $< -o $@
 
-all : $(NAME2)
-$(NAME2): $(M_OBJECTS)
+all : $(NAME)
+
+
+$(NAME): $(M_OBJECTS)
 	@make -C $(LIBFT_DIR)
 	@make -C $(GNL_DIR)
-	@$(CC) $(CFLAGS) $(INCLUDES) $(M_OBJECTS) $(LIBS2) -o $(NAME2)
+	@$(CC) $(CFLAGS) $(INCLUDES) $(M_OBJECTS) $(LIBS2) -o $(NAME)
 	@echo the mandatory executable created successfully
 
 bonus : $(BONUS)
+
 $(BONUS): $(B_OBJECTS)
 	@make bonus -C $(LIBFT_DIR)
 	@make -C $(LIBFT_DIR)
@@ -66,7 +68,7 @@ fclean: clean
 	@make fclean -C $(LIBFT_DIR)
 	@make fclean -C $(GNL_DIR)
 	@rm -f $(NAME)
-	@rm -f $(NAME2)
+	@rm -f $(NAME)
 	@rm -f $(BONUS)
 	@echo object files removed successfully
 	@echo the executable file removed successfully

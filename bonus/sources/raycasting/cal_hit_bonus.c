@@ -30,7 +30,8 @@ void	vert_traverse(t_data *data, float ystep, float xstep)
 			|| checking_collision_door3(data, x,
 				data->nexttouchy))
 		{
-			data->foundverticalhit = true;
+			if (!(data->door_hit))
+				data->foundverticalhit = true;
 			data->ver_hit_x = data->nexttouchx;
 			data->ver_hit_y = data->nexttouchy;
 			break ;
@@ -73,8 +74,7 @@ void	horz_traverse(t_data *data, float ystep, float xstep)
 		if (data->facing_up)
 			y--;
 		if (checking_collision3(data, data->nexttouchx, y)
-			|| checking_collision_door3(data, data->nexttouchx,
-				y))
+			|| checking_collision_door3(data, data->nexttouchx, y))
 		{
 			data->found_horz_hit = true;
 			data->hor_hit_x = data->nexttouchx;
@@ -90,6 +90,7 @@ void	get_closest_hit(t_data *data)
 {
 	float	horzdis;
 	float	verdis;
+	float	doordis;
 
 	if (data->found_horz_hit)
 		horzdis = distance_calcul(data->player->sqaure_x,
