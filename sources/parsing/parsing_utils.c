@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:28:59 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/11/07 22:28:35 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/16 18:38:45 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ int	ft_isspace(char c)
 void	perreur2(int x)
 {
 	if (x == -11)
-		write (2, "Error : the map chars are [0,1,' ',N|W|E|S]!\n", 46);
-	else if (x == -12)
-		write (2, "Error : the map : empty space inside map!\n", 43);
+		write (2, "Error : the map parse Error!\n", 30);
 	else if (x == -13)
 		write (2, "Error : the map : accepted chars on first/last"
 			" lines are '1' & ' '!\n", 69);
@@ -35,9 +33,9 @@ void	perreur2(int x)
 		write (2, "Error : the map : N/S/W/E one of those chars must be"
 			" inside map !\n", 67);
 	else if (x == -17)
-		write (2, "Error : mlx_load_png() failed !\n", 31);
+		write (2, "Error : mlx_load_png() failed !\n", 33);
 	else if (x == -18)
-		write (2, "Error : mlx_texture_to_image() failed !\n", 39);
+		write (2, "Error : mlx_texture_to_image() failed !\n", 41);
 }
 
 void	perreur(int x)
@@ -55,7 +53,7 @@ void	perreur(int x)
 	else if (x == -6)
 		write (2, "Error : NO/WE/SO/EA or texture path facing an issue\n", 53);
 	else if (x == -7)
-		write (2, "Error : textures must be on .png/.xpm extansions\n", 50);
+		write (2, "Error : textures must be on .png extansions\n", 45);
 	else if (x == -8)
 		write (2, "Error : F / C lines facing error !\n", 36);
 	else if (x == -9)

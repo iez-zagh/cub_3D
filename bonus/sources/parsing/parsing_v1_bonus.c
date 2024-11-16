@@ -6,18 +6,16 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:27:55 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/11/04 23:00:29 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/16 20:41:15 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
 
-int	elements_checker(t_data *data, int i, char **tab, int lines)
+int	elements_checker(t_data *data, char **tab, int lines, t_map	*map)
 {
-	t_map	*map;
 	int		stat;
 
-	map = &data->map;
 	if (map->color_f != 1 || map->color_c != 1 || map->news[0] != 1
 		|| map->news[1] != 1 || map->news[2] != 1 || map->news[3] != 1)
 		return (-5);
@@ -26,17 +24,19 @@ int	elements_checker(t_data *data, int i, char **tab, int lines)
 		return (stat);
 	stat = check_news_ptrs(map->west, "WE", map);
 	if (stat < 0)
-		return (stat);
+		return (free_leaks(map, 1), stat);
 	stat = check_news_ptrs(map->east, "EA", map);
 	if (stat < 0)
-		return (stat);
+		return (free_leaks(map, 2), stat);
 	stat = check_news_ptrs(map->south, "SO", map);
 	if (stat < 0)
-		return (stat);
+		return (free_leaks(map, 3), stat);
 	stat = f_c_checker(map);
 	if (stat < 0)
-		return (stat);
+		return (free_leaks(map, 4), stat);
 	stat = parse_map(data, lines);
+	if (stat < 0)
+		return (free_leaks(map, 4), stat);
 	return (stat);
 }
 
@@ -81,6 +81,6 @@ int	check_table(t_data *data)
 		else if (stat < 0)
 			return (stat);
 	}
-	stat = elements_checker(data, i, tab, j);
+	stat = elements_checker(data, i, tab, j, &data->map);
 	return (stat);
 }

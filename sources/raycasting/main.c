@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/12 19:56:18 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/16 19:47:46 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,20 @@ int	main(int ac, char **av)
 	t_player	player;
 	char		*map;
 
-	// atexit(f);
+	atexit(f);
 	map = NULL;
 	if (ac != 2)
 		return (how_2_use(), 1);
 	data.player = &player;
 	stat = parsing(&data, av[1]);
+	// while(1);
 	if (stat < 0)
-		return (stat);
+		return (ft_free_par(data.map.map), 1);
 	player.sqaure_x = player.x * TILE;
 	player.sqaure_y = player.y * TILE;
-	start_render(&data); 
+	start_render(&data);
+	ft_free_par(data.map.map);
+	free_leaks(&data.map, 4);
+	delete_images(&data, 4);
 	return (0);
 }

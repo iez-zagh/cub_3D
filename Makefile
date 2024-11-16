@@ -18,7 +18,8 @@ M_SOURCES = sources/raycasting/main.c sources/raycasting/key_hook.c sources/rayc
  			sources/raycasting/cal_hit.c sources/raycasting/cast_rays.c sources/raycasting/player_view.c\
 			sources/parsing/parsing.c sources/parsing/parsing_v1.c sources/parsing/parsing_utils.c\
 			sources/parsing/news_parse.c sources/parsing/f_c_parse.c sources/parsing/parsing_utils2.c\
-			sources/parsing/parsing_utils3.c sources/parsing/map_starts.c sources/parsing/map_parse.c
+			sources/parsing/parsing_utils3.c sources/parsing/map_starts.c sources/parsing/map_parse.c \
+			sources/parsing/utils.c 
 
 B_SOURCES = bonus/sources/raycasting/main_bonus.c bonus/sources/raycasting/key_hook_bonus.c\
 			bonus/sources/raycasting/render_bonus.c bonus/sources/raycasting/cal_hit_bonus.c\
@@ -27,7 +28,7 @@ B_SOURCES = bonus/sources/raycasting/main_bonus.c bonus/sources/raycasting/key_h
 			bonus/sources/parsing/parsing_utils_bonus.c bonus/sources/parsing/news_parse_bonus.c\
 			bonus/sources/parsing/f_c_parse_bonus.c bonus/sources/parsing/parsing_utils2_bonus.c \
 			bonus/sources/parsing/parsing_utils3_bonus.c bonus/sources/raycasting/draw_player_bonus.c\
-			 bonus/sources/raycasting/collision_bonus.c \
+			bonus/sources/raycasting/collision_bonus.c bonus/sources/parsing/utils_bonus.c \
 			bonus/sources/parsing/map_starts_bonus.c bonus/sources/parsing/map_parse_bonus.c\
 
 M_OBJECTS = $(M_SOURCES:.c=.o)

@@ -79,22 +79,16 @@ int	load_textures(t_data *data)
 		return (-17);
 	data->tex.south = mlx_load_png(data->map.south);
 	if (!data->tex.south)
-		return (mlx_delete_texture(data->tex.north), -17);
+		return (delete_texture(data, 0), -17);
 	data->tex.west = mlx_load_png(data->map.west);
 	if (!data->tex.west)
-		return (mlx_delete_texture(data->tex.north),
-				mlx_delete_texture(data->tex.south), -17);
+		return (delete_texture(data, 1), -17);
 	data->tex.east = mlx_load_png(data->map.east);
 	if (!data->tex.east)
-		return (mlx_delete_texture(data->tex.north),
-				mlx_delete_texture(data->tex.south),
-				mlx_delete_texture(data->tex.west), -17);
+		return (delete_texture(data, 2), -17);
 	data->tex.door = mlx_load_png("textures/door1.png");
 	if (!data->tex.door)
-		return (mlx_delete_texture(data->tex.north),
-				mlx_delete_texture(data->tex.south),
-				mlx_delete_texture(data->tex.west), 
-				mlx_delete_texture(data->tex.east), -17);
+		return (delete_texture(data, 3), -17);
 	return (0);
 }
 
@@ -118,8 +112,9 @@ int	parsing(t_data *data, char mapname[])
 	stat = check_table(data);
 	if (stat < 0)
 		return (ft_free_par(table), perreur(stat), stat);
+	ft_free_par(table);
 	stat = load_textures(data);
 	if (stat < 0)
-		return (ft_free_par(table), perreur(stat), stat);
-	return (ft_free_par(table), 0);
+		return (free_leaks(&data->map, 4), perreur(stat), stat);
+	return (0);
 }

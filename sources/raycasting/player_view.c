@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:56:18 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/14 23:28:10 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/16 19:42:49 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,16 @@ int	convert_textures(t_data *data)
 		return (-18);
 	data->tex.i_south = mlx_texture_to_image(data->mlx, data->tex.south);
 	if (!data->tex.i_south)
-		return (mlx_delete_image(data->mlx, data->tex.i_north), -18);
+		return (delete_images(data, 0), delete_texture(data, 4), -18);
 	data->tex.i_west = mlx_texture_to_image(data->mlx, data->tex.west);
 	if (!data->tex.i_west)
-		return (mlx_delete_image(data->mlx, data->tex.i_north),
-				mlx_delete_image(data->mlx, data->tex.i_south), -18);
+		return (delete_images(data, 1), delete_texture(data, 4), -18);
 	data->tex.i_east = mlx_texture_to_image(data->mlx, data->tex.east);
 	if (!data->tex.i_east)
-		return (mlx_delete_image(data->mlx, data->tex.i_north),
-				mlx_delete_image(data->mlx, data->tex.i_south),
-				mlx_delete_image(data->mlx, data->tex.i_west), -18);
-	mlx_delete_texture(data->tex.north);
-	mlx_delete_texture(data->tex.south);
-	mlx_delete_texture(data->tex.west);
-	mlx_delete_texture(data->tex.east);
-	return (0);
+		return (delete_images(data, 2), delete_texture(data, 4), -18);
+	return (delete_texture(data, 4), 0);
 }
 
-//to do : a function to put the texture on the wall named put_texture
 
 void	start_render(t_data *data)
 {

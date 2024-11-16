@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 16:51:41 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/11/04 22:54:46 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/16 17:56:22 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	fc_checker(char *coor, char *str, int cfrgb[3])
 			return (ft_free_par(tab), -8);
 		tmp = ft_atoi(tab[i]);
 		if (tmp < 0 || tmp > 255)
-			return (ft_free_par(tab), -9);
+			return (puts("here"), ft_free_par(tab), -9);
 		cfrgb[i] = tmp;
 	}
 	return (ft_free_par(tab), 0);
