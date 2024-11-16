@@ -89,7 +89,7 @@ int	load_textures(t_data *data)
 		return (mlx_delete_texture(data->tex.north),
 				mlx_delete_texture(data->tex.south),
 				mlx_delete_texture(data->tex.west), -17);
-	data->tex.door = mlx_load_png("textures/door1.png");
+	data->tex.door = mlx_load_png("textures/door_2.png");
 	if (!data->tex.door)
 		return (mlx_delete_texture(data->tex.north),
 				mlx_delete_texture(data->tex.south),

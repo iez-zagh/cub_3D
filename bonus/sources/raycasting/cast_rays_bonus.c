@@ -14,64 +14,36 @@
 
 void	open_door(t_data *data)
 {
-	int	i;
-	int	j;
+	if (data->door_hit && data->map.map[data->door_y][data->door_x] == 'D' && distance_calcul(data->player->sqaure_x / TILE, data->player->sqaure_y / TILE, data->door_x, data->door_y) < 3)
+		data->map.map[data->door_y][data->door_x] = 'C';
 
-	data->player->x = data->player->sqaure_x / TILE;
-	data->player->y = data->player->sqaure_y / TILE;
-	i = data->player->x -3;
-	while (i < data->player->x +3)
-	{
-		j = data->player->y -3;
-		while (j < data->player->y +3)
-		{
-			if (data->map.map[j][i] == 'D')
-			{
-				data->map.map[j][i] = 'C';
-				return ;
-			}
-			j++;
-		}
-		i++;
-	}
 }
 
 void	close_door(t_data *data)
 {
-	int	i;
-	int	j;
 
-	data->player->x = data->player->sqaure_x / TILE;
-	data->player->y = data->player->sqaure_y / TILE;
-	i = data->player->x -3;
-	while (i < data->player->x +3)
-	{
-		j = data->player->y -3;
-		while (j < data->player->y +3)
-		{
-			if (data->map.map[j][i] == 'C' && data->map.map[(int)data->player->sqaure_y / TILE][(int)data->player->sqaure_x / TILE] != data->map.map[j][i])
-			{
-				data->map.map[j][i] = 'D';
-				return ;
-			}
-			j++;
-		}
-		i++;
-	}
+	if (data->door_hit && data->map.map[data->door_y][data->door_x] == 'C' && data->map.map[(int)data->player->sqaure_y / TILE][(int)data->player->sqaure_x / TILE] != data->map.map[data->door_y][data->door_x]
+		&& distance_calcul(data->player->sqaure_x / TILE, data->player->sqaure_y / TILE, data->door_x, data->door_y) < 3)
+		data->map.map[data->door_y][data->door_x] = 'D';
+
 }
 
 int	checking_collision_door(t_data *data, float x, float y)
 {
-	if (data->map.map[(int)((y) / TILE)]
-		[(int)((x) / TILE)] &&
-		(data->map.map[(int)((y) / TILE)]
-		[(int)((x) / TILE)] == 'D' ||
-		data->map.map[(int)((y + RADIUS2) / TILE)]
-		[(int)((x) / TILE)] == 'D' ||
-		data->map.map[(int)((y) / TILE)]
-		[(int)((x) / TILE)] == 'D' ||
-		data->map.map[(int)((y) / TILE)]
-		[(int)((x) / TILE)] == 'D'))
+	x /= TILE;
+	y /= TILE;
+	x *= TILE_SCALED;
+	y *= TILE_SCALED;
+	if (data->map.map[(int)((y - RADIUS2) / TILE_SCALED)]
+		[(int)((x - RADIUS2) / TILE_SCALED)] &&
+		(data->map.map[(int)((y - RADIUS2) / TILE_SCALED)]
+		[(int)((x - RADIUS2) / TILE_SCALED)] == 'D' ||
+		data->map.map[(int)((y + RADIUS2) / TILE_SCALED)]
+		[(int)((x - RADIUS2) / TILE_SCALED)] == 'D' ||
+		data->map.map[(int)((y - RADIUS2) / TILE_SCALED)]
+		[(int)((x + RADIUS2) / TILE_SCALED)] == 'D' ||
+		data->map.map[(int)((y + RADIUS2) / TILE_SCALED)]
+		[(int)((x + RADIUS2) / TILE_SCALED)] == 'D'))
 		return (1);
 	return (0);
 }
@@ -87,7 +59,7 @@ void	sky_floor(t_data *data)//optimi
 		j = 0;
 		while (j < WIDTH)
 		{
-			mlx_put_pixel(data->player_img, j, i, BLUE);
+			mlx_put_pixel(data->player_img, j, i, 0x0B0033FF);
 			j++;
 		}
 		i++;
@@ -98,7 +70,7 @@ void	sky_floor(t_data *data)//optimi
 		j = 0;
 		while (j < WIDTH)
 		{
-			mlx_put_pixel(data->player_img, j, i, BLACK);
+			mlx_put_pixel(data->player_img, j, i, 0x1A1A1AFF);
 			j++;
 		}
 		i++;
@@ -117,6 +89,7 @@ void	cast_rays(t_data *data)
 	int		i;
 	float	dis;
 
+	data->door_hit = false;
 	sky_floor(data);
 	data->cast_angle = data->player->angle;
 	data->cast_angle -= FOV_ANGLE / 2;

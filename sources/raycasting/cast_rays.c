@@ -29,8 +29,7 @@ int	checking_collision3(t_data *data, int x, int y)
 		data->map.map[(int)((y) / TILE)]
 		[(int)((x - 1) / TILE)] == '1' &&
 		data->map.map[(int)((y + 1) / TILE)]
-		[(int)((x - 1) / TILE)] == '0'
-		))
+		[(int)((x - 1) / TILE)] == '0'))
 		return (1);
 	return (0);
 }
@@ -61,7 +60,7 @@ void	sky_floor(t_data *data)//optimi
 		j = 0;
 		while (j < WIDTH)
 		{
-			mlx_put_pixel(data->player_img, j, i, 0x1A1A1AFF);
+			mlx_put_pixel(data->player_img, j, i, 0x1A1A1AFF); // this from parsing
 			j++;
 		}
 		i++;

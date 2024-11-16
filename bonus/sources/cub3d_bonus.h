@@ -30,6 +30,7 @@
 # define GRAY 0x808080FF
 # define SHAPE 0xA0C1DFFF
 # define TILE 64
+# define GREEN 0x82FF00FF
 # define TILE_SCALED 28
 # define MOVE_SPEED 10.0
 # define ROTATE_SPEED 0.05
@@ -93,6 +94,8 @@ typedef struct s_tex_img
 
 typedef struct s_data
 {
+	int			door_x;
+	int			door_y;
 	bool		w_key;
 	bool		s_key;
 	bool		d_key;
@@ -119,6 +122,7 @@ typedef struct s_data
 	bool		facing_down;
 	bool		facing_left;
 	bool		facing_right;
+	bool		door_hit;
 	float		wall_height;
 	float		mouse_sensive;
 	mlx_image_t	*img;

@@ -27,7 +27,7 @@ int	get_color(t_data *data, int x, int y)
 	if (data->map.map[y / TILE_SCALED][x / TILE_SCALED] == 'D')
 		return (RED);
 	if (data->map.map[y / TILE_SCALED][x / TILE_SCALED] == 'C')
-		return (GRAY);
+		return (GREEN);
 	return (WHITE);
 }
 
