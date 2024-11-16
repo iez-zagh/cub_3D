@@ -24,7 +24,6 @@
 
 # define RED 0xE11E00FF // need to know this later
 # define BLUE 0x4682B4FF
-
 # define WHITE 0xFFFFFFFF
 # define BLACK 0x00000FF
 # define YELLOW 0xFFFF00FF
@@ -35,7 +34,7 @@
 # define MOVE_SPEED 10.0
 # define ROTATE_SPEED 0.05
 # define RADIUS 4.0
-# define RADIUS2 4.0
+# define RADIUS2 6.0
 # define ROTATE_ANGLE 0.07488888889
 # define WIDTH	1200
 # define HEIGHT	700
@@ -154,6 +153,7 @@ void	sub_key(mlx_key_data_t key, t_data *data);
 void	add_key(mlx_key_data_t key, t_data *data);
 void	open_door(t_data *data);
 void	close_door(t_data *data);
+void	handle_angle(t_data *data);
 
 /*				parsing					*/
 // === === === === === === === === === //

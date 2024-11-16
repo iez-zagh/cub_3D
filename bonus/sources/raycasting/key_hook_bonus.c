@@ -23,8 +23,8 @@ void	my_key_hook4(t_data *data)
 			+ cos(data->cast_angle - (M_PI / 2)) * MOVE_SPEED;
 		new_y = data->player->sqaure_y
 			+ sin(data->cast_angle - (M_PI / 2)) * MOVE_SPEED;
-		if (!checking_collision(data, new_x - MOVE_SPEED, new_y)
-			&& !checking_collision_door(data, new_x - MOVE_SPEED, new_y))
+		if (!checking_collision(data, new_x, new_y)
+			&& !checking_collision_door(data, new_x, new_y))
 		{
 			data->player->sqaure_x = new_x;
 			data->player->sqaure_y = new_y;
@@ -140,7 +140,7 @@ void	my_key_hook(void *st)
 		{
 			data->player->sqaure_x = new_x;
 			data->player->sqaure_y = new_y;
-			draw_minimap(data);
+			draw_minimap(data); // why this
 			cast_rays(data);
 		}
 	}

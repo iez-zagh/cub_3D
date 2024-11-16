@@ -21,16 +21,13 @@ int	checking_collision3(t_data *data, int x, int y)
 	if ((data->map.map[(int)((y + 1) / TILE)]
 		[(int)((x - 1) / TILE)] == '1' &&
 		data->map.map[(int)((y) / TILE)]
-		[(int)((x + 1) / TILE)] == '1'
-		&&
+		[(int)((x + 1) / TILE)] == '1' &&
 		data->map.map[(int)((y + 1) / TILE)]
 		[(int)((x + 1) / TILE)] == '0')
 		|| (data->map.map[(int)((y + 1) / TILE)]
-		[(int)((x) / TILE)] == '1'
-		&&
+		[(int)((x) / TILE)] == '1' &&
 		data->map.map[(int)((y) / TILE)]
-		[(int)((x - 1) / TILE)] == '1'
-		&&
+		[(int)((x - 1) / TILE)] == '1' &&
 		data->map.map[(int)((y + 1) / TILE)]
 		[(int)((x - 1) / TILE)] == '0'
 		))
@@ -61,7 +58,7 @@ void	sky_floor(t_data *data)//optimi
 	}
 	while (i < 700)
 	{
-		j = 0;	
+		j = 0;
 		while (j < WIDTH)
 		{
 			mlx_put_pixel(data->player_img, j, i, 0x1A1A1AFF);
@@ -91,7 +88,7 @@ void	cast_rays(t_data *data)
 	{
 		handle_angle(data);
 		cast_ray(data);
-		player_view(data);	
+		player_view(data);
 		data->cast_angle += FOV_ANGLE / WIDTH;
 		data->strip_n++;
 		i++;

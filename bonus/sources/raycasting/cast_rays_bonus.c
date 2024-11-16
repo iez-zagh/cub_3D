@@ -62,20 +62,16 @@ void	close_door(t_data *data)
 
 int	checking_collision_door(t_data *data, float x, float y)
 {
-	x /= TILE;
-	y /= TILE;
-	x *= TILE_SCALED;
-	y *= TILE_SCALED;
-	if (data->map.map[(int)((y - RADIUS2) / TILE_SCALED)]
-		[(int)((x - RADIUS2) / TILE_SCALED)] &&
-		(data->map.map[(int)((y - RADIUS2) / TILE_SCALED)]
-		[(int)((x - RADIUS2) / TILE_SCALED)] == 'D' ||
-		data->map.map[(int)((y + RADIUS2) / TILE_SCALED)]
-		[(int)((x - RADIUS2) / TILE_SCALED)] == 'D' ||
-		data->map.map[(int)((y - RADIUS2) / TILE_SCALED)]
-		[(int)((x + RADIUS2) / TILE_SCALED)] == 'D' ||
-		data->map.map[(int)((y + RADIUS2) / TILE_SCALED)]
-		[(int)((x + RADIUS2) / TILE_SCALED)] == 'D'))
+	if (data->map.map[(int)((y) / TILE)]
+		[(int)((x) / TILE)] &&
+		(data->map.map[(int)((y) / TILE)]
+		[(int)((x) / TILE)] == 'D' ||
+		data->map.map[(int)((y + RADIUS2) / TILE)]
+		[(int)((x) / TILE)] == 'D' ||
+		data->map.map[(int)((y) / TILE)]
+		[(int)((x) / TILE)] == 'D' ||
+		data->map.map[(int)((y) / TILE)]
+		[(int)((x) / TILE)] == 'D'))
 		return (1);
 	return (0);
 }
