@@ -24,14 +24,13 @@ void	vert_traverse(t_data *data, float ystep, float xstep)
 		&& data->nexttouchy >= 0 && data->nexttouchy < data->rows_n * TILE)
 	{
 		x = data->nexttouchx;
-		if (data->facing_left) //need to know this bro
+		if (data->facing_left)
 			x--;
 		if (checking_collision3(data, x, data->nexttouchy)
 			|| checking_collision_door3(data, x,
 				data->nexttouchy))
 		{
-			if (!(data->door_hit))
-				data->foundverticalhit = true;
+			data->foundverticalhit = true;
 			data->ver_hit_x = data->nexttouchx;
 			data->ver_hit_y = data->nexttouchy;
 			break ;
@@ -136,7 +135,6 @@ void	cast_ray(t_data *data)
 	float	ystep;
 
 	init_direction(data);
-	data->door_hit = false;
 	data->found_horz_hit = false;
 	data->yintercept = floor(data->player->sqaure_y / TILE) * TILE;
 	if (data->cast_angle > 0 && data->cast_angle <= M_PI)

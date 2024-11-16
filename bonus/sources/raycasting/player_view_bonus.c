@@ -62,16 +62,18 @@ mlx_image_t	*get_texture(t_data *data)
 {
 	if (data->found_horz_hit)
 	{
-		if (checking_collision_door3(data, data->hor_hit_x, data->hor_hit_y)) // i add this to check the door 9tae3 lah ydir l7mar
+		if (data->map.map[(int)((data->hor_hit_y) / TILE)]
+		[(int)((data->hor_hit_x) / TILE)] == 'D') // i add this to check the door 9tae3 lah ydir l7mar
 			return (data->tex.i_door);
 		if (data->facing_down)
 			return (data->tex.i_north);
 		else
 			return (data->tex.i_south);
 	}
-	else
+	else if (data->foundverticalhit)
 	{
-		if (checking_collision_door3(data, data->hor_hit_x, data->hor_hit_y))
+		if (data->map.map[(int)((data->ver_hit_y) / TILE)]
+		[(int)((data->ver_hit_x) / TILE)] == 'D') // i add this to check the door 9tae3 lah ydir l7mar
 			return (data->tex.i_door);
 		if (data->facing_left)
 			return (data->tex.i_west);
@@ -122,7 +124,6 @@ void	player_view(t_data *data)
 	end = start + data->wall_height;
 	if (end >= HEIGHT)
 		end = HEIGHT;
-
 	img = get_texture(data);
 	double step = (double)img->height / data->wall_height;
 	double textureofssetX;
@@ -130,10 +131,8 @@ void	player_view(t_data *data)
 		textureofssetX = ((int)(data->hor_hit_x * img->width) / TILE) % img->width;
 	else if (data->foundverticalhit)
 		textureofssetX = ((int)(data->ver_hit_y * img->width) / TILE) % img->width;
-
 	int distance_from_top = start + (data->wall_height / 2) - (HEIGHT / 2);
 	double texturePosY = distance_from_top * step;
-
 	while (start < end)
 	{
 		int textureofssetY = (int)texturePosY;

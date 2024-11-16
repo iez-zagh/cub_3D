@@ -34,7 +34,7 @@
 # define MOVE_SPEED 10.0
 # define ROTATE_SPEED 0.05
 # define RADIUS 4.0
-# define RADIUS2 6.0
+# define RADIUS2 5.0
 # define ROTATE_ANGLE 0.07488888889
 # define WIDTH	1200
 # define HEIGHT	700
@@ -115,7 +115,6 @@ typedef struct s_data
 	float		nexttouchx;
 	float		nexttouchy;
 	float		wall_dis;
-	bool		door_hit;
 	bool		facing_up;
 	bool		facing_down;
 	bool		facing_left;
