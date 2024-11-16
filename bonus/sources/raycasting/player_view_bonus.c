@@ -63,8 +63,19 @@ mlx_image_t	*get_texture(t_data *data)
 	if (data->found_horz_hit)
 	{
 		if (data->map.map[(int)((data->hor_hit_y) / TILE)]
+		[(int)((data->hor_hit_x) / TILE)] == 'C')
+		{
+			data->door_x = data->hor_hit_x / TILE;
+			data->door_y = data->hor_hit_y / TILE;
+			data->door_hit = true;
+		}
+		if (data->map.map[(int)((data->hor_hit_y) / TILE)]
 		[(int)((data->hor_hit_x) / TILE)] == 'D') // i add this to check the door 9tae3 lah ydir l7mar
-			return (data->tex.i_door);
+		{
+			data->door_x = data->hor_hit_x / TILE;
+			data->door_y = data->hor_hit_y / TILE;
+			return (data->door_hit = true ,data->tex.i_door);
+		}
 		if (data->facing_down)
 			return (data->tex.i_north);
 		else
@@ -73,8 +84,19 @@ mlx_image_t	*get_texture(t_data *data)
 	else if (data->foundverticalhit)
 	{
 		if (data->map.map[(int)((data->ver_hit_y) / TILE)]
-		[(int)((data->ver_hit_x) / TILE)] == 'D') // i add this to check the door 9tae3 lah ydir l7mar
-			return (data->tex.i_door);
+		[(int)((data->ver_hit_x) / TILE)] == 'C')
+		{
+			data->door_hit = true;
+			data->door_x = data->ver_hit_x / TILE;
+			data->door_y = data->ver_hit_y / TILE;
+		}
+		if (data->map.map[(int)((data->ver_hit_y) / TILE)]
+		[(int)((data->ver_hit_x) / TILE)] == 'D')
+		{
+			data->door_x = data->ver_hit_x / TILE;
+			data->door_y = data->ver_hit_y / TILE;
+			return (data->door_hit = true, data->tex.i_door);
+		}
 		if (data->facing_left)
 			return (data->tex.i_west);
 		else 
