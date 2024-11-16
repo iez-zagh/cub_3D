@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/16 18:52:12 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/16 21:25:59 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,13 @@ typedef struct s_tex_img
 	mlx_texture_t	*west;
 	mlx_texture_t	*east;
 	mlx_texture_t	*door;
+	mlx_texture_t	*frames[36];
 	mlx_image_t		*i_north;
 	mlx_image_t		*i_south;
 	mlx_image_t		*i_west;
 	mlx_image_t		*i_east;
 	mlx_image_t		*i_door;
+	mlx_image_t		*i_frames[36];
 }	tex_t;
 
 
@@ -182,6 +184,10 @@ int		first_last_line(char *line);
 void	free_leaks(t_map *map, int x);
 void	delete_texture(t_data *data, int x);
 void	delete_images(t_data *data, int x);
+
+int		frames_loading(t_data *data);
+int		from_texture_to_image(t_data *data);
+void	free_frames(t_data *data, int i, int x);
 // === === === === === === === === === //
 
 #endif

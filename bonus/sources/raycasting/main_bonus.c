@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/16 20:03:45 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/16 21:39:41 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,15 @@ void	f(void)
 	system("leaks cub3D_bonus");
 }
 
+void	free_All(t_data *data)
+{
+	free_frames(data, 36, 0);
+	free_frames(data, 36, 1);
+	ft_free_par(data->map.map);
+	free_leaks(&data->map, 4);
+	delete_images(data, 5);
+}
+
 int	main(int ac, char **av)
 {
 	t_data		data;
@@ -92,9 +101,10 @@ int	main(int ac, char **av)
 		return (ft_free_par(data.map.map), stat);
 	player.sqaure_x = player.x * TILE;
 	player.sqaure_y = player.y * TILE;
+
+	if (frames_loading(&data))
+		return (ft_free_par(data.map.map), -1);
 	start_render(&data);
-	ft_free_par(data.map.map);
-	free_leaks(&data.map, 4);
-	delete_images(&data, 5);
+	free_All(&data);
 	return (0);
 }
