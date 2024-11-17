@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:28:59 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/11/16 20:43:57 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/17 01:40:17 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	perreur2(int x)
 	else if (x == -15)
 		write (2, "Error : the map : N/S/W/E one of those chars must be"
 			" inside map !\n", 67);
+	else if (x == -16)
+		write (2, "Error : Door : must be near walls !\n", 37);
 	else if (x == -17)
 		write (2, "Error : mlx_load_png() failed !\n", 33);
 	else if (x == -18)
@@ -89,4 +91,5 @@ void	inisialize_vars(t_data *data)
 	data->map.north = NULL;
 	data->map.south = NULL;
 	data->map.east = NULL;
+	data->frames = 0;
 }

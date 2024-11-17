@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 16:38:05 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/16 21:45:47 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/17 01:19:22 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	start_render(t_data *data)
 	if (convert_textures(data) < 0)
 		return ;
 	if (from_texture_to_image(data))
-		return (ft_free_par(data->map.map));
+		return ;
 	data->player_img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->player->sqaure_x = data->player->x * TILE;
 	data->player->sqaure_y = data->player->y * TILE;
@@ -112,6 +112,7 @@ void	start_render(t_data *data)
 	data->d_key = false;
 	data->sub_key = false;
 	data->add_key = false;
+	data->animation = false;
 	data->mouse_sensive = 2.5;
 	mlx_key_hook(data->mlx, check_keys, data);
 	mlx_loop_hook(data->mlx, my_key_hook, data);

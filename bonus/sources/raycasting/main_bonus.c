@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/16 21:39:41 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/17 01:10:06 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void	f(void)
 
 void	free_All(t_data *data)
 {
-	free_frames(data, 36, 0);
-	free_frames(data, 36, 1);
+	free_frames(data, 7, 0);
+	free_frames(data, 7, 1);
 	ft_free_par(data->map.map);
 	free_leaks(&data->map, 4);
 	delete_images(data, 5);
@@ -91,7 +91,7 @@ int	main(int ac, char **av)
 	t_player	player;
 	char		*map;
 
-	atexit(f);
+	// atexit(f);
 	map = NULL;
 	if (ac != 2)
 		return (how_2_use(), 1);

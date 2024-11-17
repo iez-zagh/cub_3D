@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 23:00:48 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/11/16 20:44:46 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/16 22:27:44 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,8 @@ int	char_checker(char **map, int i, int j)
 	else if ((map[i][j] == '0' || is_player(map[i][j]))
 		&& check_directions(map, i, j, 1) != 0)
 		return (-12);
-	else if (map[i][j] == 'D' && check_directions(map, i, j, 0) != 0)
+	else if (map[i][j] == 'D' && (j == 0
+		|| check_directions(map, i, j, 0) != 0))
 		return (-16);
 	return (0);
 }
