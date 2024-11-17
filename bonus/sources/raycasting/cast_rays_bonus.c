@@ -16,16 +16,13 @@ void	open_door(t_data *data)
 {
 	if (data->door_hit && data->map.map[data->door_y][data->door_x] == 'D' && distance_calcul(data->player->sqaure_x / TILE, data->player->sqaure_y / TILE, data->door_x, data->door_y) < 3)
 		data->map.map[data->door_y][data->door_x] = 'C';
-
 }
 
 void	close_door(t_data *data)
 {
-
 	if (data->door_hit && data->map.map[data->door_y][data->door_x] == 'C' && data->map.map[(int)data->player->sqaure_y / TILE][(int)data->player->sqaure_x / TILE] != data->map.map[data->door_y][data->door_x]
 		&& distance_calcul(data->player->sqaure_x / TILE, data->player->sqaure_y / TILE, data->door_x, data->door_y) < 3)
 		data->map.map[data->door_y][data->door_x] = 'D';
-
 }
 
 int	checking_collision_door(t_data *data, float x, float y)
@@ -87,8 +84,6 @@ void	handle_angle(t_data *data)
 void	cast_rays(t_data *data)
 {
 	int		i;
-	// float	dis;
-
 	data->door_hit = false;
 	sky_floor(data);
 	data->cast_angle = data->player->angle;

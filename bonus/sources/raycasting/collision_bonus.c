@@ -89,25 +89,38 @@ int	checking_collision3(t_data *data, int x, int y)
 
 int	checking_collision_door3(t_data *data, int x, int y)
 {
-	if (!data->map.map[(int)(y / TILE)][(int)(x / TILE)]
-	|| (data->map.map[(int)(y / TILE)][(int)(x / TILE)] == 'D'))
+	if (!data->map.map[(int)((y) / TILE)][(int)(x / TILE)]
+	|| (data->map.map[(int)((y) / TILE)][(int)(x / TILE)] == 'D'))
+	{
+		data->door_hit = true;
+		data->door_x = x / TILE;
+		data->door_y = y / TILE;
 		return (1);
-	if ((data->map.map[(int)((y + 1) / TILE)]
-		[(int)((x - 1) / TILE)] == 'D' &&
-		data->map.map[(int)((y) / TILE)]
-		[(int)((x + 1) / TILE)] == 'D' &&
-		data->map.map[(int)((y + 1) / TILE)]
-		[(int)((x + 1) / TILE)] == '0'
-		) || (data->map.map[(int)((y + 1) / TILE)]
-		[(int)((x) / TILE)] == 'D' &&
-		data->map.map[(int)((y) / TILE)]
-		[(int)((x - 1) / TILE)] == 'D' &&
-		data->map.map[(int)((y + 1) / TILE)]
-		[(int)((x - 1) / TILE)] == '0'))
-		return (1);
+	}
+	if (data->map.map[(int)(y / TILE)]
+	[(int)(x / TILE)] == 'C')
+	{
+		data->door_hit = true;
+		data->door_x = x / TILE;
+		data->door_y = y / TILE;
+	}
+	//think about this
+
+	// if ((data->map.map[(int)((y + 1) / TILE)] 
+	// 	[(int)((x - 1) / TILE)] == 'D' &&
+	// 	data->map.map[(int)((y) / TILE)]
+	// 	[(int)((x + 1) / TILE)] == 'D' &&
+	// 	data->map.map[(int)((y + 1) / TILE)]
+	// 	[(int)((x + 1) / TILE)] == '0'
+	// 	) || (data->map.map[(int)((y + 1) / TILE)]
+	// 	[(int)((x) / TILE)] == 'D' &&
+	// 	data->map.map[(int)((y) / TILE)]
+	// 	[(int)((x - 1) / TILE)] == 'D' &&
+	// 	data->map.map[(int)((y + 1) / TILE)]
+	// 	[(int)((x - 1) / TILE)] == '0'))
+	// 	return (1);
 	return (0);
 }
-
 int	checking_collision(t_data *data, float x, float y)
 {
 	x /= TILE;

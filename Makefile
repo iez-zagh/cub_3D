@@ -1,7 +1,6 @@
 NAME = cub3D
 BONUS = cub3D_bonus
 CC = cc
-# CFLAGS = -fsanitize=address
 # CFLAGS = -fsanitize=address -Wextra -Wall -Werror
 LIBFT_DIR = /Users/$(USER)/Desktop/cub_3d/libft
 GNL_DIR = /Users/$(USER)/Desktop/cub_3d/gnl

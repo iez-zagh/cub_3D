@@ -99,6 +99,7 @@ void	key_hook_2(t_data *data)
 
 void	handle_mouse(void *d)
 {
+	return ;
 	int		last_position;
 	float	direction;
 	t_data	*data;

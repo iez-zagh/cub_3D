@@ -91,7 +91,6 @@ int	main(int ac, char **av)
 	t_player	player;
 	char		*map;
 
-	// atexit(f);
 	map = NULL;
 	if (ac != 2)
 		return (how_2_use(), 1);

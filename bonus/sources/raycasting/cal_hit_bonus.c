@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/16 20:45:02 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/15 18:27:28 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void	get_closest_hit(t_data *data)
 {
 	float	horzdis;
 	float	verdis;
+	float	doordis;
 
 	if (data->found_horz_hit)
 		horzdis = distance_calcul(data->player->sqaure_x,
