@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/17 02:25:29 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/17 18:09:41 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,7 @@ int 	parse_map(t_data *data, int lines);
 int		map_begins(char *tab, t_map map);
 int		get_map(t_data *data, int i, int *j);
 int		first_last_line(char *line);
-
+int		is_forbidden(char c);
 void	free_leaks(t_map *map, int x);
 void	delete_texture(t_data *data, int x);
 void	delete_images(t_data *data, int x);
