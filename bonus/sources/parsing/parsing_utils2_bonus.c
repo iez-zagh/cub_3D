@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 01:21:07 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/11/16 17:26:44 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/17 18:10:14 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,16 +85,13 @@ int	check_directions(char **map, int i, int j, int x)
 	if (!x)
 	{
 		if ((map[i - 1][j] != '1' && map[i + 1][j] != '1')
-			&& (map[i][j - 1] != '1' && map[i][j + 1] != '1'))
+			&& (map[i][j - 1] != '1' && map[i][j + 1] != '1')
+			&& (map[i - 1][j - 1] != '1' && map[i - 1][j + 1] != '1'))
 			return (1);
-		if (map[i - 1][j] == 'D' || map[i + 1][j] == 'D'
-			|| map[i][j - 1] == 'D' || map[i][j + 1] == 'D')
-			return (1);
-		if (map[i - 1][j] == '\0' || map[i + 1][j] == '\0'
-			|| map[i][j - 1] == '\0' || map[i][j + 1] == '\0')
-			return (1);
-		if (map[i - 1][j] == ' ' || map[i + 1][j] == ' '
-			|| map[i][j - 1] == ' ' || map[i][j + 1] == ' ')
+		if (is_forbidden(map[i - 1][j]) || is_forbidden(map[i + 1][j])
+			|| is_forbidden(map[i][j - 1]) || is_forbidden(map[i][j + 1])
+			|| is_forbidden(map[i - 1][j - 1])
+			|| is_forbidden(map[i - 1][j + 1]))
 			return (1);
 	}
 	return (0);

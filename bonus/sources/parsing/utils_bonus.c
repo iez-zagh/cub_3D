@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 15:27:38 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/11/16 20:41:40 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/17 18:09:27 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,11 @@ void	delete_images(t_data *data, int x)
 			mlx_delete_image(data->mlx, data->tex.i_door);
 		i++;
 	}
+}
+
+int	is_forbidden(char c)
+{
+	if (c == 'D' || c == ' ' || c == '\0')
+		return (1);
+	return (0);
 }
