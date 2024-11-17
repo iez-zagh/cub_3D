@@ -96,8 +96,8 @@ typedef struct s_tex_img
 
 typedef struct s_data
 {
-	int			door_x;
-	int			door_y;
+	float		door_x;
+	float		door_y;
 	bool		w_key;
 	bool		s_key;
 	bool		d_key;

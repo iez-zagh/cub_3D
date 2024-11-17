@@ -31,7 +31,7 @@ void	vert_traverse(t_data *data, float ystep, float xstep)
 				data->nexttouchy))
 		{
 			data->foundverticalhit = true;
-			data->ver_hit_x = data->nexttouchx;
+			data->ver_hit_x = x;
 			data->ver_hit_y = data->nexttouchy;
 			break ;
 		}
@@ -69,6 +69,7 @@ void	horz_traverse(t_data *data, float ystep, float xstep)
 	while (data->nexttouchx >= 0 && data->nexttouchx < data->clmn_n * TILE
 		&& data->nexttouchy >= 0 && data->nexttouchy < data->rows_n * TILE)
 	{
+		// printf("%c]\n", data->map.map[(int)(data->nexttouchy) / TILE][(int)data->nexttouchx/ TILE]);exit (0);
 		y = data->nexttouchy;
 		if (data->facing_up)
 			y--;
@@ -77,7 +78,7 @@ void	horz_traverse(t_data *data, float ystep, float xstep)
 		{
 			data->found_horz_hit = true;
 			data->hor_hit_x = data->nexttouchx;
-			data->hor_hit_y = data->nexttouchy;
+			data->hor_hit_y = y;
 			break ;
 		}
 		data->nexttouchx += xstep;

@@ -60,14 +60,18 @@ float	distance_calcul(float x, float y, float x1, float y1)
 
 mlx_image_t	*get_texture(t_data *data)
 {
+	// if (data->facing_up)
+	// 	data->door_y++;
+	// printf("%f]%f]\n", data->hor_hit_x, data->hor_hit_y);
+	// printf("%f]%f]\n\n", data->door_x, data->door_y);
 	if (data->found_horz_hit)
 	{
 		if (data->map.map[(int)((data->hor_hit_y) / TILE)]
-		[(int)((data->hor_hit_x) / TILE)] == 'D') // i add this to check the door 9tae3 lah ydir l7mar
+		[(int)((data->hor_hit_x) / TILE)] == 'D')
 		{
-			data->door_x = data->hor_hit_x / TILE;
-			data->door_y = data->hor_hit_y / TILE;
-			return (data->door_hit = true ,data->tex.i_door);
+			// data->door_x = data->hor_hit_x / TILE;
+			// data->door_y = data->hor_hit_y / TILE;
+			return (data->tex.i_door);
 		}
 		if (data->facing_down)
 			return (data->tex.i_north);
@@ -79,9 +83,9 @@ mlx_image_t	*get_texture(t_data *data)
 		if (data->map.map[(int)((data->ver_hit_y) / TILE)]
 		[(int)((data->ver_hit_x) / TILE)] == 'D')
 		{
-			data->door_x = data->ver_hit_x / TILE;
-			data->door_y = data->ver_hit_y / TILE;
-			return (data->door_hit = true, data->tex.i_door);
+			// data->door_x = data->ver_hit_x / TILE;
+			// data->door_y = data->ver_hit_y / TILE;
+			return (data->tex.i_door);
 		}
 		if (data->facing_left)
 			return (data->tex.i_west);
