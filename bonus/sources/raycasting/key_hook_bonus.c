@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:04:14 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/05 18:59:13 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/17 02:22:24 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,33 @@ void	handle_mouse(void *d)
 	}
 }
 
+void	run_animation(t_data *data)
+{
+	static int	i = 0;
+
+	if (i == 7)
+		i = 0;
+	if (data->frames == 7)
+	{
+		mlx_image_to_window(data->mlx, data->tex.i_frames[i], 250, 350);
+		if (i == 6)
+			data->animation = 0;
+		if (i > 0)
+		{
+			mlx_delete_image(data->mlx, data->tex.i_frames[i - 1]);
+			data->tex.i_frames[i - 1] = mlx_texture_to_image(data->mlx, data->tex.frames[i - 1]);
+		}
+		else
+		{
+			mlx_delete_image(data->mlx, data->tex.i_frames[6]);
+			data->tex.i_frames[6] = mlx_texture_to_image(data->mlx, data->tex.frames[6]);
+		}
+		i++;
+		data->frames = 0;
+	}
+	data->frames++;
+}
+
 void	my_key_hook(void *st)
 {
 	t_data	*data;
@@ -145,5 +172,7 @@ void	my_key_hook(void *st)
 			cast_rays(data);
 		}
 	}
+	if(data->animation)
+		run_animation(data);
 	key_hook_2(data);
 }

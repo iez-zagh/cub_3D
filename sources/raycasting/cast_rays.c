@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:29:49 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/16 20:42:33 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/17 02:19:03 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,28 +39,45 @@ float	distance_calcul(float x, float y, float x1, float y1)
 	return (sqrt((x1 - x) * (x1 - x) + (y1 - y) * (y1 - y)));
 }
 
+uint32_t	get_rgb(int rgb[3])
+{
+	uint8_t	r;
+	uint8_t	g;
+	uint8_t	b;
+	uint8_t	a;
+
+	r = rgb[0];
+	g = rgb[1];
+	b = rgb[2];
+	a = 255;
+	return (r << 24 | g << 16 | b << 8 | a);
+}
+
 void	sky_floor(t_data *data)//optimi
 {
 	float	i;
 	float	j;
-
+	uint32_t color;
+	
 	i = 0;
+	color = get_rgb(data->map.crgb);
 	while (i < 350)
 	{
 		j = 0;
 		while (j < WIDTH)
 		{
-			mlx_put_pixel(data->player_img, j, i, 0x0B0033FF);
+			mlx_put_pixel(data->player_img, j, i, color);
 			j++;
 		}
 		i++;
 	}
+	color = get_rgb(data->map.frgb);
 	while (i < 700)
 	{
 		j = 0;
 		while (j < WIDTH)
 		{
-			mlx_put_pixel(data->player_img, j, i, 0x1A1A1AFF); // this from parsing
+			mlx_put_pixel(data->player_img, j, i, color);
 			j++;
 		}
 		i++;
