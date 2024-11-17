@@ -27,11 +27,10 @@ void	vert_traverse(t_data *data, float ystep, float xstep)
 		if (data->facing_left)
 			x--;
 		if (checking_collision3(data, x, data->nexttouchy)
-			|| checking_collision_door3(data, x,
-				data->nexttouchy))
+			|| checking_collision_door3(data, x, data->nexttouchy))
 		{
 			data->foundverticalhit = true;
-			data->ver_hit_x = x;
+			data->ver_hit_x = data->nexttouchx;
 			data->ver_hit_y = data->nexttouchy;
 			break ;
 		}
@@ -69,7 +68,6 @@ void	horz_traverse(t_data *data, float ystep, float xstep)
 	while (data->nexttouchx >= 0 && data->nexttouchx < data->clmn_n * TILE
 		&& data->nexttouchy >= 0 && data->nexttouchy < data->rows_n * TILE)
 	{
-		// printf("%c]\n", data->map.map[(int)(data->nexttouchy) / TILE][(int)data->nexttouchx/ TILE]);exit (0);
 		y = data->nexttouchy;
 		if (data->facing_up)
 			y--;
@@ -78,7 +76,7 @@ void	horz_traverse(t_data *data, float ystep, float xstep)
 		{
 			data->found_horz_hit = true;
 			data->hor_hit_x = data->nexttouchx;
-			data->hor_hit_y = y;
+			data->hor_hit_y = data->nexttouchy;
 			break ;
 		}
 		data->nexttouchx += xstep;
@@ -93,8 +91,11 @@ void	get_closest_hit(t_data *data)
 	float	doordis;
 
 	if (data->found_horz_hit)
+	{
 		horzdis = distance_calcul(data->player->sqaure_x,
 				data->player->sqaure_y, data->hor_hit_x, data->hor_hit_y);
+		
+	}
 	else
 		horzdis = INT_MAX;
 	if (data->foundverticalhit)

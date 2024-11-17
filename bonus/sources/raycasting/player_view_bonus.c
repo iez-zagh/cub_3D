@@ -60,19 +60,22 @@ float	distance_calcul(float x, float y, float x1, float y1)
 
 mlx_image_t	*get_texture(t_data *data)
 {
-	// if (data->facing_up)
-	// 	data->door_y++;
-	// printf("%f]%f]\n", data->hor_hit_x, data->hor_hit_y);
-	// printf("%f]%f]\n\n", data->door_x, data->door_y);
+	float	x;
+	float	y;
 	if (data->found_horz_hit)
 	{
-		if (data->map.map[(int)((data->hor_hit_y) / TILE)]
-		[(int)((data->hor_hit_x) / TILE)] == 'D')
+		x = data->hor_hit_x;
+		y = data->hor_hit_y;
+		if (data->facing_up)
+			y--;
+		if (data->map.map[(int)((y) / TILE)]
+		[(int)((x) / TILE)] == 'D')
 		{
 			// data->door_x = data->hor_hit_x / TILE;
 			// data->door_y = data->hor_hit_y / TILE;
 			return (data->tex.i_door);
 		}
+		// no touch
 		if (data->facing_down)
 			return (data->tex.i_north);
 		else
@@ -80,13 +83,18 @@ mlx_image_t	*get_texture(t_data *data)
 	}
 	else if (data->foundverticalhit)
 	{
-		if (data->map.map[(int)((data->ver_hit_y) / TILE)]
-		[(int)((data->ver_hit_x) / TILE)] == 'D')
+		x = data->ver_hit_x;
+		y = data->ver_hit_y;
+		if (data->facing_left)
+			x--;
+		if (data->map.map[(int)((y) / TILE)]
+		[(int)((x) / TILE)] == 'D')
 		{
 			// data->door_x = data->ver_hit_x / TILE;
 			// data->door_y = data->ver_hit_y / TILE;
 			return (data->tex.i_door);
 		}
+		//no touch this
 		if (data->facing_left)
 			return (data->tex.i_west);
 		else 
@@ -138,10 +146,18 @@ void	player_view(t_data *data)
 	img = get_texture(data);
 	double step = (double)img->height / data->wall_height;
 	double textureofssetX;
+
+
 	if (data->found_horz_hit)
+	{
 		textureofssetX = ((int)(data->hor_hit_x * img->width) / TILE) % img->width;
+	}
 	else if (data->foundverticalhit)
+	{
 		textureofssetX = ((int)(data->ver_hit_y * img->width) / TILE) % img->width;
+	}
+
+
 	int distance_from_top = start + (data->wall_height / 2) - (HEIGHT / 2);
 	double texturePosY = distance_from_top * step;
 	while (start < end)
