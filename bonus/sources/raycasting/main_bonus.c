@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/17 02:18:27 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/17 02:25:47 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void	f(void)
 
 void	free_All(t_data *data)
 {
-	free_frames(data, 7, 0);
-	free_frames(data, 7, 1);
+	free_frames(data, 36, 0);
+	free_frames(data, 36, 1);
 	ft_free_par(data->map.map);
 	free_leaks(&data->map, 4);
 	delete_images(data, 5);
