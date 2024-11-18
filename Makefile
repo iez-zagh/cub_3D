@@ -10,8 +10,8 @@ LIBS2 = -L /Users/$(USER)/Desktop/cub_3d/MLX42/build -lmlx42 \
         -L /Users/$(USER)/Desktop/cub_3d/gnl -lftgnl -Ofast
 INCLUDES = -I includes -I MLX42/include/MLX42
 B_INCLUDES = -I bonus/cub3d_bonus.h -I MLX42/include/MLX42
-HEADER = includes/cub3d.h
-B_HEADER = bonus/sources/cub3d_bonus.h
+HEADER = includes/cub3d.h libft/libft.h gnl/get_next_line.h
+B_HEADER = bonus/sources/cub3d_bonus.h libft/libft.h gnl/get_next_line.h
 
 M_SOURCES = sources/raycasting/main.c sources/raycasting/key_hook.c sources/raycasting/render.c\
  			sources/raycasting/cal_hit.c sources/raycasting/cast_rays.c sources/raycasting/player_view.c\
