@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/18 15:31:51 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/18 16:26:04 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	free_all(t_data *data)
 	ft_free_par(data->map.map);
 	free_leaks(&data->map, 4);
 	delete_images(data, 5);
+	exit(1);
 }
 
 void	ft_exit(void)
@@ -107,10 +108,8 @@ int	main(int ac, char **av)
 		return (printf("Usage: ./cub3D ./path_to_map\n"), 1);
 	data.player = &player;
 	stat = parsing(&data, av[1]);
-	if (stat == -5)
+	if (stat < 0)
 		return (stat);
-	else if (stat < 0)
-		return (ft_free_par(data.map.map), stat);
 	player.sqaure_x = player.x * TILE;
 	player.sqaure_y = player.y * TILE;
 	if (frames_loading(&data))

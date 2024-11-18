@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 20:52:33 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/11/18 15:33:39 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/18 16:15:17 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	free_frames(t_data *data, int i, int x)
 	{
 		while (i >= 0)
 		{
-			mlx_delete_image(data->mlx, data->tex.i_frames[i]);
+			if (data->tex.i_frames[i])
+				mlx_delete_image(data->mlx, data->tex.i_frames[i]);
 			data->tex.i_frames[i] = NULL;
 			i--;
 		}
@@ -27,7 +28,8 @@ void	free_frames(t_data *data, int i, int x)
 	{
 		while (i >= 0)
 		{
-			mlx_delete_texture(data->tex.frames[i]);
+			if (data->tex.frames[i])
+				mlx_delete_texture(data->tex.frames[i]);
 			data->tex.frames[i] = NULL;
 			i--;
 		}
@@ -44,7 +46,7 @@ int	from_texture_to_image(t_data *data)
 		data->tex.i_frames[i] = mlx_texture_to_image(data->mlx,
 				data->tex.frames[i]);
 		if (!data->tex.i_frames[i])
-			return (free_frames(data, i, 1), free_frames(data, 36, 0), -1);
+			return (free_frames(data, (i - 1), 1), free_frames(data, 36, 0), -1);
 		i++;
 	}
 	return (0);
@@ -70,7 +72,7 @@ int	frames_loading(t_data *data)
 			return (free(tmp), free_frames(data, i, 0), -1);
 		data->tex.frames[i] = mlx_load_png(path);
 		if (!data->tex.frames[i])
-			return (free(tmp), free(path), free_frames(data, i, 0), -1);
+			return (free(tmp), free(path), free_frames(data, (i - 1), 0), -1);
 		free(tmp);
 		free(path);
 		i++;
