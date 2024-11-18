@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 10:33:23 by iez-zagh          #+#    #+#             */
-/*   Updated: 2023/11/18 09:19:40 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/18 01:52:19 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ char	*ft_strchr(const char *str, int c)
 		i++;
 		len--;
 	}
-	return (NULL); 
+	return (NULL);
 }

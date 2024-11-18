@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 13:52:39 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/06 00:51:52 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/18 01:52:42 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return ((char *)s1);
 	if (!s1)
 		return (ft_copy(s2));
-	res = NULL;
 	res = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
 	if (!res)
 		return (NULL);
@@ -53,9 +52,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	len = ft_strlen(s1);
 	i = 0;
 	while (s2[i])
-	{
 		res[len++] = s2[i++];
-	}
 	res[len] = '\0';
 	free((char *)s1);
 	return (res);

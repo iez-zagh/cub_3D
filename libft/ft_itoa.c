@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 23:55:02 by iez-zagh          #+#    #+#             */
-/*   Updated: 2023/11/09 22:52:48 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/18 01:50:19 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,5 @@ char	*ft_itoa(int n)
 		i = 0;
 	res = ft_t3mar(res, len, i, n);
 	res[old_len] = '\0';
-	return (res); 
+	return (res);
 }

@@ -52,7 +52,6 @@ $(NAME): $(M_OBJECTS)
 bonus : $(BONUS)
 
 $(BONUS): $(B_OBJECTS)
-	@make bonus -C $(LIBFT_DIR)
 	@make -C $(LIBFT_DIR)
 	@make -C $(GNL_DIR)
 	@$(CC) $(CFLAGS) -I bonus/cub3d_bonus.h -I MLX42/include/MLX42 $(B_OBJECTS) $(LIBS2) -o $(BONUS)

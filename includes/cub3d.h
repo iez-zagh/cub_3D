@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/18 01:43:00 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/18 01:51:37 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ void	vert_traverse(t_data *data, float ystep, float xstep);
 void	handle_angle(t_data *data);
 void	player_view(t_data *data);
 void	set_texture(t_data *data, float start, float end);
+void	sky(t_data *data);
 
 /*				parsing					*/
 // === === === === === === === === === //
