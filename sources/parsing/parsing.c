@@ -86,7 +86,7 @@ int	load_textures(t_data *data)
 	data->tex.east = mlx_load_png(data->map.east);
 	if (!data->tex.east)
 		return (ft_free_par(data->map.map), delete_texture(data, 2), -17);
-	return (0);
+	return (free_leaks(&data->map, 4), 0);
 }
 
 int	parsing(t_data *data, char mapname[])

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/18 18:06:01 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/18 23:44:33 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	handle_angle(t_data *data)
 void	free_all(t_data	*data)
 {
 	ft_free_par(data->map.map);
-	free_leaks(&data->map, 4);
 	if (data->mlx)
 		delete_images(data, 4);
 }

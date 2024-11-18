@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:27:55 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/11/18 20:57:07 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/18 23:49:09 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	check_table(t_data *data)
 {
 	int		i;
 	char	**tab;
-	int		stt;
+	int		stat;
 	int		stat2;
 
 	1 && (tab = data->map.table, i = -1);
@@ -68,19 +68,19 @@ int	check_table(t_data *data)
 	while (tab[++i])
 	{
 		check_table_v2(data, tab[i]);
-		stt = map_begins(tab[i], data->map);
-		if (stt == 0)
+		stat = map_begins(tab[i], data->map);
+		if (stat == 0)
 		{
 			stat2 = get_map(data, i, &data->rows_n);
 			if (stat2 < 0)
 				return (stat2);
 			break ;
 		}
-		else if (stt < 0)
-			return (stt);
+		else if (stat < 0)
+			return (stat);
 	}
-	stt = elements_checker(data, data->rows_n, &data->map);
-	if (stt < 0)
-		return (ft_free_par(data->map.map), stt);
-	return (stt);
+	stat = elements_checker(data, data->rows_n, &data->map);
+	if (stat < 0)
+		return (ft_free_par(data->map.map), stat);
+	return (stat);
 }
