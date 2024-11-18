@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/18 17:03:49 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:36:13 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,15 @@ void	draw_minimap2(t_data *data, int i, int u)
 
 void	free_all(t_data *data)
 {
-	free_frames(data, 36, 1);
-	free_frames(data, 36, 0);
+	if (data->mlx)
+	{
+		free_frames(data, 36, 1);
+		free_frames(data, 36, 0);
+	}
 	ft_free_par(data->map.map);
 	free_leaks(&data->map, 4);
-	delete_images(data, 5);
+	if (data->mlx)
+		delete_images(data, 5);
 	// mlx_delete_image(data->mlx, data->img);
 	// mlx_delete_image(data->mlx, data->player_img);
 }
@@ -112,7 +116,6 @@ int	main(int ac, char **av)
 	char		*map;
 
 	map = NULL;
-	// atexit(ft_exit);
 	if (ac != 2)
 		return (printf("Usage: ./cub3D ./path_to_map\n"), 1);
 	data.player = &player;

@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/18 16:30:31 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:38:27 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,13 @@ void	handle_angle(t_data *data)
 		data->cast_angle = 2 * M_PI + data->cast_angle;
 }
 
-void	how_2_use(void)
+void	free_all(t_data	*data)
 {
-	printf("Usage: ./cub3D ./path_to_map\n");
-}
+	t_free_par(data->map.map);
+	free_leaks(&data->map, 4);
+	if (data->mlx)
+		delete_images(data, 4);
+} 
 
 void	f(void)
 {
@@ -61,8 +64,6 @@ int	main(int ac, char **av)
 	player.sqaure_x = player.x * TILE;
 	player.sqaure_y = player.y * TILE;
 	start_render(&data);
-	ft_free_par(data.map.map);
-	free_leaks(&data.map, 4);
-	delete_images(&data, 4);
+	free_all(&data);
 	return (0);
 }
