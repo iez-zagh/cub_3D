@@ -76,16 +76,16 @@ int	load_textures(t_data *data)
 {
 	data->tex.north = mlx_load_png(data->map.north);
 	if (!data->tex.north)
-		return (-17);
+		return (ft_free_par(data->map.map), -17);
 	data->tex.south = mlx_load_png(data->map.south);
 	if (!data->tex.south)
-		return (delete_texture(data, 0), -17);
+		return (ft_free_par(data->map.map), delete_texture(data, 0), -17);
 	data->tex.west = mlx_load_png(data->map.west);
 	if (!data->tex.west)
-		return (delete_texture(data, 1), -17);
+		return (ft_free_par(data->map.map), delete_texture(data, 1), -17);
 	data->tex.east = mlx_load_png(data->map.east);
 	if (!data->tex.east)
-		return (delete_texture(data, 2), -17);
+		return (ft_free_par(data->map.map), delete_texture(data, 2), -17);
 	return (0);
 }
 

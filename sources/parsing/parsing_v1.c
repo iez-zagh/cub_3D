@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:27:55 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/11/18 16:35:16 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/18 20:57:10 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	elements_checker(t_data *data, int lines, t_map	*map)
 		return (free_leaks(map, 4), stat);
 	stat = parse_map(data, lines);
 	if (stat < 0)
-		return (free_leaks(map, 5), stat);
+		return (free_leaks(map, 4), stat);
 	return (stat);
 }
 

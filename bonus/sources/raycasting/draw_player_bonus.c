@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 16:38:05 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/18 01:32:26 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/18 22:27:06 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 int	convert_textures(t_data *data)
 {
 	data->tex.i_north = mlx_texture_to_image(data->mlx, data->tex.north);
+	mlx_delete_image(data->mlx, data->tex.i_north);
 	if (!data->tex.i_north)
 		return (-18);
+	// printf("%p\n", data->tex.i_north);
 	data->tex.i_south = mlx_texture_to_image(data->mlx, data->tex.south);
 	if (!data->tex.i_south)
 		return (delete_images(data, 0), delete_texture(data, 4), -18);
@@ -29,7 +31,7 @@ int	convert_textures(t_data *data)
 	data->tex.i_door = mlx_texture_to_image(data->mlx, data->tex.door);
 	if (!data->tex.i_door)
 		return (delete_images(data, 3), delete_texture(data, 4), -18);
-	return (delete_texture(data, 4), 0);
+	return (0);
 }
 
 void	sub_key(mlx_key_data_t key, t_data *data)

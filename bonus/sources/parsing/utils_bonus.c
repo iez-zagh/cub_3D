@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 15:27:38 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/11/17 18:09:27 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/18 22:28:32 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	delete_images(t_data *data, int x)
 	i = 0;
 	while (i <= x)
 	{
-		if (i == 0)
-			mlx_delete_image(data->mlx, data->tex.i_north);
+		// if (i == 0)
+		// 	mlx_delete_image(data->mlx, data->tex.i_north);
 		if (i == 1)
 			mlx_delete_image(data->mlx, data->tex.i_south);
 		if (i == 2)

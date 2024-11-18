@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/18 18:22:52 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/18 22:28:49 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,22 +66,22 @@ void	start_render(t_data *data)
 		return (free_all(data), exit (1));
 	if (convert_textures(data) < 0)
 		return ;
-	if (from_texture_to_image(data))
-		return ;
-	data->player_img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	if (!data->player_img)
-		return (free_all(data), exit(1));
-	draw_minimap(data);
-	cast_rays(data);
-	if (mlx_image_to_window(data->mlx, data->player_img, 0, 0) == -1
-		|| mlx_image_to_window(data->mlx, data->img, 0, 0) == -1
-		|| mlx_image_to_window(data->mlx, data->tex.i_frames[0],
-			250, 350) == -1)
-		return (free_all(data), exit (1));
-	mlx_key_hook(data->mlx, check_keys, data);
-	mlx_loop_hook(data->mlx, my_key_hook, data);
-	mlx_loop_hook(data->mlx, handle_mouse, data);
-	mlx_loop(data->mlx);
+	// if (from_texture_to_image(data))
+	// 	return ;
+	// data->player_img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	// if (!data->player_img)
+	// 	return (free_all(data), exit(1));
+	// draw_minimap(data);
+	// cast_rays(data);
+	// if (mlx_image_to_window(data->mlx, data->player_img, 0, 0) == -1
+	// 	|| mlx_image_to_window(data->mlx, data->img, 0, 0) == -1
+	// 	|| mlx_image_to_window(data->mlx, data->tex.i_frames[0],
+	// 		250, 350) == -1)
+	// 	return (free_all(data), exit (1));
+	// mlx_key_hook(data->mlx, check_keys, data);
+	// mlx_loop_hook(data->mlx, my_key_hook, data);
+	// mlx_loop_hook(data->mlx, handle_mouse, data);
+	// mlx_loop(data->mlx);
 }
 
 void	f(void)
@@ -96,7 +96,7 @@ int	main(int ac, char **av)
 	t_player	player;
 	char		*map;
 
-	atexit (f);
+	// atexit (f);
 	map = NULL;
 	if (ac != 2)
 		return (printf("Usage: ./cub3D ./path_to_map\n"), 1);
@@ -108,8 +108,8 @@ int	main(int ac, char **av)
 	player.sqaure_y = player.y * TILE;
 	data.player->sqaure_x += TILE / 2;
 	data.player->sqaure_y += TILE / 2;
-	if (frames_loading(&data))
-		return (ft_free_par(data.map.map), -1);
+	if (frames_loading(&data)) // aniamtions
+		return (ft_free_par(data.map.map),  delete_texture(&data, 4), -1);
 	start_render(&data);
-	return (free_all(&data), exit(0), 0);
+	return (free_all(&data), exit(0), 0); 
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utis_bonus.c                                       :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:55:47 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/18 17:55:58 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/18 22:06:01 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 void	free_all(t_data *data)
 {
+	ft_free_par(data->map.map);
 	if (data->mlx)
 	{
 		free_frames(data, 36, 1);
 		free_frames(data, 36, 0);
+		delete_images(data, 4);
+		delete_texture(data, 4);
 	}
-	ft_free_par(data->map.map);
-	free_leaks(&data->map, 4);
-	if (data->mlx)
-		delete_images(data, 5);
 }

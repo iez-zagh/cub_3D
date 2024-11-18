@@ -89,7 +89,7 @@ int	load_textures(t_data *data)
 	data->tex.door = mlx_load_png("textures/door_2.png");
 	if (!data->tex.door)
 		return (ft_free_par(data->map.map), delete_texture(data, 3), -17);
-	return (0);
+	return (free_leaks(&data->map, 4), 0);
 }
 
 int	parsing(t_data *data, char mapname[])
@@ -98,19 +98,19 @@ int	parsing(t_data *data, char mapname[])
 	char	**table;
 	int		lines;
 
-	stat = check_mapname(mapname, &lines);
+	stat = check_mapname(mapname, &lines);// gnl allocation but its freed
 	if (stat < 0)
 		return (perreur(stat), stat);
-	table = (char **)malloc (sizeof(char *) * (lines + 1));
+	table = (char **)malloc (sizeof(char *) * (lines + 1)); // first allocation [table]
 	if (!table)
 		return (perreur(-2), 2);
-	stat = file_to_table(mapname, table);
+	stat = file_to_table(mapname, table);  // sec allocation with gnl + fds closed in booth cases
 	if (stat < 0)
-		return (ft_free_par(table), perreur(stat), stat);
+		return (ft_free_par(table), perreur(stat), stat); // case of an error free is mentioned
 	data->map.table = table;
 	stat = check_table(data);
 	if (stat < 0)
-		return (ft_free_par(table), perreur(stat), stat);
+		return (ft_free_par(table), perreur(stat), stat); // case of an error free is mentioned
 	ft_free_par(table);
 	stat = load_textures(data);
 	if (stat < 0)
