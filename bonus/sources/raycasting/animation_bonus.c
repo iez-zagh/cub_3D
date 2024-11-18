@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 00:30:42 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/18 01:35:17 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/18 18:08:51 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	check_keys_2(t_data *data, mlx_key_data_t key)
 	}
 	if (key.key == MLX_KEY_ESCAPE)
 	{
-		// free all res
+		free_all(data);
 		write(1, "WINDOW CLOSED\n", 14);
 		exit(0);
 	}
