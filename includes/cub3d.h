@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/18 01:51:37 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:11:31 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ typedef struct s_data
 	double		step;
 	double		textureposy;
 	uint32_t	color;
-	mlx_image_t	*img;
 	mlx_image_t	*player_img;
 	t_tex		tex;
 	t_map		map;
