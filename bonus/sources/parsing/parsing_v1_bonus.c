@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_v1_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:27:55 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/11/18 16:34:03 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/18 18:29:20 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	elements_checker(t_data *data, int lines, t_map	*map)
 		return (-5);
 	stat = check_news_ptrs(map->north, "NO", map);
 	if (stat < 0)
-		return (stat);
+		return (puts("iwas here !!!!"),stat);
 	stat = check_news_ptrs(map->west, "WE", map);
 	if (stat < 0)
 		return (free_leaks(map, 1), stat);
@@ -81,6 +81,6 @@ int	check_table(t_data *data)
 	}
 	stt = elements_checker(data, data->rows_n, &data->map);
 	if (stt < 0)
-		return (ft_free_par(data->map.table), ft_free_par(data->map.map), stt);
+		return (ft_free_par(data->map.map), stt);
 	return (stt);
 }
