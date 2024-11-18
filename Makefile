@@ -1,7 +1,7 @@
 NAME = cub3D
 BONUS = cub3D_bonus
 CC = cc
-CFLAGS = -fsanitize=address -g
+# CFLAGS = -fsanitize=address -g
 LIBFT_DIR = /Users/$(USER)/Desktop/cub_3d/libft
 GNL_DIR = /Users/$(USER)/Desktop/cub_3d/gnl
 LIBS2 = -L /Users/$(USER)/Desktop/cub_3d/MLX42/build -lmlx42 \

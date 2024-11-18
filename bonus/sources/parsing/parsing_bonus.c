@@ -98,19 +98,19 @@ int	parsing(t_data *data, char mapname[])
 	char	**table;
 	int		lines;
 
-	stat = check_mapname(mapname, &lines);// gnl allocation but its freed
+	stat = check_mapname(mapname, &lines);
 	if (stat < 0)
 		return (perreur(stat), stat);
-	table = (char **)malloc (sizeof(char *) * (lines + 1)); // first allocation [table]
+	table = (char **)malloc (sizeof(char *) * (lines + 1));
 	if (!table)
 		return (perreur(-2), 2);
-	stat = file_to_table(mapname, table);  // sec allocation with gnl + fds closed in booth cases
+	stat = file_to_table(mapname, table);
 	if (stat < 0)
-		return (ft_free_par(table), perreur(stat), stat); // case of an error free is mentioned
+		return (ft_free_par(table), perreur(stat), stat);
 	data->map.table = table;
 	stat = check_table(data);
 	if (stat < 0)
-		return (ft_free_par(table), perreur(stat), stat); // case of an error free is mentioned
+		return (ft_free_par(table), perreur(stat), stat);
 	ft_free_par(table);
 	stat = load_textures(data);
 	if (stat < 0)

@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 00:30:42 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/18 18:08:51 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/18 23:05:34 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	run_animation(t_data *data)
 
 	if (i == 36)
 		i = 0;
-	if (data->frames == 7)
+	if (data->frames == 6)
 	{
 		mlx_image_to_window(data->mlx, data->tex.i_frames[i], 250, 350);
 		if (i == 35)
