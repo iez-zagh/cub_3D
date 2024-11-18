@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loading_anims_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 20:52:33 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/11/18 01:34:52 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/18 15:33:39 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,16 @@ void	free_frames(t_data *data, int i, int x)
 		while (i >= 0)
 		{
 			mlx_delete_image(data->mlx, data->tex.i_frames[i]);
+			data->tex.i_frames[i] = NULL;
 			i--;
 		}
 	}
-	else
+	else if (x == 0)
 	{
 		while (i >= 0)
 		{
 			mlx_delete_texture(data->tex.frames[i]);
+			data->tex.frames[i] = NULL;
 			i--;
 		}
 	}

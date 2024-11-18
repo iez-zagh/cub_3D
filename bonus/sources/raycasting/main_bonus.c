@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/18 01:41:17 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/18 15:31:51 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,16 @@ void	start_render(t_data *data)
 
 void	free_all(t_data *data)
 {
-	free_frames(data, 36, 0);
 	free_frames(data, 36, 1);
+	free_frames(data, 36, 0);
 	ft_free_par(data->map.map);
 	free_leaks(&data->map, 4);
 	delete_images(data, 5);
+}
+
+void	ft_exit(void)
+{
+	system("leaks cub3D_bonus");
 }
 
 int	main(int ac, char **av)
@@ -97,11 +102,14 @@ int	main(int ac, char **av)
 	char		*map;
 
 	map = NULL;
+	// atexit(ft_exit);
 	if (ac != 2)
 		return (printf("Usage: ./cub3D ./path_to_map\n"), 1);
 	data.player = &player;
 	stat = parsing(&data, av[1]);
-	if (stat < 0)
+	if (stat == -5)
+		return (stat);
+	else if (stat < 0)
 		return (ft_free_par(data.map.map), stat);
 	player.sqaure_x = player.x * TILE;
 	player.sqaure_y = player.y * TILE;

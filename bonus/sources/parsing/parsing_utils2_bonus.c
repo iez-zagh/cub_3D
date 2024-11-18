@@ -6,7 +6,7 @@
 /*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 01:21:07 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/11/17 22:32:16 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:31:12 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ int	check_directions(char **map, int i, int j, int x)
 	{
 		if ((map[i - 1][j] != '1' && map[i + 1][j] != '1')
 			&& (map[i][j - 1] != '1' && map[i][j + 1] != '1'))
+			return (1);
+		if (map[i][j + 1] != map[i][j - 1] || map[i + 1][j] != map[i - 1][j])
 			return (1);
 		if (is_forbidden(map[i - 1][j]) || is_forbidden(map[i + 1][j])
 			|| is_forbidden(map[i][j - 1]) || is_forbidden(map[i][j + 1]))

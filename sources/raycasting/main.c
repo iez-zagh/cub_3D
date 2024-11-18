@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/18 00:13:55 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/18 15:14:47 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,9 @@ int	main(int ac, char **av)
 		return (how_2_use(), 1);
 	data.player = &player;
 	stat = parsing(&data, av[1]);
-	if (stat < 0)
+	if (stat == -5)
+		return (stat);
+	else if (stat < 0)
 		return (ft_free_par(data.map.map), 1);
 	player.sqaure_x = player.x * TILE;
 	player.sqaure_y = player.y * TILE;

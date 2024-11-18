@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:28:59 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/11/18 01:32:02 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/18 13:36:12 by zmaghdao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	perreur(int x)
 	else if (x == -6)
 		write (2, "Error : NO/WE/SO/EA or texture path facing an issue\n", 53);
 	else if (x == -7)
-		write (2, "Error : textures must be on .png/.xpm extansions\n", 50);
+		write (2, "Error : textures must be on .png extansion\n", 50);
 	else if (x == -8)
 		write (2, "Error : F / C lines facing error !\n", 36);
 	else if (x == -9)
