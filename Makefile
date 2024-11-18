@@ -1,7 +1,7 @@
 NAME = cub3D
 BONUS = cub3D_bonus
 CC = cc
-CFLAGS = -fsanitize=address -g
+# CFLAGS = -fsanitize=address -g
 LIBFT_DIR = /Users/$(USER)/Desktop/cub_3d/libft
 GNL_DIR = /Users/$(USER)/Desktop/cub_3d/gnl
 LIBS2 = -L /Users/$(USER)/Desktop/cub_3d/MLX42/build -lmlx42 \
@@ -29,7 +29,7 @@ B_SOURCES = bonus/sources/raycasting/main_bonus.c bonus/sources/raycasting/key_h
 			bonus/sources/parsing/parsing_utils3_bonus.c bonus/sources/raycasting/draw_player_bonus.c\
 			bonus/sources/raycasting/collision_bonus.c bonus/sources/parsing/utils_bonus.c \
 			bonus/sources/parsing/map_starts_bonus.c bonus/sources/parsing/map_parse_bonus.c bonus/sources/raycasting/loading_anims_bonus.c\
-			bonus/sources/raycasting/animation_bonus.c bonus/sources/raycasting/check_bonus.c
+			bonus/sources/raycasting/animation_bonus.c bonus/sources/raycasting/check_bonus.c bonus/sources/raycasting/utils_bonus.c
 
 M_OBJECTS = $(M_SOURCES:.c=.o)
 B_OBJECTS = $(B_SOURCES:.c=.o)

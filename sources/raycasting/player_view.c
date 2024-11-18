@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:56:18 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/18 17:11:01 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/18 18:03:20 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,16 @@ int	convert_textures(t_data *data)
 void	start_render(t_data *data)
 {
 	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", 0);
-	// if (!data->mlx)
-	// 	return (free_all(data), exit(1));
+	if (!data->mlx)
+		return (free_all(data), exit(1));
 	if (convert_textures(data) < 0)
 		return ;
 	data->player_img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	// if (!data->player_img)
-	// 	return (free_all(data), exit(1));
-	data->player->sqaure_x = data->player->x * TILE;
-	data->player->sqaure_y = data->player->y * TILE;
-	data->player->sqaure_x += TILE / 2;
-	data->player->sqaure_y += TILE / 2;
+	if (!data->player_img)
+		return (free_all(data), exit(1));
 	cast_rays(data);
-	mlx_image_to_window(data->mlx, data->player_img, 0, 0);
-	// if (mlx_image_to_window(data->mlx, data->player_img, 0, 0) == -1)
-	// 	return (free_all(data), exit (1));
+	if (mlx_image_to_window(data->mlx, data->player_img, 0, 0) == -1)
+		return (free_all(data), exit (1));
 	data->a_key = false;
 	data->w_key = false;
 	data->s_key = false;

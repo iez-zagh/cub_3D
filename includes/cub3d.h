@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/18 17:11:31 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:52:16 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ int		largest_line(char **map);
 void	spacetotwo(char **map);
 int		is_map_char(char c);
 int		check_directions(char **map, int i, int j);
-
+void	free_all(t_data	*data);
 void	angle_init(char c, t_data *data);
 int		sec_char(char *tab, int i);
 int		is_player(char c);

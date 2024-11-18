@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/18 17:38:27 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/18 18:06:01 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,15 @@ void	handle_angle(t_data *data)
 
 void	free_all(t_data	*data)
 {
-	t_free_par(data->map.map);
+	ft_free_par(data->map.map);
 	free_leaks(&data->map, 4);
 	if (data->mlx)
 		delete_images(data, 4);
-} 
+}
 
 void	f(void)
 {
-	system("leaks cub3d");
+	system("leaks cub3D");
 }
 
 int	main(int ac, char **av)
@@ -54,15 +54,18 @@ int	main(int ac, char **av)
 	t_player	player;
 	char		*map;
 
+	atexit(f);
 	map = NULL;
 	if (ac != 2)
-		return (how_2_use(), 1);
+		return (printf("Usage: ./cub3D ./path_to_map\n"), 1);
 	data.player = &player;
 	stat = parsing(&data, av[1]);
 	if (stat < 0)
 		return (1);
 	player.sqaure_x = player.x * TILE;
 	player.sqaure_y = player.y * TILE;
+	data.player->sqaure_x += TILE / 2;
+	data.player->sqaure_y += TILE / 2;
 	start_render(&data);
 	free_all(&data);
 	return (0);

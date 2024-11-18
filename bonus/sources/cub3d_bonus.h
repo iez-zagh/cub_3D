@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/18 17:05:18 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:57:24 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,7 @@ void	perreur(int x);
 int		ft_isspace(char c);
 int		f_c_checker(t_map *map);
 int		check_news_ptrs(char *coor, char *str, t_map *map);
-
+void	free_all(t_data *data);
 int		map_lines(char **tab, int i);
 int		largest_line(char **map);
 void	spacetotwo(char **map);

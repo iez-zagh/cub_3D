@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/18 17:36:13 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:54:03 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,6 @@ void	draw_minimap2(t_data *data, int i, int u)
 	}
 }
 
-void	free_all(t_data *data)
-{
-	if (data->mlx)
-	{
-		free_frames(data, 36, 1);
-		free_frames(data, 36, 0);
-	}
-	ft_free_par(data->map.map);
-	free_leaks(&data->map, 4);
-	if (data->mlx)
-		delete_images(data, 5);
-	// mlx_delete_image(data->mlx, data->img);
-	// mlx_delete_image(data->mlx, data->player_img);
-}
-
 void	start_render(t_data *data)
 {
 	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", 0);
@@ -86,10 +71,6 @@ void	start_render(t_data *data)
 	data->player_img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	if (!data->player_img)
 		return (free_all(data), exit(1));
-	data->player->sqaure_x = data->player->x * TILE;
-	data->player->sqaure_y = data->player->y * TILE;
-	data->player->sqaure_x += TILE / 2;
-	data->player->sqaure_y += TILE / 2;
 	draw_minimap(data);
 	cast_rays(data);
 	if (mlx_image_to_window(data->mlx, data->player_img, 0, 0) == -1
@@ -124,6 +105,8 @@ int	main(int ac, char **av)
 		return (stat);
 	player.sqaure_x = player.x * TILE;
 	player.sqaure_y = player.y * TILE;
+	data.player->sqaure_x += TILE / 2;
+	data.player->sqaure_y += TILE / 2;
 	if (frames_loading(&data))
 		return (ft_free_par(data.map.map), -1);
 	start_render(&data);
