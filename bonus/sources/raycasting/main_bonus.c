@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/18 23:07:38 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/19 00:41:07 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,6 @@ void	start_render(t_data *data)
 	mlx_loop(data->mlx);
 }
 
-void	f(void)
-{
-	system("leaks cub3D_bonus");
-}
-
 int	main(int ac, char **av)
 {
 	t_data		data;
@@ -96,7 +91,6 @@ int	main(int ac, char **av)
 	t_player	player;
 	char		*map;
 
-	atexit (f);
 	map = NULL;
 	if (ac != 2)
 		return (printf("Usage: ./cub3D ./path_to_map\n"), 1);

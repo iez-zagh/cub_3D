@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/18 18:06:01 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/19 00:40:57 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,11 @@ void	handle_angle(t_data *data)
 
 void	free_all(t_data	*data)
 {
+	mlx_delete_image(data->mlx, data->player_img);
 	ft_free_par(data->map.map);
 	free_leaks(&data->map, 4);
 	if (data->mlx)
 		delete_images(data, 4);
-}
-
-void	f(void)
-{
-	system("leaks cub3D");
 }
 
 int	main(int ac, char **av)
@@ -54,7 +50,6 @@ int	main(int ac, char **av)
 	t_player	player;
 	char		*map;
 
-	atexit(f);
 	map = NULL;
 	if (ac != 2)
 		return (printf("Usage: ./cub3D ./path_to_map\n"), 1);
