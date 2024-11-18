@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:55:47 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/18 23:02:22 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/18 23:54:12 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	free_all(t_data *data)
 {
+	mlx_delete_image(data->mlx, data->img);
+	mlx_delete_image(data->mlx, data->player_img);
 	ft_free_par(data->map.map);
 	if (data->mlx)
 	{
