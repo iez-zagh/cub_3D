@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cal_hit_bonus.c                                    :+:      :+:    :+:   */
+/*   cast_rays_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/06 16:30:26 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/18 00:44:34 by iez-zagh         ###   ########.fr       */
+/*   Created: 2024/11/17 23:59:38 by iez-zagh          #+#    #+#             */
+/*   Updated: 2024/11/18 00:00:48 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d_bonus.h"
+#include "cub3d.h"
 
 void	vert_interception(t_data *data)
 {
@@ -44,8 +44,7 @@ void	horz_traverse(t_data *data, float ystep, float xstep)
 		y = data->nexttouchy;
 		if (data->facing_up)
 			y--;
-		if (checking_collision3(data, data->nexttouchx, y)
-			|| checking_collision_door3(data, data->nexttouchx, y))
+		if (checking_collision3(data, data->nexttouchx, y))
 		{
 			data->found_horz_hit = true;
 			data->hor_hit_x = data->nexttouchx;
@@ -61,7 +60,6 @@ void	get_closest_hit(t_data *data)
 {
 	float	horzdis;
 	float	verdis;
-	float	doordis;
 
 	if (data->found_horz_hit)
 		horzdis = distance_calcul(data->player->sqaure_x,
@@ -109,12 +107,13 @@ void	cast_ray(t_data *data)
 	init_direction(data);
 	data->found_horz_hit = false;
 	data->yintercept = floor(data->player->sqaure_y / TILE) * TILE;
-	if (data->cast_angle > 0 && data->cast_angle <= M_PI)
+	if (data->facing_down)
 		data->yintercept += TILE;
 	data->xintercept = data->player->sqaure_x
 		+ ((data->yintercept - data->player->sqaure_y) / tan(data->cast_angle));
 	ystep = TILE;
-	xstep = fabs(TILE / tan(data->cast_angle));
+	xstep = TILE / tan(data->cast_angle);
+	xstep = fabs(xstep);
 	data->nexttouchx = data->xintercept;
 	data->nexttouchy = data->yintercept;
 	horz_traverse(data, ystep, xstep);

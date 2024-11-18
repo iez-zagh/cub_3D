@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast_rays.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:29:49 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/17 02:19:03 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/18 01:41:44 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,24 +53,13 @@ uint32_t	get_rgb(int rgb[3])
 	return (r << 24 | g << 16 | b << 8 | a);
 }
 
-void	sky_floor(t_data *data)//optimi
+void	floor_(t_data *data)
 {
-	float	i;
-	float	j;
-	uint32_t color;
-	
-	i = 0;
-	color = get_rgb(data->map.crgb);
-	while (i < 350)
-	{
-		j = 0;
-		while (j < WIDTH)
-		{
-			mlx_put_pixel(data->player_img, j, i, color);
-			j++;
-		}
-		i++;
-	}
+	int	i;
+	int	j;
+	int	color;
+
+	i = 349;
 	color = get_rgb(data->map.frgb);
 	while (i < 700)
 	{
@@ -84,30 +73,23 @@ void	sky_floor(t_data *data)//optimi
 	}
 }
 
-void	handle_angle(t_data *data)
+void	sky(t_data *data)
 {
-	data->cast_angle = remainder(data->cast_angle, 2 * M_PI);
-	if (data->cast_angle < 0)
-		data->cast_angle = 2 * M_PI + data->cast_angle;
-}
+	float		i;
+	float		j;
+	uint32_t	color;
 
-void	cast_rays(t_data *data)
-{
-	int		i;
-	// float	dis;
-
-	sky_floor(data);
-	data->cast_angle = data->player->angle - FOV_ANGLE / 2;
-	data->strip_n = 0;
 	i = 0;
-	while (i < WIDTH)
+	color = get_rgb(data->map.crgb);
+	while (i < 350)
 	{
-		handle_angle(data);
-		cast_ray(data);
-		player_view(data);
-		data->cast_angle += FOV_ANGLE / WIDTH;
-		data->strip_n++;
+		j = 0;
+		while (j < WIDTH)
+		{
+			mlx_put_pixel(data->player_img, j, i, color);
+			j++;
+		}
 		i++;
 	}
-	data->cast_angle = data->player->angle;
+	floor_(data);
 }

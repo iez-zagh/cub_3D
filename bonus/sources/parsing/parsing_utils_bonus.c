@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:28:59 by zmaghdao          #+#    #+#             */
-/*   Updated: 2024/11/17 17:20:17 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/18 01:32:02 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,13 @@ void	inisialize_vars(t_data *data)
 	data->map.north = NULL;
 	data->map.south = NULL;
 	data->map.east = NULL;
+	data->frames = 0;
+	data->a_key = false;
+	data->w_key = false;
+	data->s_key = false;
+	data->d_key = false;
+	data->sub_key = false;
+	data->add_key = false;
+	data->animation = false;
+	data->mouse_sensive = 2.5;
 }

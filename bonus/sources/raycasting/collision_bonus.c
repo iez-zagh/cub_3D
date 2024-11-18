@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 14:05:18 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/05 18:51:16 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/11/18 01:33:17 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,24 +66,6 @@ int	checking_collision3(t_data *data, int x, int y)
 	if (data->map.map[(int)(y / TILE)][(int)(x / TILE)]
 	&& (data->map.map[(int)(y / TILE)][(int)(x / TILE)] == '1'))
 		return (1);
-	// if (
-	// 	(data->map.map[(int)((y + 1) / TILE)]
-	// 	[(int)((x - 1) / TILE)] == '1' &&
-	// 	data->map.map[(int)((y) / TILE)]
-	// 	[(int)((x + 1) / TILE)] == '1'
-	// 	&&
-	// 	data->map.map[(int)((y + 1) / TILE)]
-	// 	[(int)((x + 1) / TILE)] == '0'
-	// 	) || (data->map.map[(int)((y + 1) / TILE)]
-	// 	[(int)((x) / TILE)] == '1'
-	// 	&&
-	// 	data->map.map[(int)((y) / TILE)]
-	// 	[(int)((x - 1) / TILE)] == '1'
-	// 	&&
-	// 	data->map.map[(int)((y + 1) / TILE)]
-	// 	[(int)((x - 1) / TILE)] == '0'
-	// 	))
-	// 	return (1);
 	return (0);
 }
 
@@ -92,32 +74,25 @@ int	checking_collision_door3(t_data *data, int x, int y)
 	if (data->map.map[(int)((y) / TILE)][(int)(x / TILE)]
 	&& (data->map.map[(int)((y) / TILE)][(int)(x / TILE)] == 'D'))
 	{
-		data->door_hit = true;
-		data->door_x = x;
-		data->door_y = y;
+		if (distance_calcul(data->player->sqaure_x,
+				data->player->sqaure_y, x, y) < 3 * TILE)
+		{
+			data->door_hit = true;
+			data->door_x = x;
+			data->door_y = y;
+		}
 		return (1);
 	}
-	if (data->map.map[(int)(y / TILE)]
-	[(int)(x / TILE)] == 'C')
+	if (data->map.map[(int)(y / TILE)][(int)(x / TILE)] == 'C')
 	{
-		data->door_hit = true;
-		data->door_x = x;
-		data->door_y = y;
+		if (distance_calcul(data->player->sqaure_x,
+				data->player->sqaure_y, x, y) < 3 * TILE)
+		{
+			data->door_hit = true;
+			data->door_x = x;
+			data->door_y = y;
+		}
 	}
-	//think about this
-	// if ((data->map.map[(int)((y + 1) / TILE)] 
-	// 	[(int)((x - 1) / TILE)] == 'D' &&
-	// 	data->map.map[(int)((y) / TILE)]
-	// 	[(int)((x + 1) / TILE)] == 'D' &&
-	// 	data->map.map[(int)((y + 1) / TILE)]
-	// 	[(int)((x + 1) / TILE)] == '0'
-	// 	) || (data->map.map[(int)((y + 1) / TILE)]
-	// 	[(int)((x) / TILE)] == 'D' &&
-	// 	data->map.map[(int)((y) / TILE)]
-	// 	[(int)((x - 1) / TILE)] == 'D' &&
-	// 	data->map.map[(int)((y + 1) / TILE)]
-	// 	[(int)((x - 1) / TILE)] == '0'))
-	// 	return (1);
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:17:54 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/17 02:21:33 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/18 00:35:37 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,13 @@ void	s_key(mlx_key_data_t key, t_data *data)
 		data->s_key = 0;
 }
 
-void	mouse(mlx_key_data_t key, t_data *data)
-{
-	if (key.action == MLX_PRESS)
-		data->animation = 1;
-}
-
 void	check_keys(mlx_key_data_t key, void *data)
 {
 	data = (t_data *)data;
 	if (key.key == MLX_KEY_W || key.key == MLX_KEY_UP)
 		w_key(key, data);
 	if (key.key == MLX_KEY_ENTER)
-		mouse(key, data);
+		enter_key(key, data);
 	if (key.key == MLX_KEY_A)
 		a_key(key, data);
 	if (key.key == MLX_KEY_S || key.key == MLX_KEY_DOWN)
@@ -67,22 +61,5 @@ void	check_keys(mlx_key_data_t key, void *data)
 		add_key(key, data);
 	if (key.key == MLX_KEY_D)
 		d_key(key, data);
-	if (key.key == MLX_KEY_O)
-	{
-		open_door(data);
-		draw_minimap(data);
-		cast_rays(data);
-	}
-	if (key.key == MLX_KEY_C)
-	{
-		close_door(data);
-		draw_minimap(data);
-		cast_rays(data);
-	}
-	if (key.key == MLX_KEY_ESCAPE)
-	{
-		// ft_free(data->map.map);
-		write(1, "WINDOW CLOSED\n", 14);
-		exit(0);
-	}
+	check_keys_2(data, key);
 }

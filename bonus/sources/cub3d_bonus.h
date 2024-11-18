@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/17 18:09:41 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/18 01:40:35 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 typedef struct s_node
 {
 	void			*ptr;
-	struct	s_node	*next;
+	struct s_node	*next;
 }	t_node;
 
 typedef struct s_map
@@ -91,8 +91,7 @@ typedef struct s_tex_img
 	mlx_image_t		*i_east;
 	mlx_image_t		*i_door;
 	mlx_image_t		*i_frames[36];
-}	tex_t;
-
+}	t_tex;
 
 typedef struct s_data
 {
@@ -126,10 +125,14 @@ typedef struct s_data
 	bool		facing_right;
 	bool		door_hit;
 	float		wall_height;
+	double		textureofssetx;
+	double		step;
+	double		textureposy;
+	uint32_t	color;
 	float		mouse_sensive;
 	mlx_image_t	*img;
 	mlx_image_t	*player_img;
-	tex_t		tex;
+	t_tex		tex;
 	t_map		map;
 	bool		animation;
 	int			frames;
@@ -178,11 +181,11 @@ int		largest_line(char **map);
 void	spacetotwo(char **map);
 int		is_map_char(char c);
 int		check_directions(char **map, int i, int j, int x);
-
+int		convert_textures(t_data *data);
 void	angle_init(char c, t_data *data);
 int		sec_char(char *tab, int i);
-int 	is_player(char c);
-int 	parse_map(t_data *data, int lines);
+int		is_player(char c);
+int		parse_map(t_data *data, int lines);
 int		map_begins(char *tab, t_map map);
 int		get_map(t_data *data, int i, int *j);
 int		first_last_line(char *line);
@@ -194,6 +197,11 @@ void	delete_images(t_data *data, int x);
 int		frames_loading(t_data *data);
 int		from_texture_to_image(t_data *data);
 void	free_frames(t_data *data, int i, int x);
+void	run_animation(t_data *data);
+void	enter_key(mlx_key_data_t key, t_data *data);
+void	check_keys_2(t_data *data, mlx_key_data_t key);
+void	vert_traverse(t_data *data, float ystep, float xstep);
+
 // === === === === === === === === === //
 
 #endif

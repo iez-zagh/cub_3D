@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/17 02:25:47 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/18 01:41:17 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,26 +56,31 @@ void	draw_minimap2(t_data *data, int i, int u)
 	}
 }
 
-void	draw_minimap(t_data *data)
+void	start_render(t_data *data)
 {
-	draw_minimap2(data, (data->player->sqaure_y / TILE) * TILE_SCALED - 4
-		* TILE_SCALED, (data->player->sqaure_x / TILE)
-		* TILE_SCALED - 6 * TILE_SCALED);
-	draw_player(data, 6 * TILE_SCALED, 4 * TILE_SCALED, YELLOW);
-	draw_direction(data, 6 * TILE_SCALED, 4 * TILE_SCALED);
+	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", 0);
+	data->img = mlx_new_image(data->mlx, WIDTH / 2, HEIGHT / 2);
+	if (convert_textures(data) < 0)
+		return ;
+	if (from_texture_to_image(data))
+		return ;
+	data->player_img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	data->player->sqaure_x = data->player->x * TILE;
+	data->player->sqaure_y = data->player->y * TILE;
+	data->player->sqaure_x += TILE / 2;
+	data->player->sqaure_y += TILE / 2;
+	draw_minimap(data);
+	cast_rays(data);
+	mlx_image_to_window(data->mlx, data->player_img, 0, 0);
+	mlx_image_to_window(data->mlx, data->img, 0, 0);
+	mlx_image_to_window(data->mlx, data->tex.i_frames[0], 250, 350);
+	mlx_key_hook(data->mlx, check_keys, data);
+	mlx_loop_hook(data->mlx, my_key_hook, data);
+	mlx_loop_hook(data->mlx, handle_mouse, data);
+	mlx_loop(data->mlx);
 }
 
-void	how_2_use(void)
-{
-	printf("Usage: ./cub3D ./path_to_map\n");
-}
-
-void	f(void)
-{
-	system("leaks cub3D_bonus");
-}
-
-void	free_All(t_data *data)
+void	free_all(t_data *data)
 {
 	free_frames(data, 36, 0);
 	free_frames(data, 36, 1);
@@ -93,17 +98,16 @@ int	main(int ac, char **av)
 
 	map = NULL;
 	if (ac != 2)
-		return (how_2_use(), 1);
+		return (printf("Usage: ./cub3D ./path_to_map\n"), 1);
 	data.player = &player;
 	stat = parsing(&data, av[1]);
 	if (stat < 0)
 		return (ft_free_par(data.map.map), stat);
 	player.sqaure_x = player.x * TILE;
 	player.sqaure_y = player.y * TILE;
-
 	if (frames_loading(&data))
 		return (ft_free_par(data.map.map), -1);
 	start_render(&data);
-	free_All(&data);
+	free_all(&data);
 	return (0);
 }

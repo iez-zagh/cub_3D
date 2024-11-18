@@ -1,7 +1,7 @@
 NAME = cub3D
 BONUS = cub3D_bonus
 CC = cc
-# CFLAGS = -fsanitize=address -Wextra -Wall -Werror
+CFLAGS = -fsanitize=address -g
 LIBFT_DIR = /Users/$(USER)/Desktop/cub_3d/libft
 GNL_DIR = /Users/$(USER)/Desktop/cub_3d/gnl
 LIBS2 = -L /Users/$(USER)/Desktop/cub_3d/MLX42/build -lmlx42 \
@@ -18,7 +18,7 @@ M_SOURCES = sources/raycasting/main.c sources/raycasting/key_hook.c sources/rayc
 			sources/parsing/parsing.c sources/parsing/parsing_v1.c sources/parsing/parsing_utils.c\
 			sources/parsing/news_parse.c sources/parsing/f_c_parse.c sources/parsing/parsing_utils2.c\
 			sources/parsing/parsing_utils3.c sources/parsing/map_starts.c sources/parsing/map_parse.c \
-			sources/parsing/utils.c 
+			sources/parsing/utils.c sources/raycasting/cast_rays_2.c
 
 B_SOURCES = bonus/sources/raycasting/main_bonus.c bonus/sources/raycasting/key_hook_bonus.c\
 			bonus/sources/raycasting/render_bonus.c bonus/sources/raycasting/cal_hit_bonus.c\
@@ -29,6 +29,7 @@ B_SOURCES = bonus/sources/raycasting/main_bonus.c bonus/sources/raycasting/key_h
 			bonus/sources/parsing/parsing_utils3_bonus.c bonus/sources/raycasting/draw_player_bonus.c\
 			bonus/sources/raycasting/collision_bonus.c bonus/sources/parsing/utils_bonus.c \
 			bonus/sources/parsing/map_starts_bonus.c bonus/sources/parsing/map_parse_bonus.c bonus/sources/raycasting/loading_anims_bonus.c\
+			bonus/sources/raycasting/animation_bonus.c bonus/sources/raycasting/check_bonus.c
 
 M_OBJECTS = $(M_SOURCES:.c=.o)
 B_OBJECTS = $(B_SOURCES:.c=.o)
@@ -74,8 +75,5 @@ fclean: clean
 	@echo the executable file removed successfully
 
 re: clean fclean all
-
-norm:
-	@norminette $(M_SOURCES) $(HEADER) $(B_SOURCES/) $(B_HEADER)
 
 .PHONY: clean re fclean all

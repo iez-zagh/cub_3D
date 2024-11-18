@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:02:03 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/16 19:29:43 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/18 01:43:00 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef struct s_tex_img
 	mlx_image_t		*i_south;
 	mlx_image_t		*i_west;
 	mlx_image_t		*i_east;
-}	tex_t;
+}	t_tex;
 
 typedef struct s_data
 {
@@ -104,12 +104,15 @@ typedef struct s_data
 	bool		facing_right;
 	float		wall_dis;
 	float		wall_height;
+	double		textureofssetx;
+	double		step;
+	double		textureposy;
+	uint32_t	color;
 	mlx_image_t	*img;
 	mlx_image_t	*player_img;
-	tex_t		tex;
+	t_tex		tex;
 	t_map		map;
 	t_player	*player;
-	
 }	t_data;
 
 /*				raycasting					*/
@@ -125,6 +128,10 @@ void	check_keys(mlx_key_data_t key, void *data);
 void	player_view(t_data *data);
 float	distance_calcul(float x, float y, float x1, float y1);
 int		checking_collision3(t_data *data, int x, int y);
+void	vert_traverse(t_data *data, float ystep, float xstep);
+void	handle_angle(t_data *data);
+void	player_view(t_data *data);
+void	set_texture(t_data *data, float start, float end);
 
 /*				parsing					*/
 // === === === === === === === === === //
@@ -146,8 +153,8 @@ int		check_directions(char **map, int i, int j);
 
 void	angle_init(char c, t_data *data);
 int		sec_char(char *tab, int i);
-int 	is_player(char c);
-int 	parse_map(t_data *data, int lines);
+int		is_player(char c);
+int		parse_map(t_data *data, int lines);
 int		map_begins(char *tab, t_map map);
 int		get_map(t_data *data, int i, int *j);
 void	free_leaks(t_map *map, int x);

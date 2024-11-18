@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:04:14 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/17 02:29:39 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/18 00:40:26 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ void	key_hook_2(t_data *data)
 
 void	handle_mouse(void *d)
 {
-	return ;
 	int		last_position;
 	float	direction;
 	t_data	*data;
@@ -123,33 +122,6 @@ void	handle_mouse(void *d)
 	}
 }
 
-void	run_animation(t_data *data)
-{
-	static int	i = 0;
-
-	if (i == 36)
-		i = 0;
-	if (data->frames == 7)
-	{
-		mlx_image_to_window(data->mlx, data->tex.i_frames[i], 250, 350);
-		if (i == 35)
-			data->animation = 0;
-		if (i > 0)
-		{
-			mlx_delete_image(data->mlx, data->tex.i_frames[i - 1]);
-			data->tex.i_frames[i - 1] = mlx_texture_to_image(data->mlx, data->tex.frames[i - 1]);
-		}
-		else
-		{
-			mlx_delete_image(data->mlx, data->tex.i_frames[35]);
-			data->tex.i_frames[35] = mlx_texture_to_image(data->mlx, data->tex.frames[35]);
-		}
-		i++;
-		data->frames = 0;
-	}
-	data->frames++;
-}
-
 void	my_key_hook(void *st)
 {
 	t_data	*data;
@@ -168,11 +140,11 @@ void	my_key_hook(void *st)
 		{
 			data->player->sqaure_x = new_x;
 			data->player->sqaure_y = new_y;
-			draw_minimap(data); // why this
+			draw_minimap(data);
 			cast_rays(data);
 		}
 	}
-	if(data->animation)
+	if (data->animation)
 		run_animation(data);
 	key_hook_2(data);
 }

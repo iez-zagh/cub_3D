@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_view.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:56:18 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/16 19:42:49 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/18 01:47:33 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,13 @@ int	convert_textures(t_data *data)
 	return (delete_texture(data, 4), 0);
 }
 
-
 void	start_render(t_data *data)
 {
 	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", 0);
+	if (!data->mlx)
+	{
+		// do something
+	}
 	data->img = mlx_new_image(data->mlx, 336, 224);
 	if (convert_textures(data) < 0)
 		return ;
@@ -66,7 +69,7 @@ mlx_image_t	*get_texture(t_data *data)
 	{
 		if (data->cast_angle > M_PI_2 && data->cast_angle < 3 * M_PI_2)
 			return (data->tex.i_west);
-		else 
+		else
 			return (data->tex.i_east);
 	}
 	return (NULL);
@@ -95,39 +98,29 @@ uint32_t	get_texture_pixel(mlx_image_t *texture, int x, int y)
 	return (0x000000);
 }
 
-void	player_view(t_data *data)
+void	set_texture(t_data *data, float start, float end)
 {
-	float	dis_projection_plane;
-	float	start;
-	float	end;
 	mlx_image_t	*img;
+	int			distance_from_top;
+	int			textureofssety;
 
-	data->wall_dis = data->wall_dis * cos(data->cast_angle - data->player->angle);
-	dis_projection_plane = (WIDTH / 2) / tan(FOV_ANGLE / 2);
-	data->wall_height = (TILE / data->wall_dis) * dis_projection_plane;
-	start = (HEIGHT / 2) - (data->wall_height / 2);
-	if (start < 0)
-		start = 0;
-	end = start + data->wall_height;
-	if (end >= HEIGHT)
-		end = HEIGHT;
 	img = get_texture(data);
-	double step = (double)img->height / data->wall_height;
-	double textureofssetX;
+	data->step = (double)img->height / data->wall_height;
 	if (data->found_horz_hit)
-		textureofssetX = ((int)(data->hor_hit_x * img->width) / TILE) % img->width;
+		data->textureofssetx = ((int)(data->hor_hit_x * img->width) / TILE)
+			% img->width;
 	else if (data->foundverticalhit)
-		textureofssetX = ((int)(data->ver_hit_y * img->width) / TILE) % img->width;
-
-	int distance_from_top = start + (data->wall_height / 2) - (HEIGHT / 2);
-	double texturePosY = distance_from_top * step;
-
+		data->textureofssetx = ((int)(data->ver_hit_y * img->width) / TILE)
+			% img->width;
+	distance_from_top = start + (data->wall_height / 2) - (HEIGHT / 2);
+	data->textureposy = distance_from_top * data->step;
 	while (start < end)
 	{
-		int textureofssetY = (int)texturePosY;
-		uint32_t color = get_texture_pixel(img, textureofssetX, textureofssetY);
-		mlx_put_pixel(data->player_img, data->strip_n, start, color);
-		texturePosY += step;
+		textureofssety = (int)data->textureposy;
+		data->color = get_texture_pixel(img, data->textureofssetx,
+				textureofssety);
+		mlx_put_pixel(data->player_img, data->strip_n, start, data->color);
+		data->textureposy += data->step;
 		start++;
 	}
 }

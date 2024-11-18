@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 16:38:05 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/17 02:20:20 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/18 01:32:26 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,36 +86,4 @@ void	draw_player2(t_data *data, float draw_x, float draw_y, int color)
 		}
 		y++;
 	}
-}
-
-void	start_render(t_data *data)
-{
-	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", 0);
-	data->img = mlx_new_image(data->mlx, WIDTH / 2, HEIGHT / 2);
-	if (convert_textures(data) < 0)
-		return ;
-	if (from_texture_to_image(data))
-		return ;
-	data->player_img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	data->player->sqaure_x = data->player->x * TILE;
-	data->player->sqaure_y = data->player->y * TILE;
-	data->player->sqaure_x += TILE / 2;
-	data->player->sqaure_y += TILE / 2;
-	draw_minimap(data);
-	cast_rays(data);
-	mlx_image_to_window(data->mlx, data->player_img, 0, 0);
-	mlx_image_to_window(data->mlx, data->img, 0, 0);
-	mlx_image_to_window(data->mlx, data->tex.i_frames[0], 250, 350);
-	data->a_key = false;
-	data->w_key = false;
-	data->s_key = false;
-	data->d_key = false;
-	data->sub_key = false;
-	data->add_key = false;
-	data->animation = false;
-	data->mouse_sensive = 2.5;
-	mlx_key_hook(data->mlx, check_keys, data);
-	mlx_loop_hook(data->mlx, my_key_hook, data);
-	mlx_loop_hook(data->mlx, handle_mouse, data);
-	mlx_loop(data->mlx);
 }

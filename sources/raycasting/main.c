@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmaghdao <zmaghdao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:54:13 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/11/16 19:47:46 by zmaghdao         ###   ########.fr       */
+/*   Updated: 2024/11/18 00:13:55 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@ int	get_color(t_data *data, int x, int y)
 	return (WHITE);
 }
 
+void	handle_angle(t_data *data)
+{
+	data->cast_angle = remainder(data->cast_angle, 2 * M_PI);
+	if (data->cast_angle < 0)
+		data->cast_angle = 2 * M_PI + data->cast_angle;
+}
+
 void	how_2_use(void)
 {
 	printf("Usage: ./cub3D ./path_to_map\n");
@@ -44,13 +51,11 @@ int	main(int ac, char **av)
 	t_player	player;
 	char		*map;
 
-	atexit(f);
 	map = NULL;
 	if (ac != 2)
 		return (how_2_use(), 1);
 	data.player = &player;
 	stat = parsing(&data, av[1]);
-	// while(1);
 	if (stat < 0)
 		return (ft_free_par(data.map.map), 1);
 	player.sqaure_x = player.x * TILE;
